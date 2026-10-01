@@ -98,19 +98,30 @@ A link to the file's blob page on github.com also opens a player for most media 
   contract, with their prompts, roles, dimensions, alt text, crop behavior and review
   decisions stored in `.content-system/`. Raster rather than SVG because the contract
   requires narrative assets to carry a real prompt record and a verified file hash.
-- **Two repo-hosted animations.** Five-frame GIFs whose frames were generated one at a
-  time from the previous frame, then assembled on a shared palette. They show the two
-  habits the page describes: a component reused until it becomes a grid, and one push
-  fanning out into several finished pipelines.
-- **Charts drawn by the repository itself.** Four SVGs written by a committed script
-  from live GitHub API data, served through `<picture>` so phones get a stacked
-  arrangement instead of a squeezed one.
-- **The story stays open.** No section of the narrative is hidden behind a collapse.
-  The one `<details>` element on the page holds the full repository index, which is
-  reference material a reader consults rather than the argument itself, and the tour
-  page uses the same element for voice-note transcripts.
-- **GitHub Pages for audio.** The five voice notes live on a static tour page with a
-  real player, because Markdown cannot host one.
+- **Every illustration moves.** Each still also ships as a four-frame GIF whose frames
+  were generated one at a time from the previous frame, then assembled on a shared
+  palette with a ping-pong return so the loop does not snap. They show the two habits
+  the page describes: a component reused until it becomes a grid, and one push fanning
+  out into several finished pipelines.
+- **Charts drawn by the repository itself.** Eight SVGs written by a committed script
+  from live GitHub API data - four layouts, each in a light and a dark palette.
+- **Dark variants are derived, not drawn again.** A palette transform reads each light
+  asset and writes its dark twin, so the two cannot drift and the result is reproducible
+  from the committed source. A second generation pass would cost a model call per frame
+  and would not be byte-stable.
+- **The argument is open; the detail is folded away.** The projects section opens on a
+  table of repo title, one line, and a link to that project's spoken note, with the long
+  description behind a nested `<details>`. A reader who wants the argument never opens
+  one; a reader who wants the reasoning can. The repository index is behind a `<details>`
+  for the same reason, and the tour page uses that element for voice-note transcripts.
+- **GitHub Pages for audio.** The nine voice notes live on a static tour page with real
+  players, one beside each project, because Markdown cannot host one.
+- **Two theme mechanisms, never combined.** GitHub's theme rule matches the anchor it
+  wraps around a bare image, so an image inside a `<picture>` never swaps colour: both
+  modes render at once. A bare image with the theme fragment tracks GitHub's own toggle
+  exactly but cannot carry a phone variant, and `<picture>` sources are the only form
+  that can swap colour and layout together. Illustrations use the first, charts the
+  second, and no figure mixes them.
 - **A link check in CI.** Every relative reference in every Markdown and HTML file is
   resolved during the required `gates` check, so a renamed asset cannot silently turn
   into a broken image on the profile.

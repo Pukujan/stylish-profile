@@ -56,6 +56,52 @@ Starting revision, material inputs/configuration, runtime, exact command or prom
 
 No checkpoints yet.
 
+### 2026-10-01 08:29:20 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["profile/README.md, docs/index.html, .content-system/asset-manifest.json, .content-system/voice-notes.json, .content-system/filename-legends/voice-notes.json, scripts/track_activity.py, scripts/generate_voice_notes.py, .github/workflows/gates.yml"],"completed":["the projects section opens on a table with a spoken note per project, every image is a four-frame animation, and every image has a derived dark variant"],"decisions":["an image inside a picture never swaps colour on GitHub, because the theme rule matches the anchor around a bare image; illustrations use two bare images with the theme fragment and charts use one picture with prefers-color-scheme sources, and no figure mixes the two"],"evidence":["gates passed on PR #6 and it merged as 9f1dbbc; the live profile page renders exactly 9 images in each of light and dark (18 before the fix); the live tour page serves 9 audio players that all load with real durations and no errors"],"next_action":"publish the doc and record updates that describe the shipped shape, then clean up the probe repositories","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0002","timestamp":"2026-10-01T08:29:20Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"b2c259ad5081e8671e4044e14dffffe6eaf90ee24278ad121b349432672ebe60","request_id":"2258b1b280c34c90bed8542752a98eee","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0002"} -->
+
+Completed:
+- the projects section opens on a table with a spoken note per project, every image is a four-frame animation, and every image has a derived dark variant
+
+Evidence:
+- gates passed on PR #6 and it merged as 9f1dbbc; the live profile page renders exactly 9 images in each of light and dark (18 before the fix); the live tour page serves 9 audio players that all load with real durations and no errors
+
+Decisions:
+- an image inside a picture never swaps colour on GitHub, because the theme rule matches the anchor around a bare image; illustrations use two bare images with the theme fragment and charts use one picture with prefers-color-scheme sources, and no figure mixes the two
+
+Changed:
+- profile/README.md, docs/index.html, .content-system/asset-manifest.json, .content-system/voice-notes.json, .content-system/filename-legends/voice-notes.json, scripts/track_activity.py, scripts/generate_voice_notes.py, .github/workflows/gates.yml
+
+Blocked/uncertain:
+- none
+
+Next:
+- publish the doc and record updates that describe the shipped shape, then clean up the probe repositories
+
+### 2026-10-01 08:29:46 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["profile/README.md, docs/index.html, .content-system/asset-manifest.json, .content-system/voice-notes.json, .content-system/filename-legends/voice-notes.json, scripts/track_activity.py, scripts/generate_voice_notes.py, .github/workflows/gates.yml"],"completed":["the projects section opens on a table with a spoken note per project, every image is a four-frame animation, and every image has a derived dark variant"],"decisions":["an image inside a picture never swaps colour on GitHub, because the theme rule matches the anchor around a bare image; illustrations use two bare images with the theme fragment and charts use one picture with prefers-color-scheme sources, and no figure mixes the two"],"evidence":["gates passed on PR #6 and it merged as 9f1dbbc; the live profile page renders exactly 9 images in each of light and dark, 18 before the fix; the live tour page serves 9 audio players that all load with real durations and no errors"],"next_action":"publish the doc and record updates that describe the shipped shape, then clean up the probe repositories","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0002","timestamp":"2026-10-01T08:29:46Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"166f97aa47e78405029cbcfe38501f6d909c7fb759ba7d48153342075d36f985","request_id":"9595696465bc43859f2cebfb7bab8047","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0002"} -->
+
+Completed:
+- the projects section opens on a table with a spoken note per project, every image is a four-frame animation, and every image has a derived dark variant
+
+Evidence:
+- gates passed on PR #6 and it merged as 9f1dbbc; the live profile page renders exactly 9 images in each of light and dark, 18 before the fix; the live tour page serves 9 audio players that all load with real durations and no errors
+
+Decisions:
+- an image inside a picture never swaps colour on GitHub, because the theme rule matches the anchor around a bare image; illustrations use two bare images with the theme fragment and charts use one picture with prefers-color-scheme sources, and no figure mixes the two
+
+Changed:
+- profile/README.md, docs/index.html, .content-system/asset-manifest.json, .content-system/voice-notes.json, .content-system/filename-legends/voice-notes.json, scripts/track_activity.py, scripts/generate_voice_notes.py, .github/workflows/gates.yml
+
+Blocked/uncertain:
+- none
+
+Next:
+- publish the doc and record updates that describe the shipped shape, then clean up the probe repositories
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
