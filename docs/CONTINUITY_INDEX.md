@@ -35,7 +35,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7`
-- Current SHA-256: `d7317ae1189350cfedb0017112b0d0664a3e85f8c84716c08e385a251331267f`
+- Current SHA-256: `d9c63be8ea454dfac31501d52faad683512020a035cdea656549966e2fabcb28`
 - Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: what I build, the four current projects, what is shipped and what is not, the featured project, the live activity block, the spoken tour links and the contact list.
 - Search terms: `featured-projects`, `profile`, `readme`
 - Neighboring records: none
@@ -95,7 +95,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599`
-- Current SHA-256: `11c7a7815ba615e1097ad2f1bc4688aa922a205efca9de0bac7d819deb6aee38`
+- Current SHA-256: `bb4b3ab930cc3f7a89e131334a4677e4d73b01dfe775ad7eceb7d79b939d51a6`
 - Summary: The static tour: the same story as the profile page plus a real audio player for the five voice notes, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none
