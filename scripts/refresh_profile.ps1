@@ -91,13 +91,24 @@ try {
     if (-not $CgmPin) {
         throw 'CGM_PIN not found in .github/workflows/gates.yml'
     }
-    $CgmRoot = Join-Path $LogDir 'cgm'
+    # Prefer the canonical checkout when it is already at the pin, so the
+    # common case adds no second copy of the repository. The cached clone is
+    # the fallback for when that checkout is on another branch, which is the
+    # normal state while the helper itself is being worked on.
+    $CgmRoot = 'D:\claude\projects\content-generation-modules'
     $CgmHead = $null
     if (Test-Path -LiteralPath (Join-Path $CgmRoot '.git')) {
         $CgmHead = (git -C $CgmRoot rev-parse HEAD 2>$null).Trim()
     }
     if ($CgmHead -ne $CgmPin) {
-        Write-Log "preparing content helper at $($CgmPin.Substring(0, 12))"
+        $CgmRoot = Join-Path $LogDir 'cgm'
+        $CgmHead = $null
+        if (Test-Path -LiteralPath (Join-Path $CgmRoot '.git')) {
+            $CgmHead = (git -C $CgmRoot rev-parse HEAD 2>$null).Trim()
+        }
+    }
+    if ($CgmHead -ne $CgmPin) {
+        Write-Log "preparing content helper at $($CgmPin.Substring(0, 12)) in $CgmRoot"
         if (-not (Test-Path -LiteralPath (Join-Path $CgmRoot '.git'))) {
             Remove-Item -Recurse -Force -LiteralPath $CgmRoot -ErrorAction SilentlyContinue
             git clone --quiet --filter=blob:none https://github.com/Pukujan/content-generation-modules.git $CgmRoot
