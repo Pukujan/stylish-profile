@@ -18,11 +18,12 @@
     Steps, in order, stopping at the first failure:
       1. fast-forward the checkout onto origin/main
       2. regenerate the tracking block and the four charts
-      3. re-render the continuity document index, which pins two of those files
+      3. re-render the continuity document index, which pins three of those files
       4. verify every relative link still resolves
       5. verify each derived dark variant still matches its light source
-      6. commit and push, only if something actually changed
-      7. mirror the page into the profile repository
+      6. verify the rewritten records still satisfy the content-system contract
+      7. commit and push, only if something actually changed
+      8. mirror the page into the profile repository
 
 .PARAMETER RepoRoot
     The canonical checkout. Defaults to the parent of this script's directory.
@@ -79,6 +80,38 @@ try {
         $env:PYTHONPATH = 'D:\claude\projects\project-continuity-modules\src'
     }
 
+    # The content helper is not installed either. Its validator is what CI runs
+    # before it will merge, so the refresh runs the same one locally rather than
+    # letting a rewritten record reach main and turn `gates` red there. It has
+    # to be the same revision CI checks out, so the pin is read from the
+    # workflow rather than repeated here, and the checkout is a cached clone at
+    # that pin instead of whatever state a working tree happens to be in.
+    $CgmPin = (Select-String -LiteralPath (Join-Path $RepoRoot '.github\workflows\gates.yml') `
+            -Pattern '^\s*CGM_PIN:\s*([0-9a-f]{40})\s*$').Matches.Groups[1].Value
+    if (-not $CgmPin) {
+        throw 'CGM_PIN not found in .github/workflows/gates.yml'
+    }
+    $CgmRoot = Join-Path $LogDir 'cgm'
+    $CgmHead = $null
+    if (Test-Path -LiteralPath (Join-Path $CgmRoot '.git')) {
+        $CgmHead = (git -C $CgmRoot rev-parse HEAD 2>$null).Trim()
+    }
+    if ($CgmHead -ne $CgmPin) {
+        Write-Log "preparing content helper at $($CgmPin.Substring(0, 12))"
+        if (-not (Test-Path -LiteralPath (Join-Path $CgmRoot '.git'))) {
+            Remove-Item -Recurse -Force -LiteralPath $CgmRoot -ErrorAction SilentlyContinue
+            git clone --quiet --filter=blob:none https://github.com/Pukujan/content-generation-modules.git $CgmRoot
+            if ($LASTEXITCODE -ne 0) { throw 'could not clone the content helper' }
+        }
+        else {
+            git -C $CgmRoot fetch --quiet origin
+            if ($LASTEXITCODE -ne 0) { throw 'could not fetch the content helper' }
+        }
+        git -C $CgmRoot checkout --quiet $CgmPin
+        if ($LASTEXITCODE -ne 0) { throw "could not check out content helper at $CgmPin" }
+    }
+    $CgmValidator = Join-Path $CgmRoot 'scripts\validate_content_system.py'
+
     if (-not $env:GITHUB_TOKEN) {
         $env:GITHUB_TOKEN = (gh auth token).Trim()
     }
@@ -113,6 +146,12 @@ try {
 
     Invoke-Step 'verify dark variants' {
         python scripts/derive_dark_assets.py --check
+    }
+
+    # Step 2 rewrites .content-system/asset-manifest.json, so the record that
+    # CI validates is not the one this run started from.
+    Invoke-Step 'verify content-system records' {
+        python $CgmValidator --root $CgmRoot --adapter "$RepoRoot\.content-system" --project-root $RepoRoot
     }
 
     $changed = git status --porcelain

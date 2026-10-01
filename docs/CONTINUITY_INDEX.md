@@ -11,7 +11,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773`
-- Current SHA-256: `51e7c925b98cd9ff7b825f16235a390851cba488b1ed0ae21b62a092a839219b`
+- Current SHA-256: `5fa6171fdc49baa7773db086cd3b1cb448acf1683eea621ea0d17404cdb15fce`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -71,7 +71,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `436e18a7907ff028f9ea8189ae60e1a1bb9fbbc104adb317248c54006aa1f6a8`
-- Current SHA-256: `fd8135a116ae064c3edf1b790d16193e786764976f87f1b9acaef6813188212d`
+- Current SHA-256: `1833533ca6d9638ddd8900411d1a8c68403276a8ff0c85a14f61bf6ad522df46`
 - Summary: The project entry point for this repository: why the page exists, what the repository contains, how the pieces work, the evidence and boundaries, and how to run the link check.
 - Search terms: `product`, `readme`
 - Neighboring records: none
@@ -95,7 +95,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599`
-- Current SHA-256: `32bd7f24df3ecae68d04edccf125fa822f0b12e6444d36144feb21f58ca458fe`
+- Current SHA-256: `72bc8bdd1492046febb254b359fa37196465327b5ff3192177c8970532f280d3`
 - Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none

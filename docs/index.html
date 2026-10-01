@@ -121,7 +121,7 @@
   audio { width: 100%; margin: 0.5rem 0 0.75rem; }
   details { margin: 0 0 0.75rem; }
   summary { cursor: pointer; font-size: 0.9rem; color: var(--muted); }
-  .transcript { font-family: var(--serif); font-size: 0.95rem; color: var(--muted); margin-top: 0.5rem; }
+  .transcript, .summary { font-family: var(--serif); font-size: 0.95rem; color: var(--muted); margin-top: 0.5rem; }
   .table-scroll { overflow-x: auto; margin: 0 0 1rem; }
   table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
   th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
@@ -216,7 +216,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Agent%20Custom%20Setup.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="transcript">A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. It is the reason this page's own repository cannot silently drift from the versions it claims.</p>
+      <p class="summary">A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. It is the reason this page's own repository cannot silently drift from the versions it claims.</p>
     </details>
   </div>
 
@@ -225,7 +225,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Project%20Continuity%20Modules.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="transcript">Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
+      <p class="summary">Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
     </details>
   </div>
 
@@ -234,7 +234,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Content%20Generation%20Modules.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="transcript">Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.</p>
+      <p class="summary">Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.</p>
     </details>
   </div>
 
@@ -243,7 +243,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="transcript">Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
+      <p class="summary">Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
     </details>
   </div>
 

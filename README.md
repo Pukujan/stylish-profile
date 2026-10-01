@@ -38,7 +38,7 @@ The page carries a tracking block that refreshes itself: commits in the window a
 
 Publishing the refresh means pushing to a protected `main`, and the workflow token cannot do that. A `GITHUB_TOKEN` push is rejected by the branch ruleset, and a pull request opened with that token has its `pull_request` runs held for approval by GitHub, which turns a daily refresh into a daily approval step. Neither is a setting that can be turned off.
 
-[`scripts/refresh_profile.ps1`](scripts/refresh_profile.ps1) therefore runs the same steps on the workstation, where the owner's authenticated git credentials carry the ruleset's admin bypass. It fast-forwards, regenerates the block, re-renders the continuity index that pins two of the rewritten files, verifies every link, commits only if something changed, pushes, and mirrors the page into `Pukujan/Pukujan`. It is registered as a daily scheduled task and logs to `%LOCALAPPDATA%\stylish-profile-refresh\refresh.log`.
+[`scripts/refresh_profile.ps1`](scripts/refresh_profile.ps1) therefore runs the same steps on the workstation, where the owner's authenticated git credentials carry the ruleset's admin bypass. It fast-forwards, regenerates the block, re-renders the continuity index that pins three of the rewritten files, verifies every link and every recorded hash, checks the rewritten records against the content-system contract, commits only if something changed, pushes, and mirrors the page into `Pukujan/Pukujan`. It is registered as a daily scheduled task and logs to `%LOCALAPPDATA%\stylish-profile-refresh\refresh.log`.
 
 `.github/workflows/track.yml` keeps the same regeneration available on demand, without a schedule, for the case where the page needs refreshing from somewhere other than this machine.
 

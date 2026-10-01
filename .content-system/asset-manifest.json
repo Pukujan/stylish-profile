@@ -259,7 +259,7 @@
       "reference_id": "2c32246692bd454d891585c85233bc72",
       "model": "s2.1-pro-free",
       "spoken_text": "One honest note before you go. This page is new, and parts of the tooling behind it are still being built. The three projects you see are real and public, and each one has an issue tracking what is done and what is not. If something here looks unfinished, that is usually because it is.",
-      "usage": "Closing clip that states the page's boundaries out loud.",
+      "usage": "Closing clip that states the page's boundaries out loud. Recorded when the page listed three projects: the clip names the three it was written around and never mentions Inference Recommendation Engine, so it is stale against the four-project page.",
       "hash": "b1e06659f6c41552c71f8d01449098539f18484a7d1c0321ead41ac047bc736b",
       "review_decision": "Left as recorded. The clip says three projects and the page lists four; correcting it means a paid Fish Audio run, so it waits on the owner rather than being edited out of the page's transcript, which stays verbatim with the audio."
     },
