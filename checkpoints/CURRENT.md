@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":"SP-0006","active_task_file":"tasks/TASK-SP-0006-records-follow-through.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":null,"active_task_file":null,"protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -16,11 +16,15 @@ Phase: bootstrap.
 - SP-0003: every voice note opens and plays, the dark variants cannot go stale without failing the gate, and the account has an avatar drawn as the same character as the page.
 - SP-0004: the dark illustrations keep the character's own colours, and both pages introduce Pujan instead of auditing him.
 - SP-0005: every content-system record matches the page it describes, and the length printed beside each voice note is checked against the clip.
-  A review of the merged result found three usage strings, a divergent transcript, a stale project doc and a tracker that rewrites the charts without updating their hashes; SP-0006 carries those.
+- SP-0006: the records that still contradicted the shipped page agree with it, and the two that could drift fail a check instead of going stale quietly.
 
 ## Active
 
-- SP-0006: make the records that still contradict the shipped page agree with it, and make the two that can drift fail a check instead of going stale quietly.
+None. The two records that could drift are gated: `scripts/track_activity.py`
+writes the chart hashes it draws into the manifest, `scripts/check_profile_links.py`
+fails when a recorded hash no longer matches its file, and
+`scripts/generate_voice_notes.py --check` fails when a transcript the page
+promises is the clip's own words is not.
 
 ## Queued
 
@@ -35,5 +39,6 @@ None known.
 
 ## Next atomic action
 
-Open the SP-0006 pull request against `main`, let `gates` run, and merge it;
-then record the merge commit in the task file and close the task out.
+Nothing is active. When the owner deletes the two probe repositories, re-run
+`scripts/track_activity.py --days 14`, then `continuity docs render`, then commit
+so the `sanitizer-probe` row leaves `profile/tracking.json`.
