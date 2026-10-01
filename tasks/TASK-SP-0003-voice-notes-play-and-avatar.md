@@ -80,6 +80,29 @@ Starting revision, material inputs/configuration, runtime, exact command or prom
 
 No checkpoints yet.
 
+### 2026-10-01 09:37:49 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["profile/README.md, docs/index.html, docs/research/github-profile-pages.md, assets/profile/Pujan.png, .content-system/asset-manifest.json, .content-system/prompts/Pujan.md, .content-system/filename-legends/profile-page.json, scripts/check_profile_links.py, scripts/derive_dark_assets.py, scripts/refresh_profile.ps1, .github/workflows/gates.yml, tasks/TASK-SP-0002-projects-table-and-voice-notes.md, checkpoints/CURRENT.md"],"completed":["every voice note opens and plays when clicked, the derived dark variants cannot go stale without failing the gate, and the account has an avatar drawn as the same character as the page"],"decisions":["the avatar field is deep royal blue rather than cream or near-black, because cream would be a bright disc on the dark page and near-black would disappear into it, while royal blue is already the page's primary accent and holds its shape against both surrounds"],"evidence":["click-through on the live profile opens a native player and advances currentTime to 5.86s of 26.88s with no error; check_profile_links.py exits 1 on a blob audio link; derive_dark_assets.py --check reports 8 variants matching and exits 1 when one is corrupted; the live tour header loads the avatar at its natural 460x460 as a 56px circle with zero overflow in both themes"],"next_action":"upload the avatar to the account, which is a web-UI action the REST API does not expose, and delete the two throwaway probe repositories","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0003","timestamp":"2026-10-01T09:37:49Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"854a3c87ab2a6dcbdedb7ccc69e74f57b7e9ef80ae0ffcc40901454b89da034e","request_id":"e39780599f674f3188f6e663d18870a6","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0003"} -->
+
+Completed:
+- every voice note opens and plays when clicked, the derived dark variants cannot go stale without failing the gate, and the account has an avatar drawn as the same character as the page
+
+Evidence:
+- click-through on the live profile opens a native player and advances currentTime to 5.86s of 26.88s with no error; check_profile_links.py exits 1 on a blob audio link; derive_dark_assets.py --check reports 8 variants matching and exits 1 when one is corrupted; the live tour header loads the avatar at its natural 460x460 as a 56px circle with zero overflow in both themes
+
+Decisions:
+- the avatar field is deep royal blue rather than cream or near-black, because cream would be a bright disc on the dark page and near-black would disappear into it, while royal blue is already the page's primary accent and holds its shape against both surrounds
+
+Changed:
+- profile/README.md, docs/index.html, docs/research/github-profile-pages.md, assets/profile/Pujan.png, .content-system/asset-manifest.json, .content-system/prompts/Pujan.md, .content-system/filename-legends/profile-page.json, scripts/check_profile_links.py, scripts/derive_dark_assets.py, scripts/refresh_profile.ps1, .github/workflows/gates.yml, tasks/TASK-SP-0002-projects-table-and-voice-notes.md, checkpoints/CURRENT.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- upload the avatar to the account, which is a web-UI action the REST API does not expose, and delete the two throwaway probe repositories
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
