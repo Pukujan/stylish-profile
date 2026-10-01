@@ -67,8 +67,8 @@
       "style": "speakable"
     },
     {
-      "path": "assets/profile/Three Projects One Thread.png",
-      "identity": "Three Projects One Thread",
+      "path": "assets/profile/Projects on One Thread.png",
+      "identity": "Projects on One Thread",
       "role": "system",
       "style": "speakable"
     },
@@ -141,15 +141,15 @@
       "style": "speakable"
     },
     {
-      "path": "assets/profile/anim/Three Projects One Thread.gif",
+      "path": "assets/profile/anim/Projects on One Thread.gif",
       "role": "motion",
-      "identity": "Three Projects One Thread",
+      "identity": "Projects on One Thread",
       "style": "speakable"
     },
     {
-      "path": "assets/profile/anim/Three Projects One Thread-dark.gif",
+      "path": "assets/profile/anim/Projects on One Thread-dark.gif",
       "role": "motion",
-      "identity": "Three Projects One Thread-dark",
+      "identity": "Projects on One Thread-dark",
       "style": "speakable"
     },
     {

@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":null,"active_task_file":null,"protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":"SP-0007","active_task_file":"tasks/TASK-SP-0007-hero-and-figure-rebuild.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -20,11 +20,11 @@ Phase: bootstrap.
 
 ## Active
 
-None. The two records that could drift are gated: `scripts/track_activity.py`
-writes the chart hashes it draws into the manifest, `scripts/check_profile_links.py`
-fails when a recorded hash no longer matches its file, and
-`scripts/generate_voice_notes.py --check` fails when a transcript the page
-promises is the clip's own words is not.
+- SP-0007: the hero and the figure beside the project list are rebuilt from one
+  locked environment plate plus keyed character sprites, so only the characters
+  move; `scripts/build_locked_motion.py check` fails a committed GIF whose
+  environment drifts outside its declared moving boxes, and runs as a gate.
+  Leaf issue #24, branch `task/SP-0007-hero-and-figure-rebuild`.
 
 ## Queued
 
@@ -39,6 +39,6 @@ None known.
 
 ## Next atomic action
 
-Nothing is active. When the owner deletes the two probe repositories, re-run
-`scripts/track_activity.py --days 14`, then `continuity docs render`, then commit
-so the `sanitizer-probe` row leaves `profile/tracking.json`.
+Commit the SP-0007 increment, run `continuity checkpoint SP-0007` to push the
+task branch, open the pull request, and arm auto-merge once the `gates` check
+passes on the final push.

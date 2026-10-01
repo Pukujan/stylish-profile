@@ -1,0 +1,220 @@
+{
+  "name": "AI Engineer phone",
+  "plate": "plate-tall-01.png",
+  "sprites": [
+    {
+      "name": "guy-idle",
+      "path": "guy-02.png",
+      "fit": "body",
+      "size": 460,
+      "anchor": "feet"
+    },
+    {
+      "name": "guy-raise",
+      "path": "guy-raise-01.png",
+      "fit": "body",
+      "size": 460,
+      "anchor": "feet"
+    },
+    {
+      "name": "robot-front",
+      "path": "robot-01.png",
+      "fit": "bbox",
+      "size": 132,
+      "anchor": "feet"
+    },
+    {
+      "name": "robot-back",
+      "path": "robot-01.png",
+      "fit": "bbox",
+      "size": 108,
+      "anchor": "feet"
+    },
+    {
+      "name": "boom",
+      "path": "boom-01.png",
+      "fit": "bbox",
+      "size": 220,
+      "anchor": "centre"
+    }
+  ],
+  "frames": [
+    [
+      {
+        "layer": "robot-back",
+        "x": 386,
+        "y": 1452
+      },
+      {
+        "layer": "guy-idle",
+        "x": 512,
+        "y": 1450
+      },
+      {
+        "layer": "robot-front",
+        "x": -120,
+        "y": 1487
+      }
+    ],
+    [
+      {
+        "layer": "boom",
+        "x": 345,
+        "y": 965,
+        "size": 120
+      },
+      {
+        "layer": "robot-back",
+        "x": 638,
+        "y": 1468
+      },
+      {
+        "layer": "guy-raise",
+        "x": 512,
+        "y": 1444
+      },
+      {
+        "layer": "robot-front",
+        "x": 133,
+        "y": 1503
+      }
+    ],
+    [
+      {
+        "layer": "boom",
+        "x": 345,
+        "y": 965,
+        "size": 220
+      },
+      {
+        "layer": "robot-back",
+        "x": 891,
+        "y": 1452
+      },
+      {
+        "layer": "guy-idle",
+        "x": 512,
+        "y": 1450
+      },
+      {
+        "layer": "robot-front",
+        "x": 386,
+        "y": 1487
+      }
+    ],
+    [
+      {
+        "layer": "boom",
+        "x": 345,
+        "y": 965,
+        "size": 150
+      },
+      {
+        "layer": "robot-back",
+        "x": 1144,
+        "y": 1468
+      },
+      {
+        "layer": "guy-raise",
+        "x": 512,
+        "y": 1444
+      },
+      {
+        "layer": "robot-front",
+        "x": 638,
+        "y": 1503
+      }
+    ],
+    [
+      {
+        "layer": "boom",
+        "x": 345,
+        "y": 965,
+        "size": 90
+      },
+      {
+        "layer": "robot-back",
+        "x": -120,
+        "y": 1452
+      },
+      {
+        "layer": "guy-idle",
+        "x": 512,
+        "y": 1450
+      },
+      {
+        "layer": "robot-front",
+        "x": 891,
+        "y": 1487
+      }
+    ],
+    [
+      {
+        "layer": "robot-back",
+        "x": 133,
+        "y": 1468
+      },
+      {
+        "layer": "guy-raise",
+        "x": 512,
+        "y": 1444
+      },
+      {
+        "layer": "robot-front",
+        "x": 1144,
+        "y": 1503
+      }
+    ]
+  ],
+  "output": [
+    480,
+    720
+  ],
+  "durations": [
+    240,
+    240,
+    240,
+    240,
+    240,
+    360
+  ],
+  "still": "assets/profile/AI Engineer phone.png",
+  "gif": "assets/profile/anim/AI Engineer phone.gif",
+  "moving_boxes": [
+    {
+      "layer": "robot-back",
+      "x": 0,
+      "y": 626,
+      "w": 480,
+      "h": 67
+    },
+    {
+      "layer": "guy-idle",
+      "x": 151,
+      "y": 445,
+      "w": 119,
+      "h": 239
+    },
+    {
+      "layer": "robot-front",
+      "x": 0,
+      "y": 631,
+      "w": 480,
+      "h": 78
+    },
+    {
+      "layer": "boom",
+      "x": 105,
+      "y": 396,
+      "w": 114,
+      "h": 112
+    },
+    {
+      "layer": "guy-raise",
+      "x": 159,
+      "y": 414,
+      "w": 109,
+      "h": 267
+    }
+  ]
+}

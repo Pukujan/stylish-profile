@@ -89,3 +89,16 @@ jobs:
           pip install --disable-pip-version-check \
             "pillow==${PILLOW_PIN}" "numpy==${NUMPY_PIN}" "scipy==${SCIPY_PIN}"
           python scripts/derive_dark_assets.py --check
+
+      # The rebuilt figures are composited from one locked plate, so the
+      # environment is identical in every frame by construction. This compares
+      # each committed GIF's frames outside the moving boxes its recipe
+      # declares and fails when anything else drifts - the regression the
+      # owner reported, where the whole picture warped frame to frame.
+      - name: Animation environments stay locked
+        run: |
+          pip install --disable-pip-version-check \
+            "pillow==${PILLOW_PIN}" "numpy==${NUMPY_PIN}" "scipy==${SCIPY_PIN}"
+          for recipe in scripts/motion-recipes/*.json; do
+            python scripts/build_locked_motion.py check --recipe "$recipe"
+          done
