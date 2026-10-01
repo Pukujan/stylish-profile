@@ -43,12 +43,11 @@ REL_DIR = "assets/profile/voice-notes"
 # of them; nothing compared the two before.
 NOTE_OPEN = '<div class="note"'
 AUDIO_SRC = re.compile(r'<audio[^>]*\bsrc="([^"]+)"')
-SUMMARY = re.compile(r"<summary>(.*?)</summary>", re.S)
+# class="transcript" means the clip's own words and nothing else. The four
+# project notes print a written description under a "What it does" label and
+# carry class="summary" instead, so they are not compared word for word; a
+# paragraph that claims to be a transcript has to be one.
 TRANSCRIPT = re.compile(r'<p class="transcript">(.*?)</p>', re.S)
-# The label that promises the text below is the clip's own words. The four
-# project notes say "What it does" and print a description instead, which is a
-# different promise and is deliberately not compared word for word.
-VERBATIM_LABEL = "read the transcript"
 
 # Layer III bitrate tables, indexed by the four-bit field in the frame header.
 # The page's clips are 128 kbps mono, but a re-run at another rate must still
@@ -113,27 +112,25 @@ def page_labels(clip_file: str) -> list[int]:
             found.append(int(minutes) * 60 + int(seconds))
     return found
 
-def page_notes() -> dict[str, dict]:
-    """Every note the tour page prints, keyed by clip file.
+def page_notes() -> dict[str, str | None]:
+    """The transcript each note prints, keyed by clip file; None when it prints a description.
 
-    One note block holds one audio element, its label and the text under it, so
-    splitting on the note open tag keeps each clip's text with its own clip
-    rather than borrowing the next one's.
+    One note block holds one audio element and the text under it, so splitting
+    on the note open tag keeps each clip's text with its own clip rather than
+    borrowing the next one's.
     """
     if not TOUR_PAGE.is_file():
         return {}
     text = TOUR_PAGE.read_text(encoding="utf-8")
-    found: dict[str, dict] = {}
+    found: dict[str, str | None] = {}
     for block in text.split(NOTE_OPEN)[1:]:
         src = AUDIO_SRC.search(block)
         if src is None:
             continue
-        label = SUMMARY.search(block)
         para = TRANSCRIPT.search(block)
-        found[unquote(src.group(1).rsplit("/", 1)[-1])] = {
-            "label": " ".join(unescape(label.group(1)).split()) if label else "",
-            "text": " ".join(unescape(para.group(1)).split()) if para else None,
-        }
+        found[unquote(src.group(1).rsplit("/", 1)[-1])] = (
+            " ".join(unescape(para.group(1)).split()) if para else None
+        )
     return found
 
 
@@ -181,14 +178,12 @@ def check(config: dict, manifest: dict) -> int:
     # or corrected by hand reads as a faithful copy and is not one.
     notes = page_notes()
     for clip in config["clips"]:
-        note = notes.get(clip["file"])
-        if note is None:
+        if clip["file"] not in notes:
             print(f"NOTE    {clip['file']}: no note for this clip on the tour page")
             problems += 1
             continue
-        if note["label"].casefold() != VERBATIM_LABEL:
-            continue
-        if note["text"] != " ".join(clip["text"].split()):
+        printed = notes[clip["file"]]
+        if printed is not None and printed != " ".join(clip["text"].split()):
             print(f"SPOKEN  {clip['file']}: the tour page's transcript differs from the record")
             problems += 1
     known = {clip["file"] for clip in config["clips"]}

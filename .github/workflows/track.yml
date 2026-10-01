@@ -53,7 +53,7 @@ jobs:
         run: python scripts/track_activity.py --root .
 
       - name: Re-render the continuity index
-        # The refresh rewrites two files that the continuity document index
+        # The refresh rewrites three files that the continuity document index
         # pins by hash, so the index has to be re-rendered in the same commit
         # or the required gates check fails on a stale index. Rendering does
         # not mark the documents reviewed; they keep their NEEDS_REVIEW state.
