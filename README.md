@@ -17,10 +17,10 @@ It is a static entry point. No runtime, no build step, no server, no database. T
 ## What you can make or use
 
 - **The profile page** at [`profile/README.md`](profile/README.md), written to be mirrored into the `Pukujan/Pukujan` profile repository so it renders at `github.com/Pukujan`.
-- **A spoken tour** at [`docs/index.html`](docs/index.html), a static page that plays all five voice notes with a real audio player. GitHub strips `<audio>` from Markdown, so a page is the only place the clips can actually play.
-- **Six narrative illustrations** under [`assets/profile/`](assets/profile), each generated against a recorded visual contract and reviewed before acceptance. The hero ships in a wide and a phone framing, swapped by viewport width.
-- **Two five-frame animations** under [`assets/profile/anim/`](assets/profile/anim): one block being reused until it becomes a grid, and one push fanning out into several finished pipelines.
-- **Four generated charts** under [`assets/profile/generated/`](assets/profile/generated), redrawn from live GitHub data on a daily schedule.
+- **A spoken tour** at [`docs/index.html`](docs/index.html), a static page that plays every voice note with a real audio player, one beside each project. GitHub strips `<audio>` from Markdown, so a page is the only place the clips can actually play; the profile page links to the same files.
+- **Six narrative illustrations** under [`assets/profile/`](assets/profile), each generated against a recorded visual contract and reviewed before acceptance. Each one also ships as a four-frame animation under [`assets/profile/anim/`](assets/profile/anim), built by `scripts/build_motion_gif.py` from frames generated against the still, with a ping-pong return so the loop does not snap. The hero ships in a wide and a phone framing.
+- **A dark variant of every image**, derived from the light asset by `scripts/derive_dark_assets.py` rather than generated again, so the two stay in step and the transform is reproducible.
+- **Eight generated charts** under [`assets/profile/generated/`](assets/profile/generated), four layouts each in a light and a dark palette, redrawn from live GitHub data on a daily schedule.
 - **A research write-up** at [`docs/research/github-profile-pages.md`](docs/research/github-profile-pages.md) covering what comparable profile repositories do and what a GitHub README can and cannot render in 2026.
 
 ## What changed today
@@ -46,7 +46,7 @@ Publishing the refresh means pushing to a protected `main`, and the workflow tok
 
 1. `.content-system/` records the product brief, the brand language, the visual contract, the asset manifest, and the review rubric.
 2. Every illustration is generated from a prompt recorded in `.content-system/prompts/`, reviewed, and entered in the manifest with its role, dimensions, alt text, crop behavior, rejection conditions, and a SHA-256 hash of the committed file.
-3. Voice notes are generated with a recorded voice selection, and their spoken text is stored beside them so the clips can be regenerated.
+3. Voice notes are generated with a recorded voice selection, and their spoken text is stored beside them so the clips can be regenerated. `scripts/generate_voice_notes.py --check` proves the committed clip, its recorded byte count, its manifest hash and its transcript still agree.
 4. `scripts/track_activity.py` collects activity data, draws the charts, and rewrites the tracking block between its two markers. `scripts/check_profile_links.py` walks every Markdown and HTML file, resolves each relative reference, and fails when one points at a file that is not committed.
 5. `.github/workflows/gates.yml` runs the continuity record check, the content adapter check, the writing contract check, and the link check. `.github/workflows/track.yml` regenerates the activity block on demand. `.github/workflows/auto-merge.yml` arms squash auto-merge on every pull request push. The daily refresh is `scripts/refresh_profile.ps1`, registered as a scheduled task.
 

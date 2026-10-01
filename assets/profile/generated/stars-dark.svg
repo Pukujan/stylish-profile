@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="220" viewBox="0 0 1000 220" role="img">
+<title>Public stars: 1</title>
+<rect x="0" y="0" width="1000" height="220" rx="24" fill="#0F0F0F"/>
+<g font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+<text x="32" y="42" font-size="20" font-weight="600" fill="#EDEDED">Public stars for Pukujan</text>
+<text x="32" y="122" font-size="54" font-weight="600" fill="#EDEDED">1</text>
+<text x="76" y="122" font-size="20" fill="#EDEDED">star(s), 1 starred repo(s)</text>
+<text x="320" y="97" font-size="13" fill="#EDEDED">agent-custom-setup</text>
+<rect x="560" y="84" width="340" height="16" rx="8" fill="#FFE066" stroke="#EDEDED" stroke-width="3"><animate attributeName="width" from="0" to="340" begin="0.35s" dur="0.5s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/></rect>
+<text x="968" y="97" font-size="13" fill="#EDEDED" text-anchor="end">1</text>
+</g>
+</svg>

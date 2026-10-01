@@ -8,31 +8,59 @@
       "file": "Welcome to My Corner.mp3",
       "kind": "welcome",
       "text": "Hey, you found my corner of GitHub. I'm Pujan. I build AI systems for work that is heavy with documents, the kind of work where a mistake costs someone real time. Everything on this page has a public repository behind it, so you can check the work instead of taking my word for it.",
-      "bytes": 258715
+      "bytes": 260387
     },
     {
       "file": "Who I Am in Thirty Seconds.mp3",
       "kind": "intro",
       "text": "Thirty seconds about me. I care about two things. Whether a system actually helps the person using it, and whether the next person can pick the work up without me. Most of my repositories are about the second one. I write tools that leave a trail, so you can see what was decided, what was checked, and what is still open.",
-      "bytes": 297586
+      "bytes": 295496
     },
     {
       "file": "The Short Tour.mp3",
       "kind": "tour",
       "text": "Here is the short tour. Agent Custom Setup is how I hand a project to a fresh AI agent so it starts with the right rules instead of guessing. Project Continuity Modules is how long work survives a break: checkpoints, handoffs, and an issue that owns the scope. Content Generation Modules is how the writing and the pictures come out sounding like a person instead of a template. Three tools, one habit. Leave the trail behind you.",
-      "bytes": 433840
+      "bytes": 409599
     },
     {
       "file": "Why Loose Ends Matter.mp3",
       "kind": "thought-piece",
       "text": "A thought I keep coming back to. Long projects do not usually fail because the work was too hard. They fail because something got dropped. A decision nobody wrote down, a check nobody ran, a handoff nobody made. So I build for the loose ends. Not because the tooling is exciting, but because the alternative is a person at midnight trying to remember why a line of code exists.",
-      "bytes": 361951
+      "bytes": 364041
     },
     {
       "file": "What Is Still Being Built.mp3",
       "kind": "status",
       "text": "One honest note before you go. This page is new, and parts of the tooling behind it are still being built. The three projects you see are real and public, and each one has an issue tracking what is done and what is not. If something here looks unfinished, that is usually because it is.",
-      "bytes": 267074
+      "bytes": 270000
+    },
+    {
+      "file": "Agent Custom Setup.mp3",
+      "kind": "project",
+      "project": "agent-custom-setup",
+      "text": "Agent Custom Setup. When I start a fresh AI agent on a project, it should not be guessing what the rules are. So the project pins the versions of the tools it depends on, then checks that the pinned code is the code that actually loaded. If it is not, the install fails, loudly. That is the whole point. An agent starting from a blank prompt will invent a workflow with total confidence. One starting from a checked contract will follow mine.",
+      "bytes": 430079
+    },
+    {
+      "file": "Project Continuity Modules.mp3",
+      "kind": "project",
+      "project": "project-continuity-modules",
+      "text": "Project Continuity Modules. This one is about long work surviving a break. When I stop for the day, or hand something over, a checkpoint records what changed, what I actually verified, and what is still open. A GitHub issue owns the scope, and a pull request can only merge once the required checks pass. If a check is missing or skipped, it fails closed instead of waving me through. The failure I am protecting against is not a bad decision. It is a good decision that nobody wrote down.",
+      "bytes": 460172
+    },
+    {
+      "file": "Content Generation Modules.mp3",
+      "kind": "project",
+      "project": "content-generation-modules",
+      "text": "Content Generation Modules. This is how the writing and the pictures come out sounding like a person. It sends each kind of output to its own contract, keeps generated filenames speakable, and records where every image came from: the prompt, the role, the dimensions, and the review that accepted it. I built it because a page that reads like a brochure is a page nobody finishes. This page is built with it, so you can judge the result yourself.",
+      "bytes": 407091
+    },
+    {
+      "file": "Inference Recommendation Engine.mp3",
+      "kind": "project",
+      "project": "inference-recommendation-engine",
+      "text": "Inference Recommendation Engine. This is provider-neutral routing for model calls. Instead of hard-coding a provider in twenty places, it recommends a route from an explicit policy, and the tests are property-driven rather than a pile of example fixtures. The reason is simple. Provider choice changes every few months, and that decision should live in one place, where I can actually change it.",
+      "bytes": 351920
     }
   ]
 }

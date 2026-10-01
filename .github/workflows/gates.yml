@@ -64,3 +64,10 @@ jobs:
 
       - name: Profile links resolve
         run: python scripts/check_profile_links.py
+
+      # The clips are committed binaries, so nothing else in the suite would
+      # notice if one were replaced while the recorded transcript stayed put.
+      # This compares each committed file against its recorded byte count, its
+      # manifest SHA-256, and the text it claims to say.
+      - name: Voice notes match their record
+        run: python scripts/generate_voice_notes.py --check

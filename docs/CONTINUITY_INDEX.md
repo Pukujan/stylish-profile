@@ -1,6 +1,6 @@
 # Continuity Document Index
 
-<!-- continuity:documents-index {"catalog_sha256":"76ec63795569ed978f9f27e8f894286160588c5af805dfaef192ea9c3abcf9c4","schema":"project-continuity.documents-index.v1"} -->
+<!-- continuity:documents-index {"catalog_sha256":"6c52789512299425ae0bb3e8ea307da3541af854c0d79fbb535a09dbd1d08176","schema":"project-continuity.documents-index.v1"} -->
 
 > Generated from `.continuity/documents.json`. Edit the JSON inventory, then run `continuity docs render`; do not edit this view directly.
 > Freshness below compares local file bytes; after `git fetch origin`, use `continuity docs find` for cached remote freshness.
@@ -11,7 +11,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773`
-- Current SHA-256: `c59d9272c45269c14102464e6c9682ede74dfe6704e8f0e47ca865025f7af166`
+- Current SHA-256: `435283dd00ab7577ae2b2b2e80b55717148545efc5d28dbf6c5b3402ca3afb3e`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -35,7 +35,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7`
-- Current SHA-256: `d7317ae1189350cfedb0017112b0d0664a3e85f8c84716c08e385a251331267f`
+- Current SHA-256: `f568c81673e132b03cff1f08af4ad42915061cf8fdc1d0e148894363b31d664f`
 - Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: what I build, the four current projects, what is shipped and what is not, the featured project, the live activity block, the spoken tour links and the contact list.
 - Search terms: `featured-projects`, `profile`, `readme`
 - Neighboring records: none
@@ -56,10 +56,10 @@
 ## Project contract (`project-contract`)
 
 - File: [`PROJECT.md`](../PROJECT.md)
-- Local content status: **CURRENT**
+- Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `6915f95cf1c34685a8c86d28434408e76714fa9ec51548c1745ed8ad74f152c9`
-- Current SHA-256: `6915f95cf1c34685a8c86d28434408e76714fa9ec51548c1745ed8ad74f152c9`
+- Current SHA-256: `f1746fb755686c647368a13ef9c32270dd3fabc67dcf61a07dec287cf8885068`
 - Summary: The durable contract: the main goal, why the page exists, what is in scope, what is explicitly out of scope, and the six definition-of-success criteria.
 - Search terms: `contract`, `scope`
 - Neighboring records: none
@@ -71,7 +71,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `436e18a7907ff028f9ea8189ae60e1a1bb9fbbc104adb317248c54006aa1f6a8`
-- Current SHA-256: `01177ccd702a549a66fcf12cae167c26caae6168ef79b2476925a170cc42b7a0`
+- Current SHA-256: `50de7b295b06b64f8da3a1500a6b8706b06cd80d8ba3d2be135b1004d2c82fa5`
 - Summary: The project entry point for this repository: why the page exists, what the repository contains, how the pieces work, the evidence and boundaries, and how to run the link check.
 - Search terms: `product`, `readme`
 - Neighboring records: none
@@ -95,8 +95,8 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599`
-- Current SHA-256: `11c7a7815ba615e1097ad2f1bc4688aa922a205efca9de0bac7d819deb6aee38`
-- Summary: The static tour: the same story as the profile page plus a real audio player for the five voice notes, because GitHub strips audio elements from Markdown.
+- Current SHA-256: `a0f89b06631544e19d46808658b4de55017da4f5c5182c76003ed9535a4918e6`
+- Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none
 - Task associations: `SP-0001`

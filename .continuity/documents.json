@@ -128,7 +128,7 @@
       "related": [],
       "reviewed_commit": "uncommitted",
       "reviewed_sha256": "e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599",
-      "summary": "The static tour: the same story as the profile page plus a real audio player for the five voice notes, because GitHub strips audio elements from Markdown.",
+      "summary": "The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.",
       "tasks": [
         "SP-0001"
       ],

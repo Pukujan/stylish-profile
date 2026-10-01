@@ -1,8 +1,8 @@
 # TASK-SP-0001 — Profile Page
 
-<!-- continuity:task {"acceptance":["github.com/Pukujan renders the mirrored page with the hero illustration, four project sections, the shipped/not-shipped table and the live activity block","scripts/track_activity.py regenerates commit counts, the current project, star totals and the repository index from the GitHub API, and two consecutive runs over unchanged data produce byte-identical output","the required gates check passes on the publishing pull request and auto-merge lands it with zero approvals","scripts/check_profile_links.py resolves every relative reference in every Markdown and HTML file and exits zero","the content adapter validates against the pinned helper revision and every narrative asset hash matches the committed file","no published file contains a secret, a private repository name, or a claim the linked repositories cannot support"],"depends_on":[],"goal":"Publish a profile page at github.com/Pukujan that explains four featured projects and keeps its own activity numbers true by regenerating them from the GitHub API on a schedule.","id":"SP-0001","issue_url":"https://github.com/Pukujan/stylish-profile/issues/1","next_action":"commit the product and docs, run continuity checkpoint SP-0001, then open the publishing pull request and confirm the gates check and zero-approval auto-merge","owner":"omp@windows-workstation","priority":"P1","protocol_version":"0.1.0-draft","schema":"project-continuity.task.v1","status":"active","why":"The current page's loudest element is a third-party statistics card, so a first-time reader learns nothing about what the projects do, and the page's own numbers would be hand-copied into Markdown in a repository whose whole point is that nothing is hand-copied."} -->
+<!-- continuity:task {"acceptance": ["github.com/Pukujan renders the mirrored page with the hero illustration, four project sections, the shipped/not-shipped table and the live activity block", "scripts/track_activity.py regenerates commit counts, the current project, star totals and the repository index from the GitHub API, and two consecutive runs over unchanged data produce byte-identical output", "the required gates check passes on the publishing pull request and auto-merge lands it with zero approvals", "scripts/check_profile_links.py resolves every relative reference in every Markdown and HTML file and exits zero", "the content adapter validates against the pinned helper revision and every narrative asset hash matches the committed file", "no published file contains a secret, a private repository name, or a claim the linked repositories cannot support"], "depends_on": [], "goal": "Publish a profile page at github.com/Pukujan that explains four featured projects and keeps its own activity numbers true by regenerating them from the GitHub API on a schedule.", "id": "SP-0001", "issue_url": "https://github.com/Pukujan/stylish-profile/issues/1", "next_action": "none - the page shipped and was verified; the v2 shape of the page is tracked by SP-0002", "owner": "omp@windows-workstation", "priority": "P1", "protocol_version": "0.1.0-draft", "schema": "project-continuity.task.v1", "status": "completed", "why": "The current page's loudest element is a third-party statistics card, so a first-time reader learns nothing about what the projects do, and the page's own numbers would be hand-copied into Markdown in a repository whose whole point is that nothing is hand-copied."} -->
 
-- Status: active
+- Status: completed
 - Owner: omp@windows-workstation
 - Priority: P1
 - Depends on: none
@@ -52,14 +52,14 @@ A reader who has never heard of these projects can tell, in under a minute, what
 
 ## Acceptance criteria
 
-- [ ] `https://github.com/Pukujan` renders the mirrored page with the hero illustration, the four project sections, the shipped/not-shipped table, and the live activity block.
-- [ ] `scripts/track_activity.py` regenerates commit counts, the current project, star totals and the repository index from the GitHub API, and two consecutive runs over unchanged data produce byte-identical output.
-- [ ] The required `gates` check passes on the publishing pull request, and auto-merge lands it with zero approvals.
-- [ ] `scripts/check_profile_links.py` resolves every relative reference in every Markdown and HTML file and exits zero.
-- [ ] The content adapter validates against the pinned helper revision, and every narrative asset hash matches the committed file.
-- [ ] Six narrative illustrations and two five-frame animations ship with recorded prompts, review decisions and committed file hashes.
-- [ ] The tour page renders at 390, 768 and 1440 pixel widths with zero horizontal overflow, and a vision review of the screenshots confirms the hero framing swap, the animation stacking, and the chart variant swap.
-- [ ] No published file contains a secret, a private repository name, or a claim the linked repositories cannot support.
+- [x] `https://github.com/Pukujan` renders the mirrored page with the hero illustration, the four project sections, the shipped/not-shipped table, and the live activity block.
+- [x] `scripts/track_activity.py` regenerates commit counts, the current project, star totals and the repository index from the GitHub API, and two consecutive runs over unchanged data produce byte-identical output.
+- [x] The required `gates` check passes on the publishing pull request, and auto-merge lands it with zero approvals.
+- [x] `scripts/check_profile_links.py` resolves every relative reference in every Markdown and HTML file and exits zero.
+- [x] The content adapter validates against the pinned helper revision, and every narrative asset hash matches the committed file.
+- [x] Six narrative illustrations and two five-frame animations ship with recorded prompts, review decisions and committed file hashes.
+- [x] The tour page renders at 390, 768 and 1440 pixel widths with zero horizontal overflow, and a vision review of the screenshots confirms the hero framing swap, the animation stacking, and the chart variant swap.
+- [x] No published file contains a secret, a private repository name, or a claim the linked repositories cannot support.
 
 ## Evidence and sources
 
@@ -92,7 +92,8 @@ External claims and their sources are recorded in `docs/research/github-profile-
 
 ## Checkpoint log
 
-No checkpoints yet.
+- 2026-10-01, omp@windows-workstation: every acceptance criterion above was verified against the live repository before this task was closed. The page has since moved to a second shape - a projects table with a spoken note per project, every image animated, dark variants derived - which is tracked separately as SP-0002 rather than reopened here.
+
 
 ## Handoff
 

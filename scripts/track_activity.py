@@ -468,14 +468,73 @@ def clip(text: str, width: int) -> str:
 # any script. 640px covers phones and small tablets in portrait.
 PHONE_MEDIA = "(max-width: 640px)"
 
+# The dark field matches the page background so a chart sits flush on a dark
+# page instead of showing a lit rectangle, and the ink becomes the light ink.
+# The accents are lifted, because the royal blue used for the bars is tuned to
+# carry against cream and goes muddy against near-black.
+DARK_PALETTE = {
+    CREAM: "#0F0F0F",
+    INK: "#EDEDED",
+    BLUE: "#7A9BFF",
+    YELLOW: "#FFE066",
+    ORANGE: "#FFA05C",
+}
+
 def picture_block(raw_base: str, wide: str, narrow: str, alt: str) -> list[str]:
-    """Markdown lines for one chart that swaps to a phone layout on small screens."""
+    """Markdown lines for one chart that swaps layout on phones and on dark pages.
+
+    One picture element, four sources. The colour swap has to go through
+    `prefers-color-scheme` rather than a `#gh-dark-mode-only` fragment, because
+    GitHub's theme rule matches the anchor it wraps around a bare image and a
+    `<picture>` gets no such anchor: an image inside a picture keeps the
+    fragment on its `src`, which nothing matches, so both modes render at once.
+    The chart needs the phone variant as well, and a bare image cannot carry
+    one, so `prefers-color-scheme` is the only mechanism that does both.
+
+    Order matters. The two dark sources come first so a dark phone picks the
+    dark narrow chart; the last source is the fallback for anything that
+    matched nothing, which is the light chart at full width.
+    """
+    stem_wide, stem_narrow = wide[:-4], narrow[:-4]
     return [
         "<picture>",
+        f'<source media="(prefers-color-scheme: dark) and {PHONE_MEDIA}"'
+        f' srcset="{raw_base}/{stem_narrow}-dark.svg">',
+        f'<source media="(prefers-color-scheme: dark)"'
+        f' srcset="{raw_base}/{stem_wide}-dark.svg">',
         f'<source media="{PHONE_MEDIA}" srcset="{raw_base}/{narrow}">',
         f'<img src="{raw_base}/{wide}" alt="{alt}" width="100%">',
         "</picture>",
     ]
+
+
+def themed_image(raw_base: str, stem: str, ext: str, alt: str) -> list[str]:
+    """Markdown lines for one illustration that swaps on the reader's theme.
+
+    Two bare images, one per colour mode, each carrying the theme fragment.
+    GitHub wraps a bare image in an anchor whose href keeps the fragment, and
+    its stylesheet hides whichever anchor does not match, so exactly one of the
+    pair renders in every theme state. The illustrations have no phone variant,
+    so this costs nothing and it tracks GitHub's own theme toggle exactly,
+    which `prefers-color-scheme` only does when the operating system agrees.
+    """
+    return [
+        f'<img src="{raw_base}/{stem}{ext}#gh-light-mode-only" alt="{alt}" width="100%">',
+        f'<img src="{raw_base}/{stem}-dark{ext}#gh-dark-mode-only" alt="{alt}" width="100%">',
+    ]
+
+
+def dark_svg(markup: str) -> str:
+    """Return the same chart drawn on the dark field.
+
+    The charts use four literal colours and nothing else, so a dark copy is the
+    same markup with the palette swapped. Substituting the finished string keeps
+    the light renderers untouched, and the literals are unambiguous: the only
+    non-hex value any fill attribute carries is the SMIL keyword "freeze".
+    """
+    for light, dark in DARK_PALETTE.items():
+        markup = markup.replace(light, dark)
+    return markup
 
 
 def svg_open(width: int, height: int, title: str) -> list[str]:
@@ -1013,8 +1072,8 @@ def render_html_block(payload: dict, context: dict, offset_hours: int) -> list[s
         '<figure class="wide-figure">',
         "<picture>",
         f'<source media="{PHONE_MEDIA}"'
-        ' srcset="../assets/profile/generated/activity-narrow.svg">',
-        '<img src="../assets/profile/generated/activity.svg"'
+        ' srcset="../assets/profile/generated/activity-narrow-dark.svg">',
+        '<img src="../assets/profile/generated/activity-dark.svg"'
         f' alt="{esc(alt_a)}" width="100%">',
         "</picture>",
         f"<figcaption>{esc(alt_a)}</figcaption>",
@@ -1041,8 +1100,8 @@ def render_html_block(payload: dict, context: dict, offset_hours: int) -> list[s
         '<figure class="wide-figure">',
         "<picture>",
         f'<source media="{PHONE_MEDIA}"'
-        ' srcset="../assets/profile/generated/stars-narrow.svg">',
-        '<img src="../assets/profile/generated/stars.svg"'
+        ' srcset="../assets/profile/generated/stars-narrow-dark.svg">',
+        '<img src="../assets/profile/generated/stars-dark.svg"'
         f' alt="{esc(alt_s)}" width="100%">',
         "</picture>",
         f"<figcaption>{esc(alt_s)}</figcaption>",
@@ -1123,6 +1182,13 @@ def build_outputs(
         generated / "stars.svg": render_stars_svg(payload),
         generated / "stars-narrow.svg": render_stars_svg_narrow(payload),
     }
+    for light_name, dark_name in (
+        ("activity.svg", "activity-dark.svg"),
+        ("activity-narrow.svg", "activity-narrow-dark.svg"),
+        ("stars.svg", "stars-dark.svg"),
+        ("stars-narrow.svg", "stars-narrow-dark.svg"),
+    ):
+        outputs[generated / dark_name] = dark_svg(outputs[generated / light_name])
     targets = [
         (root / "profile" / "README.md", "md"),
         (root / "docs" / "index.html", "html"),
