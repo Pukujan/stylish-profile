@@ -7,10 +7,10 @@
     "the owner, who wants one page that stays true as the repositories change"
   ],
   "problem": "A profile page that lists a job title and a wall of badges tells a visitor nothing checkable. The previous page leaned on third-party statistics cards, so its strongest claims were rendered by someone else's service and said nothing about what the projects actually do.",
-  "solution": "A profile page that opens with one concrete sentence about the work, then shows three featured projects with the problem each one solves, a link to its public source, and an honest note about what is still being built. Hand-drawn images and a spoken tour carry the same story for people who would rather listen than read.",
+  "solution": "A profile page that opens with one concrete sentence about the work, then shows four featured projects with the problem each one solves, a link to its public source, and an honest note about what is still being built. Hand-drawn images and a spoken tour carry the same story for people who would rather listen than read.",
   "mechanism": [
     "the README carries the whole story in plain Markdown so it renders anywhere GitHub renders Markdown",
-    "six narrative images are generated against a recorded visual contract and referenced with alt text beside the idea each one explains; each ships as a four-frame animation with a dark variant derived from the light asset rather than generated again",
+    "six narrative images are generated against a recorded visual contract and referenced with alt text beside the idea each one explains; five of them also ship as a short animation, two further figures exist only as animations, and every image has a dark variant derived from the light asset rather than generated again",
     "a static HTML tour page under docs/ plays short spoken notes, one beside each project, and shows the same projects at desktop, tablet and phone widths, leading with the dark palette",
     "every featured claim names the public repository that supports it, and the asset and evidence records live in .content-system rather than in the page itself"
   ],
@@ -52,7 +52,7 @@
       "cite_in_readme": false
     },
     {
-      "claim": "The page features three projects first, in this order: agent-custom-setup, project-continuity-modules, content-generation-modules.",
+      "claim": "The page features four projects, in this order: agent-custom-setup, project-continuity-modules, content-generation-modules, inference-recommendation-engine.",
       "source": "Owner instruction given while the page was being built.",
       "status": "shipped",
       "supports": "The order on the page matches the priority the owner stated for this build.",
@@ -89,7 +89,7 @@
   "terminology": {
     "preferred": {
       "profile page": "the page a visitor reads at github.com/Pukujan",
-      "featured project": "one of the three repositories shown with its problem and source link",
+      "featured project": "one of the four repositories shown with its one-line summary, its public source link and, where it has one, its spoken note",
       "voice note": "a short spoken clip played from the tour page",
       "tour": "the static HTML page that plays the voice notes"
     },

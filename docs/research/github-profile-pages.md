@@ -45,8 +45,8 @@ chart, because the final geometry is written on the shapes themselves.
 
 **Motion means GIF, not APNG.** GitHub's Markdown renderer marks a `.gif` image with
 `data-animated-image`. It does not mark `.apng`, `.png`, `.webp` or `.jpg`. An APNG
-therefore displays as a single frozen frame, which is why both animations on this page
-are GIFs.
+therefore displays as a single frozen frame, which is why every animation on this page
+is a GIF.
 
 **Responsive images survive the sanitizer.** A `<picture>` element with a
 `<source media="(max-width: 640px)">` and a fallback `<img>` is passed through intact;
@@ -106,28 +106,37 @@ link with the reason.
 ## What this page does, and why
 
 - **No third-party runtime dependency.** No statistics cards, no badge services, no
-  icon CDNs. The only external references on the page are the four project repositories
-  and two personal profiles.
-- **Repo-hosted illustrations.** Six raster images generated against a recorded visual
-  contract, with their prompts, roles, dimensions, alt text, crop behavior and review
-  decisions stored in `.content-system/`. Raster rather than SVG because the contract
-  requires narrative assets to carry a real prompt record and a verified file hash.
-- **Every illustration moves.** Each still also ships as a four-frame GIF whose frames
-  were generated one at a time from the previous frame, then assembled on a shared
-  palette with a ping-pong return so the loop does not snap. They show the two habits
-  the page describes: a component reused until it becomes a grid, and one push fanning
-  out into several finished pipelines.
-- **Charts drawn by the repository itself.** Eight SVGs written by a committed script
-  from live GitHub API data - four layouts, each in a light and a dark palette.
-- **Dark variants are derived, not drawn again.** A palette transform reads each light
-  asset and writes its dark twin, so the two cannot drift and the result is reproducible
-  from the committed source. A second generation pass would cost a model call per frame
-  and would not be byte-stable.
-- **The argument is open; the detail is folded away.** The projects section opens on a
-  table of repo title, one line, and a link to that project's spoken note, with the long
-  description behind a nested `<details>`. A reader who wants the argument never opens
-  one; a reader who wants the reasoning can. The repository index is behind a `<details>`
-  for the same reason, and the tour page uses that element for voice-note transcripts.
+  icon CDNs. The only external references are the four project repositories, the GitHub
+  profile, a LinkedIn profile and one personal site; every image and every clip is
+  served from this repository.
+- **Repo-hosted illustrations.** Seven raster images - six narrative illustrations and
+  the avatar - generated against a recorded visual contract, with their prompts, roles,
+  dimensions, alt text, crop behavior and review decisions stored in
+  `.content-system/`. Raster rather than SVG because the contract requires narrative
+  assets to carry a real prompt record and a verified file hash. The hero also ships a
+  phone framing, so the wide file is never scaled into a phone column.
+- **The illustrations move.** Five of the six illustrations also ship as a GIF whose
+  frames were generated one at a time from the previous frame, then assembled on a
+  shared palette with a ping-pong return so the loop does not snap; the avatar is the
+  one that stays still. Two further figures - a block reused until it becomes a grid,
+  and one push fanning out into several finished pipelines - exist only as animations,
+  because the motion is the point. Between them they show the two habits the page
+  describes.
+- **Charts drawn by the repository itself.** Four SVGs written by a committed script
+  from live GitHub API data - two layouts, each in a light and a dark palette.
+- **Dark variants are derived, not drawn again.** A transform reads each light asset
+  and writes its dark twin, so the two cannot drift and the result is reproducible from
+  the committed source. A second generation pass would cost a model call per frame and
+  would not be byte-stable. The transform darkens the paper only: an earlier version
+  inverted every pixel's lightness, which turned the character's cream skin black
+  because the skin and the paper are the same colour. Finding the paper by its
+  connection to the frame edge is what keeps the drawing's own colours intact.
+- **The argument is open; the detail is folded away.** On the profile page the projects
+  section lists each repository as one line with a link to its spoken note, and the long
+  description of all four sits behind a single `<details>`. The tour page presents the
+  same four as a table of name, one line and repository link. A reader who wants the
+  argument never opens the fold; a reader who wants the reasoning can. The tour page
+  uses `<details>` for the voice-note transcripts.
 - **GitHub Pages for audio.** The nine voice notes live on a static tour page with real
   players, one beside each project, because Markdown cannot host one.
 - **Two theme mechanisms, never combined.** GitHub's theme rule matches the anchor it

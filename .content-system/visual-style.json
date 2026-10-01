@@ -62,7 +62,7 @@
     "motion": {
       "dimensions": "720x720",
       "orientation": "square",
-      "frames": 5,
+      "frames": "4 or 5, depending on the figure",
       "purpose": "short looping GIF; not a narrative still, so it is exempt from the still-image provenance fields"
     }
   },

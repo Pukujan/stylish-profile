@@ -23,30 +23,84 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 VOICE_LAB = Path("D:/claude/hades-voice-lab")
 CONFIG = REPO_ROOT / ".content-system" / "voice-notes.json"
 MANIFEST = REPO_ROOT / ".content-system" / "asset-manifest.json"
+PROFILE_PAGE = REPO_ROOT / "profile" / "README.md"
 OUT_DIR = REPO_ROOT / "assets" / "profile" / "voice-notes"
 REL_DIR = "assets/profile/voice-notes"
 
+# Layer III bitrate tables, indexed by the four-bit field in the frame header.
+# The page's clips are 128 kbps mono, but a re-run at another rate must still
+# measure correctly rather than silently mis-report its own length.
+BITRATES = {
+    3: (None, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, None),
+    2: (None, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, None),
+    0: (None, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, None),
+}
+SAMPLE_RATES = {3: (44100, 48000, 32000), 2: (22050, 24000, 16000), 0: (11025, 12000, 8000)}
 
-def load_client():
-    """Build the Fish Audio client with the key from the owner's env file."""
-    if not VOICE_LAB.is_dir():
-        raise SystemExit(f"voice lab not found at {VOICE_LAB}")
-    sys.path.insert(0, str(VOICE_LAB))
-    from fishaudio import FishAudio  # noqa: PLC0415
-    from generate_fish_set import read_key  # noqa: PLC0415
+# A label is a link's own text ("[listen, 0:27](...)") or a parenthetical after
+# one ("(...) (0:16)"). Both forms appear on the profile page.
+LABEL = re.compile(r"(\d+):(\d{2})")
 
-    return FishAudio(api_key=read_key())
+def mp3_duration(data: bytes) -> float:
+    """Length of an MPEG audio file in seconds, read from its own frames.
 
+    The clips are constant-bitrate and carry no Xing/Info header, so a byte
+    count over a nominal bitrate would be a guess. Walking the frame headers is
+    exact for constant and variable bitrate alike and needs nothing outside the
+    standard library, which matters because this runs in CI.
+    """
+    offset = 0
+    if data[:3] == b"ID3":
+        # Skip the tag so its bytes are not counted as audio.
+        offset = 10 + (
+            (data[6] & 0x7F) << 21 | (data[7] & 0x7F) << 14
+            | (data[8] & 0x7F) << 7 | (data[9] & 0x7F)
+        )
+
+    total = 0.0
+    i = offset
+    end = len(data)
+    while i + 4 <= end:
+        if data[i] != 0xFF or data[i + 1] & 0xE0 != 0xE0:
+            i += 1
+            continue
+        version = (data[i + 1] >> 3) & 0x03
+        layer = (data[i + 1] >> 1) & 0x03
+        bitrate_index = (data[i + 2] >> 4) & 0x0F
+        rate_index = (data[i + 2] >> 2) & 0x03
+        if layer != 1 or version == 1 or bitrate_index in (0, 15) or rate_index == 3:
+            i += 1
+            continue
+        bitrate = BITRATES[version][bitrate_index]
+        rate = SAMPLE_RATES[version][rate_index]
+        padding = (data[i + 2] >> 1) & 0x01
+        samples, coefficient = (1152, 144) if version == 3 else (576, 72)
+        total += samples / rate
+        i += coefficient * bitrate * 1000 // rate + padding
+    return total
+
+def page_labels(clip_file: str) -> list[int]:
+    """Every length label the profile page attaches to this clip, in seconds."""
+    encoded = quote(clip_file)
+    found: list[int] = []
+    for line in PROFILE_PAGE.read_text(encoding="utf-8").splitlines():
+        if f"{REL_DIR}/{encoded}" not in line:
+            continue
+        for minutes, seconds in LABEL.findall(line):
+            found.append(int(minutes) * 60 + int(seconds))
+    return found
 
 def check(config: dict, manifest: dict) -> int:
-    """Report any clip whose bytes, hash or recorded text disagree."""
+    """Report any clip whose bytes, hash, recorded text or stated length disagree."""
     by_path = {a["path"]: a for a in manifest["assets"]}
     problems = 0
     for clip in config["clips"]:
@@ -70,8 +124,33 @@ def check(config: dict, manifest: dict) -> int:
             if entry.get("spoken_text") != clip["text"]:
                 print(f"TEXT    {clip['file']}: manifest text differs from the record")
                 problems += 1
+
+        # The page prints a length beside each link. It is hand-typed, so a
+        # regenerated clip would leave a stale number that nothing else here
+        # would notice.
+        claimed = page_labels(clip["file"])
+        actual = round(mp3_duration(data))
+        if not claimed:
+            print(f"LABEL   {clip['file']}: no length label on the profile page")
+            problems += 1
+        elif set(claimed) != {actual}:
+            shown = ", ".join(f"{s // 60}:{s % 60:02d}" for s in sorted(set(claimed)))
+            print(f"LABEL   {clip['file']}: page says {shown}, clip is "
+                  f"{actual // 60}:{actual % 60:02d}")
+            problems += 1
     print(f"checked {len(config['clips'])} clip(s), {problems} problem(s)")
     return 1 if problems else 0
+
+
+def load_client():
+    """Build the Fish Audio client with the key from the owner's env file."""
+    if not VOICE_LAB.is_dir():
+        raise SystemExit(f"voice lab not found at {VOICE_LAB}")
+    sys.path.insert(0, str(VOICE_LAB))
+    from fishaudio import FishAudio  # noqa: PLC0415
+    from generate_fish_set import read_key  # noqa: PLC0415
+
+    return FishAudio(api_key=read_key())
 
 
 def main(argv: list[str] | None = None) -> int:

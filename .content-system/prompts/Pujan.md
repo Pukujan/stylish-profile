@@ -13,9 +13,9 @@ illustration set. It is off-palette, and its light field is the one surface on
 the page that cannot follow the theme, because GitHub shows the same avatar in
 both.
 
-The page it sits on is the first thing a visitor sees. An avatar that belongs to
-the same drawing as the banner makes the page read as one designed thing rather
-than a profile with a picture bolted on.
+The page it sits on is the first thing a visitor sees. An avatar drawn as the same
+character as `Pujan and the Loose Ends.png` makes the page read as one designed
+thing rather than a profile with a picture bolted on.
 
 ## Format
 
@@ -33,7 +33,7 @@ a single change: reframe the same character as a centred square head and
 shoulders. Chaining from the illustration rather than describing the character
 from scratch is what keeps the round glasses with the pink bridge, the cowlick,
 the smile and the black sweater with its yellow button identical between the
-avatar and the banner.
+avatar and its source.
 
 ## Palette decision
 
@@ -60,7 +60,16 @@ portrait, a bright royal blue field, bold thick outlines, the whole head and bot
 shoulders inside the frame with margin on all four sides, and no text, letter,
 number, wordmark or logo anywhere. A circular-crop preview confirmed the face,
 glasses, hair and shoulders all survive GitHub's round mask, and a side-by-side
-confirmed the avatar and the banner read as the same character.
+confirmed the avatar and `Pujan and the Loose Ends.png` read as the same
+character.
+
+Note on the page's other drawing: the hero is a different figure. `AI Engineer`
+is the same person in work gear, pink goggles and orange overalls at a bench, so
+the tour header stacks that scene above a portrait of the author out of
+glasses. The two were drawn from separate prompts and are not the same design.
+Left as-is because re-drawing the hero means regenerating its still, its phone
+framing, both motion sets and all four dark variants; it is an art-direction
+call for the owner rather than a defect with one obvious fix.
 
 ## Reuse
 
