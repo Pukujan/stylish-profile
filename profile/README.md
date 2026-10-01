@@ -30,8 +30,8 @@ Document-heavy AI means the input is a contract, a filing, a case file, or a pol
 
 One habit runs through all four: leave a trail behind you.
 
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Three%20Projects%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread from card to card." width="100%">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Three%20Projects%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread from card to card." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Three%20Projects%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Three%20Projects%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread." width="100%">
 
 Agent Custom Setup decides what rules a session starts with. Project Continuity Modules decides what survives between sessions. Content Generation Modules decides what the output sounds and looks like. Inference Recommendation Engine decides which model actually answers.
 
@@ -85,7 +85,7 @@ Python · TypeScript · JavaScript · HTML · Shell · PowerShell · Git · GitH
 <!-- TRACKING:START -->
 ## What's fresh
 
-2026-10-01: 26 commit(s) across 4 project(s).
+2026-10-01: 29 commit(s) across 4 project(s).
 
 | Project | Last push |
 | --- | --- |
@@ -98,7 +98,7 @@ Python · TypeScript · JavaScript · HTML · Shell · PowerShell · Git · GitH
 <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-narrow-dark.svg">
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-dark.svg">
 <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-narrow.svg">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1197 total." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1200 total." width="100%">
 </picture>
 
 **Current project:** [agent-custom-setup](https://github.com/Pukujan/agent-custom-setup) with 91 commit(s) in the last 7 days.

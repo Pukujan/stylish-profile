@@ -93,7 +93,7 @@ jobs:
               --base main \
               --head "$BRANCH" \
               --title "Refresh the activity block" \
-              --body "Regenerated from the GitHub API by \`scripts/track_activity.py\`. The numbers in the tracking block and the four generated charts are the only files that changed." \
+              --body "Regenerated from the GitHub API by \`scripts/track_activity.py\`. The numbers in the tracking block, the four generated charts, and the hashes those charts are recorded under in the asset manifest are the only files that changed." \
               || true
             pr=$(open_pr)
           fi

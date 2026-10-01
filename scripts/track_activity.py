@@ -56,6 +56,13 @@ FONT_STACK = "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-
 MAX_REPO_ROWS = 40
 SCHEMA_VERSION = "stylish-profile.tracking.v1"
 
+# The charts this script writes are recorded in the asset manifest with a
+# committed hash. Refreshing the SVG without refreshing that hash is how the
+# record goes stale on the first scheduled run, so the write-back below is part
+# of the same transaction as the chart itself.
+MANIFEST_PATH = Path(".content-system") / "asset-manifest.json"
+GENERATED_DIR = Path("assets/profile/generated")
+
 
 class TrackerError(Exception):
     """Fatal problem with a clear message for the operator."""
@@ -953,6 +960,9 @@ def build_outputs(
         ("activity-narrow.svg", "activity-narrow-dark.svg"),
     ):
         outputs[generated / dark_name] = dark_svg(outputs[generated / light_name])
+    manifest = with_chart_hashes(root, outputs)
+    if manifest is not None:
+        outputs[root / MANIFEST_PATH] = manifest
     targets = [
         (root / "profile" / "README.md", "md"),
         (root / "docs" / "index.html", "html"),
@@ -969,6 +979,29 @@ def build_outputs(
         outputs[path] = rewrite_block(text, path, content)
     return outputs
 
+
+def with_chart_hashes(root: Path, outputs: dict[Path, str]) -> str | None:
+    """The manifest text with each generated chart's hash set from the SVG just drawn.
+
+    The recorded hash has to come from the same string that is about to be
+    written, or the two drift the moment the daily run fires. Returns None when
+    the repository has no manifest, so the tracker still works in a checkout
+    that has not adopted the content adapter.
+    """
+    path = root / MANIFEST_PATH
+    if not path.is_file():
+        return None
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    prefix = GENERATED_DIR.as_posix() + "/"
+    for entry in manifest.get("assets", []):
+        asset_path = entry.get("path", "")
+        if not asset_path.startswith(prefix):
+            continue
+        content = outputs.get(root / asset_path)
+        if content is None:
+            continue
+        entry["hash"] = hashlib.sha256(content.encode("utf-8")).hexdigest()
+    return json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
 
 def summarize(
     payload: dict, outputs: dict[Path, str], dry_run: bool

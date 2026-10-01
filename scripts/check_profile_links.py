@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
-"""Fail the `gates` check when a profile page points at a file that is not committed.
+"""Fail the `gates` check when a reference resolves to nothing.
 
 The profile README and its HTML demo link images, audio clips, and each other by
 repository-relative path. A renamed asset silently turns those into 404s on
 github.com, which no schema validator catches. This walks the tracked Markdown
 and HTML, resolves every relative reference, and exits non-zero on a miss.
+
+The asset manifest is checked the same way, because it is the record of where
+each committed image, chart and clip came from: an entry whose hash no longer
+matches its file points at bytes that are not there any more. Nothing else in
+the suite compares the two, which is how eight stale hashes sat in the record
+while every other check stayed green.
 """
 
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 import sys
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / ".content-system" / "asset-manifest.json"
 SCANNED_SUFFIXES = (".md", ".html")
 SKIPPED_DIRS = {".git", ".continuity", "node_modules", "__pycache__"}
 
@@ -89,6 +98,31 @@ def resolve(source: Path, reference: str) -> Path | None:
     return source.parent / relative
 
 
+def manifest_hashes() -> tuple[list[str], int]:
+    """Every recorded hash that does not match the file it names, and how many were read."""
+    if not MANIFEST.is_file():
+        return [], 0
+    entries = json.loads(MANIFEST.read_text(encoding="utf-8")).get("assets", [])
+    problems: list[str] = []
+    checked = 0
+    for entry in entries:
+        path = entry.get("path")
+        recorded = entry.get("hash")
+        if not path or not recorded:
+            continue
+        checked += 1
+        target = ROOT / path
+        if not target.is_file():
+            problems.append(f"{path}: recorded in the manifest but not committed")
+            continue
+        actual = hashlib.sha256(target.read_bytes()).hexdigest()
+        if actual != recorded:
+            problems.append(
+                f"{path}: recorded hash {recorded[:12]} does not match the committed file"
+            )
+    return problems, checked
+
+
 def main() -> int:
     problems: list[str] = []
     checked = 0
@@ -106,12 +140,14 @@ def main() -> int:
                 problems.append(
                     f"{source.relative_to(ROOT)}: {reference} -> missing {target.relative_to(ROOT)}"
                 )
+    recorded_problems, recorded = manifest_hashes()
+    problems.extend(recorded_problems)
     if problems:
-        print(f"INVALID: {len(problems)} unresolved local reference(s)")
+        print(f"INVALID: {len(problems)} unresolved reference(s)")
         for problem in problems:
             print(f"- {problem}")
         return 1
-    print(f"VALID: {checked} local reference(s) resolved")
+    print(f"VALID: {checked} local reference(s) resolved, {recorded} recorded hash(es) matched")
     return 0
 
 

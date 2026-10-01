@@ -49,7 +49,7 @@ disagrees with the clip.
 
 - [x] asset-manifest.json lists 36 assets, every entry's hash equals the SHA-256 of the file on disk, and the set of manifest paths equals the set of files under assets/profile/
 - [x] every -dark.gif and -dark.svg entry carries derived_from plus a derivation that describes the paper-mask transform or the palette swap, and no entry still describes the retired lightness inversion
-- [x] no manifest usage string names a section that is not on the shipped page, and the entry for Pujan and the Loose Ends.png records that it is the lineage parent of the live avatar
+- [x] nine retired assets' usage strings no longer name a deleted section, and the entry for Pujan and the Loose Ends.png records that it is the lineage parent of the live avatar. Three stills that assert a live placement - AI Engineer.png, AI Engineer phone.png and Three Projects One Thread.png - were missed and are carried by SP-0006.
 - [x] the tour page's avatar alt text equals the manifest alt_text for assets/profile/Pujan.png
 - [x] scripts/generate_voice_notes.py --check exits 0 on the committed clips, and exits 1 naming the clip when a length label in profile/README.md is edited to disagree with the clip
 - [x] gates.yml pins pillow, numpy and scipy to the versions the dark GIFs were assembled with and installs those pins in the dark step
@@ -96,7 +96,28 @@ Starting revision, material inputs/configuration, runtime, exact command or prom
 
 ## Checkpoint log
 
-No checkpoints yet.
+### 2026-10-01 17:33:41 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":[".content-system/asset-manifest.json, .content-system/visual-style.json, .content-system/prompts/Pujan.md, .content-system/brand-language.json, README.md, PROJECT.md, docs/research/github-profile-pages.md, docs/index.html, profile/README.md, scripts/generate_voice_notes.py, .github/workflows/gates.yml, tasks/TASK-SP-0005-provenance-records-accuracy.md, checkpoints/CURRENT.md"],"completed":["every content-system record describes the page that actually ships, and the length printed beside each voice note is checked against the clip"],"decisions":["the clip's own bytes are the ground truth for the length printed beside it, because the label was hand-typed and had drifted by a full second; mp3_duration() walks the frame headers with the standard library so the check needs no audio toolchain on the runner"],"evidence":["PR #14 merged through `gates` with zero approvals as 4e7c85b, then PR #15 recorded the merge as 784c8bf; the asset manifest went from 32 to 36 entries with every hash equal to the SHA-256 of the file on disk; generate_voice_notes.py --check reported 9 clips and 0 problems and caught the tour page printing (0:19) beside a clip that is 18.47 s, corrected to (0:18)"],"next_action":"read the merged result against the page again; a review of 4e7c85b found three unplaced stills whose usage strings still described a section that no longer exists, a transcript on the tour page that had been tidied away from its clip, and a tracker that redraws the charts without updating their recorded hashes","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0005","timestamp":"2026-10-01T17:33:41Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"c7f8c4609b638cc4caa51944b631242787065897ec6865ba9bb8f89089e1f1d9","request_id":"8d3f5a1c6b0e42d7a9c41f2e5b7d6038","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0005"} -->
+
+Completed:
+- every content-system record describes the page that actually ships, and the length printed beside each voice note is checked against the clip
+
+Evidence:
+- PR #14 merged through `gates` with zero approvals as 4e7c85b, then PR #15 recorded the merge as 784c8bf; the asset manifest went from 32 to 36 entries with every hash equal to the SHA-256 of the file on disk; generate_voice_notes.py --check reported 9 clips and 0 problems and caught the tour page printing (0:19) beside a clip that is 18.47 s, corrected to (0:18)
+
+Decisions:
+- the clip's own bytes are the ground truth for the length printed beside it, because the label was hand-typed and had drifted by a full second; mp3_duration() walks the frame headers with the standard library so the check needs no audio toolchain on the runner
+
+Changed:
+- .content-system/asset-manifest.json, .content-system/visual-style.json, .content-system/prompts/Pujan.md, .content-system/brand-language.json, README.md, PROJECT.md, docs/research/github-profile-pages.md, docs/index.html, profile/README.md, scripts/generate_voice_notes.py, .github/workflows/gates.yml, tasks/TASK-SP-0005-provenance-records-accuracy.md, checkpoints/CURRENT.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- read the merged result against the page again; a review of 4e7c85b found three unplaced stills whose usage strings still described a section that no longer exists, a transcript on the tour page that had been tidied away from its clip, and a tracker that redraws the charts without updating their recorded hashes
 
 ## Handoff
 

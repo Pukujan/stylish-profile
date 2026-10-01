@@ -32,8 +32,8 @@ There is a second reason. The featured repositories exist to stop long work from
 
 - The publishable page at `profile/README.md`, written to be mirrored into `Pukujan/Pukujan` so it renders at `github.com/Pukujan`.
 - The static tour page at `docs/index.html`, which plays every voice note beside the project it belongs to, because GitHub strips `<audio>` from Markdown.
-- Six narrative illustrations under `assets/profile/`, each generated against a recorded visual contract and reviewed before acceptance, each shipping as a four-frame animation with a derived dark variant.
-- The auto-tracking layer: `scripts/track_activity.py` and `.github/workflows/track.yml`, which regenerate commit counts, the current project, star totals and the repository index from the GitHub API on a daily schedule and commit the result.
+- Six narrative illustrations under `assets/profile/`, each generated against a recorded visual contract and reviewed before acceptance, each with a committed animation and a derived dark variant. The animations run four frames, or five for the two figures that exist only as animations.
+- The auto-tracking layer: `scripts/track_activity.py` and `.github/workflows/track.yml`, which regenerate the commit counts, today's projects, the current project and the activity chart from the GitHub API on a daily schedule and commit the result, alongside `profile/tracking.json` carrying the full data they fetched.
 - The content adapter at `.content-system/`, which records the product brief, brand language, visual contract, asset manifest and review rubric.
 - `docs/research/github-profile-pages.md`, the recorded comparison of comparable profile repositories and the 2026 GitHub rendering limits.
 
@@ -47,7 +47,7 @@ There is a second reason. The featured repositories exist to stop long work from
 
 ## Definition of success
 
-1. `https://github.com/Pukujan` renders the page with its hero illustration, four project sections, the shipped/not-shipped table and the live activity block.
+1. `https://github.com/Pukujan` renders the page with its hero illustration, four project sections, the figure showing the habit they share, the activity block and the spoken tour links.
 2. The activity block regenerates on schedule without human input, and re-running the generator against unchanged data produces byte-identical output.
 3. The required `gates` check passes on the pull request that publishes the page, and auto-merge lands it with zero approvals.
 4. Every relative link and image reference in every Markdown and HTML file resolves, verified by `scripts/check_profile_links.py` in CI.

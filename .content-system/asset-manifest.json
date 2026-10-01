@@ -13,7 +13,7 @@
       "exact_subtitle": "Reusable components, automated pipelines",
       "prompt_recipe": "Flat hand-drawn editorial illustration, wide 3:2. A young engineer stands at a wide workbench assembling identical reusable modular blocks into a machine: one block is being slotted into a growing modular structure while a short conveyor line of the same block feeds the bench, and a second smaller copy of the same structure stands finished beside it, showing the same component reused at two sizes. Three small round companions each carry one block. The scene is a warm cream workshop with a faint blueprint grid on the back wall and a pegboard of simple unlabelled tools. Thick confident ink outlines, clean flat vector shapes, no gradients, no photorealism, no 3D, no texture noise, no readable text on tools, boxes, screens or blocks. Palette strictly limited to cream #FFF9F0, ink #1A1A1A, royal blue #4169E1, warm yellow #FFD93D, small amounts of pink #FF6B9D and orange #FF8C42. Text: AI Engineer / Reusable components, automated pipelines.",
       "alt_text": "Hand-drawn illustration of an engineer at a workbench slotting one reusable block into a growing modular machine while three small round companions carry identical blocks and a second smaller copy of the same structure stands finished beside it.",
-      "usage": "Lead visual at the top of the profile page, directly under the opening sentence that names what kind of engineer this page is about.",
+      "usage": "Lineage source for assets/profile/anim/AI Engineer.gif, the hero animation both pages serve: every frame of the GIF was generated from this file. The still itself is not referenced by either page.",
       "crop_behavior": "Wide 3:2. The engineer, the workbench and both modular structures sit in the right two thirds, so a centre crop keeps the repeated blocks visible; the title and subtitle in the left third are lost first, which is acceptable because the same words appear in the page heading.",
       "rejection_conditions": "Reject if the repeated identical blocks are not readable as the same component, if the engineer or the modular structure falls outside the centre crop, if any text other than the declared title and subtitle appears, if a second focal point competes with the workbench, or if the render drifts to photographic or 3D shading.",
       "review_decision": "Accepted 2026-10-01 after one regeneration. Attempt 1 added an unrequested two-word logo block in the top-left corner, which violates the declared text policy; attempt 2 renders only AI Engineer / Reusable components, automated pipelines, keeps the same component visible at two sizes, and matches the flat vector palette.",
@@ -32,7 +32,7 @@
       "exact_subtitle": "Reusable components, automated pipelines",
       "prompt_recipe": "Tall portrait recomposition of the same flat hand-drawn illustration for a narrow phone screen. Title \"AI Engineer\" set very large across the upper third, subtitle \"Reusable components, automated pipelines\" beneath it, and the same cast of small hand-drawn characters and machines gathered in the lower half around a vertical arrangement of repeated identical modular blocks. Flat cream (#FFF9F0) background, warm yellow (#FFD93D) accents, royal blue (#4169E1) details, thick black ink outlines, completely flat lighting, no gradients, no shadows, no photorealism, no 3D. Exactly three text strings and nothing else: no captions, labels, numbers, signatures, watermarks, logos or wordmarks.",
       "alt_text": "Hand-drawn illustration of an engineer in goggles and overalls assembling identical modular blocks with small robots on a workbench, titled AI Engineer with the subtitle Reusable components, automated pipelines.",
-      "usage": "Hero image served to screens 640 pixels wide or narrower through a <picture><source media> element, so the title and subtitle stay legible on a phone instead of being scaled down with the wide hero.",
+      "usage": "Lineage source for assets/profile/anim/AI Engineer phone.gif, the narrow-screen hero both pages serve. The still itself is not referenced by either page, and neither is the <picture><source media> pair it was drawn for: that pair now selects between the two GIFs.",
       "crop_behavior": "Portrait 2:3. Title and subtitle occupy the upper third and the illustrated scene the lower half, so a centre crop keeps both the words and the workbench. Nothing important sits in the outer margins.",
       "rejection_conditions": "Reject if the title is not large enough to read at a 390 pixel column width, if any text other than the declared title and subtitle appears, if the repeated blocks are not readable as one reused component, or if the render drifts to photographic or 3D shading.",
       "review_decision": "Accepted 2026-10-01 on the first attempt. A vision check read exactly three strings, found no logo, wordmark or stray word, confirmed the cream background and flat outlined style, and reported the title as occupying roughly the top third of the frame.",
@@ -107,7 +107,7 @@
       "motion": "wide commit chart, 1000x340, bars grow once then freeze",
       "alt_text": "Commits per day for the tracked window with today's projects beside the chart.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "c846f9f26b74e85e8533089a32bb7523ff21a3c42fa4157f34326ec27ef41dce"
+      "hash": "2d209fa6da194eaaf9d4c69cc826140795db5093fd5ada0e9b558d4f8f013139"
     },
     {
       "path": "assets/profile/generated/activity-narrow.svg",
@@ -118,7 +118,7 @@
       "motion": "phone commit chart, 560x560, chart stacked above today's projects",
       "alt_text": "The same activity numbers stacked for screens 640 pixels wide or narrower.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "9cf1a9a71f3d9f62bc18841717d9393b78abc429b6b9859f010c6fa8a05ed4c3"
+      "hash": "37bdf19f722e33af66e90919a8ed5a6ab9a2cdbac1671f7b9ac172946a51c615"
     },
     {
       "path": "assets/profile/Pujan and the Loose Ends.png",
@@ -169,7 +169,7 @@
       "exact_subtitle": "Agent, continuity, content",
       "prompt_recipe": "Flat hand-drawn editorial diagram, square 1:1. Three rounded cards sit in a row, each holding one simple ink icon: a robot head with a checklist, a bookmark with a dotted trail of circles, and a page with an image frame. A thick royal blue hand-drawn line threads through all three cards like a single stitched seam. Below the row, a short row of tiny labelled dots suggests a handoff passing between cards. A small round companion with one dot eye sits on top of the middle card. Hand-drawn arrows and one halo ring. Thick confident ink outlines, clean flat vector shapes, no gradients, no photorealism, no 3D, no texture noise. Palette strictly limited to cream #FFF9F0, ink #1A1A1A, royal blue #4169E1, warm yellow #FFD93D, small amounts of pink #FF6B9D and lime #A8CC00. Text: Three Projects / Agent, continuity, content.",
       "alt_text": "Hand-drawn diagram of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page.",
-      "usage": "Between the featured-project list and the section that explains how the three repositories relate.",
+      "usage": "Lineage source for assets/profile/anim/Three Projects One Thread.gif, the figure beside the project list: the GIF's frames were generated from this still. The still itself is not referenced by either page.",
       "crop_behavior": "Square 1:1, centred with even margins. The three cards sit on one horizontal axis inside the middle band, so both a square crop and a narrower centre crop keep all three cards; only the outer margins are lost.",
       "rejection_conditions": "Reject if any of the three cards leaves the centre crop, if the connecting thread is not continuous across all three, if extra copy beyond the title and subtitle appears, or if the title or subtitle is unreadable or misspelled.",
       "review_decision": "Accepted 2026-10-01. Title and subtitle render exactly. The three small labels under the row repeat the subtitle words rather than adding new claims, so the asset stays inside the two-line text policy.",
@@ -232,8 +232,9 @@
       "reference_id": "2c32246692bd454d891585c85233bc72",
       "model": "s2.1-pro-free",
       "spoken_text": "Here is the short tour. Agent Custom Setup is how I hand a project to a fresh AI agent so it starts with the right rules instead of guessing. Project Continuity Modules is how long work survives a break: checkpoints, handoffs, and an issue that owns the scope. Content Generation Modules is how the writing and the pictures come out sounding like a person instead of a template. Three tools, one habit. Leave the trail behind you.",
-      "usage": "Walks the three featured projects in the order they appear on the page.",
-      "hash": "b0b7bb267f5da7b4de9f8f1912fdcf56a478f55d7aa21638fd78b09a61f85a29"
+      "usage": "Plays from the tour page and from the profile page's listen block. Recorded when the page listed three projects: the clip names Agent Custom Setup, Project Continuity Modules and Content Generation Modules and ends \"Three tools, one habit\", so it is stale against the four-project page.",
+      "hash": "b0b7bb267f5da7b4de9f8f1912fdcf56a478f55d7aa21638fd78b09a61f85a29",
+      "review_decision": "Left as recorded. The clip says three projects and the page lists four; correcting it means a paid Fish Audio run, so it waits on the owner rather than being edited out of the page's transcript, which stays verbatim with the audio."
     },
     {
       "path": "assets/profile/voice-notes/Why Loose Ends Matter.mp3",
@@ -259,7 +260,8 @@
       "model": "s2.1-pro-free",
       "spoken_text": "One honest note before you go. This page is new, and parts of the tooling behind it are still being built. The three projects you see are real and public, and each one has an issue tracking what is done and what is not. If something here looks unfinished, that is usually because it is.",
       "usage": "Closing clip that states the page's boundaries out loud.",
-      "hash": "b1e06659f6c41552c71f8d01449098539f18484a7d1c0321ead41ac047bc736b"
+      "hash": "b1e06659f6c41552c71f8d01449098539f18484a7d1c0321ead41ac047bc736b",
+      "review_decision": "Left as recorded. The clip says three projects and the page lists four; correcting it means a paid Fish Audio run, so it waits on the owner rather than being edited out of the page's transcript, which stays verbatim with the audio."
     },
     {
       "path": "assets/profile/anim/AI Engineer.gif",
@@ -697,7 +699,7 @@
       "usage": "Byline avatar beside the heading on the tour page, and the account avatar this repository proposes. The page asset ships in git; setting the account picture is a web-UI action, because the REST API can read an avatar but cannot set one.",
       "crop_behavior": "Square and centred with even margin on all four sides, so GitHub's circular mask clips only background. Safe at any size GitHub renders.",
       "rejection_conditions": "Reject if the head or either shoulder is clipped by a circular crop; if the field is not a flat unpatterned blue; if any text, letter, number, wordmark or logo appears; or if the character does not match the one in Pujan and the Loose Ends.png in glasses, hair and clothing.",
-      "review_decision": "Accepted 2026-10-01, second candidate. The first candidate was rejected: a side-by-side against Pujan and the Loose Ends.png showed muted, thin, sketch-like lines where the illustration set uses bold even outlines, so it read as an unrelated picture pasted onto the page. The accepted candidate was regenerated with an explicit line-weight and palette clause. Vision checks then confirmed bold thick outlines, a bright royal blue field, the character matching Pujan and the Loose Ends.png in glasses, hair, smile and sweater, and no text or logo. A circular-crop preview confirmed the face, glasses, hair and shoulders all survive GitHub's round mask. The hero illustration is a separate character design: the same person in work gear rather than a portrait.",
+      "review_decision": "Accepted 2026-10-01, second candidate. The first candidate was rejected: a side-by-side against Pujan and the Loose Ends.png showed muted, thin, sketch-like lines where the illustration set uses bold even outlines, so it read as an unrelated picture pasted onto the page. The accepted candidate was regenerated with an explicit line-weight and palette clause. Vision checks then confirmed bold thick outlines, a bright royal blue field, the character matching Pujan and the Loose Ends.png in glasses, hair, smile and sweater, and no text or logo. A circular-crop preview confirmed the face, glasses, hair and shoulders all survive GitHub's round mask. The hero illustration is a separate character design: the same person in work gear rather than a portrait. That divergence is an open art-direction call for the owner, not a decision already made: re-drawing the hero to match would mean regenerating its still, its phone framing, both motion sets and four dark variants, so the two designs stay as they are until the owner asks for the redraw.",
       "provider": "built-in image_gen",
       "prompt_record": ".content-system/prompts/Pujan.md",
       "hash": "a1f0d0792a8650974fb0e74be08600ce819a03745c3ed7f52a0670e6040d657c",
@@ -774,7 +776,7 @@
       "motion": "wide commit chart, 1000x340, bars grow once then freeze",
       "alt_text": "Commits per day for the tracked window with today's projects beside the chart.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "6fdf270774643d321176a06021e6398d23986b5b2f0492828d32564b502885d6",
+      "hash": "08a2b279be1f8fb1053204d1dff483e42cfcf8957a8fb27fd48f9e7453b7ecae",
       "derived_from": "assets/profile/generated/activity.svg",
       "derivation": "Palette swap of assets/profile/generated/activity.svg by scripts/track_activity.py, applied to the finished SVG string: cream #FFF9F0 becomes the page's dark field #0F0F0F, ink #1A1A1A becomes light ink #EDEDED, and the three accents are lifted so the bars still carry against near-black. The same markup with different literals, so the two charts cannot drift in shape."
     },
@@ -787,7 +789,7 @@
       "motion": "phone commit chart, 560x560, chart stacked above today's projects",
       "alt_text": "The same activity numbers stacked for screens 640 pixels wide or narrower.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "2136805fb834c21dde94bc60503f0a915a59f7ad84f97e9dfede00bda2f1f116",
+      "hash": "97af3011cf121d0c5f5026925eaf43e308a7ed18f0516d119a51d40ec3e30553",
       "derived_from": "assets/profile/generated/activity-narrow.svg",
       "derivation": "Palette swap of assets/profile/generated/activity-narrow.svg by scripts/track_activity.py, applied to the finished SVG string: cream #FFF9F0 becomes the page's dark field #0F0F0F, ink #1A1A1A becomes light ink #EDEDED, and the three accents are lifted so the bars still carry against near-black. The same markup with different literals, so the two charts cannot drift in shape."
     }

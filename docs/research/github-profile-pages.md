@@ -115,13 +115,13 @@ link with the reason.
   `.content-system/`. Raster rather than SVG because the contract requires narrative
   assets to carry a real prompt record and a verified file hash. The hero also ships a
   phone framing, so the wide file is never scaled into a phone column.
-- **The illustrations move.** Five of the six illustrations also ship as a GIF whose
+- **The illustrations move.** All six narrative illustrations also ship as a GIF whose
   frames were generated one at a time from the previous frame, then assembled on a
   shared palette with a ping-pong return so the loop does not snap; the avatar is the
-  one that stays still. Two further figures - a block reused until it becomes a grid,
-  and one push fanning out into several finished pipelines - exist only as animations,
-  because the motion is the point. Between them they show the two habits the page
-  describes.
+  one raster image that stays still. Two further figures - a block reused until it
+  becomes a grid, and one push fanning out into several finished pipelines - exist
+  only as animations, because the motion is the point. Between them they show the
+  two habits the page describes.
 - **Charts drawn by the repository itself.** Four SVGs written by a committed script
   from live GitHub API data - two layouts, each in a light and a dark palette.
 - **Dark variants are derived, not drawn again.** A transform reads each light asset
