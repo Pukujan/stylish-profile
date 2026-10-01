@@ -25,6 +25,38 @@ HTML_REFERENCE = re.compile(
 )
 EXTERNAL_SCHEMES = ("http://", "https://", "//", "mailto:", "data:", "#")
 
+PAGES_HOST = "pukujan.github.io"
+PAGES_PREFIX = "/stylish-profile/"
+AUDIO_SUFFIXES = (".mp3", ".wav", ".m4a", ".ogg", ".flac")
+
+
+def remote_audio_problem(reference: str) -> str | None:
+    """Reject audio links that cannot play, and audio links with no committed file.
+
+    A repository blob URL renders a file viewer with a Raw button, not a player,
+    so a voice note linked that way silently does nothing when clicked. GitHub
+    Pages serves the same bytes as `audio/mp3`, which the browser plays on click.
+    Absolute URLs are skipped by the local resolver below, so without this the
+    whole class of dead audio links passes the gate.
+    """
+    parsed = urlparse(reference)
+    if parsed.scheme not in ("http", "https") or not parsed.netloc:
+        return None
+    path = unquote(parsed.path)
+    if not path.lower().endswith(AUDIO_SUFFIXES):
+        return None
+    host = parsed.netloc.lower()
+    if host == "github.com" and "/blob/" in path:
+        return "points at a file-viewer page, which cannot play; link the Pages URL"
+    if host != PAGES_HOST:
+        return None
+    if not path.startswith(PAGES_PREFIX):
+        return f"is hosted at {PAGES_HOST} but outside {PAGES_PREFIX}"
+    target = ROOT / path[len(PAGES_PREFIX):]
+    if not target.exists():
+        return f"resolves to {target.relative_to(ROOT)}, which is not committed"
+    return None
+
 
 def tracked_files() -> list[Path]:
     files = []
@@ -62,6 +94,10 @@ def main() -> int:
     checked = 0
     for source in tracked_files():
         for reference in references(source.read_text(encoding="utf-8")):
+            problem = remote_audio_problem(reference)
+            if problem:
+                problems.append(f"{source.relative_to(ROOT)}: {reference} {problem}")
+                continue
             target = resolve(source, reference)
             if target is None:
                 continue
