@@ -1,8 +1,8 @@
 # TASK-SP-0007 — Hero and Figure Rebuild: Locked Motion
 
-<!-- continuity:task {"acceptance": ["the hero animation's background is byte-identical across every frame outside the declared moving regions, verified by scripts/build_locked_motion.py check", "the figure's background is likewise byte-identical across every frame", "the hero is a new drawing in the owner's requested direction: an anime-style engineer with thick outlines mid-experiment, a comic explosion, and robots running", "the figure is a new drawing with no malformed glyph, no broken connecting line, and no floating or detached element, and a count-neutral title", "both figures keep working dark-mode variants derived deterministically from the light ones", "the lock check runs as a required CI gate and fails on an injected drift pixel"], "depends_on": [], "goal": "Rebuild the hero and the figure beside the project list so only the characters move, and give the hero the owner's anime direction", "id": "SP-0007", "issue_url": "https://github.com/Pukujan/stylish-profile/issues/24", "next_action": "commit the increment, run continuity checkpoint to push the task branch, open the pull request and arm auto-merge", "owner": "omp@windows-workstation", "priority": "P1", "protocol_version": "0.1.0-draft", "schema": "project-continuity.task.v1", "status": "active", "why": "The committed GIFs were each re-rolled frame-from-frame by the image model, which ignored the camera-lock instruction, so the whole picture warped; the owner also rejected the figure's malformed glyphs, broken and doubled thread, detached clipboard and uneven outline, and its Three Projects title against a page that lists four"} -->
+<!-- continuity:task {"acceptance": ["the hero animation's background is byte-identical across every frame outside the declared moving regions, verified by scripts/build_locked_motion.py check", "the figure's background is likewise byte-identical across every frame", "the hero is a new drawing in the owner's requested direction: an anime-style engineer with thick outlines mid-experiment, a comic explosion, and robots running", "the figure is a new drawing with no malformed glyph, no broken connecting line, and no floating or detached element, and a count-neutral title", "both figures keep working dark-mode variants derived deterministically from the light ones", "the lock check runs as a required CI gate and fails on an injected drift pixel"], "depends_on": [], "goal": "Rebuild the hero and the figure beside the project list so only the characters move, and give the hero the owner's anime direction", "id": "SP-0007", "issue_url": "https://github.com/Pukujan/stylish-profile/issues/24", "next_action": "nothing; the increment is merged and issue #24 is closed as completed", "owner": "omp@windows-workstation", "priority": "P1", "protocol_version": "0.1.0-draft", "schema": "project-continuity.task.v1", "status": "completed", "why": "The committed GIFs were each re-rolled frame-from-frame by the image model, which ignored the camera-lock instruction, so the whole picture warped; the owner also rejected the figure's malformed glyphs, broken and doubled thread, detached clipboard and uneven outline, and its Three Projects title against a page that lists four"} -->
 
-- Status: active
+- Status: completed
 - Owner: omp@windows-workstation
 - Priority: P1
 - Depends on: none
@@ -70,10 +70,9 @@ The lock check was proved by breaking it on purpose: one black pixel planted at 
 
 - Owning issue: https://github.com/Pukujan/stylish-profile/issues/24. Leaf; parent ancestry: none. Supersedes the hero and three-icon figures accepted under #5/#11/#13/#16 without reopening them.
 - Primary writer: omp@windows-workstation, branch `task/SP-0007-hero-and-figure-rebuild`.
+- Related PR/CI evidence: PR #25 squash-merged into `main` as `72e4fb2` with `gates` and `arm auto-merge` both passing on head `f0c83f0`; issue #24 closed as completed. The checkpoint is `f0c83f0`, pushed under request ID `e5b1f26567d140aa8cdf1ea4a449d635`; the product commits are `4b5241d` and `dc5f6a7`. The earlier request ID `9bc4d84b6de44885a815ae4bf12d2777` wrote its entry but was rejected by the uncommitted-paths guard before pushing; its entry is kept as history.
 
 ## Checkpoint log
-
-None yet; `continuity checkpoint` writes the first entry.
 
 ### 2026-10-01 21:22:04 UTC — omp@windows-workstation
 
@@ -120,6 +119,29 @@ Blocked/uncertain:
 
 Next:
 - open the pull request against main and arm auto-merge once the gates check passes on the final push
+
+### 2026-10-01 21:32:50 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["tasks/TASK-SP-0007-hero-and-figure-rebuild.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md"],"completed":["SP-0007 is delivered: PR #25 squash-merged into main as 72e4fb2 with gates and arm auto-merge both passing on head f0c83f0, and issue #24 closed as completed"],"decisions":["the closing increment rebases the task branch onto accepted history rather than merging main back, because the squash merge already contains the branch's content"],"evidence":["gh pr view 25 reports state MERGED, mergedAt 2026-10-01T21:28:43Z, merge commit 72e4fb2; gh pr checks 25 reports gates pass and arm auto-merge pass; gh issue view 24 reports state CLOSED, stateReason COMPLETED; leaf receipts published for request ID e5b1f26567d140aa8cdf1ea4a449d635 at push f0c83f0 and for the merge"],"next_action":"nothing; SP-0007 is complete","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0007","timestamp":"2026-10-01T21:32:50Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"7227cc25fdffb94ffb95e5971d6d1a01195b4df5e6d375fcbd8cddd1881d9272","request_id":"c40ec471831b4cc3835dec82240d0941","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0007"} -->
+
+Completed:
+- SP-0007 is delivered: PR #25 squash-merged into main as 72e4fb2 with gates and arm auto-merge both passing on head f0c83f0, and issue #24 closed as completed
+
+Evidence:
+- gh pr view 25 reports state MERGED, mergedAt 2026-10-01T21:28:43Z, merge commit 72e4fb2; gh pr checks 25 reports gates pass and arm auto-merge pass; gh issue view 24 reports state CLOSED, stateReason COMPLETED; leaf receipts published for request ID e5b1f26567d140aa8cdf1ea4a449d635 at push f0c83f0 and for the merge
+
+Decisions:
+- the closing increment rebases the task branch onto accepted history rather than merging main back, because the squash merge already contains the branch's content
+
+Changed:
+- tasks/TASK-SP-0007-hero-and-figure-rebuild.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- nothing; SP-0007 is complete
 
 ## Handoff
 
