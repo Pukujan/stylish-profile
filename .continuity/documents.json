@@ -1,0 +1,139 @@
+{
+  "documents": [
+    {
+      "id": "content-adapter",
+      "keywords": [
+        "assets",
+        "manifest",
+        "provenance"
+      ],
+      "path": ".content-system/asset-manifest.json",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773",
+      "summary": "Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Content adapter asset manifest"
+    },
+    {
+      "id": "hotload-assignment",
+      "keywords": [
+        "assignment",
+        "coordination",
+        "pins"
+      ],
+      "path": ".coord/assignment.json",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "31a6508da85efb6962ac2fa56e414313ba222a76c2c5dcc55d6f13750711a336",
+      "summary": "The multi-agent assignment for this repository: role fill order, boss lease, claim queue, agent-less watchdog, and the full PCM and CGM pin declarations.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Hotload assignment"
+    },
+    {
+      "id": "profile-page",
+      "keywords": [
+        "featured-projects",
+        "profile",
+        "readme"
+      ],
+      "path": "profile/README.md",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7",
+      "summary": "The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: what I build, the four current projects, what is shipped and what is not, the featured project, the live activity block, the spoken tour links and the contact list.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Profile page (publishable)"
+    },
+    {
+      "id": "project-brief",
+      "keywords": [
+        "boundaries",
+        "brief",
+        "evidence"
+      ],
+      "path": ".content-system/project-brief.json",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "445c7ae440bdf927364335fbb32604236e5b12b8dd72c3cc8a7a3d0b62ad10d1",
+      "summary": "The evidence-bounded brief behind the page: audience, problem, solution, mechanism, terminology, four recorded evidence items with their limits, and four stated boundaries.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Content adapter project brief"
+    },
+    {
+      "id": "project-contract",
+      "keywords": [
+        "contract",
+        "scope"
+      ],
+      "path": "PROJECT.md",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "6915f95cf1c34685a8c86d28434408e76714fa9ec51548c1745ed8ad74f152c9",
+      "summary": "The durable contract: the main goal, why the page exists, what is in scope, what is explicitly out of scope, and the six definition-of-success criteria.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Project contract"
+    },
+    {
+      "id": "project-readme",
+      "keywords": [
+        "product",
+        "readme"
+      ],
+      "path": "README.md",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "436e18a7907ff028f9ea8189ae60e1a1bb9fbbc104adb317248c54006aa1f6a8",
+      "summary": "The project entry point for this repository: why the page exists, what the repository contains, how the pieces work, the evidence and boundaries, and how to run the link check.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Project README"
+    },
+    {
+      "id": "render-limits-research",
+      "keywords": [
+        "github",
+        "rendering",
+        "research"
+      ],
+      "path": "docs/research/github-profile-pages.md",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "d7db68f1779cf3c7907b208ff8280e8b2771633d6f5a9cdaef778c08d32fd473",
+      "summary": "A recorded comparison of five profile repositories, the 2026 GitHub sanitizer allow and deny lists, live service-risk probes, and the audio mechanisms that actually work.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Profile page research"
+    },
+    {
+      "id": "tour-page",
+      "keywords": [
+        "audio",
+        "html",
+        "tour"
+      ],
+      "path": "docs/index.html",
+      "related": [],
+      "reviewed_commit": "uncommitted",
+      "reviewed_sha256": "e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599",
+      "summary": "The static tour: the same story as the profile page plus a real audio player for the five voice notes, because GitHub strips audio elements from Markdown.",
+      "tasks": [
+        "SP-0001"
+      ],
+      "title": "Tour page"
+    }
+  ],
+  "schema": "project-continuity.documents.v1"
+}

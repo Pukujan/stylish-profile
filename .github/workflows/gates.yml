@@ -1,0 +1,66 @@
+name: gates
+
+# Single required status check for the protected default branch.
+# Context reported to branch protection is exactly "gates" (this job's id/name).
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gates-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  PCM_PIN: 4e2385474b4af9249ca009cbdcb38c4498932475
+  CGM_PIN: c069613ca8b3e02bcf5aba1960160583537f8a3a
+
+jobs:
+  gates:
+    name: gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned continuity CLI
+        run: pip install --disable-pip-version-check "git+https://github.com/Pukujan/project-continuity-modules@${PCM_PIN}"
+
+      - name: Fetch pinned content helper
+        run: |
+          git clone --quiet --filter=blob:none https://github.com/Pukujan/content-generation-modules.git "$RUNNER_TEMP/cgm"
+          git -C "$RUNNER_TEMP/cgm" checkout --quiet "${CGM_PIN}"
+
+      - name: Continuity records validate
+        run: continuity validate --root .
+
+      - name: Content adapter conformance
+        run: |
+          python "$RUNNER_TEMP/cgm/scripts/validate_content_system.py" \
+            --root "$RUNNER_TEMP/cgm" \
+            --adapter "$PWD/.content-system" \
+            --project-root "$PWD"
+
+      - name: Always-on writing contract
+        run: python "$RUNNER_TEMP/cgm/scripts/verify_hsw_applied.py" --root "$RUNNER_TEMP/cgm"
+
+      - name: Tour page writing scan
+        run: |
+          python "$RUNNER_TEMP/cgm/scripts/verify_hsw_applied.py" \
+            --root "$RUNNER_TEMP/cgm" \
+            --mode acs-html \
+            --html docs/index.html
+
+      - name: Profile links resolve
+        run: python scripts/check_profile_links.py

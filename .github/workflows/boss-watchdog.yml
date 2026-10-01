@@ -1,0 +1,39 @@
+# AGENT-LESS boss-seat watchdog.
+# Watchdog is liveness only and is NOT failover. The boss lease TTL lives in
+# .coord/assignment.json (boss_failover.lease_ttl_minutes, default 30 minutes).
+# After a vacancy, agents enqueue on the GitHub-canonical claim_queue; this job
+# never appoints a boss and never makes a product decision.
+
+name: boss-seat-watchdog
+
+on:
+  schedule:
+    # Roughly every 10 minutes; GitHub may delay cron slightly.
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Report seat liveness (read-only)
+        run: |
+          python - <<'PY'
+          import json
+          import pathlib
+
+          claim = json.loads(pathlib.Path(".coord/boss_claim.json").read_text(encoding="utf-8"))
+          assignment = json.loads(pathlib.Path(".coord/assignment.json").read_text(encoding="utf-8"))
+          lease = assignment["boss_failover"]["lease_ttl_minutes"]
+          watchdog = assignment["watchdog"]["watchdog_interval_minutes"]
+          print(f"who_is_boss_now={claim.get('who_is_boss_now')}")
+          print(f"lease_ttl_minutes={lease} watchdog_interval_minutes={watchdog}")
+          print(f"claim_queue_depth={len(claim.get('claim_queue') or [])}")
+          print("liveness only: this job does not appoint a boss")
+          PY

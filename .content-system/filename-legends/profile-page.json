@@ -1,0 +1,100 @@
+{
+  "schema_version": "content-generation.filename-legend.v1",
+  "feature": "profile-page",
+  "glossary": [
+    {
+      "token": "Loose Ends",
+      "meaning": "the pile of unwritten decisions and unrun checks that a long project drops when nobody keeps a trail"
+    },
+    {
+      "token": "Badge Wall",
+      "meaning": "a page whose loudest element is a third-party statistics card, so it says nothing about what the projects do"
+    },
+    {
+      "token": "Thread",
+      "meaning": "the single habit that runs through all three featured repositories"
+    },
+    {
+      "token": "Check",
+      "meaning": "a claim on the page that a reader can verify against a public repository"
+    },
+    {
+      "token": "Motion",
+      "meaning": "a short looping animation whose frames were generated one at a time from the previous frame"
+    },
+    {
+      "token": "Generated chart",
+      "meaning": "an SVG drawn by scripts/track_activity.py from live GitHub data on the daily schedule, not an illustration"
+    },
+    {
+      "token": "Phone",
+      "meaning": "the variant served to screens 640 pixels wide or narrower through a picture element"
+    }
+  ],
+  "files": [
+    {
+      "path": "assets/profile/AI Engineer.png",
+      "identity": "AI Engineer",
+      "role": "hero",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/Pujan and the Loose Ends.png",
+      "identity": "Pujan and the Loose Ends",
+      "role": "story",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/The Badge Wall.png",
+      "identity": "The Badge Wall",
+      "role": "problem",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/Three Projects One Thread.png",
+      "identity": "Three Projects One Thread",
+      "role": "system",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/What You Can Check.png",
+      "identity": "What You Can Check",
+      "role": "evidence",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/AI Engineer phone.png",
+      "role": "hero phone",
+      "identity": "AI Engineer phone",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/anim/Reusable Blocks.gif",
+      "role": "motion",
+      "identity": "Reusable Blocks",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/anim/One Push Many Pipelines.gif",
+      "role": "motion",
+      "identity": "One Push Many Pipelines",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/generated/activity.svg",
+      "role": "generated chart"
+    },
+    {
+      "path": "assets/profile/generated/activity-narrow.svg",
+      "role": "generated chart"
+    },
+    {
+      "path": "assets/profile/generated/stars.svg",
+      "role": "generated chart"
+    },
+    {
+      "path": "assets/profile/generated/stars-narrow.svg",
+      "role": "generated chart"
+    }
+  ]
+}

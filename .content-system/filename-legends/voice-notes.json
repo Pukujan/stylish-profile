@@ -1,0 +1,58 @@
+{
+  "schema_version": "content-generation.filename-legend.v1",
+  "feature": "voice-notes",
+  "glossary": [
+    {
+      "token": "welcome",
+      "meaning": "the first clip a visitor hears, naming who is speaking and what the page holds"
+    },
+    {
+      "token": "intro",
+      "meaning": "a thirty-second statement of what the owner cares about"
+    },
+    {
+      "token": "tour",
+      "meaning": "a spoken walk through the three featured projects in page order"
+    },
+    {
+      "token": "thought-piece",
+      "meaning": "the reasoning behind the tooling, told as one idea"
+    },
+    {
+      "token": "status",
+      "meaning": "an honest note about what is finished and what is not"
+    }
+  ],
+  "files": [
+    {
+      "path": "assets/profile/voice-notes/Welcome to My Corner.mp3",
+      "identity": "Welcome to My Corner",
+      "role": "welcome",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/Who I Am in Thirty Seconds.mp3",
+      "identity": "Who I Am in Thirty Seconds",
+      "role": "intro",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/The Short Tour.mp3",
+      "identity": "The Short Tour",
+      "role": "tour",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/Why Loose Ends Matter.mp3",
+      "identity": "Why Loose Ends Matter",
+      "role": "thought-piece",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/What Is Still Being Built.mp3",
+      "identity": "What Is Still Being Built",
+      "role": "status",
+      "style": "speakable"
+    }
+  ]
+}

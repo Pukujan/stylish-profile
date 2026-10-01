@@ -1,0 +1,105 @@
+{
+  "schema_version": "content-generation.project-brief.v2",
+  "project": "Stylish Profile — Pujan's GitHub profile page",
+  "audience": [
+    "engineers and hiring managers who open github.com/Pukujan and decide in under a minute whether the work is worth reading",
+    "collaborators looking for the repositories behind the agent, continuity and content tooling",
+    "the owner, who wants one page that stays true as the repositories change"
+  ],
+  "problem": "A profile page that lists a job title and a wall of badges tells a visitor nothing checkable. The previous page leaned on third-party statistics cards, so its strongest claims were rendered by someone else's service and said nothing about what the projects actually do.",
+  "solution": "A profile page that opens with one concrete sentence about the work, then shows three featured projects with the problem each one solves, a link to its public source, and an honest note about what is still being built. Hand-drawn images and a spoken tour carry the same story for people who would rather listen than read.",
+  "mechanism": [
+    "the README carries the whole story in plain Markdown so it renders anywhere GitHub renders Markdown",
+    "four narrative images are generated against a recorded visual contract and referenced with alt text beside the idea each one explains",
+    "a static HTML tour page under docs/ plays short spoken notes and shows the same projects at desktop, tablet and phone widths",
+    "every featured claim names the public repository that supports it, and the asset and evidence records live in .content-system rather than in the page itself"
+  ],
+  "evidence": [
+    {
+      "claim": "The page reuses the colour palette of the owner's own site: cream #FFF9F0 background, ink #1A1A1A text, royal blue #4169E1 primary and warm yellow #FFD93D accent.",
+      "source": "Theme token block in the design-bakery stylesheet.",
+      "status": "shipped",
+      "supports": "The stylesheet declares those exact hex values as the site's theme tokens, so the palette is a published choice rather than an invented one.",
+      "limits": "The stylesheet does not establish that the palette stays legible on GitHub's own light and dark README backgrounds; that was checked separately by rendering the page.",
+      "recorded_at": "2026-10-01T00:00:00Z",
+      "source_revision": {
+        "kind": "repository_artifact",
+        "reference": "Theme token declarations at the top of the global stylesheet",
+        "repository": "Pukujan/design-bakery",
+        "commit": "24dbcab80c166665ce52d62d69f5e8a6f7101b38",
+        "path": "frontend/src/styles/globals.css",
+        "locator": "theme token block, lines 1-60",
+        "uri": "https://github.com/Pukujan/design-bakery/blob/24dbcab80c166665ce52d62d69f5e8a6f7101b38/frontend/src/styles/globals.css#L1-L60"
+      },
+      "cite_in_readme": false
+    },
+    {
+      "claim": "The design-bakery visual language is flat hand-drawn shapes, not photography.",
+      "source": "Graphic elements component that defines the squiggle, halo, speech bubble and blob primitives.",
+      "status": "shipped",
+      "supports": "The component defines those primitives and the palette they draw with, so flat hand-drawn shapes are the site's actual visual language.",
+      "limits": "It does not establish how a GitHub README will render a similar style, or how many of the primitives appear on any given page.",
+      "recorded_at": "2026-10-01T00:00:00Z",
+      "source_revision": {
+        "kind": "repository_artifact",
+        "reference": "Hand-drawn graphic primitives",
+        "repository": "Pukujan/design-bakery",
+        "commit": "24dbcab80c166665ce52d62d69f5e8a6f7101b38",
+        "path": "frontend/src/app/components/GraphicElements.tsx",
+        "locator": "exported primitive components",
+        "uri": "https://github.com/Pukujan/design-bakery/blob/24dbcab80c166665ce52d62d69f5e8a6f7101b38/frontend/src/app/components/GraphicElements.tsx"
+      },
+      "cite_in_readme": false
+    },
+    {
+      "claim": "The page features three projects first, in this order: agent-custom-setup, project-continuity-modules, content-generation-modules.",
+      "source": "Owner instruction given while the page was being built.",
+      "status": "shipped",
+      "supports": "The order on the page matches the priority the owner stated for this build.",
+      "limits": "It does not establish that these are the owner's only maintained repositories; the account publishes 39 public repositories.",
+      "recorded_at": "2026-10-01T00:00:00Z",
+      "source_revision": {
+        "kind": "owner_decision",
+        "reference": "Owner instruction in the build session for this page",
+        "observed_at": "2026-10-01"
+      },
+      "cite_in_readme": false
+    },
+    {
+      "claim": "The spoken tour uses the Fish Audio reference voice the owner ranked highest in the voice-lab record.",
+      "source": "Voice-lab provenance entries marked 'really good' by the owner.",
+      "status": "shipped",
+      "supports": "Two Ayaka reference ids carry an owner 'really good' ranking dated 2026-09-27; the tour uses the first of them.",
+      "limits": "It does not establish that the owner prefers that take over every other voice in the record, and the ranking is a listening judgement rather than a measurement.",
+      "recorded_at": "2026-10-01T00:00:00Z",
+      "source_revision": {
+        "kind": "owner_decision",
+        "reference": "Owner listening ranking recorded in the voice-lab provenance file",
+        "observed_at": "2026-09-27"
+      },
+      "cite_in_readme": false
+    }
+  ],
+  "boundaries": [
+    "The page does not publish third-party reference audio used inside the voice lab; only freshly generated clips are committed here.",
+    "The page does not claim capabilities the linked repositories do not demonstrate, and it does not include private repository names, internal paths or secrets.",
+    "The page is a static profile entry point, not a product; it carries no runtime, no build step and no server.",
+    "Generated images are illustrations of the story. They are not screenshots, benchmarks or evidence of shipped behaviour."
+  ],
+  "terminology": {
+    "preferred": {
+      "profile page": "the page a visitor reads at github.com/Pukujan",
+      "featured project": "one of the three repositories shown with its problem and source link",
+      "voice note": "a short spoken clip played from the tour page",
+      "tour": "the static HTML page that plays the voice notes"
+    },
+    "avoid": [
+      "portfolio",
+      "personal brand",
+      "AI-powered",
+      "cutting-edge",
+      "ninja",
+      "guru"
+    ]
+  }
+}

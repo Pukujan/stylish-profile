@@ -1,0 +1,40 @@
+name: auto-merge
+
+# Arms squash auto-merge on every PR push so a green required `gates` check
+# merges without a human approval step. Branch ruleset requires 0 approvals.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: auto-merge-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  arm:
+    name: arm auto-merge
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Enable squash auto-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          if [ -z "${PR:-}" ]; then
+            echo "no pull request in this event; nothing to arm"
+            exit 0
+          fi
+          armed=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json autoMergeRequest --jq '.autoMergeRequest != null')
+          if [ "$armed" = "true" ]; then
+            echo "PR #$PR already has auto-merge armed"
+          else
+            gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --auto --squash
+            echo "armed squash auto-merge on PR #$PR"
+          fi

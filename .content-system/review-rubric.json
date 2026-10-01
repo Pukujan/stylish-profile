@@ -1,0 +1,36 @@
+{
+  "schema_version": "content-generation.review-rubric.v1",
+  "dimensions": [
+    {
+      "id": "human_comprehension",
+      "question": "Can a first-time reader say who Pujan is and what he builds after twenty seconds on the page?",
+      "weight": 2
+    },
+    {
+      "id": "specificity",
+      "question": "Does each featured project name a concrete problem and a concrete mechanism instead of a category?",
+      "weight": 2
+    },
+    {
+      "id": "claim_safety",
+      "question": "Is every claim on the page traceable to a public repository, a commit, or a recorded owner decision?",
+      "weight": 3
+    },
+    {
+      "id": "skimmability",
+      "question": "Do the headings, bold anchors and link text alone tell the story of the page?",
+      "weight": 1
+    },
+    {
+      "id": "visual_clarity",
+      "question": "Does each image carry one idea, keep its subject visible, and keep its title and subtitle legible?",
+      "weight": 2
+    },
+    {
+      "id": "responsive_fit",
+      "question": "Does the page and its HTML tour stay readable at 390, 768 and 1440 pixel widths?",
+      "weight": 1
+    }
+  ],
+  "decision_rule": "Accept only when claim_safety passes and no weighted dimension is below 3/5; human review can override model scores with a recorded reason."
+}

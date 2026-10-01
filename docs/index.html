@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pujan — the short tour</title>
+<meta name="description" content="A spoken tour and a live activity board for Pujan: reusable agent infrastructure, project continuity, content generation, and inference routing.">
+<style>
+  :root {
+    --background: #FFF9F0;
+    --foreground: #1A1A1A;
+    --card: #FFFFFF;
+    --primary: #4169E1;
+    --accent: #FFD93D;
+    --pink: #FF6B9D;
+    --orange: #FF8C42;
+    --lime: #A8CC00;
+    --purple: #9B6DD6;
+    --muted: #6B6357;
+    --border: #E8DFD0;
+    --radius: 1.5rem;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #0F0F0F;
+      --foreground: #F5F1EA;
+      --card: #1A1A1A;
+      --muted: #A79E90;
+      --border: #2E2A24;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  img, picture { max-width: 100%; }
+  picture { display: block; }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header { margin-bottom: 2.5rem; }
+  .hero {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0 0 0.5rem;
+  }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); font-weight: 600; line-height: 1.15; margin: 0 0 0.75rem; }
+  h2 { font-size: clamp(1.25rem, 3.2vw, 1.5rem); font-weight: 600; margin: 2.75rem 0 0.75rem; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.25rem; }
+  h4 { font-size: 0.95rem; font-weight: 600; margin: 1.25rem 0 0.25rem; }
+  p { margin: 0 0 1rem; }
+  .lede { font-family: var(--serif); font-size: 1.125rem; color: var(--muted); }
+  a { color: var(--primary); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.88em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0 0 1rem; list-style: none; }
+  .chips li {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+  .note {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.25rem 0.75rem;
+    margin: 0 0 1rem;
+  }
+  .note h3 { margin-top: 0; }
+  .note .kind {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--background);
+    background: var(--primary);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .note[data-kind="welcome"] .kind { background: var(--accent); color: #1A1A1A; }
+  .note[data-kind="tour"] .kind { background: var(--pink); color: #1A1A1A; }
+  .note[data-kind="thought-piece"] .kind { background: var(--purple); }
+  .note[data-kind="status"] .kind { background: var(--orange); color: #1A1A1A; }
+  audio { width: 100%; margin: 0.5rem 0 0.75rem; }
+  details { margin: 0 0 0.75rem; }
+  summary { cursor: pointer; font-size: 0.9rem; color: var(--muted); }
+  .transcript { font-family: var(--serif); font-size: 0.95rem; color: var(--muted); margin-top: 0.5rem; }
+  .projects { display: grid; gap: 1rem; padding: 0; margin: 0; list-style: none; }
+  .projects li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+  .projects h3 { margin-top: 0; }
+  .table-scroll { overflow-x: auto; margin: 0 0 1rem; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-weight: 600; }
+  .live {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .live img { display: block; width: 100%; height: auto; margin: 0.75rem 0; border-radius: 0.75rem; }
+  .live .stamp { font-size: 0.8rem; color: var(--muted); }
+  footer { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+  .wide-figure { margin: 2rem 0; }
+  .wide-figure img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+  .wide-figure figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+  .narrow-figure { margin: 1.5rem 0; }
+  .narrow-figure img { width: 100%; max-width: 22rem; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+  .narrow-figure figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+  .motion-pair { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 2rem 0; }
+  .motion-figure { flex: 1 1 15rem; margin: 0; min-width: 0; }
+  .motion-figure img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+  .motion-figure figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .wrap { padding: 1.75rem 1rem 3.5rem; }
+    .motion-pair { gap: 1.25rem; }
+    .motion-figure { flex: 1 1 100%; }
+    h2 { margin-top: 2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <picture>
+      <source media="(max-width: 640px)" srcset="../assets/profile/AI%20Engineer%20phone.png">
+      <img class="hero" src="../assets/profile/AI%20Engineer.png" alt="Hand-drawn illustration of an engineer at a workbench slotting one reusable block into a growing modular machine while three small round companions carry identical blocks and a second smaller copy of the same structure stands finished beside it.">
+    </picture>
+    <p class="eyebrow">The short tour</p>
+    <h1>Pujan</h1>
+    <p class="lede">AI engineer. I automate the repetitive parts of engineering work, and I do it by building one component well and reusing it: reusable agent infrastructure, repeated pipeline stages, and the contracts that keep them honest.</p>
+    <ul class="chips">
+      <li>Agent setup</li>
+      <li>Project continuity</li>
+      <li>Content generation</li>
+      <li>Inference routing</li>
+    </ul>
+    <p><a href="https://github.com/Pukujan">Profile</a> · <a href="https://github.com/Pukujan/stylish-profile">This repository</a> · <a href="https://www.design-bakery.com">design-bakery.com</a></p>
+  </header>
+
+  <h2>Current projects</h2>
+  <ul class="projects">
+    <li>
+      <h3>Agent Custom Setup</h3>
+      <p>A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not.</p>
+      <p><a href="https://github.com/Pukujan/agent-custom-setup">Repository</a></p>
+    </li>
+    <li>
+      <h3>Project Continuity Modules</h3>
+      <p>Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
+      <p><a href="https://github.com/Pukujan/project-continuity-modules">Repository</a></p>
+    </li>
+    <li>
+      <h3>Content Generation Modules</h3>
+      <p>Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from.</p>
+      <p><a href="https://github.com/Pukujan/content-generation-modules">Repository</a></p>
+    </li>
+    <li>
+      <h3>Inference Recommendation Engine</h3>
+      <p>Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
+      <p><a href="https://github.com/Pukujan/inference-recommendation-engine">Repository</a></p>
+    </li>
+  </ul>
+
+  <h2>What is shipped, and what is not</h2>
+  <p>Shipped here means three things: a public repository, a passing check suite, and a written record of what the thing does not do yet. Nothing on this page claims a support promise.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Project</th><th>State</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Agent Custom Setup</td><td>In daily use</td><td>Public module registry, a required-check workflow, 11 open issues tracking what is unfinished</td></tr>
+        <tr><td>Project Continuity Modules</td><td>In daily use</td><td>Published CLI and protocol spec, 31 open issues, adopted by the repositories on this page</td></tr>
+        <tr><td>Content Generation Modules</td><td>In daily use</td><td>Versioned module set with a validator, a changelog, and a released tag; this page is built against it</td></tr>
+        <tr><td>Inference Recommendation Engine</td><td>Working, still moving</td><td>MIT licensed, property-driven test suite, 14 open issues</td></tr>
+        <tr><td>design-bakery.com</td><td>Live</td><td>The site this page's palette and shapes come from</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Not shipped: no hosted service, no package on a public registry, and no benchmark result. Where something has not been measured, this page says so instead of implying it.</p>
+
+  <h2>Featured project</h2>
+  <h3>Agent Custom Setup</h3>
+  <p>It is the piece the other three sit on. Every other repository here starts a session by loading it, so if it is wrong, everything downstream is wrong in a way that looks fine. It is also the smallest honest example of the habit: a version pin, a check that the pin is what actually loaded, and a hard failure when it is not.</p>
+  <p><a href="https://github.com/Pukujan/agent-custom-setup">Repository</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json">Module registry</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md">Policy</a></p>
+
+  <div class="live">
+<!-- TRACKING:START -->
+<h2>What changed today</h2>
+<p>2026-10-01: 13 commit(s) across 2 project(s).</p>
+<table>
+<thead><tr><th>Project</th><th>Commits today</th><th>Last push</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>10</td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>3</td><td>2026-10-01</td></tr>
+</tbody>
+</table>
+<figure class="wide-figure">
+<picture>
+<source media="(max-width: 640px)" srcset="../assets/profile/generated/activity-narrow.svg">
+<img src="../assets/profile/generated/activity.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1184 total." width="100%">
+</picture>
+<figcaption>Daily commit counts across public Pukujan repositories over the last 14 days, 1184 total.</figcaption>
+</figure>
+<p>Current project: <a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a> with 91 commit(s) in the last 7 days.</p>
+<figure class="wide-figure">
+<picture>
+<source media="(max-width: 640px)" srcset="../assets/profile/generated/stars-narrow.svg">
+<img src="../assets/profile/generated/stars.svg" alt="Public stars: 1 total, 1 repositories with at least one." width="100%">
+</picture>
+<figcaption>Public stars: 1 total, 1 repositories with at least one.</figcaption>
+</figure>
+<p>Total public stars: 1. That is a small number. The work is early, the count is real, and neither is a reason to round it up.</p>
+<details>
+<summary>All public repositories</summary>
+<table>
+<thead><tr><th>Repository</th><th>Last push</th><th>Language</th><th>Stars</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>2026-10-01</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>2026-10-01</td><td>TypeScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/stylish-profile">stylish-profile</a></td><td>2026-10-01</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/inference-recommendation-engine">inference-recommendation-engine</a></td><td>2026-09-30</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a></td><td>2026-09-30</td><td>HTML</td><td>1</td></tr>
+<tr><td><a href="https://github.com/Pukujan/vastai-gpu-broker">vastai-gpu-broker</a></td><td>2026-09-30</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/omp-gui">omp-gui</a></td><td>2026-09-29</td><td>JavaScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/project-continuity-modules">project-continuity-modules</a></td><td>2026-09-29</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/agent-secret-vault">agent-secret-vault</a></td><td>2026-09-28</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/doc-generation-modules">doc-generation-modules</a></td><td>2026-09-28</td><td>HTML</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/Study-os">Study-os</a></td><td>2026-09-28</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/hades-product">hades-product</a></td><td>2026-09-27</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/multi-agent-modules">multi-agent-modules</a></td><td>2026-09-27</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/jev-classifier">jev-classifier</a></td><td>2026-09-26</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/research-action">research-action</a></td><td>2026-09-25</td><td>TypeScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/Eval-lab">Eval-lab</a></td><td>2026-09-25</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/design-bakery">design-bakery</a></td><td>2026-09-24</td><td>TypeScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/exportable-harness-modules">exportable-harness-modules</a></td><td>2026-09-24</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/harness-on-steroids">harness-on-steroids</a></td><td>2026-09-23</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/custom-extensions">custom-extensions</a></td><td>2026-09-21</td><td>JavaScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/test-repo">test-repo</a></td><td>2026-09-20</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/automated-agents">automated-agents</a></td><td>2026-09-16</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/fossil-demo">fossil-demo</a></td><td>2026-09-15</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/fluffy-system">fluffy-system</a></td><td>2026-09-14</td><td>JavaScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/fossil-core">fossil-core</a></td><td>2026-09-14</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/ai-for-good">ai-for-good</a></td><td>2026-09-14</td><td>TypeScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/healthcare-documents">healthcare-documents</a></td><td>2026-09-13</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/research-assurance-v2">research-assurance-v2</a></td><td>2026-09-11</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/project-assurance-modules">project-assurance-modules</a></td><td>2026-09-07</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/study-os-pedagogical-IR">study-os-pedagogical-IR</a></td><td>2026-09-05</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/study-os-benchmarker">study-os-benchmarker</a></td><td>2026-09-05</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/RA-plugin">RA-plugin</a></td><td>2026-09-03</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/interview-os-game">interview-os-game</a></td><td>2026-09-03</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/legalgraph-rag-test">legalgraph-rag-test</a></td><td>2026-09-02</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/time-to-crawl">time-to-crawl</a></td><td>2026-09-01</td><td>Python</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>2026-06-26</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/litigation-prompt-engineering">litigation-prompt-engineering</a></td><td>2026-05-29</td><td>JavaScript</td><td>0</td></tr>
+</tbody>
+</table>
+</details>
+<!-- TRACKING:END -->
+  </div>
+
+  <h2>Listen</h2>
+  <p>Five short notes. Play them in order, or jump to the one you want.</p>
+
+  <div class="note" data-kind="welcome">
+    <span class="kind">Welcome</span>
+    <h3>Welcome to My Corner</h3>
+    <audio controls preload="none" src="../assets/profile/voice-notes/Welcome%20to%20My%20Corner.mp3"></audio>
+    <details>
+      <summary>Read the transcript</summary>
+      <p class="transcript">Hey, you found my corner of GitHub. I'm Pujan. I build AI systems for work that is heavy with documents, the kind of work where a mistake costs someone real time. Everything on this page has a public repository behind it, so you can check the work instead of taking my word for it.</p>
+    </details>
+  </div>
+
+  <div class="note" data-kind="intro">
+    <span class="kind">Intro</span>
+    <h3>Who I Am in Thirty Seconds</h3>
+    <audio controls preload="none" src="../assets/profile/voice-notes/Who%20I%20Am%20in%20Thirty%20Seconds.mp3"></audio>
+    <details>
+      <summary>Read the transcript</summary>
+      <p class="transcript">Thirty seconds about me. I care about two things. Whether a system actually helps the person using it, and whether the next person can pick the work up without me. Most of my repositories are about the second one. I write tools that leave a trail, so you can see what was decided, what was checked, and what is still open.</p>
+    </details>
+  </div>
+
+  <div class="note" data-kind="tour">
+    <span class="kind">Tour</span>
+    <h3>The Short Tour</h3>
+    <audio controls preload="none" src="../assets/profile/voice-notes/The%20Short%20Tour.mp3"></audio>
+    <details>
+      <summary>Read the transcript</summary>
+      <p class="transcript">Here is the short tour. Agent Custom Setup is how I hand a project to a fresh AI agent so it starts with the right rules instead of guessing. Project Continuity Modules is how long work survives a break: checkpoints, handoffs, and an issue that owns the scope. Content Generation Modules is how the writing and the pictures come out sounding like a person instead of a template. Three tools, one habit. Leave the trail behind you.</p>
+    </details>
+  </div>
+
+  <div class="note" data-kind="thought-piece">
+    <span class="kind">Thought piece</span>
+    <h3>Why Loose Ends Matter</h3>
+    <audio controls preload="none" src="../assets/profile/voice-notes/Why%20Loose%20Ends%20Matter.mp3"></audio>
+    <details>
+      <summary>Read the transcript</summary>
+      <p class="transcript">A thought I keep coming back to. Long projects do not usually fail because the work was too hard. They fail because something got dropped. A decision nobody wrote down, a check nobody ran, a handoff nobody made. So I build for the loose ends. Not because the tooling is exciting, but because the alternative is a person at midnight trying to remember why a line of code exists.</p>
+    </details>
+  </div>
+
+  <div class="note" data-kind="status">
+    <span class="kind">Status</span>
+    <h3>What Is Still Being Built</h3>
+    <audio controls preload="none" src="../assets/profile/voice-notes/What%20Is%20Still%20Being%20Built.mp3"></audio>
+    <details>
+      <summary>Read the transcript</summary>
+      <p class="transcript">One honest note before you go. This page is new, and parts of the tooling behind it are still being built. The projects you see are real and public, and each one has an issue tracking what is done and what is not. If something here looks unfinished, that is usually because it is.</p>
+    </details>
+  </div>
+
+  <figure class="wide-figure">
+    <img src="../assets/profile/Three%20Projects%20One%20Thread.png" alt="Hand-drawn diagram of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page.">
+    <figcaption>One habit runs through all of them: leave a trail behind you.</figcaption>
+  </figure>
+
+  <h2>The two habits, moving</h2>
+  <div class="motion-pair">
+    <figure class="motion-figure">
+      <img src="../assets/profile/anim/Reusable%20Blocks.gif" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="360" height="360">
+      <figcaption><strong>Build it once.</strong> One block, then two, then three, then a grid. The original turns yellow to mark which copy the rest came from.</figcaption>
+    </figure>
+    <figure class="motion-figure">
+      <img src="../assets/profile/anim/One%20Push%20Many%20Pipelines.gif" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="360" height="360">
+      <figcaption><strong>Run it once, get every result.</strong> One push travels down the stem, the stem forks, and each branch finishes on its own.</figcaption>
+    </figure>
+  </div>
+  <p>Those are the two things I actually automate. Everything else on this page is downstream of them.</p>
+
+  <h2>Why this page looks the way it does</h2>
+  <figure class="wide-figure">
+    <img src="../assets/profile/The%20Badge%20Wall.png" alt="Hand-drawn illustration of a small round companion holding an empty magnifying glass in front of a dense wall of blank badge and statistics cards.">
+    <figcaption>The previous page led with third-party statistics cards. Two of the services behind them now return payment errors and one no longer resolves.</figcaption>
+  </figure>
+  <p>The only live elements here are ones I generate and commit myself. The illustrations come from the palette and the flat hand-drawn shapes of my own site, <a href="https://www.design-bakery.com">design-bakery.com</a>. They are illustrations of the story, not screenshots, and not evidence of anything.</p>
+
+  <h2>What you can check</h2>
+  <figure class="narrow-figure">
+    <img src="../assets/profile/What%20You%20Can%20Check.png" alt="Hand-drawn illustration of a stack of blank source cards feeding down into an open book and a pair of headphones, with a small round companion holding a pencil.">
+  </figure>
+  <p>Every claim on this page points at a public repository, and each of those repositories has an issue tracking what is done and what is not. The activity numbers are generated from the GitHub API by <code>scripts/track_activity.py</code> and committed by a scheduled workflow, so you can re-run it and get the same numbers. The illustrations are generated, and their prompts and review decisions are recorded in <code>.content-system/</code>. Nothing here is a benchmark result.</p>
+
+  <footer>
+    <p>This tour is built and verified in <a href="https://github.com/Pukujan/stylish-profile">Pukujan/stylish-profile</a>. Voice: Fish Audio, the Ayaka reference the owner ranked highest. Illustrations: generated, reviewed, and recorded.</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "voice": "Ayaka",
+  "reference_id": "2c32246692bd454d891585c85233bc72",
+  "model": "s2.1-pro-free",
+  "provider": "Fish Audio",
+  "clips": [
+    {
+      "file": "Welcome to My Corner.mp3",
+      "kind": "welcome",
+      "text": "Hey, you found my corner of GitHub. I'm Pujan. I build AI systems for work that is heavy with documents, the kind of work where a mistake costs someone real time. Everything on this page has a public repository behind it, so you can check the work instead of taking my word for it.",
+      "bytes": 258715
+    },
+    {
+      "file": "Who I Am in Thirty Seconds.mp3",
+      "kind": "intro",
+      "text": "Thirty seconds about me. I care about two things. Whether a system actually helps the person using it, and whether the next person can pick the work up without me. Most of my repositories are about the second one. I write tools that leave a trail, so you can see what was decided, what was checked, and what is still open.",
+      "bytes": 297586
+    },
+    {
+      "file": "The Short Tour.mp3",
+      "kind": "tour",
+      "text": "Here is the short tour. Agent Custom Setup is how I hand a project to a fresh AI agent so it starts with the right rules instead of guessing. Project Continuity Modules is how long work survives a break: checkpoints, handoffs, and an issue that owns the scope. Content Generation Modules is how the writing and the pictures come out sounding like a person instead of a template. Three tools, one habit. Leave the trail behind you.",
+      "bytes": 433840
+    },
+    {
+      "file": "Why Loose Ends Matter.mp3",
+      "kind": "thought-piece",
+      "text": "A thought I keep coming back to. Long projects do not usually fail because the work was too hard. They fail because something got dropped. A decision nobody wrote down, a check nobody ran, a handoff nobody made. So I build for the loose ends. Not because the tooling is exciting, but because the alternative is a person at midnight trying to remember why a line of code exists.",
+      "bytes": 361951
+    },
+    {
+      "file": "What Is Still Being Built.mp3",
+      "kind": "status",
+      "text": "One honest note before you go. This page is new, and parts of the tooling behind it are still being built. The three projects you see are real and public, and each one has an issue tracking what is done and what is not. If something here looks unfinished, that is usually because it is.",
+      "bytes": 267074
+    }
+  ]
+}

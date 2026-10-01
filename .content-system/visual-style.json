@@ -1,0 +1,80 @@
+{
+  "schema_version": "content-generation.visual-style.v1",
+  "reference_asset": "assets/profile/AI Engineer.png",
+  "generation_workflow": "built-in image_gen",
+  "narrative_roles": [
+    "hero",
+    "problem",
+    "supporting",
+    "system",
+    "evidence",
+    "story",
+    "social"
+  ],
+  "palette": {
+    "background": "#FFF9F0",
+    "primary": "#4169E1",
+    "accent": "#FFD93D",
+    "warm_accent": "#FF8C42",
+    "text": "#1A1A1A"
+  },
+  "subjects": [
+    "Pujan, an engineer working at a desk with paper documents, notebooks and sticky notes",
+    "one identical reusable modular block drawn the same way everywhere it appears, shown on a conveyor, being assembled, and finished at a smaller scale",
+    "a small round companion character drawn in flat shapes that carries one document or one block at a time",
+    "hand-drawn arrows, halos, squiggles and speech bubbles that show a messy pile becoming an ordered flow"
+  ],
+  "composition": [
+    "one dominant idea per image",
+    "main subjects remain visible and unobstructed",
+    "flat hand-drawn shapes on a warm cream field, not photographic renders",
+    "reserve quiet cream negative space for the title and subtitle panel",
+    "wide assets keep the subject inside a centre crop that survives a narrow column",
+    "square and portrait assets explain a different part of the story than the hero"
+  ],
+  "text_policy": "narrative raster assets carry one short title plus one short subtitle; icons, SVGs, logos, and tiny helper graphics remain text-free",
+  "roles": {
+    "hero": {
+      "orientation": "wide",
+      "dimensions": "1536x1024"
+    },
+    "story": {
+      "orientation": "wide",
+      "dimensions": "1536x1024"
+    },
+    "problem": {
+      "orientation": "wide",
+      "dimensions": "1536x1024"
+    },
+    "system": {
+      "orientation": "square",
+      "dimensions": "1024x1024"
+    },
+    "evidence": {
+      "orientation": "portrait",
+      "dimensions": "1024x1536"
+    },
+    "hero phone": {
+      "dimensions": "1024x1536",
+      "orientation": "portrait",
+      "purpose": "hero variant for screens 640 pixels wide or narrower"
+    },
+    "motion": {
+      "dimensions": "720x720",
+      "orientation": "square",
+      "frames": 5,
+      "purpose": "short looping GIF; not a narrative still, so it is exempt from the still-image provenance fields"
+    }
+  },
+  "reject_when": [
+    "the main subject is covered or pushed out of the centre crop",
+    "a second competing focal point splits attention",
+    "the title or subtitle is missing, garbled, crowded or misspelled",
+    "the image carries more copy than the declared title and subtitle",
+    "the human and the tooling relationship is ambiguous",
+    "the asset fails its declared orientation or crop role",
+    "the image implies a product capability the repositories do not support",
+    "the palette drifts to neon contrast or a dense fake interface",
+    "the result is photographic, 3D-rendered or glossy instead of flat hand-drawn shapes"
+  ]
+}

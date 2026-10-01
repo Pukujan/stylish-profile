@@ -1,0 +1,44 @@
+{
+  "schema_version": "content-generation.brand-language.v1",
+  "name": "Pujan — Stylish Profile",
+  "personality": [
+    "plain-spoken",
+    "warm",
+    "specific",
+    "evidence-first"
+  ],
+  "audience_feeling": "A hiring manager or engineer should recognise the kind of work within a few seconds, and should feel that every claim on the page can be checked in a public repository.",
+  "promise": "This page shows what Pujan builds, links each featured project to its public source, and says plainly which parts are shipped and which are still being built.",
+  "preferred_terms": {
+    "the person": "Pujan",
+    "the featured work": "featured projects",
+    "the reading path": "start here",
+    "the spoken tour": "voice notes",
+    "AI/ML work": "document-heavy AI systems",
+    "continuity tooling": "checkpoint and handoff tooling"
+  },
+  "avoid": [
+    "ninja",
+    "guru",
+    "10x",
+    "passionate about technology",
+    "AI-powered",
+    "cutting-edge",
+    "revolutionary",
+    "seamless",
+    "world-class",
+    "thought leader",
+    "leverage",
+    "synergy"
+  ],
+  "good_examples": [
+    "I build systems that keep long AI projects from losing their place.",
+    "Three public repositories, each with the issue that tracks its work.",
+    "Listen to the tour, or skip straight to the code."
+  ],
+  "bad_examples": [
+    "Passionate AI engineer leveraging cutting-edge technology to deliver world-class solutions.",
+    "Revolutionising the future of intelligent document workflows.",
+    "A visionary builder obsessed with innovation and excellence."
+  ]
+}

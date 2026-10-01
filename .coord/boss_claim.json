@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "project": "stylish-profile",
+  "updated_at": "2026-10-01T00:00:00-04:00",
+  "who_is_boss_now": "omp@windows-workstation",
+  "lease_ttl_minutes": 30,
+  "last_check_in": {
+    "at": "2026-10-01T00:00:00-04:00",
+    "by": "omp@windows-workstation",
+    "mechanism": "issue_comment",
+    "issue_url": "https://github.com/Pukujan/stylish-profile/issues/1"
+  },
+  "claim_queue": [],
+  "as_of_history": [
+    {
+      "as_of": "2026-10-01T00:00:00-04:00",
+      "boss_agent_id": "omp@windows-workstation",
+      "ended_at": null,
+      "notes": "Initial lease holder for the hotload. Append on failover; never rewrite."
+    }
+  ],
+  "notes": "Authoritative with the assignment's boss_failover block. A zombie boss that is not named here must reject boss-only actions and re-queue at the end. The agent-less watchdog may write vacant here after the lease TTL; it never appoints a boss."
+}
