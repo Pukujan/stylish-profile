@@ -69,6 +69,15 @@
     margin: 0 0 0.5rem;
   }
   h1 { font-size: clamp(1.9rem, 5vw, 2.75rem); font-weight: 600; line-height: 1.15; margin: 0 0 0.75rem; }
+  .byline { display: flex; align-items: center; gap: 1rem; margin: 0 0 0.75rem; }
+  .byline h1 { margin: 0; }
+  .byline img {
+    width: 3.5rem;
+    height: 3.5rem;
+    flex: none;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+  }
   h2 { font-size: clamp(1.25rem, 3.2vw, 1.5rem); font-weight: 600; margin: 2.75rem 0 0.75rem; }
   h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.25rem; }
   h4 { font-size: 0.95rem; font-weight: 600; margin: 1.25rem 0 0.25rem; }
@@ -155,7 +164,10 @@
       <img class="hero" src="../assets/profile/anim/AI%20Engineer-dark.gif" alt="Animated drawing of an engineer at a workbench raising one reusable block and setting it into a growing modular machine, while three small round companions carry identical blocks and a conveyor brings more.">
     </picture>
     <p class="eyebrow">The short tour</p>
-    <h1>Pujan</h1>
+    <div class="byline">
+      <img src="../assets/profile/Pujan.png" alt="Flat illustration of the author: a bespectacled engineer with dark hair and a small smile, drawn on a deep royal blue field." width="56" height="56">
+      <h1>Pujan</h1>
+    </div>
     <p class="lede">AI engineer. I automate the repetitive parts of engineering work, and I do it by building one component well and reusing it: reusable agent infrastructure, repeated pipeline stages, and the contracts that keep them honest.</p>
     <ul class="chips">
       <li>Agent setup</li>

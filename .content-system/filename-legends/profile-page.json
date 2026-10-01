@@ -41,6 +41,10 @@
     {
       "token": "Derived",
       "meaning": "an asset produced from another committed asset by a committed script, not by a generation call; it can be re-created from its source and carries no prompt of its own"
+    },
+    {
+      "token": "Avatar",
+      "meaning": "the account profile picture, drawn as the same character who appears in the page illustrations"
     }
   ],
   "files": [
@@ -199,6 +203,12 @@
       "path": "assets/profile/generated/stars-narrow-dark.svg",
       "role": "generated chart",
       "identity": "stars-narrow-dark"
+    },
+    {
+      "path": "assets/profile/Pujan.png",
+      "identity": "Pujan",
+      "role": "avatar",
+      "style": "speakable"
     }
   ]
 }
