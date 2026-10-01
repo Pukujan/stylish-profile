@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":"SP-0005","active_task_file":"tasks/TASK-SP-0005-provenance-records-accuracy.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":null,"active_task_file":null,"protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -15,10 +15,11 @@ Phase: bootstrap.
 - SP-0002: the projects table, a spoken note per project, four-frame animations, and a derived dark variant of every image.
 - SP-0003: every voice note opens and plays, the dark variants cannot go stale without failing the gate, and the account has an avatar drawn as the same character as the page.
 - SP-0004: the dark illustrations keep the character's own colours, and both pages introduce Pujan instead of auditing him.
+- SP-0005: every content-system record matches the page it describes, and the length printed beside each voice note is checked against the clip.
 
 ## Active
 
-- SP-0005: make every content-system record describe the page that actually ships, and gate the one claim on the page that nothing checked.
+None. The work on the shipped page is finished; what is left is owner actions and one refresh that waits on them.
 
 ## Queued
 
@@ -32,6 +33,5 @@ None known.
 
 ## Next atomic action
 
-Open the pull request for SP-0005, let the required `gates` check run, merge it
-automatically, mirror the profile page into `Pukujan/Pukujan` because its prose
-changed, and append a receipt to issue #1.
+Nothing is in flight. The first item in Queued is the tracker refresh, and it
+cannot start until the owner deletes the two probe repositories in the web UI.
