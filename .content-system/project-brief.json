@@ -10,8 +10,8 @@
   "solution": "A profile page that opens with one concrete sentence about the work, then shows three featured projects with the problem each one solves, a link to its public source, and an honest note about what is still being built. Hand-drawn images and a spoken tour carry the same story for people who would rather listen than read.",
   "mechanism": [
     "the README carries the whole story in plain Markdown so it renders anywhere GitHub renders Markdown",
-    "four narrative images are generated against a recorded visual contract and referenced with alt text beside the idea each one explains",
-    "a static HTML tour page under docs/ plays short spoken notes and shows the same projects at desktop, tablet and phone widths",
+    "six narrative images are generated against a recorded visual contract and referenced with alt text beside the idea each one explains; each ships as a four-frame animation with a dark variant derived from the light asset rather than generated again",
+    "a static HTML tour page under docs/ plays short spoken notes, one beside each project, and shows the same projects at desktop, tablet and phone widths, leading with the dark palette",
     "every featured claim names the public repository that supports it, and the asset and evidence records live in .content-system rather than in the page itself"
   ],
   "evidence": [

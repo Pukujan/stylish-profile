@@ -44,10 +44,10 @@
 ## Content adapter project brief (`project-brief`)
 
 - File: [`.content-system/project-brief.json`](../.content-system/project-brief.json)
-- Local content status: **CURRENT**
+- Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `445c7ae440bdf927364335fbb32604236e5b12b8dd72c3cc8a7a3d0b62ad10d1`
-- Current SHA-256: `445c7ae440bdf927364335fbb32604236e5b12b8dd72c3cc8a7a3d0b62ad10d1`
+- Current SHA-256: `3581b5f8a5623a4c35cadcd4635583bc36ad98e08a4568c344d7fd780a0c9af6`
 - Summary: The evidence-bounded brief behind the page: audience, problem, solution, mechanism, terminology, four recorded evidence items with their limits, and four stated boundaries.
 - Search terms: `boundaries`, `brief`, `evidence`
 - Neighboring records: none
@@ -83,7 +83,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `d7db68f1779cf3c7907b208ff8280e8b2771633d6f5a9cdaef778c08d32fd473`
-- Current SHA-256: `3f3cbe14d0060e994ba71e884def98ea46d1284c40613f0316366105bbb925ae`
+- Current SHA-256: `c850179885a7849db1c9c9cd283527672fd2f64166f96405992a9f9d3e730e1b`
 - Summary: A recorded comparison of five profile repositories, the 2026 GitHub sanitizer allow and deny lists, live service-risk probes, and the audio mechanisms that actually work.
 - Search terms: `github`, `rendering`, `research`
 - Neighboring records: none
