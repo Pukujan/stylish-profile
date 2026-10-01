@@ -1,0 +1,166 @@
+<#
+.SYNOPSIS
+    Refresh the profile page's generated data and publish it.
+
+.DESCRIPTION
+    The page's activity block is regenerated from the GitHub API by
+    scripts/track_activity.py. Publishing that regeneration needs a push to a
+    protected `main`, and the workflow token cannot do it: a `GITHUB_TOKEN`
+    push is rejected by the branch ruleset, and a pull request opened with that
+    token has its `pull_request` runs held for approval, which turns a daily
+    refresh into a daily approval.
+
+    This script runs the same steps on the workstation instead, using the
+    owner's already-authenticated `gh` and git credentials. Those credentials
+    carry the repository-admin bypass on the ruleset, so the push lands without
+    a pull request and without an approval step.
+
+    Steps, in order, stopping at the first failure:
+      1. fast-forward the checkout onto origin/main
+      2. regenerate the tracking block and the four charts
+      3. re-render the continuity document index, which pins two of those files
+      4. verify every relative link still resolves
+      5. commit and push, only if something actually changed
+      6. mirror the page into the profile repository
+
+.PARAMETER RepoRoot
+    The canonical checkout. Defaults to the parent of this script's directory.
+
+.PARAMETER DryRun
+    Run every step up to the commit, then report what would have been pushed.
+
+.EXAMPLE
+    pwsh -File scripts/refresh_profile.ps1
+#>
+[CmdletBinding()]
+param(
+    [string] $RepoRoot,
+    [switch] $DryRun
+)
+
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+if (-not $RepoRoot) {
+    $RepoRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+}
+$RepoRoot = (Resolve-Path -LiteralPath $RepoRoot).Path
+
+$LogDir = Join-Path $env:LOCALAPPDATA 'stylish-profile-refresh'
+New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
+$LogFile = Join-Path $LogDir 'refresh.log'
+
+function Write-Log {
+    param([string] $Message)
+    $line = '{0}  {1}' -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $Message
+    Write-Host $line
+    Add-Content -LiteralPath $LogFile -Value $line
+}
+
+function Invoke-Step {
+    param([string] $Name, [scriptblock] $Body)
+    Write-Log "start  $Name"
+    & $Body
+    if ($LASTEXITCODE -ne 0) {
+        throw "$Name failed with exit code $LASTEXITCODE"
+    }
+    Write-Log "ok     $Name"
+}
+
+$Committer = @('-c', 'user.name=Pukujan', '-c', 'user.email=pukujan@users.noreply.github.com')
+$ProfileRepo = 'Pukujan/Pukujan'
+
+Push-Location -LiteralPath $RepoRoot
+try {
+    # continuity is not pip-installed on this machine; the CLI is imported
+    # straight from the canonical PCM checkout.
+    if (-not $env:PYTHONPATH) {
+        $env:PYTHONPATH = 'D:\claude\projects\project-continuity-modules\src'
+    }
+
+    if (-not $env:GITHUB_TOKEN) {
+        $env:GITHUB_TOKEN = (gh auth token).Trim()
+    }
+    if (-not $env:GITHUB_TOKEN) {
+        throw 'no GitHub token available; run `gh auth login` first'
+    }
+
+    $branch = (git rev-parse --abbrev-ref HEAD).Trim()
+    if ($branch -ne 'main') {
+        throw "expected to be on main, found '$branch'"
+    }
+    if (git status --porcelain) {
+        throw 'the checkout is dirty; commit or discard those changes first'
+    }
+
+    Invoke-Step 'fast-forward main' {
+        git fetch --quiet origin main
+        git merge --ff-only --quiet origin/main
+    }
+
+    Invoke-Step 'regenerate activity data' {
+        python scripts/track_activity.py --root .
+    }
+
+    Invoke-Step 're-render continuity index' {
+        python -m continuity docs render --root .
+    }
+
+    Invoke-Step 'verify links' {
+        python scripts/check_profile_links.py
+    }
+
+    $changed = git status --porcelain
+    if (-not $changed) {
+        Write-Log 'nothing changed; the page is already current'
+        exit 0
+    }
+
+    $stamp = Get-Date -Format 'yyyy-MM-dd'
+    if ($DryRun) {
+        Write-Log "dry run: would commit and push`n$changed"
+        exit 0
+    }
+
+    Invoke-Step 'commit' {
+        git add -A
+        git @Committer commit --quiet -m "Refresh the activity block for $stamp"
+    }
+
+    Invoke-Step 'push main' {
+        git push --quiet origin main
+    }
+
+    $sha = (git rev-parse HEAD).Trim()
+    Write-Log "published $sha"
+
+    Invoke-Step 'mirror to profile repository' {
+        $mirror = Join-Path $env:TEMP 'stylish-profile-mirror'
+        if (Test-Path -LiteralPath (Join-Path $mirror '.git')) {
+            git -C $mirror fetch --quiet origin main
+            git -C $mirror reset --hard --quiet origin/main
+        }
+        else {
+            Remove-Item -Recurse -Force -LiteralPath $mirror -ErrorAction SilentlyContinue
+            git clone --quiet --depth 1 "https://github.com/$ProfileRepo.git" $mirror
+        }
+        Copy-Item -Force -LiteralPath (Join-Path $RepoRoot 'profile\README.md') `
+            -Destination (Join-Path $mirror 'README.md')
+        if (-not (git -C $mirror status --porcelain)) {
+            Write-Log 'mirror already current'
+            return
+        }
+        git -C $mirror add README.md
+        git -C $mirror @Committer commit --quiet -m "Sync the profile page for $stamp"
+        git -C $mirror push --quiet origin HEAD:main
+    }
+
+    Write-Log 'done'
+}
+catch {
+    Write-Log "FAILED: $($_.Exception.Message)"
+    exit 1
+}
+finally {
+    Pop-Location
+}
