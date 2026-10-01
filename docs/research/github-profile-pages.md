@@ -130,11 +130,23 @@ protection decides whether that is possible. Probed live on 2026-10-01:
 - A pull request opened by the bot can be armed for auto-merge, and a workflow run
   dispatched against its head branch does produce the required check run — but in the
   probe window the pull request stayed blocked with an empty status rollup. The check
-  that satisfies branch protection has to come from the pull request's own events.
+  that satisfies branch protection has to come from the pull request's own events. When
+  it does, the pull request merges with no approval of the *merge* — a probe pull
+  request reached `MERGED` at `2026-10-01T06:34:43Z` with `gates` green and nobody
+  clicking anything. What it did need was one approval of the *workflow run*.
 
-The practical conclusion: generate the block on a schedule, and let a session that
-authenticates as the repository owner publish it. A bot cannot do the whole loop alone
-under active branch protection.
+The practical conclusion, and it took a live probe to reach: **a workflow token cannot
+complete this loop on its own.** The blocking piece is not branch protection but the
+approval gate on `pull_request` runs created with `GITHUB_TOKEN`, which GitHub applies by
+design and which no repository setting disables. A bot-opened pull request does merge
+with zero approvals once its check has reported — verified end to end — but the check
+cannot report without someone releasing the held run first. A scheduled refresh that
+needs a human every day is not a scheduled refresh.
+
+So the daily regeneration runs on the workstation, under the owner's authenticated
+credentials, which do carry the ruleset bypass. The workflow keeps the same regeneration
+available on demand, without a schedule, and opens a pull request for the case where it
+is run from somewhere else.
 
 ## What remains unverified
 

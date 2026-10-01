@@ -71,7 +71,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `436e18a7907ff028f9ea8189ae60e1a1bb9fbbc104adb317248c54006aa1f6a8`
-- Current SHA-256: `56efdfe5e75ad9273ffe75ad2ab421bcbf8b1023e157e11153458a646375af56`
+- Current SHA-256: `01177ccd702a549a66fcf12cae167c26caae6168ef79b2476925a170cc42b7a0`
 - Summary: The project entry point for this repository: why the page exists, what the repository contains, how the pieces work, the evidence and boundaries, and how to run the link check.
 - Search terms: `product`, `readme`
 - Neighboring records: none
@@ -83,7 +83,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `d7db68f1779cf3c7907b208ff8280e8b2771633d6f5a9cdaef778c08d32fd473`
-- Current SHA-256: `04f5c6a5ac52a42f50cff14c995eb6d7b7db0d29d6d3f26d9d63b745cdb0998d`
+- Current SHA-256: `3f3cbe14d0060e994ba71e884def98ea46d1284c40613f0316366105bbb925ae`
 - Summary: A recorded comparison of five profile repositories, the 2026 GitHub sanitizer allow and deny lists, live service-risk probes, and the audio mechanisms that actually work.
 - Search terms: `github`, `rendering`, `research`
 - Neighboring records: none

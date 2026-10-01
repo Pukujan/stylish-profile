@@ -34,13 +34,21 @@ The page carries a tracking block that refreshes itself: commits in the last day
 - It **strips its own source of noise**: an empty repository returns HTTP 409 from the commits endpoint and is recorded as zero commits rather than crashing the run.
 - The bars in the charts animate once on load using SVG animation, and the finished geometry is written on the shapes themselves, so a renderer that ignores animation still shows the completed chart.
 
+### Why the daily run is a workstation task
+
+Publishing the refresh means pushing to a protected `main`, and the workflow token cannot do that. A `GITHUB_TOKEN` push is rejected by the branch ruleset, and a pull request opened with that token has its `pull_request` runs held for approval by GitHub, which turns a daily refresh into a daily approval step. Neither is a setting that can be turned off.
+
+[`scripts/refresh_profile.ps1`](scripts/refresh_profile.ps1) therefore runs the same steps on the workstation, where the owner's authenticated git credentials carry the ruleset's admin bypass. It fast-forwards, regenerates the block, re-renders the continuity index that pins two of the rewritten files, verifies every link, commits only if something changed, pushes, and mirrors the page into `Pukujan/Pukujan`. It is registered as a daily scheduled task and logs to `%LOCALAPPDATA%\stylish-profile-refresh\refresh.log`.
+
+`.github/workflows/track.yml` keeps the same regeneration available on demand, without a schedule, for the case where the page needs refreshing from somewhere other than this machine.
+
 ## How it works
 
 1. `.content-system/` records the product brief, the brand language, the visual contract, the asset manifest, and the review rubric.
 2. Every illustration is generated from a prompt recorded in `.content-system/prompts/`, reviewed, and entered in the manifest with its role, dimensions, alt text, crop behavior, rejection conditions, and a SHA-256 hash of the committed file.
 3. Voice notes are generated with a recorded voice selection, and their spoken text is stored beside them so the clips can be regenerated.
 4. `scripts/track_activity.py` collects activity data, draws the charts, and rewrites the tracking block between its two markers. `scripts/check_profile_links.py` walks every Markdown and HTML file, resolves each relative reference, and fails when one points at a file that is not committed.
-5. `.github/workflows/gates.yml` runs the continuity record check, the content adapter check, the writing contract check, and the link check. `.github/workflows/track.yml` runs the tracker on a daily schedule. `.github/workflows/auto-merge.yml` arms squash auto-merge on every pull request push.
+5. `.github/workflows/gates.yml` runs the continuity record check, the content adapter check, the writing contract check, and the link check. `.github/workflows/track.yml` regenerates the activity block on demand. `.github/workflows/auto-merge.yml` arms squash auto-merge on every pull request push. The daily refresh is `scripts/refresh_profile.ps1`, registered as a scheduled task.
 
 ## How it adapts
 
