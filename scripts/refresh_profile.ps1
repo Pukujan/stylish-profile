@@ -20,8 +20,9 @@
       2. regenerate the tracking block and the four charts
       3. re-render the continuity document index, which pins two of those files
       4. verify every relative link still resolves
-      5. commit and push, only if something actually changed
-      6. mirror the page into the profile repository
+      5. verify each derived dark variant still matches its light source
+      6. commit and push, only if something actually changed
+      7. mirror the page into the profile repository
 
 .PARAMETER RepoRoot
     The canonical checkout. Defaults to the parent of this script's directory.
@@ -108,6 +109,10 @@ try {
 
     Invoke-Step 'verify links' {
         python scripts/check_profile_links.py
+    }
+
+    Invoke-Step 'verify dark variants' {
+        python scripts/derive_dark_assets.py --check
     }
 
     $changed = git status --porcelain

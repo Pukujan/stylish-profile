@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from io import BytesIO
 from pathlib import Path
 
 import numpy as np
@@ -141,8 +142,14 @@ def darken_frame(frame: Image.Image) -> Image.Image:
     return Image.fromarray(darken_array(np.asarray(frame.convert("RGB"))))
 
 
-def convert(source: Path, destination: Path) -> None:
-    destination.parent.mkdir(parents=True, exist_ok=True)
+def convert(source: Path, destination: Path | BytesIO) -> None:
+    if isinstance(destination, Path):
+        destination.parent.mkdir(parents=True, exist_ok=True)
+    # Pillow infers the format from the destination name, which a buffer does
+    # not have, so name it explicitly.
+    image_format = {"gif": "GIF", "png": "PNG"}.get(source.suffix.lstrip(".").lower())
+    if image_format is None:
+        raise SystemExit(f"unsupported source type: {source.name}")
     with Image.open(source) as image:
         if getattr(image, "is_animated", False):
             frames, durations = [], []
@@ -156,6 +163,7 @@ def convert(source: Path, destination: Path) -> None:
             prepared = [frame.quantize(palette=reference, dither=Image.NONE) for frame in frames]
             prepared[0].save(
                 destination,
+                format=image_format,
                 save_all=True,
                 append_images=prepared[1:],
                 duration=durations,
@@ -164,20 +172,39 @@ def convert(source: Path, destination: Path) -> None:
                 disposal=2,
             )
         else:
-            darken_frame(image).save(destination)
-    print(f"{source.name} -> {destination.name}")
+            darken_frame(image).save(destination, format=image_format)
+    if isinstance(destination, Path):
+        print(f"{source.name} -> {destination.name}")
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("sources", nargs="+", type=Path)
+    parser.add_argument("sources", nargs="*", type=Path)
     parser.add_argument("--suffix", default="-dark")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="re-derive each source and fail if the committed variant differs",
+    )
     parser.add_argument(
         "--into",
         type=Path,
         help="write into this directory instead of beside each source",
     )
     args = parser.parse_args(argv)
+
+    if not args.sources:
+        if not args.check:
+            parser.error("at least one source is required")
+        anim = Path(__file__).resolve().parents[1] / "assets" / "profile" / "anim"
+        args.sources = sorted(
+            path for path in anim.glob("*.gif") if not path.stem.endswith(args.suffix)
+        )
+        if not args.sources:
+            raise SystemExit(f"no light illustrations found under {anim}")
+
+    if args.check:
+        return check(args.sources, args.suffix)
 
     for source in args.sources:
         if not source.is_file():
@@ -187,6 +214,37 @@ def main(argv: list[str] | None = None) -> int:
         else:
             destination = source.with_name(f"{source.stem}{args.suffix}{source.suffix}")
         convert(source, destination)
+    return 0
+
+
+def check(sources: list[Path], suffix: str) -> int:
+    """Fail when a committed dark variant no longer matches its light source.
+
+    The derivation is deterministic, so re-deriving and comparing bytes is a
+    real test rather than a smoke test. Without it a regenerated illustration
+    leaves its dark copy behind silently, and the only way to notice would be
+    to look at the page in dark mode and spot one wrong picture among nine.
+    """
+    problems: list[str] = []
+    for source in sources:
+        if not source.is_file():
+            problems.append(f"missing source: {source}")
+            continue
+        destination = source.with_name(f"{source.stem}{suffix}{source.suffix}")
+        if not destination.is_file():
+            problems.append(f"{destination.name} is missing")
+            continue
+        buffer = BytesIO()
+        convert(source, buffer)
+        if buffer.getvalue() != destination.read_bytes():
+            problems.append(f"{destination.name} does not match {source.name}")
+
+    if problems:
+        print(f"INVALID: {len(problems)} dark variant(s) out of date")
+        for problem in problems:
+            print(f"- {problem}")
+        return 1
+    print(f"VALID: {len(sources)} dark variant(s) match their source")
     return 0
 
 

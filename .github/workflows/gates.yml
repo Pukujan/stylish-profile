@@ -71,3 +71,12 @@ jobs:
       # manifest SHA-256, and the text it claims to say.
       - name: Voice notes match their record
         run: python scripts/generate_voice_notes.py --check
+
+      # The dark copies are derived from the light illustrations rather than
+      # drawn, so a regenerated light picture leaves its dark twin behind and
+      # the page shows one wrong image among nine. Re-deriving is deterministic,
+      # which makes a byte comparison a real test.
+      - name: Dark variants match their source
+        run: |
+          pip install --disable-pip-version-check pillow numpy
+          python scripts/derive_dark_assets.py --check
