@@ -32,7 +32,7 @@ There is a second reason. The featured repositories exist to stop long work from
 
 - The publishable page at `profile/README.md`, written to be mirrored into `Pukujan/Pukujan` so it renders at `github.com/Pukujan`.
 - The static tour page at `docs/index.html`, which plays every voice note beside the project it belongs to, because GitHub strips `<audio>` from Markdown.
-- Six narrative illustrations under `assets/profile/`, each generated against a recorded visual contract and reviewed before acceptance, each with a committed animation and a derived dark variant. The animations run four frames, or five for the two figures that exist only as animations.
+- Six narrative illustrations under `assets/profile/`, each generated against a recorded visual contract and reviewed before acceptance, each with a committed animation and a derived dark variant, and each running four frames. Two further figures exist only as animations, because the motion is the point: a block reused until it becomes a grid, and one push fanning out into several finished pipelines. Those two run five frames.
 - The auto-tracking layer: `scripts/track_activity.py` and `.github/workflows/track.yml`, which regenerate the commit counts, today's projects, the current project and the activity chart from the GitHub API on a daily schedule and commit the result, alongside `profile/tracking.json` carrying the full data they fetched.
 - The content adapter at `.content-system/`, which records the product brief, brand language, visual contract, asset manifest and review rubric.
 - `docs/research/github-profile-pages.md`, the recorded comparison of comparable profile repositories and the 2026 GitHub rendering limits.
