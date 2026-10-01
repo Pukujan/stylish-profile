@@ -91,11 +91,15 @@ try {
     if (-not $CgmPin) {
         throw 'CGM_PIN not found in .github/workflows/gates.yml'
     }
-    # Prefer the canonical checkout when it is already at the pin, so the
-    # common case adds no second copy of the repository. The cached clone is
-    # the fallback for when that checkout is on another branch, which is the
-    # normal state while the helper itself is being worked on.
-    $CgmRoot = 'D:\claude\projects\content-generation-modules'
+    # Prefer a checkout that is already at the pin, so the common case adds no
+    # second copy of the repository. CGM_ROOT overrides the canonical path, and
+    # the cached clone under the log directory is the last resort for when the
+    # canonical checkout is on another branch, which is the normal state while
+    # the helper itself is being worked on.
+    $CgmRoot = $env:CGM_ROOT
+    if (-not $CgmRoot) {
+        $CgmRoot = 'D:\claude\projects\content-generation-modules'
+    }
     $CgmHead = $null
     if (Test-Path -LiteralPath (Join-Path $CgmRoot '.git')) {
         $CgmHead = (git -C $CgmRoot rev-parse HEAD 2>$null).Trim()
