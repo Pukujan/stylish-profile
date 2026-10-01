@@ -27,6 +27,9 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  PCM_PIN: 4e2385474b4af9249ca009cbdcb38c4498932475
+
 jobs:
   track:
     name: track
@@ -44,10 +47,20 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install pinned continuity CLI
+        run: pip install --disable-pip-version-check "git+https://github.com/Pukujan/project-continuity-modules@${PCM_PIN}"
+
       - name: Refresh activity data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/track_activity.py --root .
+
+      - name: Re-render the continuity index
+        # The refresh rewrites two files that the continuity document index
+        # pins by hash, so the index has to be re-rendered in the same commit
+        # or the required gates check fails on a stale index. Rendering does
+        # not mark the documents reviewed; they keep their NEEDS_REVIEW state.
+        run: continuity docs render --root .
 
       - name: Profile links resolve
         run: python scripts/check_profile_links.py
