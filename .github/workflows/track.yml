@@ -10,16 +10,15 @@ name: track-activity
 # until someone approved the run. The daily refresh runs from the workstation
 # instead (scripts/refresh_profile.ps1), where the owner's authenticated
 # credentials carry the ruleset's admin bypass and the push lands directly.
+#
+# There is also no `push:` trigger, for the same reason in reverse: the daily
+# refresh pushes `profile/**`, which would fire this workflow, which would open
+# another approval-gated pull request every day.
+#
 # Dispatch this workflow to regenerate on demand; it commits to one fixed
 # branch and opens a pull request for review.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".content-system/**"
-      - "profile/**"
-      - "scripts/track_activity.py"
 
 permissions:
   contents: write
