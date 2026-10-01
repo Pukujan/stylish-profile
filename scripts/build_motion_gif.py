@@ -88,7 +88,13 @@ def build(
         durations = durations * len(frames)
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    prepared = quantize(frames)
+    write_gif(quantize(frames), output, durations)
+    print(f"wrote {output} ({len(frames)} frames, {size[0]}x{size[1]})")
+
+
+def write_gif(prepared: list[Image.Image], output: Path, durations: list[int]) -> None:
+    """Save already-quantized frames as an infinite loop."""
+    output.parent.mkdir(parents=True, exist_ok=True)
     prepared[0].save(
         output,
         save_all=True,
@@ -98,7 +104,6 @@ def build(
         optimize=False,
         disposal=2,
     )
-    print(f"wrote {output} ({len(frames)} frames, {size[0]}x{size[1]})")
 
 
 def main(argv: list[str] | None = None) -> int:

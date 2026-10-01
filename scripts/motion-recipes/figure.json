@@ -1,0 +1,244 @@
+{
+  "name": "Projects on One Thread",
+  "plate": "figure-plate-03.png",
+  "sprites": [
+    {
+      "name": "icon-agent",
+      "path": "icon-agent-01.png",
+      "fit": "contain",
+      "size": [
+        160,
+        190
+      ],
+      "anchor": "centre",
+      "static": true
+    },
+    {
+      "name": "icon-continuity",
+      "path": "icon-continuity-01.png",
+      "fit": "contain",
+      "size": [
+        160,
+        190
+      ],
+      "anchor": "centre",
+      "static": true
+    },
+    {
+      "name": "icon-content",
+      "path": "icon-content-01.png",
+      "fit": "contain",
+      "size": [
+        160,
+        190
+      ],
+      "anchor": "centre",
+      "static": true
+    },
+    {
+      "name": "icon-routing",
+      "path": "icon-routing-01.png",
+      "fit": "contain",
+      "size": [
+        160,
+        190
+      ],
+      "anchor": "centre",
+      "static": true
+    },
+    {
+      "name": "dot",
+      "path": "dot-01.png",
+      "fit": "bbox",
+      "size": 40,
+      "anchor": "centre"
+    }
+  ],
+  "frames": [
+    [
+      {
+        "layer": "icon-agent",
+        "x": 187,
+        "y": 582
+      },
+      {
+        "layer": "icon-continuity",
+        "x": 405,
+        "y": 582
+      },
+      {
+        "layer": "icon-content",
+        "x": 621,
+        "y": 582
+      },
+      {
+        "layer": "icon-routing",
+        "x": 828,
+        "y": 582
+      },
+      {
+        "layer": "dot",
+        "x": 30,
+        "y": 730
+      }
+    ],
+    [
+      {
+        "layer": "icon-agent",
+        "x": 187,
+        "y": 582
+      },
+      {
+        "layer": "icon-continuity",
+        "x": 405,
+        "y": 582
+      },
+      {
+        "layer": "icon-content",
+        "x": 621,
+        "y": 582
+      },
+      {
+        "layer": "icon-routing",
+        "x": 828,
+        "y": 582
+      },
+      {
+        "layer": "dot",
+        "x": 187,
+        "y": 735
+      }
+    ],
+    [
+      {
+        "layer": "icon-agent",
+        "x": 187,
+        "y": 582
+      },
+      {
+        "layer": "icon-continuity",
+        "x": 405,
+        "y": 582
+      },
+      {
+        "layer": "icon-content",
+        "x": 621,
+        "y": 582
+      },
+      {
+        "layer": "icon-routing",
+        "x": 828,
+        "y": 582
+      },
+      {
+        "layer": "dot",
+        "x": 405,
+        "y": 736
+      }
+    ],
+    [
+      {
+        "layer": "icon-agent",
+        "x": 187,
+        "y": 582
+      },
+      {
+        "layer": "icon-continuity",
+        "x": 405,
+        "y": 582
+      },
+      {
+        "layer": "icon-content",
+        "x": 621,
+        "y": 582
+      },
+      {
+        "layer": "icon-routing",
+        "x": 828,
+        "y": 582
+      },
+      {
+        "layer": "dot",
+        "x": 621,
+        "y": 735
+      }
+    ],
+    [
+      {
+        "layer": "icon-agent",
+        "x": 187,
+        "y": 582
+      },
+      {
+        "layer": "icon-continuity",
+        "x": 405,
+        "y": 582
+      },
+      {
+        "layer": "icon-content",
+        "x": 621,
+        "y": 582
+      },
+      {
+        "layer": "icon-routing",
+        "x": 828,
+        "y": 582
+      },
+      {
+        "layer": "dot",
+        "x": 828,
+        "y": 735
+      }
+    ],
+    [
+      {
+        "layer": "icon-agent",
+        "x": 187,
+        "y": 582
+      },
+      {
+        "layer": "icon-continuity",
+        "x": 405,
+        "y": 582
+      },
+      {
+        "layer": "icon-content",
+        "x": 621,
+        "y": 582
+      },
+      {
+        "layer": "icon-routing",
+        "x": 828,
+        "y": 582
+      },
+      {
+        "layer": "dot",
+        "x": 995,
+        "y": 730
+      }
+    ]
+  ],
+  "output": [
+    720,
+    720
+  ],
+  "durations": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "still": "assets/profile/Projects on One Thread.png",
+  "gif": "assets/profile/anim/Projects on One Thread.gif",
+  "moving_boxes": [
+    {
+      "layer": "dot",
+      "x": 3,
+      "y": 495,
+      "w": 715,
+      "h": 41
+    }
+  ]
+}

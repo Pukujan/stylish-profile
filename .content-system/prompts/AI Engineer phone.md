@@ -1,63 +1,40 @@
-# Prompt record: AI Engineer phone
+# Prompt record — AI Engineer phone (hero, portrait)
 
-Generated with the built-in image generation tool (`built-in image_gen`,
-provider `openrouter`, model `qwen/qwen-image-3`). The published file is
-`assets/profile/AI Engineer phone.png`, 1024x1536, role `hero phone`.
+- **Asset:** `assets/profile/AI Engineer phone.png`
+- **Role:** hero phone (portrait, 1024x1536)
+- **Provider:** built-in image_gen
+- **Recorded:** 2026-10-01
+- **Exact title:** `AI Engineer`
+- **Exact subtitle:** `Reusable components, automated pipelines`
 
-## Why this file exists
+## Why this asset exists
 
-The wide hero is 1536x1024 with a three-to-two aspect ratio. Scaled into a
-390-pixel phone column it becomes about 260 pixels tall, which renders the
-subtitle at roughly four pixels: legible in a specification, useless to a
-reader. This variant carries the same title and the same subtitle at a size
-that survives a phone, so the page serves it through a
-`<picture><source media="(max-width: 640px)">` element instead of shrinking the
-wide file.
+The same hero rebuilt for the narrow screen the page serves below 640 pixels.
+It is frame one of `assets/profile/anim/AI Engineer phone.gif`, composited by
+`scripts/build_locked_motion.py` from its own portrait environment plate plus
+the same keyed character sprites the wide hero uses. The title and subtitle are
+kept exactly as the wide hero declares them; #24's boundaries say the hero's
+declared copy does not change.
 
-## Prompt
+## Layers
 
-Input image: `assets/profile/AI Engineer.png` (composition, characters,
-palette and drawing style are inherited from it).
+The portrait plate (`plate-tall-01.png`, 1024x1536) recomposes the wide scene
+for a tall frame: the title very large across the upper third, the subtitle
+beneath it, and the bench with its glassware and conveyor filling the lower
+half, with the middle left as open cream so the engineer can stand there. The
+engineer, robot and burst sprites are the same files the wide hero uses,
+re-fitted to a larger body height for the portrait. The layer prompts and their
+reconstruction caveat are recorded in `AI Engineer.md`.
 
-Subject: a tall portrait version of the same flat hand-drawn illustration,
-recomposed for a narrow phone screen: the words "AI Engineer" set very large
-and stacked on two lines in the upper third, and beneath them the two-line
-subtitle "Reusable components," and "automated pipelines.", with the same cast
-of small hand-drawn characters and machines gathered in the lower half around a
-tidy vertical arrangement of repeated identical modular blocks.
+## Review decision
 
-Changes: recompose into a tall portrait frame; set the title much larger
-relative to the frame; set the subtitle on two lines; arrange the repeated
-modular blocks vertically instead of horizontally; keep every character,
-machine and colour identical to the input.
+Accepted 2026-10-01 after the #24 rebuild. A vision pass confirms the portrait
+framing, the same engineer and robots, the title large enough to read at a 390
+pixel column, and no text beyond the declared title and subtitle.
 
-Scene: flat cream (#FFF9F0) background, the same warm yellow (#FFD93D) accent
-shapes and royal blue (#4169E1) details as the wide hero.
+## Verification
 
-Composition: tall portrait frame, title in the upper third, subtitle below it,
-the illustrated scene filling the lower half, generous cream margins left and
-right.
-
-Lighting: completely flat and even; no shading, no gradients, no drop shadows.
-
-Style: identical to the wide hero — flat hand-drawn vector illustration, thick
-black ink outlines, cream background, royal blue, warm yellow, pink and black
-only, warm editorial explainer drawing.
-
-Text: exactly three text strings and nothing else — the title "AI Engineer" and
-the subtitle "Reusable components," and "automated pipelines.". Sharp,
-correctly spelled, dark ink letters with a heavy outline so they stay legible at
-small sizes. No other text, no captions, no labels, no numbers, no signatures,
-no watermarks, no logos, no wordmarks, no corner marks.
-
-Aspect ratio 2:3, image size 1024x1536.
-
-## Result
-
-Accepted on the first attempt. A vision check read exactly three strings — "AI
-Engineer" and "Reusable components, automated pipelines." — found no logo,
-wordmark or stray word, confirmed the cream background and flat outlined style,
-and reported the title as occupying roughly the top third of the frame.
-
-The full prompt recipe used for review lives on the asset entry in
-`.content-system/asset-manifest.json`.
+- Dimensions 1024x1536, mode RGB, no alpha channel.
+- SHA-256 of the committed file:
+  `90a30b5f93ca2beb3f9decd5acbd358b6859a0d7c91ec4de0467b46351ff39ec`
+- Recipe `scripts/motion-recipes/hero-phone.json`.

@@ -1,4 +1,4 @@
-# Prompt record — AI Engineer
+# Prompt record — AI Engineer (hero)
 
 - **Asset:** `assets/profile/AI Engineer.png`
 - **Role:** hero (wide, 1536x1024)
@@ -9,69 +9,66 @@
 
 ## Why this asset exists
 
-The page previously opened with a picture about dropped work. That explained the
-problem the featured repositories solve, but it never said what the person behind them
-does. This asset answers the reader's first question directly: an engineer who automates
-repetitive engineering work by building one component well and reusing it.
+The page opens on the claim it is about: an engineer who automates repetitive
+work. Issue #24 rejected the previous hero on two counts — the whole picture
+warped from frame to frame, and the drawing itself was not worth keeping. The
+owner asked for a new direction: a cool anime-style engineer with thick
+outlines, mid-experiment, with a comic explosion and robots running.
 
-The repeated identical block is the whole idea. It appears on the conveyor, in the
-structure being assembled, and again in the finished smaller copy, so the same component
-is visibly reused at two scales.
+This still is frame one of the rebuilt animation. It is not drawn as one
+picture. It is composited by `scripts/build_locked_motion.py` from one locked
+environment plate plus keyed character sprites, so the animation can move the
+characters without the environment drifting. The plate carries the title, the
+subtitle and the whole workshop; the engineer, the robots and the burst are
+separate sprites pasted on top.
+## Layers and how they were prompted
 
-## Prompt (attempt 2, accepted)
+The five layers were generated in an earlier session whose exact prompt text was
+not recorded, so the wording below is *reconstructed* from the accepted output
+and the #24 direction, not a verbatim transcript. The figure record
+`Projects on One Thread.md` shows the prompt style that was actually used for
+the layers generated this session.
 
-```
-subject: A flat hand-drawn vector illustration of a young engineer at a wide workbench
-assembling identical reusable modular blocks into a machine, with three small round
-robot companions each carrying one block.
+**Environment plate** (`plate-wide-01.png`, 1536x1024): a flat hand-drawn wide
+workshop scene with no characters in it — a long yellow workbench of glassware,
+round-bottom flasks, a book, gears and a small device, a pegboard of simple
+unlabelled tools on the back wall, a faint blueprint grid, and a conveyor belt
+at the right; the title `AI Engineer` set large in royal blue in the upper left
+and the subtitle `Reusable components, automated pipelines` beneath it in warm
+yellow, with no other text. Flat hand-drawn vector, thick ink outlines, palette
+of royal blue #4169E1, warm yellow #FFD93D, orange and ink #1A1A1A on cream
+#FFF9F0, no gradients, no photorealism, no 3D, no people, no robots.
 
-action: The engineer slots a single reusable block into a growing modular structure; a
-conveyor line of identical blocks feeds the bench; a second, smaller copy of the same
-structure stands finished beside it, showing the same component reused at two sizes.
+**Character sprites**, each drawn alone on a flat cream field so the builder can
+key the paper out and paste it onto the plate:
 
-scene: A warm cream workshop with a faint blueprint grid on the back wall, a pegboard of
-simple unlabelled tools, and a short conveyor belt running along the bench.
+- **Engineer, idle** (`guy-02.png`): an anime-style young engineer, spiky dark
+  hair, goggles pushed up on the forehead, white lab coat over orange overalls,
+  holding a round flask of glowing yellow liquid at chest height.
+- **Engineer, raised** (`guy-raise-01.png`): the same character raising the
+  flask overhead, the other hand on the hip.
+- **Robot** (`robot-01.png`): a small round white-bodied robot with a blue
+  screen face, running hard with arms flailing.
+- **Burst** (`boom-01.png`): a comic orange-and-yellow explosion with a dark
+  outline and a few sparks.
 
-composition: Engineer and the modular structure occupy the right two-thirds; quiet empty
-cream space on the left holds only the title and subtitle; the whole subject stays inside
-a centre crop that survives a narrow column.
-
-lighting: flat even lighting, no shadows, no gradients
-
-style: flat hand-drawn vector, thick ink outlines, rounded line caps, limited palette of
-royal blue #4169E1, warm yellow #FFD93D, orange #FF8C42, pink #FF6B9D and ink #1A1A1A on
-cream #FFF9F0, generous negative space, editorial poster feel, no photorealism, no 3D
-render, no gloss
-
-text: Title: AI Engineer. Subtitle: Reusable components, automated pipelines. No other
-text anywhere: no logo, no wordmark, no brand mark, no labels, no captions, no signage,
-no text on tools, boxes, screens or blocks.
-
-aspect_ratio: 3:2
-image_size: 1536x1024
-```
-
-## Rejected attempt 1
-
-Same prompt without the `No other text anywhere` clause and without the pegboard being
-described as unlabelled.
-
-**Rejection reason:** the render added a two-word logo block in the top-left corner. That
-is copy the asset never declared, and it violates the visual contract's rule that a
-narrative asset carries only its declared title and subtitle.
-
-**Fix:** the text clause was tightened to name every place a stray wordmark could appear,
-and the tools were described as unlabelled.
+All four share the clause that made keying possible: one single subject centred
+on a completely flat solid cream `#FFF9F0` background with generous empty
+margin, thick uniform ink outlines, no text, no shadow.
 
 ## Review decision
 
-Accepted 2026-10-01. A vision pass over the accepted file confirms exactly three text
-strings — `AI Engineer`, `Reusable components,`, `automated pipelines.` — and no logo or
-wordmark. The render is flat hand-drawn vector with thick ink outlines on a cream field,
-the repeated block is legible at both sizes, and the left third is reserved space.
+Accepted 2026-10-01 after the #24 rebuild. A vision pass confirms the anime
+engineer, the raised flask, the comic burst and the running robots, with the
+title and subtitle spelled exactly and no other text. The two engineer poses
+are fitted to a common body height and pinned at the feet and ground-centre, so
+only the arm moves between them.
 
 ## Verification
 
 - Dimensions 1536x1024, mode RGB, no alpha channel.
 - SHA-256 of the committed file:
-  `5e4a97fb4aa5961ed2c6107d87ce37dee9227cf341fe86daf35b7cf6ce1c44b1`
+  `71279d49050e02df496c061b1a715ed92be4f30305b1c8471f89f02d9e8640b0`
+- The recipe that composites it is `scripts/motion-recipes/hero-wide.json`;
+  `scripts/build_locked_motion.py check` proves the committed GIF's frames are
+  identical outside the recipe's declared moving boxes.

@@ -1,49 +1,33 @@
 # Prompt record: AI Engineer phone (motion)
 
-- Asset: `assets/profile/anim/AI Engineer phone.gif` (480x720, 4 frames, role `motion`)
+- Asset: `assets/profile/anim/AI Engineer phone.gif` (480x720, 6 frames, role `motion`)
 - Dark asset: `AI Engineer phone-dark.gif` — derived, not generated
-- Provider: built-in image_gen (openrouter, `qwen/qwen-image-3`)
+- Provider: built-in image_gen for the layers; compositing by `scripts/build_locked_motion.py`
 - Recorded: 2026-10-01
 
 ## Why this file exists
 
-The hero is a wide landscape frame. On a phone it would either shrink to an unreadable
-strip or force the page to scroll sideways. A portrait render of the same scene is served
-through a `picture` element below 640 pixels, so the hero keeps its weight on a small
-screen.
+The portrait hero the page serves below 640 pixels, rebuilt under #24 with the
+same locked-plate method as the wide hero. The framing is different — the
+engineer stands larger in the open middle band of the tall plate, the robots
+run along the bottom, and the burst pops beside the flask at the left — but the
+cast and the declared title and subtitle are the wide hero's.
 
-## Format
+## The recipe
 
-GIF, three generated frames replayed in ping-pong order. Durations 1100, 800, 900, 800 ms.
-See `AI Engineer motion.md` for why GIF and why ping-pong.
-
-## Frames
-
-Frame one is the committed still `assets/profile/AI Engineer phone.png`, which was itself
-generated from `assets/profile/AI Engineer.png` as an input image so the characters,
-palette and composition match the wide hero.
-
-1. **Seated.** The block rests at the top of the structure, framed tall.
-2. **Raised.** Change prompt: *"The engineer raises the block they are holding to head
-   height, lifting it clear of the structure. The camera is completely locked: every other
-   object stays in exactly the same pixel position, and the portrait framing is
-   unchanged."*
-3. **Lowered.** Change prompt: *"The engineer lowers the block from head height down to
-   the bench, bringing it to rest against the front of the structure. The camera is
-   completely locked: every other object stays in exactly the same pixel position."*
-
-Prompt skeleton for every frame: flat hand-drawn vector illustration, thick uniform black
-ink outlines, warm cream background, royal blue and warm yellow only, deliberately naive
-sketchy linework, completely flat lighting with no gradients or shadows, and no text,
-letters, numbers, captions, labels, signatures, watermarks, logos or wordmarks anywhere.
+`scripts/motion-recipes/hero-phone.json`. Six composited frames, durations 240
+ms with a 360 ms hold on the last; the robots travel off-frame at both ends and
+the burst is hidden in the first and last frame, so the loop is seamless. The
+moving boxes cover 20.7% of the frame.
 
 ## Result
 
-A vision pass confirmed the output is a genuine tall portrait frame, that the block is at
-head height in the raised frame, that the whole illustration sits inside the frame with
-nothing cropped at the edges, and that no frame carries a logo or a wordmark.
+All six frames are byte-identical outside the five declared moving boxes,
+verified by `scripts/build_locked_motion.py check` and by the same gate in CI.
+A vision pass over the frame sheet confirms the portrait framing, the raised
+flask every other frame, and no text beyond the plate's own title and subtitle.
 
 ## Dark variant
 
 `AI Engineer phone-dark.gif` is a palette transform of the light GIF by
-`scripts/derive_dark_assets.py`, not a generation.
+`scripts/derive_dark_assets.py`, byte-stable and re-checked in CI.

@@ -2,7 +2,7 @@
 <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/AI%20Engineer%20phone-dark.gif">
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/AI%20Engineer-dark.gif">
 <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/AI%20Engineer%20phone.gif">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/AI%20Engineer.gif" alt="Animated drawing of an engineer at a workbench raising one reusable block and setting it into a growing modular machine, while three small round companions carry identical blocks and a conveyor brings more." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/AI%20Engineer.gif" alt="Animated drawing of an anime-style engineer at a workbench raising a flask of glowing liquid while a comic burst pops behind him and small round robots run across the floor." width="100%">
 </picture>
 
 # Hi, I'm Pujan
@@ -30,8 +30,8 @@ Document-heavy AI means the input is a contract, a filing, a case file, or a pol
 
 One habit runs through all four: leave a trail behind you.
 
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Three%20Projects%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread." width="100%">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Three%20Projects%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
 
 Agent Custom Setup decides what rules a session starts with. Project Continuity Modules decides what survives between sessions. Content Generation Modules decides what the output sounds and looks like. Inference Recommendation Engine decides which model actually answers.
 
