@@ -83,6 +83,29 @@ says what they build, not a record of what has been verified about them.
 
 No checkpoints yet.
 
+### 2026-10-01 16:44:09 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":["none"],"changed":["scripts/derive_dark_assets.py, scripts/track_activity.py, .github/workflows/gates.yml, profile/README.md, docs/index.html, profile/tracking.json, assets/profile/anim, assets/profile/generated, .content-system, tasks, checkpoints"],"completed":["the dark illustrations keep the character's own colours and read as deliberate panels, and both pages now introduce Pujan instead of auditing him"],"decisions":["the dark transform darkens only the paper, because inverting lightness turned cream skin black and black hair white, and the character read as a negative; the paper is the border-connected light region, which a plain threshold cannot find because the skin is the same cream"],"evidence":["derive_dark_assets.py --check reports 8 variants matching; rendered dark page shows a visible panel edge, peach skin, black hair, an orange apron and readable internal text; light and dark each load their own assets with 0 broken and 0 overflow; a second tracker run leaves the README byte-identical"],"next_action":"open the pull request, let the gates job run, and merge automatically","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0004","timestamp":"2026-10-01T16:44:09Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"94aecf699133fb898f2c4fe0ecd4c2c63b55c43d7dd8ed3c2ffc5f3368da8836","request_id":"21f2808c0791422cacc3549b153adf2f","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0004"} -->
+
+Completed:
+- the dark illustrations keep the character's own colours and read as deliberate panels, and both pages now introduce Pujan instead of auditing him
+
+Evidence:
+- derive_dark_assets.py --check reports 8 variants matching; rendered dark page shows a visible panel edge, peach skin, black hair, an orange apron and readable internal text; light and dark each load their own assets with 0 broken and 0 overflow; a second tracker run leaves the README byte-identical
+
+Decisions:
+- the dark transform darkens only the paper, because inverting lightness turned cream skin black and black hair white, and the character read as a negative; the paper is the border-connected light region, which a plain threshold cannot find because the skin is the same cream
+
+Changed:
+- scripts/derive_dark_assets.py, scripts/track_activity.py, .github/workflows/gates.yml, profile/README.md, docs/index.html, profile/tracking.json, assets/profile/anim, assets/profile/generated, .content-system, tasks, checkpoints
+
+Blocked/uncertain:
+- none
+
+Next:
+- open the pull request, let the gates job run, and merge automatically
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
