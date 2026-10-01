@@ -121,28 +121,6 @@
       "hash": "071ee2702dd9a831c1cffec1f994b2e5d03d9215c3fe59ed35557700be97ecfe"
     },
     {
-      "path": "assets/profile/generated/stars.svg",
-      "role": "generated chart",
-      "feature": "profile-page",
-      "kind": "script-generated svg",
-      "provider": "scripts/track_activity.py",
-      "motion": "wide stars chart, 1000x220, bars grow once then freeze",
-      "alt_text": "Total public stars with the starred repositories beside it.",
-      "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "d15750455874daa787705abd75cf0f665b3a6039936e77d7b8a6be885ad6d055"
-    },
-    {
-      "path": "assets/profile/generated/stars-narrow.svg",
-      "role": "generated chart",
-      "feature": "profile-page",
-      "kind": "script-generated svg",
-      "provider": "scripts/track_activity.py",
-      "motion": "phone stars chart, 560x300, bars grow once then freeze",
-      "alt_text": "The same star numbers stacked for screens 640 pixels wide or narrower.",
-      "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "3ede46c43b2bd2ff32ded02c974c9d8a879533663e190ec110ad9fcfa1d4a367"
-    },
-    {
       "path": "assets/profile/Pujan and the Loose Ends.png",
       "role": "story",
       "feature": "profile-page",

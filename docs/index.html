@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pujan — the short tour</title>
-<meta name="description" content="A spoken tour and a live activity board for Pujan: reusable agent infrastructure, project continuity, content generation, and inference routing.">
+<meta name="description" content="Hi, I'm Pujan. An AI engineer building reusable agent infrastructure, project continuity, content generation, and inference routing. A spoken tour and a look at what I'm working on now.">
 <style>
   :root {
     --background: #0F0F0F;
@@ -139,9 +139,6 @@
   .wide-figure { margin: 2rem 0; }
   .wide-figure img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
   .wide-figure figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
-  .narrow-figure { margin: 1.5rem 0; }
-  .narrow-figure img { width: 100%; max-width: 22rem; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-  .narrow-figure figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
   .motion-pair { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 2rem 0; }
   .motion-figure { flex: 1 1 15rem; margin: 0; min-width: 0; }
   .motion-figure img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
@@ -160,13 +157,15 @@
 
   <header>
     <picture>
+      <source media="(prefers-color-scheme: light) and (max-width: 640px)" srcset="../assets/profile/anim/AI%20Engineer%20phone.gif">
+      <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/AI%20Engineer.gif">
       <source media="(max-width: 640px)" srcset="../assets/profile/anim/AI%20Engineer%20phone-dark.gif">
       <img class="hero" src="../assets/profile/anim/AI%20Engineer-dark.gif" alt="Animated drawing of an engineer at a workbench raising one reusable block and setting it into a growing modular machine, while three small round companions carry identical blocks and a conveyor brings more.">
     </picture>
     <p class="eyebrow">The short tour</p>
     <div class="byline">
       <img src="../assets/profile/Pujan.png" alt="Flat illustration of the author: a bespectacled engineer with dark hair and a small smile, drawn on a deep royal blue field." width="56" height="56">
-      <h1>Pujan</h1>
+      <h1>Hi, I'm Pujan</h1>
     </div>
     <p class="lede">AI engineer. I automate the repetitive parts of engineering work, and I do it by building one component well and reusing it: reusable agent infrastructure, repeated pipeline stages, and the contracts that keep them honest.</p>
     <ul class="chips">
@@ -178,8 +177,9 @@
     <p><a href="https://github.com/Pukujan">Profile</a> · <a href="https://github.com/Pukujan/stylish-profile">This repository</a> · <a href="https://www.design-bakery.com">design-bakery.com</a></p>
   </header>
 
-  <h2 id="current-projects">Current projects</h2>
-  <p>Four tools I use every day. Each one has a repository you can read, one line that says what it does, and a short note you can play.</p>
+  <h2 id="current-projects">What I'm building</h2>
+  <p>Document-heavy AI means the input is a contract, a filing, a case file, or a policy pack, and the output has to survive someone checking it. That work has two hard parts: making a model useful on messy real documents, and keeping a long project honest about what has actually been verified. Everything below is tooling for the second part, plus the routing layer that decides which model or pipeline actually runs.</p>
+  <p>Four tools I use every day. One habit runs through all of them: leave a trail behind you.</p>
   <div class="table-scroll">
     <table>
       <thead><tr><th>Project</th><th>In one line</th><th>Repository</th></tr></thead>
@@ -247,107 +247,40 @@
     </details>
   </div>
 
-  <h2>What is shipped, and what is not</h2>
-  <p>Shipped here means three things: a public repository, a passing check suite, and a written record of what the thing does not do yet. Nothing on this page claims a support promise.</p>
-  <div class="table-scroll">
-    <table>
-      <thead><tr><th>Project</th><th>State</th><th>Evidence</th></tr></thead>
-      <tbody>
-        <tr><td>Agent Custom Setup</td><td>In daily use</td><td>Public module registry, a required-check workflow, 11 open issues tracking what is unfinished</td></tr>
-        <tr><td>Project Continuity Modules</td><td>In daily use</td><td>Published CLI and protocol spec, 31 open issues, adopted by the repositories on this page</td></tr>
-        <tr><td>Content Generation Modules</td><td>In daily use</td><td>Versioned module set with a validator, a changelog, and a released tag; this page is built against it</td></tr>
-        <tr><td>Inference Recommendation Engine</td><td>Working, still moving</td><td>MIT licensed, property-driven test suite, 14 open issues</td></tr>
-        <tr><td>design-bakery.com</td><td>Live</td><td>The site this page's palette and shapes come from</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p>Not shipped: no hosted service, no package on a public registry, and no benchmark result. Where something has not been measured, this page says so instead of implying it.</p>
-
-  <h2>Featured project</h2>
+  <h2>Start here</h2>
   <h3>Agent Custom Setup</h3>
-  <p>It is the piece the other three sit on. Every other repository here starts a session by loading it, so if it is wrong, everything downstream is wrong in a way that looks fine. It is also the smallest honest example of the habit: a version pin, a check that the pin is what actually loaded, and a hard failure when it is not.</p>
+  <p><a href="https://github.com/Pukujan/agent-custom-setup">Agent Custom Setup</a> is the piece the other three sit on. A project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing: it pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. Every other repository here starts a session by loading it, so if it is wrong, everything downstream is wrong in a way that looks fine.</p>
   <p><a href="https://github.com/Pukujan/agent-custom-setup">Repository</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json">Module registry</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md">Policy</a></p>
 
   <div class="live">
 <!-- TRACKING:START -->
-<h2>What changed today</h2>
+<h2>What's fresh</h2>
 <p>2026-10-01: 26 commit(s) across 4 project(s).</p>
 <table>
-<thead><tr><th>Project</th><th>Commits today</th><th>Last push</th></tr></thead>
+<thead><tr><th>Project</th><th>Last push</th></tr></thead>
 <tbody>
-<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>15</td><td>2026-10-01</td></tr>
-<tr><td><a href="https://github.com/Pukujan/stylish-profile">stylish-profile</a></td><td>6</td><td>2026-10-01</td></tr>
-<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>4</td><td>2026-10-01</td></tr>
-<tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>1</td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/stylish-profile">stylish-profile</a></td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>2026-10-01</td></tr>
 </tbody>
 </table>
 <figure class="wide-figure">
 <picture>
+<source media="(prefers-color-scheme: light) and (max-width: 640px)" srcset="../assets/profile/generated/activity-narrow.svg">
+<source media="(prefers-color-scheme: light)" srcset="../assets/profile/generated/activity.svg">
 <source media="(max-width: 640px)" srcset="../assets/profile/generated/activity-narrow-dark.svg">
 <img src="../assets/profile/generated/activity-dark.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1197 total." width="100%">
 </picture>
 <figcaption>Daily commit counts across public Pukujan repositories over the last 14 days, 1197 total.</figcaption>
 </figure>
 <p>Current project: <a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a> with 91 commit(s) in the last 7 days.</p>
-<figure class="wide-figure">
-<picture>
-<source media="(max-width: 640px)" srcset="../assets/profile/generated/stars-narrow-dark.svg">
-<img src="../assets/profile/generated/stars-dark.svg" alt="Public stars: 1 total, 1 repositories with at least one." width="100%">
-</picture>
-<figcaption>Public stars: 1 total, 1 repositories with at least one.</figcaption>
-</figure>
-<p>Total public stars: 1. That is a small number. The work is early, the count is real, and neither is a reason to round it up.</p>
-<details>
-<summary>All public repositories</summary>
-<table>
-<thead><tr><th>Repository</th><th>Last push</th><th>Language</th><th>Stars</th></tr></thead>
-<tbody>
-<tr><td><a href="https://github.com/Pukujan/custom-extensions">custom-extensions</a></td><td>2026-10-01</td><td>JavaScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/stylish-profile">stylish-profile</a></td><td>2026-10-01</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>2026-10-01</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>2026-10-01</td><td>TypeScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/sanitizer-probe">sanitizer-probe</a></td><td>2026-10-01</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>2026-10-01</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/inference-recommendation-engine">inference-recommendation-engine</a></td><td>2026-09-30</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a></td><td>2026-09-30</td><td>HTML</td><td>1</td></tr>
-<tr><td><a href="https://github.com/Pukujan/vastai-gpu-broker">vastai-gpu-broker</a></td><td>2026-09-30</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/omp-gui">omp-gui</a></td><td>2026-09-29</td><td>JavaScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/project-continuity-modules">project-continuity-modules</a></td><td>2026-09-29</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/agent-secret-vault">agent-secret-vault</a></td><td>2026-09-28</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/doc-generation-modules">doc-generation-modules</a></td><td>2026-09-28</td><td>HTML</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/Study-os">Study-os</a></td><td>2026-09-28</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/hades-product">hades-product</a></td><td>2026-09-27</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/multi-agent-modules">multi-agent-modules</a></td><td>2026-09-27</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/jev-classifier">jev-classifier</a></td><td>2026-09-26</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/research-action">research-action</a></td><td>2026-09-25</td><td>TypeScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/Eval-lab">Eval-lab</a></td><td>2026-09-25</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/design-bakery">design-bakery</a></td><td>2026-09-24</td><td>TypeScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/exportable-harness-modules">exportable-harness-modules</a></td><td>2026-09-24</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/harness-on-steroids">harness-on-steroids</a></td><td>2026-09-23</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/test-repo">test-repo</a></td><td>2026-09-20</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/automated-agents">automated-agents</a></td><td>2026-09-16</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/fossil-demo">fossil-demo</a></td><td>2026-09-15</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/fluffy-system">fluffy-system</a></td><td>2026-09-14</td><td>JavaScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/fossil-core">fossil-core</a></td><td>2026-09-14</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/ai-for-good">ai-for-good</a></td><td>2026-09-14</td><td>TypeScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/healthcare-documents">healthcare-documents</a></td><td>2026-09-13</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/research-assurance-v2">research-assurance-v2</a></td><td>2026-09-11</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/project-assurance-modules">project-assurance-modules</a></td><td>2026-09-07</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/study-os-pedagogical-IR">study-os-pedagogical-IR</a></td><td>2026-09-05</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/study-os-benchmarker">study-os-benchmarker</a></td><td>2026-09-05</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/RA-plugin">RA-plugin</a></td><td>2026-09-03</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/interview-os-game">interview-os-game</a></td><td>2026-09-03</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/legalgraph-rag-test">legalgraph-rag-test</a></td><td>2026-09-02</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/time-to-crawl">time-to-crawl</a></td><td>2026-09-01</td><td>Python</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/litigation-prompt-engineering">litigation-prompt-engineering</a></td><td>2026-05-29</td><td>JavaScript</td><td>0</td></tr>
-</tbody>
-</table>
-</details>
+<p><a href="https://github.com/Pukujan?tab=repositories">All repositories</a>.</p>
 <!-- TRACKING:END -->
   </div>
 
-  <h2>Listen</h2>
-  <p>Five notes about the page itself. Each project also has its own note, up in <a href="#current-projects">Current projects</a>.</p>
+  <h2>Listen instead</h2>
+  <p>Nine short notes if you would rather hear this than read it: five about the page, then one for each project up in <a href="#current-projects">What I'm building</a>.</p>
 
   <div class="note" data-kind="welcome">
     <span class="kind">Welcome</span>
@@ -400,38 +333,34 @@
   </div>
 
   <figure class="wide-figure">
-    <img src="../assets/profile/anim/Three%20Projects%20One%20Thread-dark.gif" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread.">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/Three%20Projects%20One%20Thread.gif">
+      <img src="../assets/profile/anim/Three%20Projects%20One%20Thread-dark.gif" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread.">
+    </picture>
     <figcaption>One habit runs through all of them: leave a trail behind you.</figcaption>
   </figure>
 
-  <h2>The two habits, moving</h2>
+  <h2>How I work</h2>
   <div class="motion-pair">
     <figure class="motion-figure">
-      <img src="../assets/profile/anim/Reusable%20Blocks-dark.gif" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="360" height="360">
+      <picture>
+        <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/Reusable%20Blocks.gif">
+        <img src="../assets/profile/anim/Reusable%20Blocks-dark.gif" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="360" height="360">
+      </picture>
       <figcaption><strong>Build it once.</strong> One block, then two, then three, then a grid. The original turns yellow to mark which copy the rest came from.</figcaption>
     </figure>
     <figure class="motion-figure">
-      <img src="../assets/profile/anim/One%20Push%20Many%20Pipelines-dark.gif" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="360" height="360">
+      <picture>
+        <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/One%20Push%20Many%20Pipelines.gif">
+        <img src="../assets/profile/anim/One%20Push%20Many%20Pipelines-dark.gif" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="360" height="360">
+      </picture>
       <figcaption><strong>Run it once, get every result.</strong> One push travels down the stem, the stem forks, and each branch finishes on its own.</figcaption>
     </figure>
   </div>
   <p>Those are the two things I actually automate. Everything else on this page is downstream of them.</p>
 
-  <h2>Why this page looks the way it does</h2>
-  <figure class="wide-figure">
-    <img src="../assets/profile/anim/The%20Badge%20Wall-dark.gif" alt="Animated drawing of a small round companion in front of a dense wall of blank badge and statistics cards, raising an empty magnifying glass above its head.">
-    <figcaption>The previous page led with third-party statistics cards. Two of the services behind them now return payment errors and one no longer resolves.</figcaption>
-  </figure>
-  <p>The only live elements here are ones I generate and commit myself. The illustrations come from the palette and the flat hand-drawn shapes of my own site, <a href="https://www.design-bakery.com">design-bakery.com</a>. They are illustrations of the story, not screenshots, and not evidence of anything.</p>
-
-  <h2>What you can check</h2>
-  <figure class="narrow-figure">
-    <img src="../assets/profile/anim/What%20You%20Can%20Check-dark.gif" alt="Animated drawing of a stack of blank source cards feeding down into an open book and a pair of headphones, with a small round companion holding a pencil.">
-  </figure>
-  <p>Every claim on this page points at a public repository, and each of those repositories has an issue tracking what is done and what is not. The activity numbers are generated from the GitHub API by <code>scripts/track_activity.py</code> and committed by a scheduled workflow, so you can re-run it and get the same numbers. The illustrations are generated, and their prompts and review decisions are recorded in <code>.content-system/</code>. Nothing here is a benchmark result.</p>
-
   <footer>
-    <p>This tour is built and verified in <a href="https://github.com/Pukujan/stylish-profile">Pukujan/stylish-profile</a>. Voice: Fish Audio, the Ayaka reference the owner ranked highest. Illustrations: generated, reviewed, and recorded.</p>
+    <p>Illustrations drawn from the palette of <a href="https://www.design-bakery.com">design-bakery.com</a>. Voice: Fish Audio. This tour is built in <a href="https://github.com/Pukujan/stylish-profile">Pukujan/stylish-profile</a>.</p>
   </footer>
 
 </div>
