@@ -112,6 +112,29 @@ Starting revision, material inputs/configuration, runtime, exact command or prom
 
 No checkpoints yet.
 
+### 2026-10-01 18:20:00 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["scripts/track_activity.py, scripts/check_profile_links.py, scripts/generate_voice_notes.py, .content-system/asset-manifest.json, .content-system/visual-style.json, .continuity/documents.json, .github/workflows/track.yml, PROJECT.md, README.md, profile/README.md, docs/index.html, docs/research/github-profile-pages.md, docs/CONTINUITY_INDEX.md, tasks, checkpoints"],"completed":["the records that still contradicted the shipped page now agree with it, and the two that could drift on their own fail a check instead of going stale"],"decisions":["the four project notes on the tour page print a description under a What it does label rather than the clip's words, so the transcript check compares only the notes that promise the clip's own words; the two clips that still say three projects stay verbatim with their audio and are recorded as open owner items, because correcting them needs a paid Fish Audio run"],"evidence":["PR #17 squash-merged as 14a2090 with the gates check SUCCESS and zero approvals, closing issue #16; check_profile_links.py reports 33 references and 36 recorded hashes and exits 1 on a planted stale hash; generate_voice_notes.py --check reports 9 clips and 0 problems and exits 1 naming the clip when a verbatim transcript is edited; the tracker's write-back was proved in a scratch checkout where all four chart hashes equalled the SVGs just written, a planted stale hash was repaired, and a second run left every file byte-identical; the mirror Pukujan/Pukujan took the profile page as 8e0ed80 and the live raw file is byte-identical to profile/README.md"],"next_action":"wait for the owner to delete the two probe repositories, then re-run the tracker and commit so the sanitizer-probe row leaves profile/tracking.json","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0006","timestamp":"2026-10-01T18:20:00Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"3894a0bbcf684c8d117b534474d0f209210e9837c83cb242eeb7cffc73173f14","request_id":"4c8a1d7e93b2406f8e5a2d1b7c3f9062","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0006"} -->
+
+Completed:
+- the records that still contradicted the shipped page now agree with it, and the two that could drift on their own fail a check instead of going stale
+
+Evidence:
+- PR #17 squash-merged as 14a2090 with the gates check SUCCESS and zero approvals, closing issue #16; check_profile_links.py reports 33 references and 36 recorded hashes and exits 1 on a planted stale hash; generate_voice_notes.py --check reports 9 clips and 0 problems and exits 1 naming the clip when a verbatim transcript is edited; the tracker's write-back was proved in a scratch checkout where all four chart hashes equalled the SVGs just written, a planted stale hash was repaired, and a second run left every file byte-identical; the mirror Pukujan/Pukujan took the profile page as 8e0ed80 and the live raw file is byte-identical to profile/README.md
+
+Decisions:
+- the four project notes on the tour page print a description under a What it does label rather than the clip's words, so the transcript check compares only the notes that promise the clip's own words; the two clips that still say three projects stay verbatim with their audio and are recorded as open owner items, because correcting them needs a paid Fish Audio run
+
+Changed:
+- scripts/track_activity.py, scripts/check_profile_links.py, scripts/generate_voice_notes.py, .content-system/asset-manifest.json, .content-system/visual-style.json, .continuity/documents.json, .github/workflows/track.yml, PROJECT.md, README.md, profile/README.md, docs/index.html, docs/research/github-profile-pages.md, docs/CONTINUITY_INDEX.md, tasks, checkpoints
+
+Blocked/uncertain:
+- none
+
+Next:
+- wait for the owner to delete the two probe repositories, then re-run the tracker and commit so the sanitizer-probe row leaves profile/tracking.json
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
