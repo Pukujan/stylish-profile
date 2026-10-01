@@ -23,7 +23,7 @@
 | **How they fit together** | One habit runs through all four: leave a trail behind you. |
 | **Why this page looks like this** | The old page led with third-party statistics cards. Two of those services are dead now. |
 | **What you can check** | Every claim points at a public repository, and the numbers are generated from the GitHub API by a script you can re-run. |
-| **Listen instead** | Nine short voice notes: five about the page, then one for each project. The tour page plays them with real players. |
+| **Listen instead** | Nine short voice notes: five about the page, then one for each project. Every one is a link that opens and plays in the browser. |
 
 Everything below this table is folded away. Open the one you want.
 
@@ -34,12 +34,12 @@ Document-heavy AI means the input is a contract, a filing, a case file, or a pol
 
 | Project | In one line | Hear it |
 | --- | --- | --- |
-| **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** | A project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing. | [note](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/Agent%20Custom%20Setup.mp3) |
-| **[Project Continuity Modules](https://github.com/Pukujan/project-continuity-modules)** | Long work survives a break: what changed, what was verified, and what is still open. | [note](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/Project%20Continuity%20Modules.mp3) |
-| **[Content Generation Modules](https://github.com/Pukujan/content-generation-modules)** | Writing and images that sound like a person rather than a template. | [note](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/Content%20Generation%20Modules.mp3) |
-| **[Inference Recommendation Engine](https://github.com/Pukujan/inference-recommendation-engine)** | Provider-neutral routing for model calls, decided by policy instead of a hard-coded provider. | [note](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3) |
+| **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** | A project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing. | [play 0:27](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Agent%20Custom%20Setup.mp3) |
+| **[Project Continuity Modules](https://github.com/Pukujan/project-continuity-modules)** | Long work survives a break: what changed, what was verified, and what is still open. | [play 0:29](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Project%20Continuity%20Modules.mp3) |
+| **[Content Generation Modules](https://github.com/Pukujan/content-generation-modules)** | Writing and images that sound like a person rather than a template. | [play 0:25](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Content%20Generation%20Modules.mp3) |
+| **[Inference Recommendation Engine](https://github.com/Pukujan/inference-recommendation-engine)** | Provider-neutral routing for model calls, decided by policy instead of a hard-coded provider. | [play 0:22](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3) |
 
-GitHub does not render an audio player inside a profile page, so those are links. The tour page plays each one with a real player, right next to the project it belongs to.
+GitHub strips audio markup from a profile page, so each note is a link instead: click one and it opens and plays in the browser. The tour page plays all nine in place, each next to the project it belongs to.
 
 <details>
 <summary>The full description of each project</summary>
@@ -165,15 +165,15 @@ Every claim above points at a public repository, and each of those repositories 
 
 Short voice notes, if you would rather hear the story than read it:
 
-- **[Welcome to My Corner](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/Welcome%20to%20My%20Corner.mp3)** — who is speaking, and what is on this page
-- **[Who I Am in Thirty Seconds](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/Who%20I%20Am%20in%20Thirty%20Seconds.mp3)** — the two things I care about
-- **[The Short Tour](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/The%20Short%20Tour.mp3)** — the projects, in order
-- **[Why Loose Ends Matter](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/Why%20Loose%20Ends%20Matter.mp3)** — the reasoning behind the tooling
-- **[What Is Still Being Built](https://github.com/Pukujan/stylish-profile/blob/main/assets/profile/voice-notes/What%20Is%20Still%20Being%20Built.mp3)** — an honest note about what is not finished
+- **[Welcome to My Corner](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Welcome%20to%20My%20Corner.mp3)** (0:16) — who is speaking, and what is on this page
+- **[Who I Am in Thirty Seconds](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Who%20I%20Am%20in%20Thirty%20Seconds.mp3)** (0:19) — the two things I care about
+- **[The Short Tour](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/The%20Short%20Tour.mp3)** (0:26) — the projects, in order
+- **[Why Loose Ends Matter](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Why%20Loose%20Ends%20Matter.mp3)** (0:23) — the reasoning behind the tooling
+- **[What Is Still Being Built](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/What%20Is%20Still%20Being%20Built.mp3)** (0:17) — an honest note about what is not finished
 
 Each project also has its own note, linked from its row in the Current projects table above.
 
-GitHub does not render an audio player inside a profile page, so these are links rather than players. The tour page plays every one with a real player, and it is easier to listen to that way: **[open the tour](https://pukujan.github.io/stylish-profile/docs/)**.
+GitHub strips audio markup from a profile page, so these are links rather than players. Click one and it opens and plays in the browser. The tour page plays all nine in place, each beside the project it belongs to, and that is the easier way to listen: **[open the tour](https://pukujan.github.io/stylish-profile/docs/)**.
 
 </details>
 
