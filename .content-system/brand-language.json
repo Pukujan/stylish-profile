@@ -5,10 +5,10 @@
     "plain-spoken",
     "warm",
     "specific",
-    "evidence-first"
+    "grounded"
   ],
-  "audience_feeling": "A hiring manager or engineer should recognise the kind of work within a few seconds, and should feel that every claim on the page can be checked in a public repository.",
-  "promise": "This page shows what Pujan builds, links each featured project to its public source, and says plainly which parts are shipped and which are still being built.",
+  "audience_feeling": "A hiring manager or engineer should recognise the kind of work within a few seconds, and should come away feeling they have met someone easy to work with who is straight about what is finished and what is still in progress.",
+  "promise": "This page introduces Pujan: what he builds, how he works, and what is fresh. Each featured project links to its public source, the spoken notes say the rest out loud, and nothing on the page claims more than the linked repositories show.",
   "preferred_terms": {
     "the person": "Pujan",
     "the featured work": "featured projects",
@@ -33,7 +33,7 @@
   ],
   "good_examples": [
     "I build systems that keep long AI projects from losing their place.",
-    "Three public repositories, each with the issue that tracks its work.",
+    "Four projects I use every day, each one open on GitHub.",
     "Listen to the tour, or skip straight to the code."
   ],
   "bad_examples": [

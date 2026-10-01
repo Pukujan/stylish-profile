@@ -15,7 +15,7 @@ You can [listen to the tour](https://pukujan.github.io/stylish-profile/docs/) if
 
 ## Start here
 
-[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup) is the piece the rest sit on. A project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing: it pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. The other three repositories here start a session by loading it, so if it is wrong, everything downstream is wrong in a way that looks fine.
+[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup) is the piece the rest sit on. The other three repositories here begin a session by loading it, so if it hands out the wrong rules, everything downstream is wrong in a way that still looks fine. That is why it comes first, and why it is the one to get right before anything else.
 
 The [live module registry](https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json) lists what it can load, and [POLICY.md](https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md) says what it will refuse to do.
 
@@ -40,7 +40,7 @@ Agent Custom Setup decides what rules a session starts with. Project Continuity 
 
 ### Agent Custom Setup
 
-A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and **fails the install when it is not**. It is the reason this page's own repository cannot silently drift from the versions it claims.
+It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and **fails the install when it is not**. That check is the reason this page's own repository cannot silently drift from the versions it claims.
 
 *Why it exists:* an agent that starts from a blank prompt will confidently invent a workflow. One that starts from a checked contract will follow yours.
 
@@ -111,7 +111,7 @@ Python · TypeScript · JavaScript · HTML · Shell · PowerShell · Git · GitH
 Nine short voice notes, if you would rather hear the story than read it. GitHub strips audio markup from a profile page, so these are links: click one and it plays in the browser.
 
 - **[Welcome to My Corner](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Welcome%20to%20My%20Corner.mp3)** (0:16) — who is speaking, and what is on this page
-- **[Who I Am in Thirty Seconds](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Who%20I%20Am%20in%20Thirty%20Seconds.mp3)** (0:19) — the two things I care about
+- **[Who I Am in Thirty Seconds](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Who%20I%20Am%20in%20Thirty%20Seconds.mp3)** (0:18) — the two things I care about
 - **[The Short Tour](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/The%20Short%20Tour.mp3)** (0:26) — the projects, in order
 - **[Why Loose Ends Matter](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Why%20Loose%20Ends%20Matter.mp3)** (0:23) — the reasoning behind the tooling
 - **[What Is Still Being Built](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/What%20Is%20Still%20Being%20Built.mp3)** (0:17) — where the work stands today

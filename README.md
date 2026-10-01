@@ -10,7 +10,7 @@ Open the old profile page and the loudest element was a pair of third-party stat
 
 ## What this project is
 
-One Markdown page, a static HTML tour, six hand-drawn illustrations, two short animations, four generated charts, and five spoken notes. The page opens with a sentence about the work, presents four featured projects, then shows what changed today and what is still being built.
+One Markdown page, a static HTML tour, six hand-drawn illustrations plus an avatar, eight short animations, four generated charts, and nine spoken notes. The page opens by saying who this is and what the work is, presents four featured projects each with a spoken note, then explains how the work gets done, what tools it uses, and what changed recently.
 
 It is a static entry point. No runtime, no build step, no server, no database. The only moving part is a scheduled script that reads public GitHub data and commits a chart.
 
@@ -18,16 +18,16 @@ It is a static entry point. No runtime, no build step, no server, no database. T
 
 - **The profile page** at [`profile/README.md`](profile/README.md), written to be mirrored into the `Pukujan/Pukujan` profile repository so it renders at `github.com/Pukujan`.
 - **A spoken tour** at [`docs/index.html`](docs/index.html), a static page that plays every voice note with a real audio player, one beside each project. GitHub strips `<audio>` from Markdown, so a page is the only place the clips can actually play; the profile page links to the same files.
-- **Six narrative illustrations** under [`assets/profile/`](assets/profile), each generated against a recorded visual contract and reviewed before acceptance. Each one also ships as a four-frame animation under [`assets/profile/anim/`](assets/profile/anim), built by `scripts/build_motion_gif.py` from frames generated against the still, with a ping-pong return so the loop does not snap. The hero ships in a wide and a phone framing.
+- **Six narrative illustrations** under [`assets/profile/`](assets/profile), each generated against a recorded visual contract and reviewed before acceptance. Each one also ships as an animation under [`assets/profile/anim/`](assets/profile/anim), built by `scripts/build_motion_gif.py` from frames generated against the still, with a ping-pong return so the loop does not snap. The hero ships in a wide and a phone framing.
 - **A dark variant of every image**, derived from the light asset by `scripts/derive_dark_assets.py` rather than generated again, so the two stay in step and the transform is reproducible.
-- **Eight generated charts** under [`assets/profile/generated/`](assets/profile/generated), four layouts each in a light and a dark palette, redrawn from live GitHub data on a daily schedule.
+- **Four generated charts** under [`assets/profile/generated/`](assets/profile/generated), two layouts each in a light and a dark palette, redrawn from live GitHub data on a daily schedule.
 - **A research write-up** at [`docs/research/github-profile-pages.md`](docs/research/github-profile-pages.md) covering what comparable profile repositories do and what a GitHub README can and cannot render in 2026.
 
-## What changed today
+## What the page says about recent work
 
-The page carries a tracking block that refreshes itself: commits in the last day grouped by project, the project with the most commits this week, the current star count, and a collapsible table of every public repository.
+The page carries a tracking block that refreshes itself: commits in the window across the featured projects, a row per project showing when it last received a push, a chart of daily commits, and the project with the most commits this week. It closes with a link to the full repository list rather than an inline dump of it.
 
-[`scripts/track_activity.py`](scripts/track_activity.py) draws that block and the four charts. It reads commit history from the GitHub REST API, renders the charts as SVG with hand-written markup, and rewrites only the text between the two tracking markers in `profile/README.md` and `docs/index.html`.
+[`scripts/track_activity.py`](scripts/track_activity.py) draws that block and the charts. It reads commit history from the GitHub REST API, renders the charts as SVG with hand-written markup, and rewrites only the text between the two tracking markers in `profile/README.md` and `docs/index.html`.
 
 - It is **idempotent**: two runs against unchanged data produce byte-identical files, so a scheduled run that finds nothing new commits nothing.
 - It **fails closed**: a missing or duplicated marker pair aborts the run and writes no files.
@@ -46,9 +46,9 @@ Publishing the refresh means pushing to a protected `main`, and the workflow tok
 
 1. `.content-system/` records the product brief, the brand language, the visual contract, the asset manifest, and the review rubric.
 2. Every illustration is generated from a prompt recorded in `.content-system/prompts/`, reviewed, and entered in the manifest with its role, dimensions, alt text, crop behavior, rejection conditions, and a SHA-256 hash of the committed file.
-3. Voice notes are generated with a recorded voice selection, and their spoken text is stored beside them so the clips can be regenerated. `scripts/generate_voice_notes.py --check` proves the committed clip, its recorded byte count, its manifest hash and its transcript still agree.
+3. Voice notes are generated with a recorded voice selection, and their spoken text is stored beside them so the clips can be regenerated. `scripts/generate_voice_notes.py --check` proves the committed clip, its recorded byte count, its manifest hash and its transcript still agree, and that the length printed beside its link on the page is still the length of the clip.
 4. `scripts/track_activity.py` collects activity data, draws the charts, and rewrites the tracking block between its two markers. `scripts/check_profile_links.py` walks every Markdown and HTML file, resolves each relative reference, and fails when one points at a file that is not committed.
-5. `.github/workflows/gates.yml` runs the continuity record check, the content adapter check, the writing contract check, and the link check. `.github/workflows/track.yml` regenerates the activity block on demand. `.github/workflows/auto-merge.yml` arms squash auto-merge on every pull request push. The daily refresh is `scripts/refresh_profile.ps1`, registered as a scheduled task.
+5. `.github/workflows/gates.yml` runs the continuity record check, the content adapter check, the writing contract check, the link check, the voice-note check, and the dark-variant check. `.github/workflows/track.yml` regenerates the activity block on demand. `.github/workflows/auto-merge.yml` arms squash auto-merge on every pull request push. The daily refresh is `scripts/refresh_profile.ps1`, registered as a scheduled task.
 
 ## How it adapts
 
@@ -56,14 +56,14 @@ The page is read on phones far more often than on a desk, so nothing here assume
 
 - The hero image ships in two framings. Below 640 pixels the page serves the portrait version through a `picture` element, because the wide file scaled into a phone column renders its subtitle about four pixels tall.
 - Both charts ship in two arrangements. The narrow files stack the chart above the project list instead of putting them side by side.
-- The two animations sit side by side on a wide screen and stack below 640 pixels.
+- The motion figures sit side by side on a wide screen and stack below 640 pixels.
 - Text sizes, spacing, and the page gutter tighten below 640 pixels.
 
 ## Evidence and boundaries
 
 - The page's claims about the four featured projects point at their public repositories. The repositories, not this page, are the evidence.
 - The illustrations are illustrations of the story. They are not screenshots, not benchmarks, and not evidence of shipped behavior.
-- The activity and star numbers are read from the public GitHub API and committed with the rest of the page, so a reader can re-run the script and compare. **They are counts, not achievements**, and the page says so where it shows them.
+- The activity numbers are read from the public GitHub API and committed with the rest of the page, so a reader can re-run the script and compare. **They are counts, not achievements**, and the page presents them as news rather than as a score.
 - Generated images and voice notes carry recorded provenance in `.content-system/asset-manifest.json`. The voice notes are newly generated for this page; no third-party reference audio is published here.
 - This page does not claim a support promise, a measured performance figure, or a capability its linked repositories do not demonstrate.
 

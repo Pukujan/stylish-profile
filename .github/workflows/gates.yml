@@ -19,6 +19,13 @@ concurrency:
 env:
   PCM_PIN: 4e2385474b4af9249ca009cbdcb38c4498932475
   CGM_PIN: c069613ca8b3e02bcf5aba1960160583537f8a3a
+  # Pinned to the versions the dark GIFs were assembled with. The check is a
+  # byte comparison, and Pillow's GIF encoder is not stable across releases, so
+  # an unpinned install would let a runner-image bump red the gate on files
+  # nobody changed.
+  PILLOW_PIN: "12.3.0"
+  NUMPY_PIN: "1.26.4"
+  SCIPY_PIN: "1.15.3"
 
 jobs:
   gates:
@@ -79,5 +86,6 @@ jobs:
       # connected-component pass that finds the paper.
       - name: Dark variants match their source
         run: |
-          pip install --disable-pip-version-check pillow numpy scipy
+          pip install --disable-pip-version-check \
+            "pillow==${PILLOW_PIN}" "numpy==${NUMPY_PIN}" "scipy==${SCIPY_PIN}"
           python scripts/derive_dark_assets.py --check
