@@ -11,7 +11,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773`
-- Current SHA-256: `435283dd00ab7577ae2b2b2e80b55717148545efc5d28dbf6c5b3402ca3afb3e`
+- Current SHA-256: `e5c6e8e69b8501314a8c509f150f49ec09b3d748ad0ce2bb5e13105013435fb7`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -95,7 +95,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599`
-- Current SHA-256: `d46a70d2f27ae26aa6a626cb9bd596b7bbf92f501823a30b0a50528f845955b6`
+- Current SHA-256: `0381beaae3bd8f0c3c87ce4a9433a3044823282cf54ded36caecf71d6c519447`
 - Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none

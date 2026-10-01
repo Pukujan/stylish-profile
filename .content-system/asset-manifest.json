@@ -704,6 +704,25 @@
       "spoken_text": "Inference Recommendation Engine. This is provider-neutral routing for model calls. Instead of hard-coding a provider in twenty places, it recommends a route from an explicit policy, and the tests are property-driven rather than a pile of example fixtures. The reason is simple. Provider choice changes every few months, and that decision should live in one place, where I can actually change it.",
       "usage": "Project note on the tour page, played next to the inference-recommendation-engine entry, and linked from that project's row on the profile page.",
       "hash": "0e8896cf8f7dbee3acbb4f92827dffbc7c2a46529391215f365307d8bf0edfaf"
+    },
+    {
+      "path": "assets/profile/Pujan.png",
+      "role": "avatar",
+      "feature": "profile-page",
+      "kind": "still raster",
+      "orientation": "square",
+      "dimensions": "460x460",
+      "text_policy": "no text at all",
+      "exact_title": "",
+      "exact_subtitle": "",
+      "alt_text": "Flat illustration of the page's author: a bespectacled young engineer with dark hair, a small smile and a dark sweater with one yellow button, drawn on a deep royal blue field.",
+      "usage": "The account avatar, so the picture beside the name belongs to the same drawing as the illustrations on the page. Uploading it is a web-UI action; the REST API cannot set an avatar.",
+      "crop_behavior": "Square and centred with even margin on all four sides, so GitHub's circular mask clips only background. Safe at any size GitHub renders.",
+      "rejection_conditions": "Reject if the head or either shoulder is clipped by a circular crop; if the field is not a flat unpatterned blue; if any text, letter, number, wordmark or logo appears; or if the character does not match the one in Pujan and the Loose Ends.png in glasses, hair and clothing.",
+      "review_decision": "Accepted 2026-10-01, second candidate. The first candidate was rejected: a side-by-side against the banner showed muted, thin, sketch-like lines where the illustration set uses bold even outlines, so it read as an unrelated picture pasted onto the page. The accepted candidate was regenerated with an explicit line-weight and palette clause. Vision checks then confirmed bold thick outlines, a bright royal blue field, the character matching the banner in glasses, hair, smile and sweater, and no text or logo. A circular-crop preview confirmed the face, glasses, hair and shoulders all survive GitHub's round mask.",
+      "provider": "built-in image_gen",
+      "prompt_record": ".content-system/prompts/Pujan.md",
+      "hash": "a1f0d0792a8650974fb0e74be08600ce819a03745c3ed7f52a0670e6040d657c"
     }
   ]
 }
