@@ -45,7 +45,7 @@
       "related": [],
       "reviewed_commit": "uncommitted",
       "reviewed_sha256": "003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7",
-      "summary": "The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: what I build, the four current projects, what is shipped and what is not, the featured project, the live activity block, the spoken tour links and the contact list.",
+      "summary": "The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: who I am, what I'm building with the four featured projects, how I work, the tools, what's fresh, the spoken tour links and how to find me.",
       "tasks": [
         "SP-0001"
       ],

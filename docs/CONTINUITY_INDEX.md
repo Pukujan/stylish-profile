@@ -1,6 +1,6 @@
 # Continuity Document Index
 
-<!-- continuity:documents-index {"catalog_sha256":"6c52789512299425ae0bb3e8ea307da3541af854c0d79fbb535a09dbd1d08176","schema":"project-continuity.documents-index.v1"} -->
+<!-- continuity:documents-index {"catalog_sha256":"9322898ef7ac7d294d7355d80bed2d94a5a243d0c985b71d7d946964195cbae0","schema":"project-continuity.documents-index.v1"} -->
 
 > Generated from `.continuity/documents.json`. Edit the JSON inventory, then run `continuity docs render`; do not edit this view directly.
 > Freshness below compares local file bytes; after `git fetch origin`, use `continuity docs find` for cached remote freshness.
@@ -11,7 +11,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773`
-- Current SHA-256: `c09bc4daa9b035c2df573cffc6f9c246a60420f9beaf9eb2ed0d861c0e3a7ae6`
+- Current SHA-256: `51e7c925b98cd9ff7b825f16235a390851cba488b1ed0ae21b62a092a839219b`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -35,8 +35,8 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7`
-- Current SHA-256: `955c6ef531bd56911bd47ac7b87669cd6788313fd55cbdc911b17628a4d54526`
-- Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: what I build, the four current projects, what is shipped and what is not, the featured project, the live activity block, the spoken tour links and the contact list.
+- Current SHA-256: `21fbfd48ce7d905ad970f7f0f1259c0e368139a18d278b56a25b8d0155aac47b`
+- Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: who I am, what I'm building with the four featured projects, how I work, the tools, what's fresh, the spoken tour links and how to find me.
 - Search terms: `featured-projects`, `profile`, `readme`
 - Neighboring records: none
 - Task associations: `SP-0001`
@@ -59,7 +59,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `6915f95cf1c34685a8c86d28434408e76714fa9ec51548c1745ed8ad74f152c9`
-- Current SHA-256: `f1746fb755686c647368a13ef9c32270dd3fabc67dcf61a07dec287cf8885068`
+- Current SHA-256: `cb103fcaed2e25e1ce1b43092730681b642cdf0d119a22b69e745b6f3c219d70`
 - Summary: The durable contract: the main goal, why the page exists, what is in scope, what is explicitly out of scope, and the six definition-of-success criteria.
 - Search terms: `contract`, `scope`
 - Neighboring records: none
@@ -71,7 +71,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `436e18a7907ff028f9ea8189ae60e1a1bb9fbbc104adb317248c54006aa1f6a8`
-- Current SHA-256: `3645ce127608d0e272c8c4e7e9244d9c53728fcbdea4be39a3246121e5db1baa`
+- Current SHA-256: `fd8135a116ae064c3edf1b790d16193e786764976f87f1b9acaef6813188212d`
 - Summary: The project entry point for this repository: why the page exists, what the repository contains, how the pieces work, the evidence and boundaries, and how to run the link check.
 - Search terms: `product`, `readme`
 - Neighboring records: none
@@ -83,7 +83,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `d7db68f1779cf3c7907b208ff8280e8b2771633d6f5a9cdaef778c08d32fd473`
-- Current SHA-256: `ef3e844e51d5be3cecb9dd86cb776d94a3fdcf772acf53787f66a4fa27e30129`
+- Current SHA-256: `9f9adef92a81a489948591c30ce9d5c7f2c4c60ab39bc7cc41d903aa4b9ad1c6`
 - Summary: A recorded comparison of five profile repositories, the 2026 GitHub sanitizer allow and deny lists, live service-risk probes, and the audio mechanisms that actually work.
 - Search terms: `github`, `rendering`, `research`
 - Neighboring records: none
@@ -95,7 +95,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599`
-- Current SHA-256: `a616af922d7e7a19a427c7383c01f5abd49b709cd30b2c2c70cfab2b98fbee33`
+- Current SHA-256: `32bd7f24df3ecae68d04edccf125fa822f0b12e6444d36144feb21f58ca458fe`
 - Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none
