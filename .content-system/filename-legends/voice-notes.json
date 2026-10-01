@@ -21,6 +21,10 @@
     {
       "token": "status",
       "meaning": "an honest note about what is finished and what is not"
+    },
+    {
+      "token": "project",
+      "meaning": "one note per current project, spoken next to that project's row"
     }
   ],
   "files": [
@@ -52,6 +56,30 @@
       "path": "assets/profile/voice-notes/What Is Still Being Built.mp3",
       "identity": "What Is Still Being Built",
       "role": "status",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/Agent Custom Setup.mp3",
+      "identity": "Agent Custom Setup",
+      "role": "project",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/Project Continuity Modules.mp3",
+      "identity": "Project Continuity Modules",
+      "role": "project",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/Content Generation Modules.mp3",
+      "identity": "Content Generation Modules",
+      "role": "project",
+      "style": "speakable"
+    },
+    {
+      "path": "assets/profile/voice-notes/Inference Recommendation Engine.mp3",
+      "identity": "Inference Recommendation Engine",
+      "role": "project",
       "style": "speakable"
     }
   ]

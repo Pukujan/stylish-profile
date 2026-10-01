@@ -7,28 +7,34 @@
 <meta name="description" content="A spoken tour and a live activity board for Pujan: reusable agent infrastructure, project continuity, content generation, and inference routing.">
 <style>
   :root {
-    --background: #FFF9F0;
-    --foreground: #1A1A1A;
-    --card: #FFFFFF;
-    --primary: #4169E1;
-    --accent: #FFD93D;
-    --pink: #FF6B9D;
-    --orange: #FF8C42;
-    --lime: #A8CC00;
-    --purple: #9B6DD6;
-    --muted: #6B6357;
-    --border: #E8DFD0;
+    --background: #0F0F0F;
+    --foreground: #F5F1EA;
+    --card: #1A1A1A;
+    --primary: #7A9BFF;
+    --accent: #FFE066;
+    --pink: #FF8FB4;
+    --orange: #FFA05C;
+    --lime: #C2E04A;
+    --purple: #B892E8;
+    --muted: #A79E90;
+    --border: #2E2A24;
     --radius: 1.5rem;
     --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
   }
-  @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: light) {
     :root {
-      --background: #0F0F0F;
-      --foreground: #F5F1EA;
-      --card: #1A1A1A;
-      --muted: #A79E90;
-      --border: #2E2A24;
+      --background: #FFF9F0;
+      --foreground: #1A1A1A;
+      --card: #FFFFFF;
+      --primary: #4169E1;
+      --accent: #FFD93D;
+      --pink: #FF6B9D;
+      --orange: #FF8C42;
+      --lime: #A8CC00;
+      --purple: #9B6DD6;
+      --muted: #6B6357;
+      --border: #E8DFD0;
     }
   }
   * { box-sizing: border-box; }
@@ -107,14 +113,6 @@
   details { margin: 0 0 0.75rem; }
   summary { cursor: pointer; font-size: 0.9rem; color: var(--muted); }
   .transcript { font-family: var(--serif); font-size: 0.95rem; color: var(--muted); margin-top: 0.5rem; }
-  .projects { display: grid; gap: 1rem; padding: 0; margin: 0; list-style: none; }
-  .projects li {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-  }
-  .projects h3 { margin-top: 0; }
   .table-scroll { overflow-x: auto; margin: 0 0 1rem; }
   table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
   th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
@@ -153,8 +151,8 @@
 
   <header>
     <picture>
-      <source media="(max-width: 640px)" srcset="../assets/profile/AI%20Engineer%20phone.png">
-      <img class="hero" src="../assets/profile/AI%20Engineer.png" alt="Hand-drawn illustration of an engineer at a workbench slotting one reusable block into a growing modular machine while three small round companions carry identical blocks and a second smaller copy of the same structure stands finished beside it.">
+      <source media="(max-width: 640px)" srcset="../assets/profile/anim/AI%20Engineer%20phone-dark.gif">
+      <img class="hero" src="../assets/profile/anim/AI%20Engineer-dark.gif" alt="Animated drawing of an engineer at a workbench raising one reusable block and setting it into a growing modular machine, while three small round companions carry identical blocks and a conveyor brings more.">
     </picture>
     <p class="eyebrow">The short tour</p>
     <h1>Pujan</h1>
@@ -168,29 +166,74 @@
     <p><a href="https://github.com/Pukujan">Profile</a> · <a href="https://github.com/Pukujan/stylish-profile">This repository</a> · <a href="https://www.design-bakery.com">design-bakery.com</a></p>
   </header>
 
-  <h2>Current projects</h2>
-  <ul class="projects">
-    <li>
-      <h3>Agent Custom Setup</h3>
-      <p>A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not.</p>
-      <p><a href="https://github.com/Pukujan/agent-custom-setup">Repository</a></p>
-    </li>
-    <li>
-      <h3>Project Continuity Modules</h3>
-      <p>Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
-      <p><a href="https://github.com/Pukujan/project-continuity-modules">Repository</a></p>
-    </li>
-    <li>
-      <h3>Content Generation Modules</h3>
-      <p>Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from.</p>
-      <p><a href="https://github.com/Pukujan/content-generation-modules">Repository</a></p>
-    </li>
-    <li>
-      <h3>Inference Recommendation Engine</h3>
-      <p>Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
-      <p><a href="https://github.com/Pukujan/inference-recommendation-engine">Repository</a></p>
-    </li>
-  </ul>
+  <h2 id="current-projects">Current projects</h2>
+  <p>Four tools I use every day. Each one has a repository you can read, one line that says what it does, and a short note you can play.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Project</th><th>In one line</th><th>Repository</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Agent Custom Setup</td>
+          <td>A project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing.</td>
+          <td><a href="https://github.com/Pukujan/agent-custom-setup">repository</a></td>
+        </tr>
+        <tr>
+          <td>Project Continuity Modules</td>
+          <td>Long work survives a break: what changed, what was verified, and what is still open.</td>
+          <td><a href="https://github.com/Pukujan/project-continuity-modules">repository</a></td>
+        </tr>
+        <tr>
+          <td>Content Generation Modules</td>
+          <td>Writing and images that sound like a person rather than a template.</td>
+          <td><a href="https://github.com/Pukujan/content-generation-modules">repository</a></td>
+        </tr>
+        <tr>
+          <td>Inference Recommendation Engine</td>
+          <td>Provider-neutral routing for model calls, decided by policy instead of a hard-coded provider.</td>
+          <td><a href="https://github.com/Pukujan/inference-recommendation-engine">repository</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Hear each project</h3>
+  <p>One note per project, in the order above.</p>
+
+  <div class="note" data-kind="tour">
+    <span class="kind">Agent Custom Setup</span>
+    <audio controls preload="none" src="../assets/profile/voice-notes/Agent%20Custom%20Setup.mp3"></audio>
+    <details>
+      <summary>What it does</summary>
+      <p class="transcript">A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. It is the reason this page's own repository cannot silently drift from the versions it claims.</p>
+    </details>
+  </div>
+
+  <div class="note" data-kind="tour">
+    <span class="kind">Project Continuity Modules</span>
+    <audio controls preload="none" src="../assets/profile/voice-notes/Project%20Continuity%20Modules.mp3"></audio>
+    <details>
+      <summary>What it does</summary>
+      <p class="transcript">Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
+    </details>
+  </div>
+
+  <div class="note" data-kind="tour">
+    <span class="kind">Content Generation Modules</span>
+    <audio controls preload="none" src="../assets/profile/voice-notes/Content%20Generation%20Modules.mp3"></audio>
+    <details>
+      <summary>What it does</summary>
+      <p class="transcript">Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.</p>
+    </details>
+  </div>
+
+  <div class="note" data-kind="tour">
+    <span class="kind">Inference Recommendation Engine</span>
+    <audio controls preload="none" src="../assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3"></audio>
+    <details>
+      <summary>What it does</summary>
+      <p class="transcript">Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
+    </details>
+  </div>
 
   <h2>What is shipped, and what is not</h2>
   <p>Shipped here means three things: a public repository, a passing check suite, and a written record of what the thing does not do yet. Nothing on this page claims a support promise.</p>
@@ -216,27 +259,27 @@
   <div class="live">
 <!-- TRACKING:START -->
 <h2>What changed today</h2>
-<p>2026-10-01: 15 commit(s) across 3 project(s).</p>
+<p>2026-10-01: 20 commit(s) across 3 project(s).</p>
 <table>
 <thead><tr><th>Project</th><th>Commits today</th><th>Last push</th></tr></thead>
 <tbody>
-<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>11</td><td>2026-10-01</td></tr>
-<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>3</td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>15</td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>4</td><td>2026-10-01</td></tr>
 <tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>1</td><td>2026-10-01</td></tr>
 </tbody>
 </table>
 <figure class="wide-figure">
 <picture>
-<source media="(max-width: 640px)" srcset="../assets/profile/generated/activity-narrow.svg">
-<img src="../assets/profile/generated/activity.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1186 total." width="100%">
+<source media="(max-width: 640px)" srcset="../assets/profile/generated/activity-narrow-dark.svg">
+<img src="../assets/profile/generated/activity-dark.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1191 total." width="100%">
 </picture>
-<figcaption>Daily commit counts across public Pukujan repositories over the last 14 days, 1186 total.</figcaption>
+<figcaption>Daily commit counts across public Pukujan repositories over the last 14 days, 1191 total.</figcaption>
 </figure>
 <p>Current project: <a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a> with 91 commit(s) in the last 7 days.</p>
 <figure class="wide-figure">
 <picture>
-<source media="(max-width: 640px)" srcset="../assets/profile/generated/stars-narrow.svg">
-<img src="../assets/profile/generated/stars.svg" alt="Public stars: 1 total, 1 repositories with at least one." width="100%">
+<source media="(max-width: 640px)" srcset="../assets/profile/generated/stars-narrow-dark.svg">
+<img src="../assets/profile/generated/stars-dark.svg" alt="Public stars: 1 total, 1 repositories with at least one." width="100%">
 </picture>
 <figcaption>Public stars: 1 total, 1 repositories with at least one.</figcaption>
 </figure>
@@ -246,10 +289,11 @@
 <table>
 <thead><tr><th>Repository</th><th>Last push</th><th>Language</th><th>Stars</th></tr></thead>
 <tbody>
+<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>2026-10-01</td><td>TypeScript</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/sanitizer-probe">sanitizer-probe</a></td><td>2026-10-01</td><td>-</td><td>0</td></tr>
+<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>2026-10-01</td><td>Python</td><td>0</td></tr>
 <tr><td><a href="https://github.com/Pukujan/stylish-profile">stylish-profile</a></td><td>2026-10-01</td><td>Python</td><td>0</td></tr>
 <tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>2026-10-01</td><td>-</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>2026-10-01</td><td>TypeScript</td><td>0</td></tr>
-<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>2026-10-01</td><td>Python</td><td>0</td></tr>
 <tr><td><a href="https://github.com/Pukujan/inference-recommendation-engine">inference-recommendation-engine</a></td><td>2026-09-30</td><td>Python</td><td>0</td></tr>
 <tr><td><a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a></td><td>2026-09-30</td><td>HTML</td><td>1</td></tr>
 <tr><td><a href="https://github.com/Pukujan/vastai-gpu-broker">vastai-gpu-broker</a></td><td>2026-09-30</td><td>Python</td><td>0</td></tr>
@@ -290,7 +334,7 @@
   </div>
 
   <h2>Listen</h2>
-  <p>Five short notes. Play them in order, or jump to the one you want.</p>
+  <p>Five notes about the page itself. Each project also has its own note, up in <a href="#current-projects">Current projects</a>.</p>
 
   <div class="note" data-kind="welcome">
     <span class="kind">Welcome</span>
@@ -343,18 +387,18 @@
   </div>
 
   <figure class="wide-figure">
-    <img src="../assets/profile/Three%20Projects%20One%20Thread.png" alt="Hand-drawn diagram of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page.">
+    <img src="../assets/profile/anim/Three%20Projects%20One%20Thread-dark.gif" alt="Animated drawing of three cards joined by one blue thread, each card holding a simple icon for an agent, a continuity trail, and a content page, with a dot travelling along the thread.">
     <figcaption>One habit runs through all of them: leave a trail behind you.</figcaption>
   </figure>
 
   <h2>The two habits, moving</h2>
   <div class="motion-pair">
     <figure class="motion-figure">
-      <img src="../assets/profile/anim/Reusable%20Blocks.gif" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="360" height="360">
+      <img src="../assets/profile/anim/Reusable%20Blocks-dark.gif" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="360" height="360">
       <figcaption><strong>Build it once.</strong> One block, then two, then three, then a grid. The original turns yellow to mark which copy the rest came from.</figcaption>
     </figure>
     <figure class="motion-figure">
-      <img src="../assets/profile/anim/One%20Push%20Many%20Pipelines.gif" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="360" height="360">
+      <img src="../assets/profile/anim/One%20Push%20Many%20Pipelines-dark.gif" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="360" height="360">
       <figcaption><strong>Run it once, get every result.</strong> One push travels down the stem, the stem forks, and each branch finishes on its own.</figcaption>
     </figure>
   </div>
@@ -362,14 +406,14 @@
 
   <h2>Why this page looks the way it does</h2>
   <figure class="wide-figure">
-    <img src="../assets/profile/The%20Badge%20Wall.png" alt="Hand-drawn illustration of a small round companion holding an empty magnifying glass in front of a dense wall of blank badge and statistics cards.">
+    <img src="../assets/profile/anim/The%20Badge%20Wall-dark.gif" alt="Animated drawing of a small round companion in front of a dense wall of blank badge and statistics cards, raising an empty magnifying glass above its head.">
     <figcaption>The previous page led with third-party statistics cards. Two of the services behind them now return payment errors and one no longer resolves.</figcaption>
   </figure>
   <p>The only live elements here are ones I generate and commit myself. The illustrations come from the palette and the flat hand-drawn shapes of my own site, <a href="https://www.design-bakery.com">design-bakery.com</a>. They are illustrations of the story, not screenshots, and not evidence of anything.</p>
 
   <h2>What you can check</h2>
   <figure class="narrow-figure">
-    <img src="../assets/profile/What%20You%20Can%20Check.png" alt="Hand-drawn illustration of a stack of blank source cards feeding down into an open book and a pair of headphones, with a small round companion holding a pencil.">
+    <img src="../assets/profile/anim/What%20You%20Can%20Check-dark.gif" alt="Animated drawing of a stack of blank source cards feeding down into an open book and a pair of headphones, with a small round companion holding a pencil.">
   </figure>
   <p>Every claim on this page points at a public repository, and each of those repositories has an issue tracking what is done and what is not. The activity numbers are generated from the GitHub API by <code>scripts/track_activity.py</code> and committed by a scheduled workflow, so you can re-run it and get the same numbers. The illustrations are generated, and their prompts and review decisions are recorded in <code>.content-system/</code>. Nothing here is a benchmark result.</p>
 
