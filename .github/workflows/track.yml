@@ -82,27 +82,32 @@ jobs:
           git commit -m "Refresh the activity block"
           git push --force origin "$BRANCH"
 
-          if gh pr view "$BRANCH" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            state=$(gh pr view "$BRANCH" --repo "$GITHUB_REPOSITORY" --json state --jq .state)
-            if [ "$state" = "CLOSED" ]; then
-              # A previous refresh was closed without merging. Reopen it rather
-              # than creating a second pull request for the same branch, which
-              # GitHub rejects.
-              gh pr reopen "$BRANCH" --repo "$GITHUB_REPOSITORY"
-              echo "reopened the refresh pull request"
-            else
-              echo "refresh pull request already open; the push updated it"
-            fi
-          else
+          open_pr() {
+            gh pr list --repo "$GITHUB_REPOSITORY" --head "$BRANCH" --state open \
+              --json number --jq '.[0].number // empty'
+          }
+
+          pr=$(open_pr)
+          if [ -z "$pr" ]; then
+            # No open refresh pull request. A previously closed one cannot be
+            # reopened once its branch was deleted, so open a fresh one.
             gh pr create \
               --repo "$GITHUB_REPOSITORY" \
               --base main \
               --head "$BRANCH" \
               --title "Refresh the activity block" \
-              --body "Regenerated from the GitHub API by \`scripts/track_activity.py\`. The numbers in the tracking block and the four generated charts are the only files that changed."
+              --body "Regenerated from the GitHub API by \`scripts/track_activity.py\`. The numbers in the tracking block and the four generated charts are the only files that changed." \
+              || true
+            pr=$(open_pr)
           fi
 
-          gh pr merge "$BRANCH" --repo "$GITHUB_REPOSITORY" --auto --squash
+          if [ -z "$pr" ]; then
+            echo "could not find or open a refresh pull request" >&2
+            exit 1
+          fi
+
+          echo "refresh pull request is #$pr"
+          gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --auto --squash
 
       - name: Mirror the page to the profile repository
         # github.com/Pukujan renders Pukujan/Pukujan's README, so the published
