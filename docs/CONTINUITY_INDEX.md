@@ -83,7 +83,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `d7db68f1779cf3c7907b208ff8280e8b2771633d6f5a9cdaef778c08d32fd473`
-- Current SHA-256: `c850179885a7849db1c9c9cd283527672fd2f64166f96405992a9f9d3e730e1b`
+- Current SHA-256: `0d79a046bb2c0d59a73425b1e78f79dca831cb24e6bd46e1c7937dd49f13b9f4`
 - Summary: A recorded comparison of five profile repositories, the 2026 GitHub sanitizer allow and deny lists, live service-risk probes, and the audio mechanisms that actually work.
 - Search terms: `github`, `rendering`, `research`
 - Neighboring records: none

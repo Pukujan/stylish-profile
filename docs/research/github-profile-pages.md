@@ -87,7 +87,21 @@ mechanisms work in practice:
    `user-attachments` URL that renders as an inline player. It starts muted and needs a
    manual upload through the web UI.
 
-A link to the file's blob page on github.com also opens a player for most media types.
+A link to the file's blob page on github.com does **not** open a player for audio. It
+renders the file viewer, whose only controls are Raw and View raw, so a voice note
+linked that way does nothing when clicked. This was wrong on the first version of this
+page and stayed wrong because the link checker skipped absolute URLs. The three
+delivery paths, measured on a committed MP3:
+
+| URL form | Response | On click |
+| --- | --- | --- |
+| `github.com/.../blob/main/....mp3` | HTML file viewer | nothing |
+| `raw.githubusercontent.com/...mp3` | `content-disposition: attachment` | downloads |
+| `pukujan.github.io/stylish-profile/...mp3` | `Content-Type: audio/mp3` | plays |
+
+Only the last one plays on click, so the notes are linked from the Pages host. The
+checker now resolves Pages-hosted audio back to the committed file and rejects a blob
+link with the reason.
 
 ## What this page does, and why
 
@@ -124,7 +138,13 @@ A link to the file's blob page on github.com also opens a player for most media 
   second, and no figure mixes them.
 - **A link check in CI.** Every relative reference in every Markdown and HTML file is
   resolved during the required `gates` check, so a renamed asset cannot silently turn
-  into a broken image on the profile.
+  into a broken image on the profile. It also resolves Pages-hosted audio back to the
+  committed clip and rejects a blob link, because a blob link looks correct in Markdown
+  and does nothing in a browser.
+- **A dark-variant check in CI.** The dark illustrations are derived from the light ones
+  by a committed transform, so the check re-derives each one and compares bytes. The
+  transform is deterministic, which makes that a real test: a regenerated light picture
+  cannot leave its dark twin behind.
 
 ## Delivering an auto-refreshing block
 
