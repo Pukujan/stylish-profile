@@ -75,8 +75,9 @@ jobs:
       # The dark copies are derived from the light illustrations rather than
       # drawn, so a regenerated light picture leaves its dark twin behind and
       # the page shows one wrong image among nine. Re-deriving is deterministic,
-      # which makes a byte comparison a real test.
+      # which makes a byte comparison a real test. scipy is needed for the
+      # connected-component pass that finds the paper.
       - name: Dark variants match their source
         run: |
-          pip install --disable-pip-version-check pillow numpy
+          pip install --disable-pip-version-check pillow numpy scipy
           python scripts/derive_dark_assets.py --check

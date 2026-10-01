@@ -10,26 +10,29 @@ model call per frame and would not be reproducible - two runs of the same
 prompt do not return the same picture. The transform here is deterministic
 instead: same input, same output, every time.
 
-The rule has to answer one question per pixel: is this the field, the ink, or
-an accent? Saturation alone is not enough to tell, because the "ink" in these
-renders is not black - it is a dark navy, and a pale yellow accent has lower
-saturation than that navy. So the decision uses both lightness and saturation:
+An earlier version of this script inverted every pixel's lightness: cream went
+to black, black went to white, accents stayed put. That is the obvious
+transform, and it produced bad pictures. The character's skin is the same cream
+as the field, so it inverted to black and the face became a hole. The hair is
+near black, so it inverted to white. The figure came out as a photographic
+negative, and the pictures were worse in dark mode than in light.
 
-- Light and unsaturated is the cream field. It inverts to the dark field.
-- Dark, at any saturation, is ink. It inverts to light ink, keeping its hue, so
-  the navy outlines become light blue lines instead of disappearing.
-- Light and saturated is an accent. It is left alone, so yellow stays yellow
-  rather than turning olive.
+What the page needs is the paper to go dark while the drawing on it stays
+itself. So the transform finds the paper - the light, barely coloured region
+that reaches the edge of the frame - and replaces only that. Everything the
+drawing put on top keeps its colour, which is what keeps skin skin and hair
+hair.
 
-Inverting lightness alone would darken the yellow; keeping saturated colours
-alone would leave the navy outlines invisible on black. Both are needed, and
-both are blended smoothly rather than switched on a threshold, because the
-renders are anti-aliased: an outline-to-field edge is a ramp of intermediate
-tones, and a hard switch would put a visible band along every line.
+One thing does have to change. Text and rules are drawn straight onto the
+paper, so leaving them alone would put black text on a dark field. Ink that
+sits within a few pixels of the paper is redrawn in light ink, while ink
+enclosed by the drawing keeps its own colour. That distance is what separates
+the title from the character's outline, and it is the only tuned number here.
 
-The transform runs on numpy arrays. A per-pixel Python loop over a 1536x1024
+The transform runs on numpy arrays. A per-pixel Python loop over a 900x600
 render is slow enough to look like a hang, and a five-frame GIF multiplies that
-by five.
+by five. Finding the paper needs a connected-component pass, which is why scipy
+is a dependency.
 """
 
 from __future__ import annotations
@@ -41,101 +44,84 @@ from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageSequence
+from scipy import ndimage
 
-# A pixel counts as the cream field when it is at least this light and at most
-# this saturated. The cream measures lightness 0.96 at saturation 0.07, and the
-# palest accent measures lightness 0.79 at saturation 0.33, so the two windows
-# do not overlap.
-FIELD_LIGHTNESS = (0.60, 0.85)
-FIELD_SATURATION = (0.15, 0.35)
+# Paper is light and barely coloured. The cream field measures lightness 0.96 at
+# saturation 0.03, and the palest accent - the peach - measures 0.85 at 0.37, so
+# these thresholds separate the two.
+PAPER_LIGHTNESS = 0.72
+PAPER_SATURATION = 0.30
 
-# A pixel counts as ink below this lightness, whatever its saturation. The navy
-# outlines measure 0.26 and the accents measure 0.40 and up.
-INK_LIGHTNESS = (0.35, 0.55)
+# Ink is anything this dark, whatever its colour. The navy outlines measure 0.26
+# and the black screens measure 0.00, while the darkest accent sits at 0.40.
+INK_LIGHTNESS = 0.55
 
-# How much saturation the field keeps once it has inverted. The cream carries a
-# faint warm cast; leaving it at full strength would make the dark field olive
-# instead of neutral.
-FIELD_SATURATION_KEPT = 0.15
+# The dark field. Warm rather than neutral, so the picture still looks like it
+# was drawn on paper, and light enough to separate from the page behind it:
+# GitHub's dark background is #0d1117 and this page's is #0f0f0f, so a field of
+# pure black would leave the illustration with no edge at all.
+PANEL = (26, 22, 18)
 
-# Endpoints of the grey ramp.
-DARK_FIELD = 0.06
-DARK_INK = 0.93
+# Ink that sits on the paper comes back as light ink. Slightly lighter than the
+# cream the field was, so small text holds up.
+PAPER_INK = (250, 246, 236)
+
+# How far from the paper an ink pixel may sit and still count as drawn on it.
+# Eight pixels clears the title strokes in a 900 px wide render without reaching
+# the character, whose outline sits further in.
+PAPER_INK_REACH = 8
 
 
-def _smoothstep(x: np.ndarray, low: float, high: float) -> np.ndarray:
-    t = np.clip((x - low) / (high - low), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
+def _paper_mask(rgb: np.ndarray) -> np.ndarray:
+    """The light, barely coloured region that reaches the edge of the frame.
 
-
-def _rgb_to_hls(rgb: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    red, green, blue = rgb[..., 0], rgb[..., 1], rgb[..., 2]
-    maximum = rgb.max(axis=-1)
-    minimum = rgb.min(axis=-1)
-    delta = maximum - minimum
-
+    The connected-component pass is the point of this function. A plain "light
+    and unsaturated" test also catches the character's skin, because the skin
+    and the paper are the same cream, and darkening the skin is the bug this
+    whole rewrite exists to fix. Only the region touching the border is paper.
+    """
+    values = rgb.astype(np.float64) / 255.0
+    maximum = values.max(axis=-1)
+    minimum = values.min(axis=-1)
     lightness = (maximum + minimum) / 2.0
     with np.errstate(divide="ignore", invalid="ignore"):
         saturation = np.where(
-            lightness > 0.5,
-            delta / np.maximum(2.0 - maximum - minimum, 1e-9),
-            delta / np.maximum(maximum + minimum, 1e-9),
-        )
-        saturation = np.where(delta < 1e-9, 0.0, saturation)
-
-        safe = np.maximum(delta, 1e-9)
-        hue = np.zeros_like(maximum)
-        hue = np.where(maximum == red, ((green - blue) / safe) % 6.0, hue)
-        hue = np.where(maximum == green, (blue - red) / safe + 2.0, hue)
-        hue = np.where(maximum == blue, (red - green) / safe + 4.0, hue)
-        hue = np.where(delta < 1e-9, 0.0, (hue / 6.0) % 1.0)
-
-    return hue, lightness, saturation
-
-
-def _hls_to_rgb(hue: np.ndarray, lightness: np.ndarray, saturation: np.ndarray) -> np.ndarray:
-    def channel(t: np.ndarray) -> np.ndarray:
-        t = t % 1.0
-        return np.where(
-            t < 1.0 / 6.0,
-            p + (q - p) * 6.0 * t,
-            np.where(
-                t < 1.0 / 2.0,
-                q,
-                np.where(t < 2.0 / 3.0, p + (q - p) * (2.0 / 3.0 - t) * 6.0, p),
-            ),
+            maximum > 0, (maximum - minimum) / np.maximum(maximum, 1e-9), 0.0
         )
 
-    q = np.where(lightness < 0.5, lightness * (1.0 + saturation), lightness + saturation - lightness * saturation)
-    p = 2.0 * lightness - q
-    return np.stack([channel(hue + 1.0 / 3.0), channel(hue), channel(hue - 1.0 / 3.0)], axis=-1)
+    candidate = (lightness > PAPER_LIGHTNESS) & (saturation < PAPER_SATURATION)
+    labels, _ = ndimage.label(
+        candidate, structure=np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
+    )
+    touching = (
+        set(labels[0, :])
+        | set(labels[-1, :])
+        | set(labels[:, 0])
+        | set(labels[:, -1])
+    )
+    touching.discard(0)
+    if not touching:
+        return np.zeros(candidate.shape, dtype=bool)
+    return np.isin(labels, list(touching))
+
+
+def _ink_mask(rgb: np.ndarray) -> np.ndarray:
+    values = rgb.astype(np.float64) / 255.0
+    lightness = (values.max(axis=-1) + values.min(axis=-1)) / 2.0
+    return lightness < INK_LIGHTNESS
 
 
 def darken_array(rgb: np.ndarray) -> np.ndarray:
-    """Map an HxWx3 uint8 image onto the dark palette."""
-    values = rgb.astype(np.float64) / 255.0
-    hue, lightness, saturation = _rgb_to_hls(values)
+    """Map an HxWx3 uint8 illustration onto the dark page."""
+    paper = _paper_mask(rgb)
+    result = rgb.copy()
+    result[paper] = np.array(PANEL, dtype=rgb.dtype)
 
-    # HSV saturation, used only to tell the cream field from a pale accent.
-    maximum = values.max(axis=-1)
-    minimum = values.min(axis=-1)
-    with np.errstate(divide="ignore", invalid="ignore"):
-        vividness = np.where(maximum > 0, (maximum - minimum) / np.maximum(maximum, 1e-9), 0.0)
-
-    field = _smoothstep(lightness, *FIELD_LIGHTNESS) * (
-        1.0 - _smoothstep(vividness, *FIELD_SATURATION)
+    on_paper = _ink_mask(rgb) & ndimage.binary_dilation(
+        paper, iterations=PAPER_INK_REACH
     )
-    ink = 1.0 - _smoothstep(lightness, *INK_LIGHTNESS)
-    invert = np.maximum(field, ink)
-
-    # Invert lightness around the midpoint, so the cream lands on the dark field
-    # and the navy ink lands on the light ink.
-    new_lightness = lightness + invert * (1.0 - 2.0 * lightness)
-    # The field loses its warm cast; ink keeps its hue at full strength.
-    new_saturation = saturation * (1.0 - field * (1.0 - FIELD_SATURATION_KEPT))
-
-    result = _hls_to_rgb(hue, new_lightness, new_saturation)
-    return np.clip(np.rint(result * 255.0), 0, 255).astype(np.uint8)
+    result[on_paper] = np.array(PAPER_INK, dtype=rgb.dtype)
+    return result
 
 
 def darken_frame(frame: Image.Image) -> Image.Image:
@@ -194,8 +180,6 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if not args.sources:
-        if not args.check:
-            parser.error("at least one source is required")
         anim = Path(__file__).resolve().parents[1] / "assets" / "profile" / "anim"
         args.sources = sorted(
             path for path in anim.glob("*.gif") if not path.stem.endswith(args.suffix)

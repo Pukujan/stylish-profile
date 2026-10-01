@@ -105,14 +105,6 @@
       "role": "generated chart"
     },
     {
-      "path": "assets/profile/generated/stars.svg",
-      "role": "generated chart"
-    },
-    {
-      "path": "assets/profile/generated/stars-narrow.svg",
-      "role": "generated chart"
-    },
-    {
       "path": "assets/profile/anim/AI Engineer.gif",
       "role": "motion",
       "identity": "AI Engineer",
@@ -193,16 +185,6 @@
       "path": "assets/profile/generated/activity-narrow-dark.svg",
       "role": "generated chart",
       "identity": "activity-narrow-dark"
-    },
-    {
-      "path": "assets/profile/generated/stars-dark.svg",
-      "role": "generated chart",
-      "identity": "stars-dark"
-    },
-    {
-      "path": "assets/profile/generated/stars-narrow-dark.svg",
-      "role": "generated chart",
-      "identity": "stars-narrow-dark"
     },
     {
       "path": "assets/profile/Pujan.png",

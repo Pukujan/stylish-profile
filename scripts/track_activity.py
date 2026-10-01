@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Regenerate the live activity data behind the profile page.
 
-The profile promises "what changed today" on a page no editor opens every
-morning. This script keeps that promise honest. It asks GitHub which commits
-the owner authored, in which public active repositories, over the last N
-days; writes the answer as machine-readable JSON; draws two flat cream SVG
-charts; and rewrites the TRACKING blocks in the profile README and the HTML
-demo page.
+The profile shows what changed recently on a page no editor opens every
+morning. This script keeps that current. It asks GitHub which commits the
+owner authored, in which public active repositories, over the last N days;
+writes the answer as machine-readable JSON; draws one flat cream SVG chart;
+and rewrites the TRACKING blocks in the profile README and the HTML demo
+page.
 
 Every output is a pure function of the collected data plus the local date --
 never a wall-clock minute -- so two runs against unchanged data leave every
@@ -54,7 +54,6 @@ CREAM = "#FFF9F0"
 FONT_STACK = "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
 
 MAX_REPO_ROWS = 40
-SMALL_STARS = 10
 SCHEMA_VERSION = "stylish-profile.tracking.v1"
 
 
@@ -480,6 +479,8 @@ DARK_PALETTE = {
     ORANGE: "#FFA05C",
 }
 
+
+
 def picture_block(raw_base: str, wide: str, narrow: str, alt: str) -> list[str]:
     """Markdown lines for one chart that swaps layout on phones and on dark pages.
 
@@ -507,23 +508,6 @@ def picture_block(raw_base: str, wide: str, narrow: str, alt: str) -> list[str]:
         "</picture>",
     ]
 
-
-def themed_image(raw_base: str, stem: str, ext: str, alt: str) -> list[str]:
-    """Markdown lines for one illustration that swaps on the reader's theme.
-
-    Two bare images, one per colour mode, each carrying the theme fragment.
-    GitHub wraps a bare image in an anchor whose href keeps the fragment, and
-    its stylesheet hides whichever anchor does not match, so exactly one of the
-    pair renders in every theme state. The illustrations have no phone variant,
-    so this costs nothing and it tracks GitHub's own theme toggle exactly,
-    which `prefers-color-scheme` only does when the operating system agrees.
-    """
-    return [
-        f'<img src="{raw_base}/{stem}{ext}#gh-light-mode-only" alt="{alt}" width="100%">',
-        f'<img src="{raw_base}/{stem}-dark{ext}#gh-dark-mode-only" alt="{alt}" width="100%">',
-    ]
-
-
 def dark_svg(markup: str) -> str:
     """Return the same chart drawn on the dark field.
 
@@ -546,6 +530,13 @@ def svg_open(width: int, height: int, title: str) -> list[str]:
         f'<g font-family="{FONT_STACK}">',
     ]
 
+
+def activity_alt(payload: dict) -> str:
+    total = sum(row["commits"] for row in payload["daily"])
+    return (
+        f"Daily commit counts across public {payload['owner']} repositories "
+        f"over the last {len(payload['daily'])} days, {total} total."
+    )
 
 def render_activity_svg(payload: dict) -> str:
     daily = payload["daily"]
@@ -762,68 +753,6 @@ def render_activity_svg_narrow(payload: dict) -> str:
     lines.append("</svg>")
     return "\n".join(lines) + "\n"
 
-def render_stars_svg(payload: dict) -> str:
-    stars = payload["stars"]
-    total = stars["total"]
-    top = stars["top"]
-    lines = svg_open(1000, 220, f"Public stars: {total}")
-
-    lines.append(
-        f'<text x="32" y="42" font-size="20" font-weight="600" fill="{INK}">'
-        f"Public stars for {esc(payload['owner'])}</text>"
-    )
-    lines.append(
-        f'<text x="32" y="122" font-size="54" font-weight="600" fill="{INK}">'
-        f"{total}</text>"
-    )
-    lines.append(
-        f'<text x="{44 + len(str(total)) * 32}" y="122" font-size="20" fill="{INK}">'
-        f"star(s), {len(top)} starred repo(s)</text>"
-    )
-
-    if not top:
-        lines.append(
-            f'<text x="320" y="104" font-size="14" fill="{INK}">'
-            "No public repository has a star yet.</text>"
-        )
-        lines.append(
-            f'<rect x="320" y="120" width="648" height="16" rx="8" fill="none"'
-            f' stroke="{INK}" stroke-width="3" stroke-dasharray="8 7"/>'
-        )
-    else:
-        max_stars = top[0]["stars"]
-        shown = top[:4]
-        for index, row in enumerate(shown):
-            y = 84 + index * 30
-            lines.append(
-                f'<text x="320" y="{y + 13}" font-size="13" fill="{INK}">'
-                f"{esc(clip(row['repo'], 24))}</text>"
-            )
-            bar_len = max(8, round(row["stars"] / max_stars * 340))
-            delay = 0.35 + index * 0.15
-            lines.append(
-                f'<rect x="560" y="{y}" width="{bar_len}" height="16" rx="8"'
-                f' fill="{YELLOW}" stroke="{INK}" stroke-width="3">'
-                f'<animate attributeName="width" from="0" to="{bar_len}"'
-                f' begin="{delay:.2f}s" dur="0.5s" fill="freeze"'
-                f' calcMode="spline" keySplines="0.2 0.8 0.2 1"/>'
-                "</rect>"
-            )
-            lines.append(
-                f'<text x="968" y="{y + 13}" font-size="13" fill="{INK}"'
-                f' text-anchor="end">{row["stars"]}</text>'
-            )
-        if len(top) > len(shown):
-            lines.append(
-                f'<text x="320" y="{84 + len(shown) * 30 + 13}" font-size="13"'
-                f' fill="{INK}">+{len(top) - len(shown)} more starred repo(s)'
-                "</text>"
-            )
-
-    lines.append("</g>")
-    lines.append("</svg>")
-    return "\n".join(lines) + "\n"
-
 
 # --------------------------------------------------------------------------
 # Block rendering (Markdown + HTML)
@@ -838,20 +767,6 @@ def local_push_date(stamp: str, offset_hours: int) -> str:
         return stamp[:10]
 
 
-def activity_alt(payload: dict) -> str:
-    total = sum(row["commits"] for row in payload["daily"])
-    return (
-        f"Daily commit counts across public {payload['owner']} repositories "
-        f"over the last {len(payload['daily'])} days, {total} total."
-    )
-
-
-def stars_alt(payload: dict) -> str:
-    stars = payload["stars"]
-    return (
-        f"Public stars: {stars['total']} total, "
-        f"{len(stars['top'])} repositories with at least one."
-    )
 
 
 def summary_sentence(payload: dict, context: dict) -> str:
@@ -876,17 +791,6 @@ def summary_sentence(payload: dict, context: dict) -> str:
     return f"{today['date']}: no commits today, and no repositories to track."
 
 
-def honest_stars_sentence(payload: dict) -> str:
-    if payload["stars"]["total"] >= SMALL_STARS:
-        return ""
-    return (
-        "That is a small number. The work is early, the count is real, "
-        "and neither is a reason to round it up."
-    )
-
-
-def no_table_sentence() -> str:
-    return "No project has a commit dated today, so there is no table to show."
 
 
 def current_line(payload: dict) -> str:
@@ -908,86 +812,22 @@ def current_text(payload: dict) -> str:
     )
 
 
-def render_stars_svg_narrow(payload: dict) -> str:
-    """The stars chart stacked for a phone, same numbers as the wide version."""
-    stars = payload["stars"]
-    total = stars["total"]
-    top = stars["top"]
-    lines = svg_open(560, 300, f"Public stars: {total}")
-
-    lines.append(
-        f'<text x="24" y="38" font-size="20" font-weight="600" fill="{INK}">'
-        f"Public stars for {esc(payload['owner'])}</text>"
-    )
-    lines.append(
-        f'<text x="24" y="104" font-size="48" font-weight="600" fill="{INK}">'
-        f"{total}</text>"
-    )
-    lines.append(
-        f'<text x="{36 + len(str(total)) * 28}" y="104" font-size="18" fill="{INK}">'
-        f"star(s), {len(top)} starred repo(s)</text>"
-    )
-
-    if not top:
-        lines.append(
-            f'<text x="24" y="160" font-size="14" fill="{INK}">'
-            "No public repository has a star yet.</text>"
-        )
-        lines.append(
-            f'<rect x="24" y="176" width="512" height="16" rx="8" fill="none"'
-            f' stroke="{INK}" stroke-width="3" stroke-dasharray="8 7"/>'
-        )
-    else:
-        max_stars = top[0]["stars"]
-        shown = top[:4]
-        for index, row in enumerate(shown):
-            y = 156 + index * 34
-            lines.append(
-                f'<text x="24" y="{y}" font-size="13" fill="{INK}">'
-                f"{esc(clip(row['repo'], 30))}</text>"
-            )
-            bar_len = max(8, round(row["stars"] / max_stars * 330))
-            lines.append(
-                f'<rect x="24" y="{y + 6}" width="{bar_len}" height="14" rx="7"'
-                f' fill="{YELLOW}" stroke="{INK}" stroke-width="3">'
-                f'<animate attributeName="width" from="0" to="{bar_len}"'
-                f' begin="{0.35 + index * 0.15:.2f}s" dur="0.5s" fill="freeze"'
-                f' calcMode="spline" keySplines="0.2 0.8 0.2 1"/>'
-                "</rect>"
-            )
-            lines.append(
-                f'<text x="536" y="{y}" font-size="13" fill="{INK}"'
-                f' text-anchor="end">{row["stars"]}</text>'
-            )
-        if len(top) > len(shown):
-            lines.append(
-                f'<text x="24" y="{156 + len(shown) * 34}" font-size="13"'
-                f' fill="{INK}">+{len(top) - len(shown)} more starred repo(s)'
-                "</text>"
-            )
-
-    lines.append("</g>")
-    lines.append("</svg>")
-    return "\n".join(lines) + "\n"
-
 def render_markdown_block(
     payload: dict, context: dict, offset_hours: int, raw_base: str
 ) -> list[str]:
     today = payload["today"]
-    stars = payload["stars"]
+    repos_url = f"https://github.com/{payload['owner']}?tab=repositories"
 
-    lines = ["## What changed today", "", summary_sentence(payload, context), ""]
+    lines = ["## What's fresh", "", summary_sentence(payload, context), ""]
 
     if today["commits"] > 0:
-        lines += ["| Project | Commits today | Last push |", "| --- | --- | --- |"]
+        lines += ["| Project | Last push |", "| --- | --- |"]
         for row in today["projects"]:
             lines.append(
-                f"| [{row['repo']}]({row['html_url']}) | {row['commits']} | "
+                f"| [{row['repo']}]({row['html_url']}) | "
                 f"{local_push_date(row['pushed_at'], offset_hours)} |"
             )
         lines.append("")
-    else:
-        lines += [no_table_sentence(), ""]
 
     lines += picture_block(
         raw_base, "activity.svg", "activity-narrow.svg", activity_alt(payload)
@@ -996,81 +836,43 @@ def render_markdown_block(
         "",
         f"**Current project:** {current_line(payload)}.",
         "",
+        f"[All repositories]({repos_url}).",
     ]
-    lines += picture_block(
-        raw_base, "stars.svg", "stars-narrow.svg", stars_alt(payload)
-    )
-    lines += [
-        "",
-        "### Stars",
-        "",
-        f"Total public stars across tracked repositories: **{stars['total']}**.",
-    ]
-    honest = honest_stars_sentence(payload)
-    if honest:
-        lines += ["", honest]
-    if stars["top"]:
-        lines += [
-            "",
-            "Starred repositories: "
-            + ", ".join(
-                f"[{row['repo']}]({row['html_url']}) ({row['stars']})"
-                for row in stars["top"]
-            )
-            + ".",
-        ]
-    else:
-        lines += ["", "No public repository has a star yet."]
-
-    lines += [
-        "",
-        "<details>",
-        "<summary>All public repositories</summary>",
-        "",
-        "| Repository | Last push | Language | Stars |",
-        "| --- | --- | --- | --- |",
-    ]
-    for row in payload["repos"]:
-        lines.append(
-            f"| [{row['name']}]({row['html_url']}) | "
-            f"{local_push_date(row['pushed_at'], offset_hours)} | "
-            f"{row['language'] or '-'} | {row['stars']} |"
-        )
-    lines += ["", "</details>"]
     return lines
 
 
 def render_html_block(payload: dict, context: dict, offset_hours: int) -> list[str]:
     today = payload["today"]
-    stars = payload["stars"]
+    repos_url = f"https://github.com/{payload['owner']}?tab=repositories"
 
     lines = [
-        "<h2>What changed today</h2>",
+        "<h2>What's fresh</h2>",
         f"<p>{esc(summary_sentence(payload, context))}</p>",
     ]
 
     if today["commits"] > 0:
         lines += [
             "<table>",
-            "<thead><tr><th>Project</th><th>Commits today</th>"
-            "<th>Last push</th></tr></thead>",
+            "<thead><tr><th>Project</th><th>Last push</th></tr></thead>",
             "<tbody>",
         ]
         for row in today["projects"]:
             lines.append(
                 f'<tr><td><a href="{row["html_url"]}">{esc(row["repo"])}</a></td>'
-                f"<td>{row['commits']}</td>"
                 f"<td>{esc(local_push_date(row['pushed_at'], offset_hours))}</td></tr>"
             )
         lines += ["</tbody>", "</table>"]
-    else:
-        lines.append(f"<p>{esc(no_table_sentence())}</p>")
 
     alt_a = activity_alt(payload)
-    alt_s = stars_alt(payload)
+    # The page defaults to dark and overrides to light, so the dark chart is the
+    # fallback and the light ones are the media-matched overrides.
     lines += [
         '<figure class="wide-figure">',
         "<picture>",
+        f'<source media="(prefers-color-scheme: light) and {PHONE_MEDIA}"'
+        ' srcset="../assets/profile/generated/activity-narrow.svg">',
+        '<source media="(prefers-color-scheme: light)"'
+        ' srcset="../assets/profile/generated/activity.svg">',
         f'<source media="{PHONE_MEDIA}"'
         ' srcset="../assets/profile/generated/activity-narrow-dark.svg">',
         '<img src="../assets/profile/generated/activity-dark.svg"'
@@ -1090,41 +892,7 @@ def render_html_block(payload: dict, context: dict, offset_hours: int) -> list[s
     else:
         lines.append(f"<p>Current project: {esc(current_text(payload))}.</p>")
 
-    stars_text = f"Total public stars: {stars['total']}."
-    honest = honest_stars_sentence(payload)
-    if honest:
-        stars_text += f" {honest}"
-    if not stars["top"]:
-        stars_text += " No public repository has a star yet."
-    lines += [
-        '<figure class="wide-figure">',
-        "<picture>",
-        f'<source media="{PHONE_MEDIA}"'
-        ' srcset="../assets/profile/generated/stars-narrow-dark.svg">',
-        '<img src="../assets/profile/generated/stars-dark.svg"'
-        f' alt="{esc(alt_s)}" width="100%">',
-        "</picture>",
-        f"<figcaption>{esc(alt_s)}</figcaption>",
-        "</figure>",
-        f"<p>{esc(stars_text)}</p>",
-    ]
-
-    lines += [
-        "<details>",
-        "<summary>All public repositories</summary>",
-        "<table>",
-        "<thead><tr><th>Repository</th><th>Last push</th><th>Language</th>"
-        "<th>Stars</th></tr></thead>",
-        "<tbody>",
-    ]
-    for row in payload["repos"]:
-        lines.append(
-            f'<tr><td><a href="{row["html_url"]}">{esc(row["name"])}</a></td>'
-            f"<td>{esc(local_push_date(row['pushed_at'], offset_hours))}</td>"
-            f"<td>{esc(row['language'] or '-')}</td>"
-            f"<td>{row['stars']}</td></tr>"
-        )
-    lines += ["</tbody>", "</table>", "</details>"]
+    lines.append(f'<p><a href="{repos_url}">All repositories</a>.</p>')
     return lines
 
 
@@ -1179,14 +947,10 @@ def build_outputs(
         root / "profile" / "tracking.json": render_json(payload),
         generated / "activity.svg": render_activity_svg(payload),
         generated / "activity-narrow.svg": render_activity_svg_narrow(payload),
-        generated / "stars.svg": render_stars_svg(payload),
-        generated / "stars-narrow.svg": render_stars_svg_narrow(payload),
     }
     for light_name, dark_name in (
         ("activity.svg", "activity-dark.svg"),
         ("activity-narrow.svg", "activity-narrow-dark.svg"),
-        ("stars.svg", "stars-dark.svg"),
-        ("stars-narrow.svg", "stars-narrow-dark.svg"),
     ):
         outputs[generated / dark_name] = dark_svg(outputs[generated / light_name])
     targets = [
