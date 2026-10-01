@@ -120,6 +120,29 @@ Blocked/uncertain:
 Next:
 - open the pull request against main and arm auto-merge once the gates check passes on the final push
 
+### 2026-10-01 21:32:50 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["tasks/TASK-SP-0007-hero-and-figure-rebuild.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md"],"completed":["SP-0007 is delivered: PR #25 squash-merged into main as 72e4fb2 with gates and arm auto-merge both passing on head f0c83f0, and issue #24 closed as completed"],"decisions":["the closing increment rebases the task branch onto accepted history rather than merging main back, because the squash merge already contains the branch's content"],"evidence":["gh pr view 25 reports state MERGED, mergedAt 2026-10-01T21:28:43Z, merge commit 72e4fb2; gh pr checks 25 reports gates pass and arm auto-merge pass; gh issue view 24 reports state CLOSED, stateReason COMPLETED; leaf receipts published for request ID e5b1f26567d140aa8cdf1ea4a449d635 at push f0c83f0 and for the merge"],"next_action":"nothing; SP-0007 is complete","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0007","timestamp":"2026-10-01T21:32:50Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"7227cc25fdffb94ffb95e5971d6d1a01195b4df5e6d375fcbd8cddd1881d9272","request_id":"c40ec471831b4cc3835dec82240d0941","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0007"} -->
+
+Completed:
+- SP-0007 is delivered: PR #25 squash-merged into main as 72e4fb2 with gates and arm auto-merge both passing on head f0c83f0, and issue #24 closed as completed
+
+Evidence:
+- gh pr view 25 reports state MERGED, mergedAt 2026-10-01T21:28:43Z, merge commit 72e4fb2; gh pr checks 25 reports gates pass and arm auto-merge pass; gh issue view 24 reports state CLOSED, stateReason COMPLETED; leaf receipts published for request ID e5b1f26567d140aa8cdf1ea4a449d635 at push f0c83f0 and for the merge
+
+Decisions:
+- the closing increment rebases the task branch onto accepted history rather than merging main back, because the squash merge already contains the branch's content
+
+Changed:
+- tasks/TASK-SP-0007-hero-and-figure-rebuild.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- nothing; SP-0007 is complete
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
