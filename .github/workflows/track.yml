@@ -83,7 +83,16 @@ jobs:
           git push --force origin "$BRANCH"
 
           if gh pr view "$BRANCH" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "refresh pull request already open; the push updated it"
+            state=$(gh pr view "$BRANCH" --repo "$GITHUB_REPOSITORY" --json state --jq .state)
+            if [ "$state" = "CLOSED" ]; then
+              # A previous refresh was closed without merging. Reopen it rather
+              # than creating a second pull request for the same branch, which
+              # GitHub rejects.
+              gh pr reopen "$BRANCH" --repo "$GITHUB_REPOSITORY"
+              echo "reopened the refresh pull request"
+            else
+              echo "refresh pull request already open; the push updated it"
+            fi
           else
             gh pr create \
               --repo "$GITHUB_REPOSITORY" \
