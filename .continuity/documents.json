@@ -10,10 +10,11 @@
       "path": ".content-system/asset-manifest.json",
       "related": [],
       "reviewed_commit": "uncommitted",
-      "reviewed_sha256": "60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773",
+      "reviewed_sha256": "4c8048e298295190683ebdbd42ac5337aa2c57b069f99729da1ffa27ecffd071",
       "summary": "Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.",
       "tasks": [
-        "SP-0001"
+        "SP-0001",
+        "SP-0009"
       ],
       "title": "Content adapter asset manifest"
     },

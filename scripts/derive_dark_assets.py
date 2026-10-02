@@ -23,6 +23,17 @@ that reaches the edge of the frame - and replaces only that. Everything the
 drawing put on top keeps its colour, which is what keeps skin skin and hair
 hair.
 
+The paper is found once for the whole loop rather than once per frame. The
+border-connected pass answers a question about the frame it is run on, and that
+answer moves between frames even where the drawing does not. Two things move
+it, and the first is much the larger: a sprite crossing a region changes which
+pixels are ink, so a region that reached the frame edge in one frame can be
+sealed off in the next. The page colour also drifts between frames in the
+source light GIF itself, which is what stops a byte-exact repair from following
+the first effect. A pixel is paper if the border-connected pass calls it paper
+in this frame, or in another frame where its colour is within
+PAPER_MATCH_TOLERANCE of this frame's.
+
 One thing does have to change. Text and rules are drawn straight onto the
 paper, so leaving them alone would put black text on a dark field. Ink that
 sits on the paper is redrawn in light ink, while ink that belongs to the
@@ -37,16 +48,17 @@ that ran along every contour of the shipped dark illustrations.
 Two tests agree on what is instead drawn on the paper, and either one is
 enough. The first is enclosure: an ink component whose interior encloses
 almost nothing is drawn on the paper, while the drawing itself encloses
-thousands of pixels. Measured across all eight pictures, the drawing encloses
-at least 13,000 px and every other component encloses at most 68 px, so
-PAGE_MARK_FRACTION sits in a gap of nearly two hundred times. Enclosure alone
+thousands of pixels. Measured across all eight pictures, the components this
+test accepts enclose at most 117 px and the smallest it rejects encloses
+125 px, while the drawing itself encloses up to 55,771 px. Enclosure alone
 is not enough, because a diagram drawn on the paper - the line, dot and square
 of a timeline - can enclose a large area and still be a mark. The second test
 is surround: the drawing's contour is traced by its own fill, so only a
 quarter of it has paper within a couple of pixels, while a diagram drawn on
 the paper is next to paper along its whole length. Measured across all eight
-pictures that fraction is at least 0.77 for a mark and at most 0.47 for the
-drawing, which is where PAGE_MARK_RING sits.
+pictures, the components that test accepts reach 0.700 and the highest a
+rejected one reaches is 0.698, while the drawing's own contour never passes
+0.680. That is where PAGE_MARK_RING sits.
 
 The transform runs on numpy arrays. A per-pixel Python loop over a 900x600
 render is slow enough to look like a hang, and a five-frame GIF multiplies that
@@ -93,20 +105,62 @@ PAPER_INK = (250, 246, 236)
 PAPER_INK_REACH = 8
 
 # The enclosed area, as a fraction of the frame, below which an ink component
-# is text drawn on the paper rather than the drawing itself. The drawing's own
-# components enclose at least 6,141 px; every other component encloses at most
-# 2,083 px, and the per-asset limits this fraction produces are 82 to 128 px.
+# is text drawn on the paper rather than the drawing itself. Measured across
+# the eight pictures, the components this test accepts enclose at most 117 px
+# and the smallest it rejects encloses 125 px, so the cut sits in the thinnest
+# part of the two clusters rather than in a wide gap - which is why the ring
+# test below exists and either one is enough. The drawing itself encloses up to
+# 55,771 px.
 PAGE_MARK_FRACTION = 2.37e-4
 
 # The fraction of an ink component's immediate surroundings that has to be
 # paper before the component counts as a diagram drawn on the page. Measured
-# across all eight illustrations this is at least 0.77 for a mark and at most
-# 0.47 for the drawing, so the cut sits in a gap of more than half again.
+# across all eight illustrations, every component at or above 0.70 is a mark
+# and the highest one below it reaches 0.698, while the drawing's own contour
+# never passes 0.680. The cut is narrow, and it is why enclosure is kept as the
+# other half of the test rather than replaced by this.
 PAGE_MARK_RING = 0.70
 
 # How far out those surroundings are measured. Two pixels clears the
 # anti-aliased edge of a stroke without reaching the fill inside a contour.
 PAGE_MARK_RING_RADIUS = 2
+
+# How far apart two frames' colours at the same pixel may be and still count
+# as the page agreeing with itself.
+#
+# The page colour is not constant across a loop. It drifts a level or two
+# between frames in the source light GIF itself, before this transform runs,
+# and the border-connected pass can then answer differently in each frame. On
+# One Push Many Pipelines the interiors of the three boxes are the page colour
+# exactly, and they drift two levels at frame 2, which is enough to make the
+# pass call them page in one frame and not in the next. This tolerance is the
+# smallest value that darkens all three interiors in every frame; at zero the
+# first box stays cream in frames 0 and 1, which is the cream trail the fix is
+# meant to remove.
+#
+# Drift is the smaller of the two reasons the answer moves. The larger one is
+# that a sprite crossing a region changes which pixels are ink, so a region
+# that reached the frame edge in one frame is sealed off in the next while the
+# source bytes at the pixel do not change at all. The tolerance cannot repair
+# that on its own, but it does not have to: at a byte-identical pixel the two
+# frames' colours are equal, so the test passes trivially and the union carries
+# the answer across. The tolerance matters for the pixels where the source
+# itself moved.
+#
+# Two is also far from everything that is not page, which is why it is safe
+# rather than merely sufficient. The nearest light thing that is not page is
+# the grey the small robot in AI Engineer is drawn in, fifteen levels away, and
+# Pujan's drawer white is twelve. The construction never reaches a pixel the
+# border-connected pass has not already called page in some frame, so a drawn
+# object can only be darkened where some frame's pass was already wrong about
+# it - which is the shipped behaviour this transform inherits and stabilises,
+# not a new hole.
+#
+# This is not a test for "is this pixel paper", and it is not asked to be one.
+# The skin, the bench face and the pegboard are the page colour exactly, so no
+# tolerance separates them from it. The tolerance decides whether the page has
+# moved, not what the page is.
+PAPER_MATCH_TOLERANCE = 2
 
 _NEIGHBOURS = np.ones((3, 3), dtype=bool)
 
@@ -219,36 +273,78 @@ def _scene(rgb: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """The masks an illustration is classified by, before anything is drawn."""
     return _paper_mask(rgb), _ink_mask(rgb)
 
-def darken_array(rgb: np.ndarray, scene: np.ndarray | None = None) -> np.ndarray:
-    """Map an HxWx3 uint8 illustration onto the dark page."""
-    paper, ink = _scene(rgb)
-    marks = _page_mark_mask(rgb, paper, ink) if scene is None else scene
+def darken_array(
+    rgb: np.ndarray,
+    paper: np.ndarray | None = None,
+    marks: np.ndarray | None = None,
+) -> np.ndarray:
+    """Map an HxWx3 uint8 illustration onto the dark page.
+
+    Both masks are optional so a caller can supply the ones a loop agreed on
+    rather than the ones this frame derives on its own; :func:`loop_scene` is
+    the caller that does.
+    """
+    detected_paper, ink = _scene(rgb)
+    if paper is None:
+        paper = detected_paper
+    if marks is None:
+        marks = _page_mark_mask(rgb, detected_paper, ink)
     result = rgb.copy()
     result[paper] = np.array(PANEL, dtype=rgb.dtype)
     result[marks] = np.array(PAPER_INK, dtype=rgb.dtype)
     return result
 
 
-def darken_frame(frame: Image.Image, scene: np.ndarray | None = None) -> Image.Image:
+def darken_frame(
+    frame: Image.Image,
+    paper: np.ndarray | None = None,
+    marks: np.ndarray | None = None,
+) -> Image.Image:
     return Image.fromarray(
-        darken_array(np.asarray(frame.convert("RGB")), scene=scene)
+        darken_array(np.asarray(frame.convert("RGB")), paper=paper, marks=marks)
     )
 
-def scene_for_loop(arrays: list[np.ndarray]) -> np.ndarray:
-    """Freeze the classification for a whole loop instead of one per frame.
+def loop_scene(
+    arrays: list[np.ndarray],
+) -> tuple[list[np.ndarray], np.ndarray]:
+    """The masks a whole loop is drawn with, rather than one set per frame.
 
-    A GIF animates sprites across the very areas this classification measures,
-    and it is size-based, so a sprite can cut an enclosed area in two and push
-    both halves under the threshold. Decided frame by frame, that reads as a
-    cream patch blinking on and off behind the moving sprite, and no check in
-    this repository can catch it, because every check re-derives each frame the
-    same way. So the marks come from the first frame. The paper mask is still
-    taken per frame, because it is a colour test rather than a size test: a
-    sprite that moves in front of the border simply stops that patch of page
-    from being page, which is what should happen.
+    The page mask is a border-connected pass, and the pass answers a question
+    about the frame it runs on. That answer moves between frames even where the
+    drawing does not, for two reasons. A sprite crossing a region changes which
+    pixels are ink, so a region that reached the frame edge in one frame is
+    sealed off in the next; that is the larger effect. The page colour also
+    drifts a level or two between frames in the source light GIF itself. Either
+    way the pixel can be unchanged in the source while the output blinks
+    between the dark page and the cream mark colour, and no check in this
+    repository can catch it, because every check re-derives each frame the same
+    way.
+
+    So a pixel counts as page here if the border-connected pass calls it page
+    in this frame, or if it holds nearly the same colour as a frame in which
+    that pass does. PAPER_MATCH_TOLERANCE gates that second clause. It never
+    reaches a pixel the pass has not already called page somewhere, which is
+    why the skin, the bench face and the pegboard - all of them the page colour
+    exactly, and none of them ever border-connected - are still excluded by
+    connectivity and not by colour.
+
+    The marks mask is taken from the first frame, because it is a size test: a
+    sprite crossing a region can cut it in two and push both halves under the
+    enclosure threshold.
     """
-    paper, ink = _scene(arrays[0])
-    return _page_mark_mask(arrays[0], paper, ink)
+    papers = [_paper_mask(array) for array in arrays]
+    marks = _page_mark_mask(arrays[0], papers[0], _ink_mask(arrays[0]))
+    integers = [array.astype(np.int16) for array in arrays]
+    pages = []
+    for index, array in enumerate(arrays):
+        page = papers[index].copy()
+        for other in range(len(arrays)):
+            if other == index:
+                continue
+            near = np.abs(integers[index] - integers[other]).max(axis=-1)
+            page |= papers[other] & (near <= PAPER_MATCH_TOLERANCE)
+        pages.append(page & _candidate_mask(array))
+    return pages, marks
 
 
 def convert(source: Path, destination: Path | BytesIO) -> None:
@@ -265,8 +361,11 @@ def convert(source: Path, destination: Path | BytesIO) -> None:
             for frame in ImageSequence.Iterator(image):
                 arrays.append(np.asarray(frame.convert("RGB")))
                 durations.append(frame.info.get("duration", 100))
-            scene = scene_for_loop(arrays)
-            frames = [Image.fromarray(darken_array(array, scene)) for array in arrays]
+            papers, marks = loop_scene(arrays)
+            frames = [
+                Image.fromarray(darken_array(array, paper=paper, marks=marks))
+                for array, paper in zip(arrays, papers)
+            ]
             # One shared colour table for the whole loop, for the same reason the
             # light GIFs use one: independent per-frame quantisation makes flat
             # colours shimmer between frames.
