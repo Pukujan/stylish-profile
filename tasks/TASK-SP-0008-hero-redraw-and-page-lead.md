@@ -46,14 +46,14 @@ A visitor meets a hero drawing that holds up in both themes, and a first screen 
 
 ## Acceptance criteria
 
-- [ ] a new hero still at 1536x1024 and a new phone hero still at 1024x1536 are generated with the new image model, both spelling the title and subtitle exactly and carrying no other text
-- [ ] a vision pass over the new light and dark hero frames finds no malformed glyph, no broken connecting line, no floating element, no light halo tracing a silhouette, and no ragged title outline
-- [ ] both hero locked-motion GIFs pass `scripts/build_locked_motion.py check` outside their declared moving boxes
-- [ ] the dark-variant transform no longer repaints a figure's own outline as light ink, and `scripts/derive_dark_assets.py --check` passes on every committed variant after the change
-- [ ] the first screen of `profile/README.md` runs hero image, a short introduction naming the featured project, the market, what Pujan does about it, the daily commits, the projects, then everything else
-- [ ] `docs/index.html` carries the same order and the same opening claims
-- [ ] no sentence in the reordered opening explains pinning, checks, gating or fail-closed behaviour, and those facts still appear further down the page
-- [ ] every existing gate stays green: `check_profile_links`, `generate_voice_notes --check`, the pinned CGM adapter validator, the hsw writing scans, and `continuity validate`
+- [x] a new hero still at 1536x1024 and a new phone hero still at 1024x1536 are generated with the new image model, both spelling the title and subtitle exactly and carrying no other text
+- [x] a vision pass over the new light and dark hero frames finds no malformed glyph, no broken connecting line, no floating element, no light halo tracing a silhouette, and no ragged title outline
+- [x] both hero locked-motion GIFs pass `scripts/build_locked_motion.py check` outside their declared moving boxes
+- [x] the dark-variant transform no longer repaints a figure's own outline as light ink, and `scripts/derive_dark_assets.py --check` passes on every committed variant after the change
+- [x] the first screen of `profile/README.md` runs hero image, a short introduction naming the featured project, the market, what Pujan does about it, the daily commits, the projects, then everything else
+- [x] `docs/index.html` carries the same order and the same opening claims
+- [x] no sentence in the reordered opening explains pinning, checks, gating or fail-closed behaviour, and those facts still appear further down the page
+- [x] every existing gate stays green: `check_profile_links`, `generate_voice_notes --check`, the pinned CGM adapter validator, the hsw writing scans, and `continuity validate`
 
 ## Evidence and sources
 
@@ -65,7 +65,7 @@ Recorded on branch `task/SP-0008-hero-redraw-and-page-lead`.
 | `python scripts/build_locked_motion.py check --recipe scripts/motion-recipes/hero-phone.json` | `OK AI Engineer phone.gif: 6 frames, environment identical outside 5 declared moving boxes` |
 | `python scripts/build_locked_motion.py check --recipe scripts/motion-recipes/projects-on-one-thread.json` | `OK Projects on One Thread.gif: 6 frames, environment identical outside 1 declared moving boxes` |
 | `python scripts/derive_dark_assets.py && python scripts/derive_dark_assets.py --check` | `VALID: 8 dark variant(s) match their source` |
-| `python scripts/check_profile_links.py` | `VALID: 33 local reference(s) resolved, 36 recorded hash(es) matched` |
+| `python scripts/check_profile_links.py` | `VALID: 34 local reference(s) resolved, 36 recorded hash(es) matched` |
 | `python scripts/generate_voice_notes.py --check` | `checked 9 clip(s), 0 problem(s)` |
 | pinned CGM `validate_content_system.py --adapter .content-system` | `VALID: content-generation-modules contract and target adapter` |
 | pinned CGM `verify_hsw_applied.py --root <cgm>` | `VALID: HSW always-on contract OK` |
@@ -102,6 +102,26 @@ freezing the page to the intersection of every frame's candidate reaches 0
 flips but costs 21-100% of the page area on six of eight assets; morphological
 opening does not move the mask differences at all, because they are sprites
 moving rather than leaks.
+
+### Post-merge audit, 2026-10-02
+
+Re-checked against the merged tree rather than the branch, after both merges.
+
+| Check | Result |
+| --- | --- |
+| `gates` on `main` at `e1049db` (run 36948611156) | success |
+| `gates` on `main` at `f237e72` (run 36949420571) | success |
+| vision pass on `assets/profile/anim/AI Engineer-dark.gif` frame 1 | outlines dark and crisp, no halo tracing the engineer, coat, glassware or bench; title and subtitle crisp; boots on the ground line |
+| vision pass on `docs/index.html` rendered dark in Chromium | hero is `AI Engineer-dark.gif`, body background `#0f0f0f`, heading order The work → What I do about it → What's fresh → Featured projects → How I work → Listen instead, one `TRACKING:START` and one `TRACKING:END` marker |
+| phone hero bottom margin, measured on `assets/profile/AI Engineer phone.png` | last drawn row 1321 of 1536, a 14.0% margin, against 841 of 1024 (17.8%) on the wide hero, 619 of 720 (13.9%) on the phone GIF's first frame and 493 of 600 (17.7%) on the wide GIF's |
+| dark hero page-cream survivors | 48,617 px (9.0%), all of it the bench face and the pegboard, which are drawn in the field colour exactly (Chebyshev 0); the lab coat is `(253,253,253)`, distance 21, and is not in the set. Identical under HEAD's transform, so pre-existing and deliberate. Recorded on #28 |
+
+Two vision reports from this pass were checked against pixels and did not hold:
+the small robot does not float (its lowest drawn row is 488, the ground line
+occupies 489-493), and the phone hero's bottom band is not a dead third (14.0%,
+the smallest margin of the four renders measured). The band reads as empty
+because the floor is drawn in the page colour, so it blends into the page in
+both themes; that is the illustration's edge treatment, not dead space.
 
 ## Related records
 
