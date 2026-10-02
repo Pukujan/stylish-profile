@@ -10,7 +10,7 @@
       "path": ".content-system/asset-manifest.json",
       "related": [],
       "reviewed_commit": "uncommitted",
-      "reviewed_sha256": "4c8048e298295190683ebdbd42ac5337aa2c57b069f99729da1ffa27ecffd071",
+      "reviewed_sha256": "4c1ff489bb14e1dff3b0bb524bfc2814145e5af76f6d92e3c0999bf876ccb106",
       "summary": "Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.",
       "tasks": [
         "SP-0001",
@@ -45,10 +45,11 @@
       "path": "profile/README.md",
       "related": [],
       "reviewed_commit": "uncommitted",
-      "reviewed_sha256": "003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7",
+      "reviewed_sha256": "5cee22b34b4387e62d122861a8f57af1a71fc9f1bf886d7b14787f21f4d397b4",
       "summary": "The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: who I am, what I'm building with the four featured projects, how I work, the tools, what's fresh, the spoken tour links and how to find me.",
       "tasks": [
-        "SP-0001"
+        "SP-0001",
+        "SP-0010"
       ],
       "title": "Profile page (publishable)"
     },
@@ -128,10 +129,11 @@
       "path": "docs/index.html",
       "related": [],
       "reviewed_commit": "uncommitted",
-      "reviewed_sha256": "e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599",
+      "reviewed_sha256": "7546fba9b3066a54a8ba7655dce644940a8cff4727b78a2f3578e00284a02b89",
       "summary": "The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.",
       "tasks": [
-        "SP-0001"
+        "SP-0001",
+        "SP-0010"
       ],
       "title": "Tour page"
     }

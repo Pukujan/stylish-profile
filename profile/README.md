@@ -7,17 +7,15 @@
 
 # Hi, I'm Pujan
 
-**AI engineer.** I build systems that keep long AI projects from losing their place: the rules a project hands a fresh agent, the record of what was verified, and the routing that decides which model answers.
+**I build systems that keep long AI projects from losing their place.** That is the whole job: the rules a project hands a fresh agent, the record of what it has already been through, and the routing that decides which model answers.
 
-The piece the rest sit on is **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh agent, and the agent starts with the right rules instead of guessing.
+My featured project is **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh agent, and the agent starts with the right rules instead of guessing.
 
-One habit runs through all four featured projects below: leave a trail behind you.
+Everything else below grows from that one habit: leave a trail behind you.
 
-You can [listen to the tour](https://pukujan.github.io/stylish-profile/docs/) if you would rather hear this than read it.
+## The market
 
-## The work
-
-Document-heavy AI means the input is a contract, a filing, a case file or a policy pack, and the output has to survive someone checking it. The models are good enough now. The failure has moved somewhere else.
+The work is document-heavy AI systems: a contract, a filing, a case file, a policy pack. The models are good enough for it now. The failure has moved somewhere else.
 
 **Long projects rarely fail because the work was too hard.** They fail because something got dropped: a decision nobody wrote down, a check nobody ran, a handoff nobody made.
 
@@ -25,12 +23,12 @@ That shows up in four places. A fresh agent starts from a blank prompt and confi
 
 ## What I do about it
 
-I automate the parts that would otherwise be dropped, and I build each one once so it can be reused.
+I build one small tool for each of those four places, and I build each one once so it can be reused.
 
 - **A session starts from the rules your project actually uses, not a blank prompt.** A fresh agent begins with the right contract instead of confidently inventing a workflow.
-- **Long work survives a break.** What changed, what was verified and what is still open stays on the record, so the next person does not have to ask.
-- **Output sounds like a person, not a template.** Writing and images come out in your voice and your palette, and every generated file can be traced back to what produced it.
-- **The model route is a decision, not a hard-coded provider.** Which model answers is answered by policy, so it can change when the provider does.
+- **Long work survives a break.** What changed, what was checked and what is still open stays on the record, so the next person does not have to ask.
+- **Output sounds like a person, not a template.** Writing and images come out in your voice and your palette, so the result feels made rather than generated.
+- **The model route follows a policy.** Which model answers is decided by rule, so it can change when the provider does.
 
 The commits below are the honest version of that claim.
 
@@ -63,7 +61,7 @@ The commits below are the honest version of that claim.
 Four projects, each open on GitHub, each one a piece of the same habit.
 
 - **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing. ([listen, 0:27](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Agent%20Custom%20Setup.mp3))
-- **[Project Continuity Modules](https://github.com/Pukujan/project-continuity-modules)** — long work survives a break: what changed, what was verified, and what is still open. ([listen, 0:29](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Project%20Continuity%20Modules.mp3))
+- **[Project Continuity Modules](https://github.com/Pukujan/project-continuity-modules)** — long work survives a break: what changed, what was checked, and what is still open. ([listen, 0:29](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Project%20Continuity%20Modules.mp3))
 - **[Content Generation Modules](https://github.com/Pukujan/content-generation-modules)** — writing and images that sound like a person rather than a template. ([listen, 0:25](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Content%20Generation%20Modules.mp3))
 - **[Inference Recommendation Engine](https://github.com/Pukujan/inference-recommendation-engine)** — provider-neutral routing for model calls, decided by policy instead of a hard-coded provider. ([listen, 0:22](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3))
 
@@ -77,29 +75,29 @@ Agent Custom Setup decides what rules a session starts with. Project Continuity 
 
 ### Agent Custom Setup
 
-It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and **fails the install when it is not**. That check is the reason this page's own repository cannot silently drift from the versions it claims.
+It pins the versions of the tools a project depends on, so a project cannot silently drift from the versions it claims.
 
 The [live module registry](https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json) lists what it can load, and [POLICY.md](https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md) says what it will refuse to do.
 
-*Why it exists:* an agent that starts from a blank prompt will confidently invent a workflow. One that starts from a checked contract will follow yours.
+*Why it exists:* an agent that starts from a blank prompt will confidently invent a workflow. One that starts from your project's own rules will follow yours.
 
 ### Project Continuity Modules
 
-Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; **a GitHub issue owns the scope**; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.
+Long work survives a break. What changed, what was checked, and what is still open stays on the record, so the next person does not have to reconstruct it.
 
 *Why it exists:* the expensive failure is not a bad decision. It is a good decision that nobody recorded.
 
 ### Content Generation Modules
 
-Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.
+Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, so a page reads like it was written for someone.
 
 *Why it exists:* a page that reads like a brochure is a page nobody finishes. This page is built with it.
 
 ### Inference Recommendation Engine
 
-Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.
+Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider.
 
-*Why it exists:* provider choice changes monthly. The decision logic should not live in twenty call sites.
+*Why it exists:* provider choice changes monthly. The decision should not live in twenty call sites.
 
 </details>
 
