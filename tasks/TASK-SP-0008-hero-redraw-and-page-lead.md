@@ -110,6 +110,8 @@ moving rather than leaks.
 - Related PR/CI evidence: pull request #29, `https://github.com/Pukujan/stylish-profile/pull/29`. Every step of the required `gates` job passed on `49e7af7`, the exact merge candidate. Squash merge `14338d22ffcf229650303868ab7500ac0a069f87` on `main`, verified by fetching `origin/main` and confirming the merge commit is an ancestor.
 - Delivery note: the first candidate, `c96852d`, failed `gates` on a stale `docs/CONTINUITY_INDEX.md` — the index had been rendered before the task projection and `checkpoints/CURRENT.md` were written, so the runner saw a hash for `PROJECT.md` that no longer matched. Re-rendered and pushed as `49e7af7`; auto-merge then landed the green run. No product file changed in that fix.
 - Follow-up filed from this task: #28, the residual flash in the derived dark GIFs, which predates this task and is reduced but not removed by it.
+- Leaf receipt for the close-out increment, request `9df782a29413487d90c89449415a8108`: https://github.com/Pukujan/stylish-profile/issues/27#issuecomment-5943631954 — names both the checkpoint commit `993f8e9` and the repair `d01d5b5`.
+- Gate-running notes for the next session, including the `--blocked ""` trap, the render-before-push ordering and the pinned-versions requirement for the byte-comparison check: `README.md`, section "Running the gates locally".
 
 ## Checkpoint log
 
@@ -152,6 +154,29 @@ Decisions:
 
 Changed:
 - tasks/TASK-SP-0008-hero-redraw-and-page-lead.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Pick up #28: find a page mask for scripts/derive_dark_assets.py that stops the dark GIFs flashing without shrinking the page area, and measure flashing pixels and page area together before touching any committed asset.
+
+### 2026-10-02 01:06:21 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["README.md, .content-system/asset-manifest.json, docs/CONTINUITY_INDEX.md, tasks/TASK-SP-0008-hero-redraw-and-page-lead.md"],"completed":["Corrected the phone hero's framing record to the measurement and wrote the local gate-running rules into the README, then published the missing close-out receipt on issue #27."],"decisions":["Corrected the manifest wording rather than re-placing the phone sprites, because the measured 14 percent margin is inside the 13.9 to 17.8 percent band the whole page already uses, so there was no dead third to fix. Put the gate-ordering rules in the README's gate section rather than only in the task handoff, because the next session reads the README before it reads a finished task."],"evidence":["Last drawn row on the committed phone still is 1321 of 1536, a 14 percent bottom margin, against 841 of 1024 on the wide hero, measured directly from the PNGs. Local gates under the CI pins: check_profile_links 34 references and 36 hashes, generate_voice_notes 9 clips 0 problems, derive_dark_assets 8 variants matching, build_locked_motion check OK on all three recipes, pinned adapter validator VALID, both hsw scans VALID, continuity validate VALID. Receipt for request 9df782a29413487d90c89449415a8108 posted to issue #27 as comment 5943631954, naming 993f8e9 and the d01d5b5 repair. Post-merge gates run 36948611156 on main at e1049db: success. Both merged SP-0008 branches deleted, local and remote."],"next_action":"Pick up #28: find a page mask for scripts/derive_dark_assets.py that stops the dark GIFs flashing without shrinking the page area, and measure flashing pixels and page area together before touching any committed asset.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0008","timestamp":"2026-10-02T01:06:21Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"2bc7081dff333ee6ab00d48962b2b85ae5738884fc85ab328b6127118ea0c602","request_id":"f8084b17565b40feb0d4887ad9fdce9c","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0008"} -->
+
+Completed:
+- Corrected the phone hero's framing record to the measurement and wrote the local gate-running rules into the README, then published the missing close-out receipt on issue #27.
+
+Evidence:
+- Last drawn row on the committed phone still is 1321 of 1536, a 14 percent bottom margin, against 841 of 1024 on the wide hero, measured directly from the PNGs. Local gates under the CI pins: check_profile_links 34 references and 36 hashes, generate_voice_notes 9 clips 0 problems, derive_dark_assets 8 variants matching, build_locked_motion check OK on all three recipes, pinned adapter validator VALID, both hsw scans VALID, continuity validate VALID. Receipt for request 9df782a29413487d90c89449415a8108 posted to issue #27 as comment 5943631954, naming 993f8e9 and the d01d5b5 repair. Post-merge gates run 36948611156 on main at e1049db: success. Both merged SP-0008 branches deleted, local and remote.
+
+Decisions:
+- Corrected the manifest wording rather than re-placing the phone sprites, because the measured 14 percent margin is inside the 13.9 to 17.8 percent band the whole page already uses, so there was no dead third to fix. Put the gate-ordering rules in the README's gate section rather than only in the task handoff, because the next session reads the README before it reads a finished task.
+
+Changed:
+- README.md, .content-system/asset-manifest.json, docs/CONTINUITY_INDEX.md, tasks/TASK-SP-0008-hero-redraw-and-page-lead.md
 
 Blocked/uncertain:
 - none

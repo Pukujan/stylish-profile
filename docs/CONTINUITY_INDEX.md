@@ -11,7 +11,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773`
-- Current SHA-256: `c6d6617d1ba4d08f2b10562c5ada3626910ae46b1ad50036bc0398de597984b8`
+- Current SHA-256: `fc9c265834b057188a3a578cf551385e9771f537b94cd81c6b4644247652c577`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -71,7 +71,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `436e18a7907ff028f9ea8189ae60e1a1bb9fbbc104adb317248c54006aa1f6a8`
-- Current SHA-256: `1833533ca6d9638ddd8900411d1a8c68403276a8ff0c85a14f61bf6ad522df46`
+- Current SHA-256: `8059bc110be4f44ee6060f165f3d48e332fa767e198a1c0cfec4b82e626e9c5e`
 - Summary: The project entry point for this repository: why the page exists, what the repository contains, how the pieces work, the evidence and boundaries, and how to run the link check.
 - Search terms: `product`, `readme`
 - Neighboring records: none
