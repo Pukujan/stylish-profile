@@ -18,7 +18,7 @@ Phase: bootstrap.
 - SP-0005: every content-system record matches the page it describes, and the length printed beside each voice note is checked against the clip.
 - SP-0006: the records that still contradicted the shipped page agree with it, and the two that could drift fail a check instead of going stale quietly.
 - SP-0007: the hero and the figure beside the project list are rebuilt from one locked environment plate plus keyed character sprites, so only the characters move; `scripts/build_locked_motion.py check` fails a committed GIF whose environment drifts outside its declared moving boxes, and runs as a gate.
-- SP-0008: the hero is redrawn from scratch with the configured image model and the dark transform no longer repaints a figure's own outline as light ink, so the silhouette halo is gone; the page and the tour page now run hero, introduction, market, what Pujan does about it, the daily commits, the featured projects, then the rest.
+- SP-0008: the hero is redrawn from scratch with the configured image model and the dark transform no longer repaints a figure's own outline as light ink, so the silhouette halo is gone; the page and the tour page now run hero, introduction, market, what Pujan does about it, the daily commits, the featured projects, then the rest. Merged to `main` as `14338d2` from pull request #29, with every step of the required `gates` job green on the merge candidate.
 
 ## Active
 
@@ -47,6 +47,10 @@ None known.
 
 ## Next atomic action
 
-Nothing is active. When the owner deletes the two probe repositories, re-run
-`scripts/track_activity.py --days 14`, then `continuity docs render`, then commit
-so the `sanitizer-probe` row leaves `profile/tracking.json`.
+Nothing is active. The earliest queued item that needs no outside help is #28:
+find a page mask for `scripts/derive_dark_assets.py` that stops the dark GIFs
+flashing without shrinking the page area, then measure flashing pixels and page
+area together before touching any committed asset. When the owner deletes the
+two probe repositories, re-run `scripts/track_activity.py --days 14`, then
+`continuity docs render`, then commit so the `sanitizer-probe` row leaves
+`profile/tracking.json`.
