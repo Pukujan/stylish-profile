@@ -270,3 +270,26 @@ because those pixels are never border-connected and so never enter `papers[j]`.
 - Supersedes the derivation text SP-0008 wrote into `.content-system/asset-manifest.json` for the eight motion dark variants, because the transform it describes has changed.
 
 ## Checkpoint log
+
+### 2026-10-02 04:05:40 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["scripts/derive_dark_assets.py, 6 assets/profile/anim/*-dark.gif, .content-system/asset-manifest.json, tasks/TASK-SP-0009-dark-copies-stop-flashing.md, checkpoints/CURRENT.md, .continuity/documents.json, docs/CONTINUITY_INDEX.md"],"completed":["The dark GIFs no longer flash: the page mask is decided once for the whole loop instead of once per frame, and flash is 0 on all eight committed variants (was 24,148)."],"decisions":["Keep PAPER_MATCH_TOLERANCE at 2: smallest value that darkens all three One Push box interiors, and far from every drawn object. The loop-union superset is a strict superset of the shipped page mask, so it can only add darkness."],"evidence":["derive_dark_assets.py --check VALID on 8 variants; build_locked_motion.py check OK on every recipe; check_profile_links VALID 35 refs/36 hashes; generate_voice_notes --check 0 problems; pinned CGM adapter VALID; both hsw scans VALID; continuity validate VALID."],"next_action":"Open the pull request against main, verify the required gates check on the exact merge candidate, merge with gh pr merge --squash, then post the leaf receipt to issue #28 keyed by request ID and pushed SHA.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0009","timestamp":"2026-10-02T04:05:40Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"3d5a45c6292ebd229d5b77d5cd04385aba61815f2c975de77b000890ee070830","request_id":"379e3a170a404f8f97c9d9631b0c32cb","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0009"} -->
+
+Completed:
+- The dark GIFs no longer flash: the page mask is decided once for the whole loop instead of once per frame, and flash is 0 on all eight committed variants (was 24,148).
+
+Evidence:
+- derive_dark_assets.py --check VALID on 8 variants; build_locked_motion.py check OK on every recipe; check_profile_links VALID 35 refs/36 hashes; generate_voice_notes --check 0 problems; pinned CGM adapter VALID; both hsw scans VALID; continuity validate VALID.
+
+Decisions:
+- Keep PAPER_MATCH_TOLERANCE at 2: smallest value that darkens all three One Push box interiors, and far from every drawn object. The loop-union superset is a strict superset of the shipped page mask, so it can only add darkness.
+
+Changed:
+- scripts/derive_dark_assets.py, 6 assets/profile/anim/*-dark.gif, .content-system/asset-manifest.json, tasks/TASK-SP-0009-dark-copies-stop-flashing.md, checkpoints/CURRENT.md, .continuity/documents.json, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Open the pull request against main, verify the required gates check on the exact merge candidate, merge with gh pr merge --squash, then post the leaf receipt to issue #28 keyed by request ID and pushed SHA.
