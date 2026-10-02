@@ -136,6 +136,29 @@ Blocked/uncertain:
 Next:
 - Push the branch, open the pull request against main, arm auto-merge, verify the merge and the required checks, then append the exact check results and merge SHA to issue #27 and the task projection.
 
+### 2026-10-02 00:53:15 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[""],"changed":["tasks/TASK-SP-0008-hero-redraw-and-page-lead.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md"],"completed":["Closed SP-0008 out: pull request #29 merged to main as 14338d2 with every step of the required gates job green on the merge candidate, and the task and checkpoint projections now record the merge."],"decisions":["Recorded the merge as a separate synchronized increment rather than amending the merged history, and left the pre-existing dark-GIF flash with #28 rather than fixing it inside this task."],"evidence":["gates job on 49e7af7: continuity records validate, content adapter conformance, always-on writing contract, tour page writing scan, profile links resolve, voice notes match their record, dark variants match their source and animation environments stay locked, all success. continuity validate is VALID after the close-out render. origin/main fetched and the merge commit confirmed an ancestor. Local runs under the CI pins agree on 33 references, 36 hashes, 9 clips, 8 dark variants and the three locked-motion recipes."],"next_action":"Pick up #28: find a page mask for scripts/derive_dark_assets.py that stops the dark GIFs flashing without shrinking the page area, and measure flashing pixels and page area together before touching any committed asset.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0008","timestamp":"2026-10-02T00:53:15Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"0e0091b174bebfb7bb6974017f92ea7ebd7af40dce6b64ebf769ed30f366f832","request_id":"9df782a29413487d90c89449415a8108","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0008"} -->
+
+Completed:
+- Closed SP-0008 out: pull request #29 merged to main as 14338d2 with every step of the required gates job green on the merge candidate, and the task and checkpoint projections now record the merge.
+
+Evidence:
+- gates job on 49e7af7: continuity records validate, content adapter conformance, always-on writing contract, tour page writing scan, profile links resolve, voice notes match their record, dark variants match their source and animation environments stay locked, all success. continuity validate is VALID after the close-out render. origin/main fetched and the merge commit confirmed an ancestor. Local runs under the CI pins agree on 33 references, 36 hashes, 9 clips, 8 dark variants and the three locked-motion recipes.
+
+Decisions:
+- Recorded the merge as a separate synchronized increment rather than amending the merged history, and left the pre-existing dark-GIF flash with #28 rather than fixing it inside this task.
+
+Changed:
+- tasks/TASK-SP-0008-hero-redraw-and-page-lead.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- 
+
+Next:
+- Pick up #28: find a page mask for scripts/derive_dark_assets.py that stops the dark GIFs flashing without shrinking the page area, and measure flashing pixels and page area together before touching any committed asset.
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
