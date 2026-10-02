@@ -173,3 +173,26 @@ Blocked/uncertain:
 
 Next:
 - File the dark-plate and video-generation follow-up issue with a supersession link to .content-system/project-brief.json mechanism[1], naming scripts/derive_dark_assets.py and the gates.yml step 'Dark variants match their source' as what adoption would retire.
+
+### 2026-10-02 04:30:09 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["checkpoints/CURRENT.md"],"completed":["The queued follow-up now cites issue #39 instead of describing it without a number, so a fresh session can jump straight to the live issue."],"decisions":["File the follow-up as a proposal issue rather than a task: it asks for a side-by-side comparison and an owner decision before any code, and neither of its two routes is authorised. Treating route A (generated dark plate, deterministic composite) as the candidate and route B (video generation from a reference frame) as a separate question about motion, because route B would break the byte-reproducibility that gates.yml and build_locked_motion.py check are built on."],"evidence":["Issue #39 created: https://github.com/Pukujan/stylish-profile/issues/39. continuity validate VALID. The close-out commit 6c424c3 is on main from pull request #38, and the required gates run 36964703313 was dispatched for it because the auto-merge token suppressed the push trigger."],"next_action":"Wait for the owner's decision on issue #39. When the owner deletes the two probe repositories, re-run scripts/track_activity.py --days 14, then continuity docs render, then commit so the sanitizer-probe row leaves profile/tracking.json.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0010","timestamp":"2026-10-02T04:30:09Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"9eac13f4c990b2cdb21b840c86c2e119bbf7b79080b48c2cffe988562776f56d","request_id":"a7e1f08b39e24127959a12c0002d0284","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0010"} -->
+
+Completed:
+- The queued follow-up now cites issue #39 instead of describing it without a number, so a fresh session can jump straight to the live issue.
+
+Evidence:
+- Issue #39 created: https://github.com/Pukujan/stylish-profile/issues/39. continuity validate VALID. The close-out commit 6c424c3 is on main from pull request #38, and the required gates run 36964703313 was dispatched for it because the auto-merge token suppressed the push trigger.
+
+Decisions:
+- File the follow-up as a proposal issue rather than a task: it asks for a side-by-side comparison and an owner decision before any code, and neither of its two routes is authorised. Treating route A (generated dark plate, deterministic composite) as the candidate and route B (video generation from a reference frame) as a separate question about motion, because route B would break the byte-reproducibility that gates.yml and build_locked_motion.py check are built on.
+
+Changed:
+- checkpoints/CURRENT.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Wait for the owner's decision on issue #39. When the owner deletes the two probe repositories, re-run scripts/track_activity.py --days 14, then continuity docs render, then commit so the sanitizer-probe row leaves profile/tracking.json.
