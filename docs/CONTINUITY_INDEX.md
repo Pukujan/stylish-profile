@@ -59,7 +59,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `6915f95cf1c34685a8c86d28434408e76714fa9ec51548c1745ed8ad74f152c9`
-- Current SHA-256: `1d9e46077070c10b9c6f37ef9c26bbbc83651bedfa90e719b0e67881f1746f7a`
+- Current SHA-256: `db72dfd1460749db0e05ffd0d6c680783d720a1c4a3b1c51e052012dca5a82c1`
 - Summary: The durable contract: the main goal, why the page exists, what is in scope, what is explicitly out of scope, and the six definition-of-success criteria.
 - Search terms: `contract`, `scope`
 - Neighboring records: none
