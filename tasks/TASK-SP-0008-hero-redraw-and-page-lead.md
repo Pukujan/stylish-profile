@@ -110,6 +110,8 @@ moving rather than leaks.
 - Related PR/CI evidence: pull request #29, `https://github.com/Pukujan/stylish-profile/pull/29`. Every step of the required `gates` job passed on `49e7af7`, the exact merge candidate. Squash merge `14338d22ffcf229650303868ab7500ac0a069f87` on `main`, verified by fetching `origin/main` and confirming the merge commit is an ancestor.
 - Delivery note: the first candidate, `c96852d`, failed `gates` on a stale `docs/CONTINUITY_INDEX.md` — the index had been rendered before the task projection and `checkpoints/CURRENT.md` were written, so the runner saw a hash for `PROJECT.md` that no longer matched. Re-rendered and pushed as `49e7af7`; auto-merge then landed the green run. No product file changed in that fix.
 - Follow-up filed from this task: #28, the residual flash in the derived dark GIFs, which predates this task and is reduced but not removed by it.
+- Leaf receipt for the close-out increment, request `9df782a29413487d90c89449415a8108`: https://github.com/Pukujan/stylish-profile/issues/27#issuecomment-5943631954 — names both the checkpoint commit `993f8e9` and the repair `d01d5b5`.
+- Gate-running notes for the next session, including the `--blocked ""` trap, the render-before-push ordering and the pinned-versions requirement for the byte-comparison check: `README.md`, section "Running the gates locally".
 
 ## Checkpoint log
 

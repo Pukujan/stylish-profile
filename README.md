@@ -76,4 +76,26 @@ python scripts/track_activity.py --dry-run
 
 The first command exits non-zero and names the file when a link or image path does not resolve. The second prints exactly what the tracking block would say and writes nothing, so you can compare it against the committed page before trusting it.
 
+### Running the gates locally
+
+`gates` in [`.github/workflows/gates.yml`](.github/workflows/gates.yml) is the one required status check on `main`. Reproduce it before pushing by running the same scripts it runs, from the repository root:
+
+```bash
+python scripts/check_profile_links.py
+python scripts/generate_voice_notes.py --check
+python scripts/derive_dark_assets.py --check
+for r in scripts/motion-recipes/*.json; do python scripts/build_locked_motion.py check --recipe "$r"; done
+continuity docs render && continuity validate --root .
+```
+
+The workflow also runs the continuity record check and the pinned content-system adapter checks, which need that adapter checked out at the revision named in the workflow.
+
+Three ordering rules, each of which cost a red `gates` run to learn:
+
+- **`continuity docs render` and `continuity validate --root .` go last, immediately before the push.** `docs/CONTINUITY_INDEX.md` records a hash for each of eight documents — `PROJECT.md`, `README.md`, `profile/README.md`, `docs/index.html`, `.content-system/asset-manifest.json`, `.content-system/project-brief.json`, `docs/research/github-profile-pages.md` and `.coord/assignment.json`. Editing any one of them after a render leaves the index stale, and the runner re-renders it and disagrees.
+- **Do not pass `--blocked ""` to `continuity checkpoint`.** The empty string is written through as `"blocked": [""]`, which the pinned validator rejects as `string shorter than 1`. Omit the flag when nothing is blocked and the record carries an empty array.
+- **`derive_dark_assets.py --check` is a byte comparison**, so it only passes when the dark files were derived with the same Pillow, numpy and scipy that `gates.yml` pins. Compare the local versions against those pins before re-deriving, or the runner will reject a file nobody can reproduce.
+
+`gates` also triggers on pushes to `main` and cancels superseded runs, so a green pull-request run does not settle the merge commit: read the run for the exact SHA.
+
 To read the page as it will appear, open [`profile/README.md`](profile/README.md) in a Markdown preview, or open [`docs/index.html`](docs/index.html) directly in a browser for the tour with its audio player.
