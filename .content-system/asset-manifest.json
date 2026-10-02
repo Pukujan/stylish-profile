@@ -16,10 +16,10 @@
       "usage": "Frame one of assets/profile/anim/AI Engineer.gif at plate resolution: the still and the animation are the same composite, so the page's lineage source cannot disagree with what it serves. The still itself is not referenced by either page.",
       "crop_behavior": "Wide 3:2. The engineer and the workbench sit in the right two thirds, so a centre crop keeps the running robots and the burst; the title and subtitle in the left third are lost first, which is acceptable because the same words appear in the page heading.",
       "rejection_conditions": "Reject if any character is baked into the environment plate rather than pasted as a keyed sprite, if the engineer's two poses disagree on body scale, if any text other than the declared title and subtitle appears, or if the render drifts to photographic or 3D shading.",
-      "review_decision": "Accepted 2026-10-01 after the #24 rebuild. The previous hero was rejected: each frame had been re-rolled from the last, so the whole picture warped. The new still is frame one of the locked composite; a vision pass confirms the anime engineer, the raised flask, the comic burst and the running robots, with the title and subtitle spelled exactly and no other text.",
+      "review_decision": "Accepted 2026-10-01 under #27. Redrawn from scratch with xai-oauth/grok-imagine-image after the owner rejected the #24 hero a second time: pegboard tools that read as painted on, a robot whose feet did not meet the floor, sketchy double lines on the table legs, and a dark variant worse than the light one. The still is frame one of the locked composite; a vision pass confirms the anime engineer, the raised flask, the comic burst and the running robots, with the title and subtitle spelled exactly and no other text.",
       "provider": "built-in image_gen",
       "prompt_record": ".content-system/prompts/AI Engineer.md",
-      "hash": "71279d49050e02df496c061b1a715ed92be4f30305b1c8471f89f02d9e8640b0"
+      "hash": "f6580ae8d47065528c049eac514aba4ecdf7e926c7e7f94076875f8f11a365d0"
     },
     {
       "path": "assets/profile/AI Engineer phone.png",
@@ -35,10 +35,10 @@
       "usage": "Frame one of assets/profile/anim/AI Engineer phone.gif at plate resolution: the still and the animation are the same composite, so the page's lineage source cannot disagree with what it serves. The still itself is not referenced by either page.",
       "crop_behavior": "Portrait 2:3. Title and subtitle occupy the upper third and the illustrated scene the lower half, so a centre crop keeps both the words and the workbench. Nothing important sits in the outer margins.",
       "rejection_conditions": "Reject if the title is not large enough to read at a 390 pixel column width, if any text other than the declared title and subtitle appears, if the repeated blocks are not readable as one reused component, or if the render drifts to photographic or 3D shading.",
-      "review_decision": "Accepted 2026-10-01 after the #24 rebuild. The previous hero was rejected: each frame had been re-rolled from the last, so the whole picture warped. The new still is frame one of the portrait locked composite; a vision pass confirms the anime engineer, the raised flask, the comic burst and the running robots, with the title and subtitle spelled exactly and no other text.",
+      "review_decision": "Accepted 2026-10-01 under #27. Redrawn from scratch with xai-oauth/grok-imagine-image after the owner rejected the #24 hero a second time, and recomposed for the narrow framing so the ground line sits above a dead bottom third. The still is frame one of the portrait locked composite; a vision pass confirms the anime engineer, the raised flask, the comic burst and the running robots, with the title and subtitle spelled exactly and no other text.",
       "provider": "built-in image_gen",
       "prompt_record": ".content-system/prompts/AI Engineer phone.md",
-      "hash": "90a30b5f93ca2beb3f9decd5acbd358b6859a0d7c91ec4de0467b46351ff39ec"
+      "hash": "393fd7e264deada792b2d3f6f4ebd4f49c4765b5bdb33bf2e10c315e41853174"
     },
     {
       "path": "assets/profile/anim/Reusable Blocks.gif",
@@ -289,10 +289,10 @@
       "usage": "Hero animation at the top of the page, so the page opens on the claim it is about rather than on a still.",
       "crop_behavior": "Wide framing, safe to scale to the full column width.",
       "rejection_conditions": "Reject if any pixel outside the recipe's declared moving boxes changes between frames; if the engineer's feet or torso shift between his two poses; if the burst appears before the flask is raised; or if any frame gains text, a logo or a watermark.",
-      "review_decision": "Accepted 2026-10-01. scripts/build_locked_motion.py check passes: all six frames are byte-identical outside the five declared moving boxes, so the environment cannot warp. A vision pass over the frame sheet confirms the flask raised every other frame, the burst popping once per loop, and the robots entering and exiting off-frame.",
+      "review_decision": "Accepted 2026-10-01 under #27. Rebuilt from a freshly drawn plate and keyed sprites after the owner rejected the #24 hero; scripts/build_locked_motion.py check passes, so all six frames are byte-identical outside the declared moving boxes and the environment cannot warp. A vision pass over the frame sheet confirms the feet meet the ground line in every frame, the engineer holds the same size and x-position across both poses, the flask is raised every other frame, the burst pops once per loop, and the robots enter and exit off-frame.",
       "provider": "built-in image_gen",
       "prompt_record": ".content-system/prompts/AI Engineer motion.md",
-      "hash": "92aab845193385465e594a5e8ba489a75029529ea011e96682017a659ef645d4",
+      "hash": "50a0a603823e79ceb22e84e3b49b81fc883100bfaa3ed2ceb2f3ceb7af1fa540",
       "derivation": "composited by scripts/build_locked_motion.py from one locked environment plate plus keyed character sprites; the plate is copied, never re-drawn, so every pixel outside the recipe's declared moving boxes is identical in every frame, and scripts/build_locked_motion.py check enforces that on the committed file"
     },
     {
@@ -321,11 +321,11 @@
       "usage": "Hero animation at the top of the page, so the page opens on the claim it is about rather than on a still.",
       "crop_behavior": "Wide framing, safe to scale to the full column width.",
       "rejection_conditions": "Reject if any pixel outside the recipe's declared moving boxes changes between frames; if the engineer's feet or torso shift between his two poses; if the burst appears before the flask is raised; or if any frame gains text, a logo or a watermark.",
-      "review_decision": "Accepted 2026-10-01. scripts/build_locked_motion.py check passes: all six frames are byte-identical outside the five declared moving boxes, so the environment cannot warp. A vision pass over the frame sheet confirms the flask raised every other frame, the burst popping once per loop, and the robots entering and exiting off-frame.",
+      "review_decision": "Accepted 2026-10-01 under #27. Rebuilt from a freshly drawn plate and keyed sprites after the owner rejected the #24 hero; scripts/build_locked_motion.py check passes, so all six frames are byte-identical outside the declared moving boxes and the environment cannot warp. A vision pass over the frame sheet confirms the feet meet the ground line in every frame, the engineer holds the same size and x-position across both poses, the flask is raised every other frame, the burst pops once per loop, and the robots enter and exit off-frame.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/AI Engineer motion.md",
-      "hash": "04b67e64bd0a95e73012019fbdd06afb40e2a0bc5859bf7d07a27b78c9c08a85",
-      "derivation": "Paper-mask transform of assets/profile/anim/AI Engineer.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
+      "hash": "015b9c625e334bec07fdcb9024baf3ce5b579e4808fd2dda064f1115e8b957bd",
+      "derivation": "Paper-mask transform of assets/profile/anim/AI Engineer.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
       "derived_from": "assets/profile/anim/AI Engineer.gif"
     },
     {
@@ -354,10 +354,10 @@
       "usage": "Phone variant of the hero animation, served through a picture element below 640 pixels.",
       "crop_behavior": "Portrait framing, safe to scale to any column width.",
       "rejection_conditions": "Reject if any pixel outside the recipe's declared moving boxes changes between frames; if the engineer's feet or torso shift between his two poses; if the burst appears before the flask is raised; or if any frame gains text, a logo or a watermark.",
-      "review_decision": "Accepted 2026-10-01. scripts/build_locked_motion.py check passes: all six frames are byte-identical outside the five declared moving boxes, so the environment cannot warp. A vision pass over the frame sheet confirms the flask raised every other frame, the burst popping once per loop, and the robots entering and exiting off-frame.",
+      "review_decision": "Accepted 2026-10-01 under #27. Rebuilt from a freshly drawn plate and keyed sprites after the owner rejected the #24 hero; scripts/build_locked_motion.py check passes, so all six frames are byte-identical outside the declared moving boxes and the environment cannot warp. A vision pass over the frame sheet confirms the feet meet the ground line in every frame, the engineer holds the same size and x-position across both poses, the flask is raised every other frame, the burst pops once per loop, and the robots enter and exit off-frame.",
       "provider": "built-in image_gen",
       "prompt_record": ".content-system/prompts/AI Engineer phone motion.md",
-      "hash": "9408c544cd7311ee4f2d54082c45ff75b4bda0b495403dc8080ea673ff53f35f",
+      "hash": "8ec8a2ab33dfc2693d15af1c39a9f356e444ee97bf8d908564e04f7501bb888d",
       "derivation": "composited by scripts/build_locked_motion.py from one locked environment plate plus keyed character sprites; the plate is copied, never re-drawn, so every pixel outside the recipe's declared moving boxes is identical in every frame, and scripts/build_locked_motion.py check enforces that on the committed file"
     },
     {
@@ -386,11 +386,11 @@
       "usage": "Phone variant of the hero animation, served through a picture element below 640 pixels.",
       "crop_behavior": "Portrait framing, safe to scale to any column width.",
       "rejection_conditions": "Reject if any pixel outside the recipe's declared moving boxes changes between frames; if the engineer's feet or torso shift between his two poses; if the burst appears before the flask is raised; or if any frame gains text, a logo or a watermark.",
-      "review_decision": "Accepted 2026-10-01. scripts/build_locked_motion.py check passes: all six frames are byte-identical outside the five declared moving boxes, so the environment cannot warp. A vision pass over the frame sheet confirms the flask raised every other frame, the burst popping once per loop, and the robots entering and exiting off-frame.",
+      "review_decision": "Accepted 2026-10-01 under #27. Rebuilt from a freshly drawn plate and keyed sprites after the owner rejected the #24 hero; scripts/build_locked_motion.py check passes, so all six frames are byte-identical outside the declared moving boxes and the environment cannot warp. A vision pass over the frame sheet confirms the feet meet the ground line in every frame, the engineer holds the same size and x-position across both poses, the flask is raised every other frame, the burst pops once per loop, and the robots enter and exit off-frame.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/AI Engineer phone motion.md",
-      "hash": "f2924ea7a7e313e37774cb3fbe7757a734e361f8734ac2dbed526644c03c945a",
-      "derivation": "Paper-mask transform of assets/profile/anim/AI Engineer phone.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
+      "hash": "63bc1a8dfe42fb3e85460adf23d25d1e439fc1511d1242ef330c30df28b0ad4c",
+      "derivation": "Paper-mask transform of assets/profile/anim/AI Engineer phone.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
       "derived_from": "assets/profile/anim/AI Engineer phone.gif"
     },
     {
@@ -454,8 +454,8 @@
       "review_decision": "Accepted 2026-10-01. scripts/build_locked_motion.py check passes: all six frames are byte-identical outside the dot's swept band, which covers 5.7% of the frame; the icons are static layers and therefore locked too.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/Projects on One Thread motion.md",
-      "hash": "6b5081eb490fa5ffc37be160ee1f20dad579daac1998224b7dc3e6fd67b47058",
-      "derivation": "Paper-mask transform of assets/profile/anim/Projects on One Thread.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
+      "hash": "2b0b35849cf3eabaec8956e457a5f5bf6c4ad6d2c8155b31f0672c9ca9399323",
+      "derivation": "Paper-mask transform of assets/profile/anim/Projects on One Thread.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
       "derived_from": "assets/profile/anim/Projects on One Thread.gif"
     },
     {
@@ -515,8 +515,8 @@
       "review_decision": "Accepted 2026-10-01 after one re-roll. The first attempt panned the camera across the wall, which reads as a camera move rather than as the companion searching; the accepted frames lock the camera and raise the glass instead. Residual: the wall shifts very slightly in the third frame.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/The Badge Wall motion.md",
-      "hash": "656a548e7c3c20aecf0d9add7c0d6f959af2bed34552a149d7564e1912da0376",
-      "derivation": "Paper-mask transform of assets/profile/anim/The Badge Wall.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
+      "hash": "5ed7a701ad0899b3c7e43e54b5d5e3d0a78f5927f076a0f7db8306c9717ed0a8",
+      "derivation": "Paper-mask transform of assets/profile/anim/The Badge Wall.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
       "derived_from": "assets/profile/anim/The Badge Wall.gif"
     },
     {
@@ -576,8 +576,8 @@
       "review_decision": "Accepted 2026-10-01. Vision checks confirmed one card leaving the stack, then landing on the book, with no new text or logo.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/What You Can Check motion.md",
-      "hash": "5b93fbca61da74a55b03b195a167c122c4f89ef7b7180820a230d7790404520a",
-      "derivation": "Paper-mask transform of assets/profile/anim/What You Can Check.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
+      "hash": "5c276951e1e4b92e6b1fcb83ce2ef2bce6411d58d78116094cc107b022ddcf85",
+      "derivation": "Paper-mask transform of assets/profile/anim/What You Can Check.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
       "derived_from": "assets/profile/anim/What You Can Check.gif"
     },
     {
@@ -637,8 +637,8 @@
       "review_decision": "Accepted 2026-10-01 after one re-roll. The first attempt moved nothing measurable in the trays; the accepted frames empty the middle tray and drop one sheet into it. Residual: the person posture and the companion speech bubble change slightly.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/Pujan and the Loose Ends motion.md",
-      "hash": "f19a105b57a29766c8a8015050c3beeb428a07872839dfe6d495cf4a393b8297",
-      "derivation": "Paper-mask transform of assets/profile/anim/Pujan and the Loose Ends.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
+      "hash": "93f5b7ddccbe315806984988d6f09130599d91855189fe37b21c7d184be6871c",
+      "derivation": "Paper-mask transform of assets/profile/anim/Pujan and the Loose Ends.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable.",
       "derived_from": "assets/profile/anim/Pujan and the Loose Ends.gif"
     },
     {
@@ -743,10 +743,10 @@
       "review_decision": "Accepted 2026-10-01. Vision checks counted one, two, three and six blocks across the frames, confirmed the single yellow source block in the final frame, and found no text or logo in any frame.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/Reusable Blocks.md",
-      "hash": "6423f7406a5e4c13288d5ea4655578afd53ed7b7fc25f273f3fba7d78bc05a1f",
+      "hash": "36df9d8daed5a7bbed0c81d8c3185b82bb6135afedcad37e46705f16867b14c8",
       "assembly": "Frames generated one at a time with the previous frame as input; assembled with Pillow at 720x720, 64 colours on one shared palette.",
       "derived_from": "assets/profile/anim/Reusable Blocks.gif",
-      "derivation": "Paper-mask transform of assets/profile/anim/Reusable Blocks.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable."
+      "derivation": "Paper-mask transform of assets/profile/anim/Reusable Blocks.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable."
     },
     {
       "path": "assets/profile/anim/One Push Many Pipelines-dark.gif",
@@ -774,10 +774,10 @@
       "review_decision": "Accepted 2026-10-01. Vision checks confirmed a single dot and one empty box in the first frame, three filled blue boxes in the last frame, and no text or logo in any frame.",
       "provider": "derived, scripts/derive_dark_assets.py",
       "prompt_record": ".content-system/prompts/One Push Many Pipelines.md",
-      "hash": "efd28cc844a2d232d3d8b40943785cc43e84e950ca861c30df2315cbb9ddddaa",
+      "hash": "a4217db71a60b5aef316a2d848d82d15549d15fee6dbb784f3a5e536de37ff43",
       "assembly": "Frames generated one at a time with the previous frame as input; assembled with Pillow at 720x720, 64 colours on one shared palette.",
       "derived_from": "assets/profile/anim/One Push Many Pipelines.gif",
-      "derivation": "Paper-mask transform of assets/profile/anim/One Push Many Pipelines.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and ink lying within 8 pixels of the paper is redrawn in light ink #FAF6EC. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable."
+      "derivation": "Paper-mask transform of assets/profile/anim/One Push Many Pipelines.gif by scripts/derive_dark_assets.py: the paper - the light, barely coloured region connected to the frame edge - is replaced with the warm dark panel #1A1612, and the page's own marks are redrawn in light ink #FAF6EC. A mark is ink the drawing encloses, or ink almost entirely ringed by paper; a figure's own outline is neither, so it is never repainted, which is what removes the light halo the previous rule drew around every silhouette. The drawing enclosed by the paper keeps its own colours, so skin stays skin and hair stays hair. Not regenerated by a model, so it is byte-stable."
     },
     {
       "path": "assets/profile/generated/activity-dark.svg",

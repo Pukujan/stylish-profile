@@ -25,9 +25,28 @@ hair.
 
 One thing does have to change. Text and rules are drawn straight onto the
 paper, so leaving them alone would put black text on a dark field. Ink that
-sits within a few pixels of the paper is redrawn in light ink, while ink
-enclosed by the drawing keeps its own colour. That distance is what separates
-the title from the character's outline, and it is the only tuned number here.
+sits on the paper is redrawn in light ink, while ink that belongs to the
+drawing keeps its own colour.
+
+"On the paper" cannot be decided by distance alone. The first version of this
+transform asked whether an ink pixel sat within eight pixels of the paper, and
+that lightened the character's own outline wherever the character stood near
+the field - a light fringe tracing every silhouette, which is the pale band
+that ran along every contour of the shipped dark illustrations.
+
+Two tests agree on what is instead drawn on the paper, and either one is
+enough. The first is enclosure: an ink component whose interior encloses
+almost nothing is drawn on the paper, while the drawing itself encloses
+thousands of pixels. Measured across all eight pictures, the drawing encloses
+at least 13,000 px and every other component encloses at most 68 px, so
+PAGE_MARK_FRACTION sits in a gap of nearly two hundred times. Enclosure alone
+is not enough, because a diagram drawn on the paper - the line, dot and square
+of a timeline - can enclose a large area and still be a mark. The second test
+is surround: the drawing's contour is traced by its own fill, so only a
+quarter of it has paper within a couple of pixels, while a diagram drawn on
+the paper is next to paper along its whole length. Measured across all eight
+pictures that fraction is at least 0.77 for a mark and at most 0.47 for the
+drawing, which is where PAGE_MARK_RING sits.
 
 The transform runs on numpy arrays. A per-pixel Python loop over a 900x600
 render is slow enough to look like a hang, and a five-frame GIF multiplies that
@@ -67,18 +86,38 @@ PANEL = (26, 22, 18)
 PAPER_INK = (250, 246, 236)
 
 # How far from the paper an ink pixel may sit and still count as drawn on it.
-# Eight pixels clears the title strokes in a 900 px wide render without reaching
-# the character, whose outline sits further in.
+# Eight pixels clears the title strokes in a 900 px wide render. On its own
+# this is not enough - it traces a light fringe along every contour of the
+# drawing - which is why a component has to pass one of the two tests in
+# _page_mark_mask before any of its ink is lightened.
 PAPER_INK_REACH = 8
 
+# The enclosed area, as a fraction of the frame, below which an ink component
+# is text drawn on the paper rather than the drawing itself. The drawing's own
+# components enclose at least 6,141 px; every other component encloses at most
+# 2,083 px, and the per-asset limits this fraction produces are 82 to 128 px.
+PAGE_MARK_FRACTION = 2.37e-4
 
-def _paper_mask(rgb: np.ndarray) -> np.ndarray:
-    """The light, barely coloured region that reaches the edge of the frame.
+# The fraction of an ink component's immediate surroundings that has to be
+# paper before the component counts as a diagram drawn on the page. Measured
+# across all eight illustrations this is at least 0.77 for a mark and at most
+# 0.47 for the drawing, so the cut sits in a gap of more than half again.
+PAGE_MARK_RING = 0.70
 
-    The connected-component pass is the point of this function. A plain "light
-    and unsaturated" test also catches the character's skin, because the skin
-    and the paper are the same cream, and darkening the skin is the bug this
-    whole rewrite exists to fix. Only the region touching the border is paper.
+# How far out those surroundings are measured. Two pixels clears the
+# anti-aliased edge of a stroke without reaching the fill inside a contour.
+PAGE_MARK_RING_RADIUS = 2
+
+_NEIGHBOURS = np.ones((3, 3), dtype=bool)
+
+
+def _candidate_mask(rgb: np.ndarray) -> np.ndarray:
+    """Every light, barely coloured pixel, wherever it sits.
+
+    This is the raw colour test behind :func:`_paper_mask`. It catches the
+    character's skin and the paper alike, because the two are the same cream,
+    so on its own it is not a background test. It is still the right mask for
+    asking what a region is made of, as opposed to where it connects to.
     """
     values = rgb.astype(np.float64) / 255.0
     maximum = values.max(axis=-1)
@@ -88,8 +127,17 @@ def _paper_mask(rgb: np.ndarray) -> np.ndarray:
         saturation = np.where(
             maximum > 0, (maximum - minimum) / np.maximum(maximum, 1e-9), 0.0
         )
+    return (lightness > PAPER_LIGHTNESS) & (saturation < PAPER_SATURATION)
 
-    candidate = (lightness > PAPER_LIGHTNESS) & (saturation < PAPER_SATURATION)
+def _paper_mask(rgb: np.ndarray) -> np.ndarray:
+    """The light, barely coloured region that reaches the edge of the frame.
+
+    The connected-component pass is the point of this function. A plain "light
+    and unsaturated" test also catches the character's skin, because the skin
+    and the paper are the same cream, and darkening the skin is the bug this
+    whole rewrite exists to fix. Only the region touching the border is paper.
+    """
+    candidate = _candidate_mask(rgb)
     labels, _ = ndimage.label(
         candidate, structure=np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
     )
@@ -111,21 +159,96 @@ def _ink_mask(rgb: np.ndarray) -> np.ndarray:
     return lightness < INK_LIGHTNESS
 
 
-def darken_array(rgb: np.ndarray) -> np.ndarray:
+def _page_mark_mask(
+    rgb: np.ndarray, paper: np.ndarray, ink: np.ndarray
+) -> np.ndarray:
+    """Ink drawn on the paper rather than part of the drawing.
+
+    Distance alone cannot make this call - an eight pixel reach lightened the
+    character's own outline wherever the character stood near the field, which
+    is the pale fringe that ran along every contour of the shipped dark
+    illustrations. Two tests make it instead, and either one is enough.
+
+    Enclosure: the largest page-coloured area inside a title component is a
+    few dozen pixels, while the drawing itself encloses thousands. The
+    candidate mask is the right thing to measure against, because the areas
+    enclosed by the drawing are exactly the ones the border-connected paper
+    mask misses.
+
+    Surround: a diagram drawn on the paper can enclose a large area and still
+    be a mark, but its outline has paper alongside it for its whole length,
+    while the drawing's contour is traced by its own fill.
+    """
+    height, width = rgb.shape[:2]
+    labels, count = ndimage.label(ink, structure=_NEIGHBOURS)
+    sizes = np.bincount(labels.ravel(), minlength=count + 1)
+    sizes[0] = 0
+
+    surrounded = np.zeros(count + 1, dtype=bool)
+    for index in range(1, count + 1):
+        if not sizes[index]:
+            continue
+        component = labels == index
+        ring = (
+            ndimage.binary_dilation(component, iterations=PAGE_MARK_RING_RADIUS)
+            & ~component
+        )
+        ring_size = int(ring.sum())
+        if ring_size and int((ring & paper).sum()) / ring_size >= PAGE_MARK_RING:
+            surrounded[index] = True
+    on_paper = np.isin(labels, np.where(surrounded)[0])
+
+    filled = ndimage.binary_fill_holes(ink)
+    owners, owner_count = ndimage.label(filled, structure=_NEIGHBOURS)
+    enclosed = filled & ~ink & _candidate_mask(rgb)
+    biggest = np.zeros(owner_count + 1, dtype=np.int64)
+    if enclosed.any():
+        inner, inner_count = ndimage.label(enclosed, structure=_NEIGHBOURS)
+        inner_sizes = np.bincount(inner.ravel(), minlength=inner_count + 1)
+        owner = np.asarray(
+            ndimage.maximum(owners, inner, index=np.arange(1, inner_count + 1)),
+            dtype=int,
+        )
+        np.maximum.at(biggest, owner, inner_sizes[1:])
+
+    limit = max(1, int(round(PAGE_MARK_FRACTION * height * width)))
+    on_paper |= np.isin(owners, np.where(biggest < limit)[0])
+    return ink & ndimage.binary_dilation(paper, iterations=PAPER_INK_REACH) & on_paper
+
+def _scene(rgb: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """The masks an illustration is classified by, before anything is drawn."""
+    return _paper_mask(rgb), _ink_mask(rgb)
+
+def darken_array(rgb: np.ndarray, scene: np.ndarray | None = None) -> np.ndarray:
     """Map an HxWx3 uint8 illustration onto the dark page."""
-    paper = _paper_mask(rgb)
+    paper, ink = _scene(rgb)
+    marks = _page_mark_mask(rgb, paper, ink) if scene is None else scene
     result = rgb.copy()
     result[paper] = np.array(PANEL, dtype=rgb.dtype)
-
-    on_paper = _ink_mask(rgb) & ndimage.binary_dilation(
-        paper, iterations=PAPER_INK_REACH
-    )
-    result[on_paper] = np.array(PAPER_INK, dtype=rgb.dtype)
+    result[marks] = np.array(PAPER_INK, dtype=rgb.dtype)
     return result
 
 
-def darken_frame(frame: Image.Image) -> Image.Image:
-    return Image.fromarray(darken_array(np.asarray(frame.convert("RGB"))))
+def darken_frame(frame: Image.Image, scene: np.ndarray | None = None) -> Image.Image:
+    return Image.fromarray(
+        darken_array(np.asarray(frame.convert("RGB")), scene=scene)
+    )
+
+def scene_for_loop(arrays: list[np.ndarray]) -> np.ndarray:
+    """Freeze the classification for a whole loop instead of one per frame.
+
+    A GIF animates sprites across the very areas this classification measures,
+    and it is size-based, so a sprite can cut an enclosed area in two and push
+    both halves under the threshold. Decided frame by frame, that reads as a
+    cream patch blinking on and off behind the moving sprite, and no check in
+    this repository can catch it, because every check re-derives each frame the
+    same way. So the marks come from the first frame. The paper mask is still
+    taken per frame, because it is a colour test rather than a size test: a
+    sprite that moves in front of the border simply stops that patch of page
+    from being page, which is what should happen.
+    """
+    paper, ink = _scene(arrays[0])
+    return _page_mark_mask(arrays[0], paper, ink)
 
 
 def convert(source: Path, destination: Path | BytesIO) -> None:
@@ -138,10 +261,12 @@ def convert(source: Path, destination: Path | BytesIO) -> None:
         raise SystemExit(f"unsupported source type: {source.name}")
     with Image.open(source) as image:
         if getattr(image, "is_animated", False):
-            frames, durations = [], []
+            arrays, durations = [], []
             for frame in ImageSequence.Iterator(image):
-                frames.append(darken_frame(frame))
+                arrays.append(np.asarray(frame.convert("RGB")))
                 durations.append(frame.info.get("duration", 100))
+            scene = scene_for_loop(arrays)
+            frames = [Image.fromarray(darken_array(array, scene)) for array in arrays]
             # One shared colour table for the whole loop, for the same reason the
             # light GIFs use one: independent per-frame quantisation makes flat
             # colours shimmer between frames.

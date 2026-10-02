@@ -7,28 +7,65 @@
 
 # Hi, I'm Pujan
 
-**AI engineer.** I automate the repetitive parts of engineering work, and I do it by building one component well and reusing it: reusable agent infrastructure, repeated pipeline stages, and the contracts that keep them honest.
+**AI engineer.** I build systems that keep long AI projects from losing their place: the rules a project hands a fresh agent, the record of what was verified, and the routing that decides which model answers.
 
-**Long projects rarely fail because the work was too hard.** They fail because something got dropped: a decision nobody wrote down, a check nobody ran, a handoff nobody made. So I automate the parts that would otherwise be dropped.
+The piece the rest sit on is **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh agent, and the agent starts with the right rules instead of guessing.
+
+One habit runs through all four featured projects below: leave a trail behind you.
 
 You can [listen to the tour](https://pukujan.github.io/stylish-profile/docs/) if you would rather hear this than read it.
 
-## Start here
+## The work
 
-[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup) is the piece the rest sit on. The other three repositories here begin a session by loading it, so if it hands out the wrong rules, everything downstream is wrong in a way that still looks fine. That is why it comes first, and why it is the one to get right before anything else.
+Document-heavy AI means the input is a contract, a filing, a case file or a policy pack, and the output has to survive someone checking it. The models are good enough now. The failure has moved somewhere else.
 
-The [live module registry](https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json) lists what it can load, and [POLICY.md](https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md) says what it will refuse to do.
+**Long projects rarely fail because the work was too hard.** They fail because something got dropped: a decision nobody wrote down, a check nobody ran, a handoff nobody made.
 
-## What I'm building
+That shows up in four places. A fresh agent starts from a blank prompt and confidently invents a workflow. A pipeline is trusted because it ran once, and nobody can say what it produced last week. A page or an image reads like a template, because nothing decided how it should sound. And the choice of which model answers lives in twenty call sites, so it cannot change when the provider does.
 
-Document-heavy AI means the input is a contract, a filing, a case file, or a policy pack, and the output has to survive someone checking it. That work has two hard parts: making a model useful on messy real documents, and keeping a long project honest about what has actually been verified. **Everything below is tooling for the second part, plus the routing layer that decides which model or pipeline actually runs.**
+## What I do about it
+
+I automate the parts that would otherwise be dropped, and I build each one once so it can be reused.
+
+- **A session starts from the rules your project actually uses, not a blank prompt.** A fresh agent begins with the right contract instead of confidently inventing a workflow.
+- **Long work survives a break.** What changed, what was verified and what is still open stays on the record, so the next person does not have to ask.
+- **Output sounds like a person, not a template.** Writing and images come out in your voice and your palette, and every generated file can be traced back to what produced it.
+- **The model route is a decision, not a hard-coded provider.** Which model answers is answered by policy, so it can change when the provider does.
+
+The commits below are the honest version of that claim.
+
+<!-- TRACKING:START -->
+## What's fresh
+
+2026-10-01: 29 commit(s) across 4 project(s).
+
+| Project | Last push |
+| --- | --- |
+| [octo-database](https://github.com/Pukujan/octo-database) | 2026-10-01 |
+| [stylish-profile](https://github.com/Pukujan/stylish-profile) | 2026-10-01 |
+| [content-generation-modules](https://github.com/Pukujan/content-generation-modules) | 2026-10-01 |
+| [Pukujan](https://github.com/Pukujan/Pukujan) | 2026-10-01 |
+
+<picture>
+<source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-narrow-dark.svg">
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-dark.svg">
+<source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-narrow.svg">
+<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1200 total." width="100%">
+</picture>
+
+**Current project:** [agent-custom-setup](https://github.com/Pukujan/agent-custom-setup) with 91 commit(s) in the last 7 days.
+
+[All repositories](https://github.com/Pukujan?tab=repositories).
+<!-- TRACKING:END -->
+
+## Featured projects
+
+Four projects, each open on GitHub, each one a piece of the same habit.
 
 - **[Agent Custom Setup](https://github.com/Pukujan/agent-custom-setup)** — a project hands itself to a fresh AI agent, and the agent starts with the right rules instead of guessing. ([listen, 0:27](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Agent%20Custom%20Setup.mp3))
 - **[Project Continuity Modules](https://github.com/Pukujan/project-continuity-modules)** — long work survives a break: what changed, what was verified, and what is still open. ([listen, 0:29](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Project%20Continuity%20Modules.mp3))
 - **[Content Generation Modules](https://github.com/Pukujan/content-generation-modules)** — writing and images that sound like a person rather than a template. ([listen, 0:25](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Content%20Generation%20Modules.mp3))
 - **[Inference Recommendation Engine](https://github.com/Pukujan/inference-recommendation-engine)** — provider-neutral routing for model calls, decided by policy instead of a hard-coded provider. ([listen, 0:22](https://pukujan.github.io/stylish-profile/assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3))
-
-One habit runs through all four: leave a trail behind you.
 
 <img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
 <img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/anim/Projects%20on%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="100%">
@@ -41,6 +78,8 @@ Agent Custom Setup decides what rules a session starts with. Project Continuity 
 ### Agent Custom Setup
 
 It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and **fails the install when it is not**. That check is the reason this page's own repository cannot silently drift from the versions it claims.
+
+The [live module registry](https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json) lists what it can load, and [POLICY.md](https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md) says what it will refuse to do.
 
 *Why it exists:* an agent that starts from a blank prompt will confidently invent a workflow. One that starts from a checked contract will follow yours.
 
@@ -81,30 +120,6 @@ Those are the two things I actually automate. Everything else on this page is do
 ## Tools
 
 Python · TypeScript · JavaScript · HTML · Shell · PowerShell · Git · GitHub Actions
-
-<!-- TRACKING:START -->
-## What's fresh
-
-2026-10-01: 29 commit(s) across 4 project(s).
-
-| Project | Last push |
-| --- | --- |
-| [octo-database](https://github.com/Pukujan/octo-database) | 2026-10-01 |
-| [stylish-profile](https://github.com/Pukujan/stylish-profile) | 2026-10-01 |
-| [content-generation-modules](https://github.com/Pukujan/content-generation-modules) | 2026-10-01 |
-| [Pukujan](https://github.com/Pukujan/Pukujan) | 2026-10-01 |
-
-<picture>
-<source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-narrow-dark.svg">
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-dark.svg">
-<source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity-narrow.svg">
-<img src="https://raw.githubusercontent.com/Pukujan/stylish-profile/main/assets/profile/generated/activity.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1200 total." width="100%">
-</picture>
-
-**Current project:** [agent-custom-setup](https://github.com/Pukujan/agent-custom-setup) with 91 commit(s) in the last 7 days.
-
-[All repositories](https://github.com/Pukujan?tab=repositories).
-<!-- TRACKING:END -->
 
 ## Listen instead
 

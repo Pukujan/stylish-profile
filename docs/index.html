@@ -167,7 +167,8 @@
       <img src="../assets/profile/Pujan.png" alt="Flat illustration of the page's author: a bespectacled young engineer with dark hair, a small smile and a dark sweater with one yellow button, drawn on a deep royal blue field." width="56" height="56">
       <h1>Hi, I'm Pujan</h1>
     </div>
-    <p class="lede">AI engineer. I automate the repetitive parts of engineering work, and I do it by building one component well and reusing it: reusable agent infrastructure, repeated pipeline stages, and the contracts that keep them honest.</p>
+    <p class="lede">AI engineer. I build systems that keep long AI projects from losing their place: the rules a project hands a fresh agent, the record of what was verified, and the routing that decides which model answers. The piece the rest sit on is <a href="https://github.com/Pukujan/agent-custom-setup">Agent Custom Setup</a>.</p>
+    <p>One habit runs through all four featured projects below: leave a trail behind you.</p>
     <ul class="chips">
       <li>Agent setup</li>
       <li>Project continuity</li>
@@ -177,9 +178,50 @@
     <p><a href="https://github.com/Pukujan">Profile</a> · <a href="https://github.com/Pukujan/stylish-profile">This repository</a> · <a href="https://www.design-bakery.com">design-bakery.com</a></p>
   </header>
 
-  <h2 id="current-projects">What I'm building</h2>
-  <p>Document-heavy AI means the input is a contract, a filing, a case file, or a policy pack, and the output has to survive someone checking it. That work has two hard parts: making a model useful on messy real documents, and keeping a long project honest about what has actually been verified. Everything below is tooling for the second part, plus the routing layer that decides which model or pipeline actually runs.</p>
-  <p>Four tools I use every day. One habit runs through all of them: leave a trail behind you.</p>
+  <h2 id="the-work">The work</h2>
+  <p>Document-heavy AI means the input is a contract, a filing, a case file or a policy pack, and the output has to survive someone checking it. The models are good enough now. The failure has moved somewhere else.</p>
+  <p><strong>Long projects rarely fail because the work was too hard.</strong> They fail because something got dropped: a decision nobody wrote down, a check nobody ran, a handoff nobody made.</p>
+  <p>That shows up in four places. A fresh agent starts from a blank prompt and confidently invents a workflow. A pipeline is trusted because it ran once, and nobody can say what it produced last week. A page or an image reads like a template, because nothing decided how it should sound. And the choice of which model answers lives in twenty call sites, so it cannot change when the provider does.</p>
+
+  <h2 id="what-i-do">What I do about it</h2>
+  <p>I automate the parts that would otherwise be dropped, and I build each one once so it can be reused.</p>
+  <ul>
+    <li><strong>A session starts from the rules your project actually uses, not a blank prompt.</strong> A fresh agent begins with the right contract instead of confidently inventing a workflow.</li>
+    <li><strong>Long work survives a break.</strong> What changed, what was verified and what is still open stays on the record, so the next person does not have to ask.</li>
+    <li><strong>Output sounds like a person, not a template.</strong> Writing and images come out in your voice and your palette, and every generated file can be traced back to what produced it.</li>
+    <li><strong>The model route is a decision, not a hard-coded provider.</strong> Which model answers is answered by policy, so it can change when the provider does.</li>
+  </ul>
+  <p>The commits below are the honest version of that claim.</p>
+
+  <div class="live">
+<!-- TRACKING:START -->
+<h2>What's fresh</h2>
+<p>2026-10-01: 29 commit(s) across 4 project(s).</p>
+<table>
+<thead><tr><th>Project</th><th>Last push</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/stylish-profile">stylish-profile</a></td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>2026-10-01</td></tr>
+<tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>2026-10-01</td></tr>
+</tbody>
+</table>
+<figure class="wide-figure">
+<picture>
+<source media="(prefers-color-scheme: light) and (max-width: 640px)" srcset="../assets/profile/generated/activity-narrow.svg">
+<source media="(prefers-color-scheme: light)" srcset="../assets/profile/generated/activity.svg">
+<source media="(max-width: 640px)" srcset="../assets/profile/generated/activity-narrow-dark.svg">
+<img src="../assets/profile/generated/activity-dark.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1200 total." width="100%">
+</picture>
+<figcaption>Daily commit counts across public Pukujan repositories over the last 14 days, 1200 total.</figcaption>
+</figure>
+<p>Current project: <a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a> with 91 commit(s) in the last 7 days.</p>
+<p><a href="https://github.com/Pukujan?tab=repositories">All repositories</a>.</p>
+<!-- TRACKING:END -->
+  </div>
+
+  <h2 id="featured-projects">Featured projects</h2>
+  <p>Four projects, each open on GitHub, each one a piece of the same habit.</p>
   <div class="table-scroll">
     <table>
       <thead><tr><th>Project</th><th>In one line</th><th>Repository</th></tr></thead>
@@ -216,7 +258,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Agent%20Custom%20Setup.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="summary">A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. It is the reason this page's own repository cannot silently drift from the versions it claims.</p>
+      <p class="summary">A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. An agent that starts from a blank prompt will confidently invent a workflow; one that starts from a checked contract will follow yours.</p>
     </details>
   </div>
 
@@ -225,7 +267,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Project%20Continuity%20Modules.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="summary">Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
+      <p class="summary">Long work survives a break. What changed, what was verified, and what is still open is recorded, so the expensive failure — a good decision that nobody recorded — stops happening.</p>
     </details>
   </div>
 
@@ -247,40 +289,57 @@
     </details>
   </div>
 
-  <h2>Start here</h2>
-  <h3>Agent Custom Setup</h3>
-  <p><a href="https://github.com/Pukujan/agent-custom-setup">Agent Custom Setup</a> is the piece the other three sit on, and the first thing to read. It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. Every other repository here starts a session by loading it, so if it hands out the wrong rules, everything downstream is wrong in a way that still looks fine.</p>
-  <p><a href="https://github.com/Pukujan/agent-custom-setup">Repository</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json">Module registry</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md">Policy</a></p>
+  <figure class="wide-figure">
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/Projects%20on%20One%20Thread.gif">
+      <img src="../assets/profile/anim/Projects%20on%20One%20Thread-dark.gif" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread.">
+    </picture>
+    <figcaption>Agent Custom Setup decides what rules a session starts with. Project Continuity Modules decides what survives between sessions. Content Generation Modules decides what the output sounds and looks like. Inference Recommendation Engine decides which model actually answers.</figcaption>
+  </figure>
 
-  <div class="live">
-<!-- TRACKING:START -->
-<h2>What's fresh</h2>
-<p>2026-10-01: 29 commit(s) across 4 project(s).</p>
-<table>
-<thead><tr><th>Project</th><th>Last push</th></tr></thead>
-<tbody>
-<tr><td><a href="https://github.com/Pukujan/octo-database">octo-database</a></td><td>2026-10-01</td></tr>
-<tr><td><a href="https://github.com/Pukujan/stylish-profile">stylish-profile</a></td><td>2026-10-01</td></tr>
-<tr><td><a href="https://github.com/Pukujan/content-generation-modules">content-generation-modules</a></td><td>2026-10-01</td></tr>
-<tr><td><a href="https://github.com/Pukujan/Pukujan">Pukujan</a></td><td>2026-10-01</td></tr>
-</tbody>
-</table>
-<figure class="wide-figure">
-<picture>
-<source media="(prefers-color-scheme: light) and (max-width: 640px)" srcset="../assets/profile/generated/activity-narrow.svg">
-<source media="(prefers-color-scheme: light)" srcset="../assets/profile/generated/activity.svg">
-<source media="(max-width: 640px)" srcset="../assets/profile/generated/activity-narrow-dark.svg">
-<img src="../assets/profile/generated/activity-dark.svg" alt="Daily commit counts across public Pukujan repositories over the last 14 days, 1200 total." width="100%">
-</picture>
-<figcaption>Daily commit counts across public Pukujan repositories over the last 14 days, 1200 total.</figcaption>
-</figure>
-<p>Current project: <a href="https://github.com/Pukujan/agent-custom-setup">agent-custom-setup</a> with 91 commit(s) in the last 7 days.</p>
-<p><a href="https://github.com/Pukujan?tab=repositories">All repositories</a>.</p>
-<!-- TRACKING:END -->
+  <details>
+    <summary>More about each project</summary>
+
+    <h3>Agent Custom Setup</h3>
+    <p>It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. That check is the reason this page's own repository cannot silently drift from the versions it claims.</p>
+    <p><a href="https://github.com/Pukujan/agent-custom-setup">Repository</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json">Module registry</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md">Policy</a></p>
+    <p><em>Why it exists:</em> an agent that starts from a blank prompt will confidently invent a workflow. One that starts from a checked contract will follow yours.</p>
+
+    <h3>Project Continuity Modules</h3>
+    <p>Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
+    <p><em>Why it exists:</em> the expensive failure is not a bad decision. It is a good decision that nobody recorded.</p>
+
+    <h3>Content Generation Modules</h3>
+    <p>Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.</p>
+    <p><em>Why it exists:</em> a page that reads like a brochure is a page nobody finishes. This page is built with it.</p>
+
+    <h3>Inference Recommendation Engine</h3>
+    <p>Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
+    <p><em>Why it exists:</em> provider choice changes monthly. The decision logic should not live in twenty call sites.</p>
+
+  </details>
+
+  <h2>How I work</h2>
+  <div class="motion-pair">
+    <figure class="motion-figure">
+      <picture>
+        <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/Reusable%20Blocks.gif">
+        <img src="../assets/profile/anim/Reusable%20Blocks-dark.gif" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="360" height="360">
+      </picture>
+      <figcaption><strong>Build it once.</strong> One block, then two, then three, then a grid. The original turns yellow to mark which copy the rest came from.</figcaption>
+    </figure>
+    <figure class="motion-figure">
+      <picture>
+        <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/One%20Push%20Many%20Pipelines.gif">
+        <img src="../assets/profile/anim/One%20Push%20Many%20Pipelines-dark.gif" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="360" height="360">
+      </picture>
+      <figcaption><strong>Run it once, get every result.</strong> One push travels down the stem, the stem forks, and each branch finishes on its own.</figcaption>
+    </figure>
   </div>
+  <p>Those are the two things I actually automate. Everything else on this page is downstream of them.</p>
 
   <h2>Listen instead</h2>
-  <p>Nine short notes if you would rather hear this than read it: five about the page, then one for each project up in <a href="#current-projects">What I'm building</a>.</p>
+  <p>Nine short notes if you would rather hear this than read it: five about the page, then one for each project up in <a href="#featured-projects">Featured projects</a>.</p>
 
   <div class="note" data-kind="welcome">
     <span class="kind">Welcome</span>
@@ -331,33 +390,6 @@
       <p class="transcript">One honest note before you go. This page is new, and parts of the tooling behind it are still being built. The three projects you see are real and public, and each one has an issue tracking what is done and what is not. If something here looks unfinished, that is usually because it is.</p>
     </details>
   </div>
-
-  <figure class="wide-figure">
-    <picture>
-      <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/Projects%20on%20One%20Thread.gif">
-      <img src="../assets/profile/anim/Projects%20on%20One%20Thread-dark.gif" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread.">
-    </picture>
-    <figcaption>One habit runs through all of them: leave a trail behind you.</figcaption>
-  </figure>
-
-  <h2>How I work</h2>
-  <div class="motion-pair">
-    <figure class="motion-figure">
-      <picture>
-        <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/Reusable%20Blocks.gif">
-        <img src="../assets/profile/anim/Reusable%20Blocks-dark.gif" alt="Animated drawing of one blue block being duplicated until six identical blocks form a two-by-three grid, then the original block turning yellow." width="360" height="360">
-      </picture>
-      <figcaption><strong>Build it once.</strong> One block, then two, then three, then a grid. The original turns yellow to mark which copy the rest came from.</figcaption>
-    </figure>
-    <figure class="motion-figure">
-      <picture>
-        <source media="(prefers-color-scheme: light)" srcset="../assets/profile/anim/One%20Push%20Many%20Pipelines.gif">
-        <img src="../assets/profile/anim/One%20Push%20Many%20Pipelines-dark.gif" alt="Animated drawing of a single dot travelling down a stem that forks into three branches, filling a box at the end of each branch." width="360" height="360">
-      </picture>
-      <figcaption><strong>Run it once, get every result.</strong> One push travels down the stem, the stem forks, and each branch finishes on its own.</figcaption>
-    </figure>
-  </div>
-  <p>Those are the two things I actually automate. Everything else on this page is downstream of them.</p>
 
   <footer>
     <p>Illustrations drawn from the palette of <a href="https://www.design-bakery.com">design-bakery.com</a>. Voice: Fish Audio. This tour is built in <a href="https://github.com/Pukujan/stylish-profile">Pukujan/stylish-profile</a>.</p>

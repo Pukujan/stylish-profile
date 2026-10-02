@@ -11,7 +11,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773`
-- Current SHA-256: `0e75b66619a9a55d59d0bc4ca808939072701993db3032431a1601fc64752169`
+- Current SHA-256: `c6d6617d1ba4d08f2b10562c5ada3626910ae46b1ad50036bc0398de597984b8`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -35,7 +35,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7`
-- Current SHA-256: `901a55c80cfa4128cc4dff0e51ceeb41f8c4dba5e28b33cebcd9e173f748bd47`
+- Current SHA-256: `a0c728d80c86733fa63b3ed543398fd70045f59703d3848e83f4e88369b26ff5`
 - Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: who I am, what I'm building with the four featured projects, how I work, the tools, what's fresh, the spoken tour links and how to find me.
 - Search terms: `featured-projects`, `profile`, `readme`
 - Neighboring records: none
@@ -59,7 +59,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `6915f95cf1c34685a8c86d28434408e76714fa9ec51548c1745ed8ad74f152c9`
-- Current SHA-256: `1d9e46077070c10b9c6f37ef9c26bbbc83651bedfa90e719b0e67881f1746f7a`
+- Current SHA-256: `db72dfd1460749db0e05ffd0d6c680783d720a1c4a3b1c51e052012dca5a82c1`
 - Summary: The durable contract: the main goal, why the page exists, what is in scope, what is explicitly out of scope, and the six definition-of-success criteria.
 - Search terms: `contract`, `scope`
 - Neighboring records: none
@@ -95,7 +95,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599`
-- Current SHA-256: `9738d95fde827cf147e8411f6b097102b86dd6424abef5acc508656cac536097`
+- Current SHA-256: `494104652dd9f4dcb7c65a2c2dcbaa521ae1275d52fb3f1f0c3afb7143a30a05`
 - Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none
