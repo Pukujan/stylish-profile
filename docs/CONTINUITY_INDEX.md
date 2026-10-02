@@ -1,6 +1,6 @@
 # Continuity Document Index
 
-<!-- continuity:documents-index {"catalog_sha256":"d34386b5c9b97e6bd1fa162213e659284536279ed27b6fe3e00b5e47ab1d65af","schema":"project-continuity.documents-index.v1"} -->
+<!-- continuity:documents-index {"catalog_sha256":"d02e43ddf13db697f6f6a9c9917934b3eb99e41d09ac433eb5051316ae75265c","schema":"project-continuity.documents-index.v1"} -->
 
 > Generated from `.continuity/documents.json`. Edit the JSON inventory, then run `continuity docs render`; do not edit this view directly.
 > Freshness below compares local file bytes; after `git fetch origin`, use `continuity docs find` for cached remote freshness.
@@ -8,9 +8,9 @@
 ## Content adapter asset manifest (`content-adapter`)
 
 - File: [`.content-system/asset-manifest.json`](../.content-system/asset-manifest.json)
-- Local content status: **NEEDS_REVIEW**
+- Local content status: **CURRENT**
 - Last reviewed at commit: `uncommitted`
-- Reviewed SHA-256: `4c8048e298295190683ebdbd42ac5337aa2c57b069f99729da1ffa27ecffd071`
+- Reviewed SHA-256: `4c1ff489bb14e1dff3b0bb524bfc2814145e5af76f6d92e3c0999bf876ccb106`
 - Current SHA-256: `4c1ff489bb14e1dff3b0bb524bfc2814145e5af76f6d92e3c0999bf876ccb106`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
@@ -32,14 +32,14 @@
 ## Profile page (publishable) (`profile-page`)
 
 - File: [`profile/README.md`](../profile/README.md)
-- Local content status: **NEEDS_REVIEW**
+- Local content status: **CURRENT**
 - Last reviewed at commit: `uncommitted`
-- Reviewed SHA-256: `003fc9b3831be6819f7ba715d41d0ea975137fb77d5811ff45cf35813207dba7`
-- Current SHA-256: `a0c728d80c86733fa63b3ed543398fd70045f59703d3848e83f4e88369b26ff5`
+- Reviewed SHA-256: `5cee22b34b4387e62d122861a8f57af1a71fc9f1bf886d7b14787f21f4d397b4`
+- Current SHA-256: `5cee22b34b4387e62d122861a8f57af1a71fc9f1bf886d7b14787f21f4d397b4`
 - Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: who I am, what I'm building with the four featured projects, how I work, the tools, what's fresh, the spoken tour links and how to find me.
 - Search terms: `featured-projects`, `profile`, `readme`
 - Neighboring records: none
-- Task associations: `SP-0001`
+- Task associations: `SP-0001`, `SP-0010`
 
 ## Content adapter project brief (`project-brief`)
 
@@ -92,11 +92,11 @@
 ## Tour page (`tour-page`)
 
 - File: [`docs/index.html`](../docs/index.html)
-- Local content status: **NEEDS_REVIEW**
+- Local content status: **CURRENT**
 - Last reviewed at commit: `uncommitted`
-- Reviewed SHA-256: `e3b02e16fa67e8fd842632298c80ab02baac096938c289224d4c64078fa17599`
-- Current SHA-256: `494104652dd9f4dcb7c65a2c2dcbaa521ae1275d52fb3f1f0c3afb7143a30a05`
+- Reviewed SHA-256: `7546fba9b3066a54a8ba7655dce644940a8cff4727b78a2f3578e00284a02b89`
+- Current SHA-256: `7546fba9b3066a54a8ba7655dce644940a8cff4727b78a2f3578e00284a02b89`
 - Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none
-- Task associations: `SP-0001`
+- Task associations: `SP-0001`, `SP-0010`

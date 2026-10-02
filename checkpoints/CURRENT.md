@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":"SP-0009","active_task_file":"tasks/TASK-SP-0009-dark-copies-stop-flashing.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":"SP-0010","active_task_file":"tasks/TASK-SP-0010-profile-voice-and-order.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -19,16 +19,16 @@ Phase: bootstrap.
 - SP-0006: the records that still contradicted the shipped page agree with it, and the two that could drift fail a check instead of going stale quietly.
 - SP-0007: the hero and the figure beside the project list are rebuilt from one locked environment plate plus keyed character sprites, so only the characters move; `scripts/build_locked_motion.py check` fails a committed GIF whose environment drifts outside its declared moving boxes, and runs as a gate.
 - SP-0008: the hero is redrawn from scratch with the configured image model and the dark transform no longer repaints a figure's own outline as light ink, so the silhouette halo is gone; the page and the tour page now run hero, introduction, market, what Pujan does about it, the daily commits, the featured projects, then the rest. Merged to `main` as `14338d2` from pull request #29, with every step of the required `gates` job green on the merge candidate.
+- SP-0009: the derived dark GIFs no longer flash. The page mask is decided once for the whole loop instead of once per frame, so a pixel byte-identical in two consecutive light frames gets the same dark output. Flash is 0 on all eight committed dark GIFs (was 24,148), both hero animations' page area is unchanged (+0.00%), and the dark hero's 48,617 px of surviving page cream are preserved exactly. Merged to `main` as `8add943` from pull request #35, with the required `gates` job green on the merge candidate and on `main`.
 
 ## Active
 
-- SP-0009 (issue #28, leaf, parent ancestry: none, depends on SP-0008): stop the
-  derived dark GIFs flashing. The page mask is now decided once for the whole
-  loop — a pixel counts as page if the border-connected pass calls it page in
-  this frame, or in another frame whose colour at that pixel is within two
-  levels. Flash is 0 on all eight committed dark GIFs, the two hero animations'
-  page area is unchanged (+0.00%), and the dark hero's 48,617 px of surviving
-  page cream are preserved exactly. Branch `task/SP-0009-dark-copies-stop-flashing`.
+- SP-0010 (issue #36, leaf, parent ancestry: none, depends on SP-0009): reorder
+  and rewrite the profile page so it runs hero, a short introduction naming
+  `Agent Custom Setup`, the market, what Pujan does about it, the daily commits,
+  the featured projects, then the rest, with the market framed for a reader
+  rather than described in audit language. The same copy is mirrored in
+  `docs/index.html`. Branch `task/SP-0010-profile-voice-and-order`.
 
 The two records that could drift are gated: `scripts/track_activity.py`
 writes the chart hashes it draws into the manifest, `scripts/check_profile_links.py`
@@ -51,9 +51,13 @@ None known.
 
 ## Next atomic action
 
-Finish SP-0009: push branch `task/SP-0009-dark-copies-stop-flashing`, open the
-pull request against `main`, verify the required `gates` check on the exact
-merge candidate, merge it, and append the check results and merge SHA to issue
-#28. When the owner deletes the two probe repositories, re-run
+Finish SP-0010: on branch `task/SP-0010-profile-voice-and-order`, restore the
+held copy, resolve the market opener so it states the reader's situation rather
+than an unsourced claim about the industry, re-run the full gate set, then
+commit, checkpoint, push, open the pull request against `main`, verify the
+required `gates` check on the exact merge candidate, merge it, and append the
+check results and merge SHA to issue #36. After the merge lands, dispatch
+`track-activity` so the mirror to `Pukujan/Pukujan` picks the new copy up.
+When the owner deletes the two probe repositories, re-run
 `scripts/track_activity.py --days 14`, then `continuity docs render`, then commit
 so the `sanitizer-probe` row leaves `profile/tracking.json`.

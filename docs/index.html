@@ -167,8 +167,9 @@
       <img src="../assets/profile/Pujan.png" alt="Flat illustration of the page's author: a bespectacled young engineer with dark hair, a small smile and a dark sweater with one yellow button, drawn on a deep royal blue field." width="56" height="56">
       <h1>Hi, I'm Pujan</h1>
     </div>
-    <p class="lede">AI engineer. I build systems that keep long AI projects from losing their place: the rules a project hands a fresh agent, the record of what was verified, and the routing that decides which model answers. The piece the rest sit on is <a href="https://github.com/Pukujan/agent-custom-setup">Agent Custom Setup</a>.</p>
-    <p>One habit runs through all four featured projects below: leave a trail behind you.</p>
+    <p class="lede"><strong>I build systems that keep long AI projects from losing their place.</strong> That is the whole job: the rules a project hands a fresh agent, the record of what it has already been through, and the routing that decides which model answers.</p>
+    <p>My featured project is <a href="https://github.com/Pukujan/agent-custom-setup">Agent Custom Setup</a> — a project hands itself to a fresh agent, and the agent starts with the right rules instead of guessing.</p>
+    <p>Everything else below grows from that one habit: leave a trail behind you.</p>
     <ul class="chips">
       <li>Agent setup</li>
       <li>Project continuity</li>
@@ -178,18 +179,18 @@
     <p><a href="https://github.com/Pukujan">Profile</a> · <a href="https://github.com/Pukujan/stylish-profile">This repository</a> · <a href="https://www.design-bakery.com">design-bakery.com</a></p>
   </header>
 
-  <h2 id="the-work">The work</h2>
-  <p>Document-heavy AI means the input is a contract, a filing, a case file or a policy pack, and the output has to survive someone checking it. The models are good enough now. The failure has moved somewhere else.</p>
+  <h2 id="the-market">The market</h2>
+  <p>The work is document-heavy AI systems: a contract, a filing, a case file, a policy pack. The models are good enough for it now. The failure has moved somewhere else.</p>
   <p><strong>Long projects rarely fail because the work was too hard.</strong> They fail because something got dropped: a decision nobody wrote down, a check nobody ran, a handoff nobody made.</p>
   <p>That shows up in four places. A fresh agent starts from a blank prompt and confidently invents a workflow. A pipeline is trusted because it ran once, and nobody can say what it produced last week. A page or an image reads like a template, because nothing decided how it should sound. And the choice of which model answers lives in twenty call sites, so it cannot change when the provider does.</p>
 
   <h2 id="what-i-do">What I do about it</h2>
-  <p>I automate the parts that would otherwise be dropped, and I build each one once so it can be reused.</p>
+  <p>I build one small tool for each of those four places, and I build each one once so it can be reused.</p>
   <ul>
     <li><strong>A session starts from the rules your project actually uses, not a blank prompt.</strong> A fresh agent begins with the right contract instead of confidently inventing a workflow.</li>
-    <li><strong>Long work survives a break.</strong> What changed, what was verified and what is still open stays on the record, so the next person does not have to ask.</li>
-    <li><strong>Output sounds like a person, not a template.</strong> Writing and images come out in your voice and your palette, and every generated file can be traced back to what produced it.</li>
-    <li><strong>The model route is a decision, not a hard-coded provider.</strong> Which model answers is answered by policy, so it can change when the provider does.</li>
+    <li><strong>Long work survives a break.</strong> What changed, what was checked and what is still open stays on the record, so the next person does not have to ask.</li>
+    <li><strong>Output sounds like a person, not a template.</strong> Writing and images come out in your voice and your palette, so the result feels made rather than generated.</li>
+    <li><strong>The model route follows a policy.</strong> Which model answers is decided by rule, so it can change when the provider does.</li>
   </ul>
   <p>The commits below are the honest version of that claim.</p>
 
@@ -258,7 +259,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Agent%20Custom%20Setup.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="summary">A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. An agent that starts from a blank prompt will confidently invent a workflow; one that starts from a checked contract will follow yours.</p>
+      <p class="summary">A project hands itself to a fresh AI agent and the agent starts with the right rules instead of guessing. An agent that starts from a blank prompt will confidently invent a workflow; one that starts from your project's own rules will follow yours.</p>
     </details>
   </div>
 
@@ -267,7 +268,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Project%20Continuity%20Modules.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="summary">Long work survives a break. What changed, what was verified, and what is still open is recorded, so the expensive failure — a good decision that nobody recorded — stops happening.</p>
+      <p class="summary">Long work survives a break. What changed, what was checked, and what is still open stays on the record, so the next person does not have to reconstruct it.</p>
     </details>
   </div>
 
@@ -276,7 +277,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Content%20Generation%20Modules.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="summary">Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.</p>
+      <p class="summary">Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, so a page reads like it was written for someone.</p>
     </details>
   </div>
 
@@ -285,7 +286,7 @@
     <audio controls preload="none" src="../assets/profile/voice-notes/Inference%20Recommendation%20Engine.mp3"></audio>
     <details>
       <summary>What it does</summary>
-      <p class="summary">Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
+      <p class="summary">Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider.</p>
     </details>
   </div>
 
@@ -301,21 +302,21 @@
     <summary>More about each project</summary>
 
     <h3>Agent Custom Setup</h3>
-    <p>It pins the versions of the tools a project depends on, checks that the pinned code is the code that actually loaded, and fails the install when it is not. That check is the reason this page's own repository cannot silently drift from the versions it claims.</p>
+    <p>It pins the versions of the tools a project depends on, so a project cannot silently drift from the versions it claims.</p>
     <p><a href="https://github.com/Pukujan/agent-custom-setup">Repository</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/registry.json">Module registry</a> · <a href="https://github.com/Pukujan/agent-custom-setup/blob/main/POLICY.md">Policy</a></p>
-    <p><em>Why it exists:</em> an agent that starts from a blank prompt will confidently invent a workflow. One that starts from a checked contract will follow yours.</p>
+    <p><em>Why it exists:</em> an agent that starts from a blank prompt will confidently invent a workflow. One that starts from your project's own rules will follow yours.</p>
 
     <h3>Project Continuity Modules</h3>
-    <p>Long work survives a break. Checkpoints record what changed, what was verified, and what is still open; a GitHub issue owns the scope; a pull request can only merge after the required checks pass, and a missing or skipped check fails closed rather than open.</p>
+    <p>Long work survives a break. What changed, what was checked, and what is still open stays on the record, so the next person does not have to reconstruct it.</p>
     <p><em>Why it exists:</em> the expensive failure is not a bad decision. It is a good decision that nobody recorded.</p>
 
     <h3>Content Generation Modules</h3>
-    <p>Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, keeps generated filenames speakable, and records where every image came from: its prompt, its role, its dimensions, and the review that accepted it.</p>
+    <p>Writing and images that sound like a person rather than a template. It routes each kind of human-facing output to its own contract, so a page reads like it was written for someone.</p>
     <p><em>Why it exists:</em> a page that reads like a brochure is a page nobody finishes. This page is built with it.</p>
 
     <h3>Inference Recommendation Engine</h3>
-    <p>Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider, and it is tested with property-driven tests rather than example fixtures.</p>
-    <p><em>Why it exists:</em> provider choice changes monthly. The decision logic should not live in twenty call sites.</p>
+    <p>Provider-neutral routing for model calls. It recommends an inference route from an explicit policy instead of a hard-coded provider.</p>
+    <p><em>Why it exists:</em> provider choice changes monthly. The decision should not live in twenty call sites.</p>
 
   </details>
 
