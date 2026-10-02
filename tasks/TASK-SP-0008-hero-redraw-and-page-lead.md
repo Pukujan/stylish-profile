@@ -227,6 +227,29 @@ Blocked/uncertain:
 Next:
 - Open the pull request for task/SP-0008-post-merge-audit against main, arm auto-merge, verify the required checks on the exact candidate SHA, then pick up #28.
 
+### 2026-10-02 01:28:09 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["README.md, docs/CONTINUITY_INDEX.md"],"completed":["Found why the merge commit for PR 32 had no push-triggered gates run and wrote the rule down: a merge whose auto-merge was armed by auto-merge.yml uses secrets.GITHUB_TOKEN, which GitHub suppresses, so push: branches: [main] never fires. Verified gates on the merge commit anyway with a dispatched run."],"decisions":["Documented the suppression rule in README rather than adding a workflow that re-dispatches gates after every merge, because the required check already runs on the pull request head and the push run is belt-and-braces. Chose manual arming as the primary instruction since it is one command and needs no secret."],"evidence":["Run inventory: gates push runs exist for e1049db (36948611156) and f237e72 (36949420571) but not for 14338d2 or a59075b. The arm auto-merge job log says 'armed squash auto-merge on PR #32' (run 36950524910) and 'armed squash auto-merge on PR #29' (run 36947923770), and 'PR #31 already has auto-merge armed' (36949353312) and 'PR #30 already has auto-merge armed' (36948550643). So the two merges with no push run are exactly the two the workflow armed itself. Dispatched gates on main: run 36950890719 on a59075b, conclusion success. Local gates all green under the CI pins."],"next_action":"Open the pull request for task/SP-0008-merge-run-rule, arm auto-merge by hand so the workflow does not arm it with GITHUB_TOKEN, verify the required check on the merge candidate, then confirm gates on the merge commit either from a push run or a dispatched one.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0008","timestamp":"2026-10-02T01:28:09Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"ab80b145dce350661a2ba2c767c9c4973405d30e3d6d1c730e0bde2c995672d9","request_id":"fe04fcaf4f72483ab8d25c508b4b68fa","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0008"} -->
+
+Completed:
+- Found why the merge commit for PR 32 had no push-triggered gates run and wrote the rule down: a merge whose auto-merge was armed by auto-merge.yml uses secrets.GITHUB_TOKEN, which GitHub suppresses, so push: branches: [main] never fires. Verified gates on the merge commit anyway with a dispatched run.
+
+Evidence:
+- Run inventory: gates push runs exist for e1049db (36948611156) and f237e72 (36949420571) but not for 14338d2 or a59075b. The arm auto-merge job log says 'armed squash auto-merge on PR #32' (run 36950524910) and 'armed squash auto-merge on PR #29' (run 36947923770), and 'PR #31 already has auto-merge armed' (36949353312) and 'PR #30 already has auto-merge armed' (36948550643). So the two merges with no push run are exactly the two the workflow armed itself. Dispatched gates on main: run 36950890719 on a59075b, conclusion success. Local gates all green under the CI pins.
+
+Decisions:
+- Documented the suppression rule in README rather than adding a workflow that re-dispatches gates after every merge, because the required check already runs on the pull request head and the push run is belt-and-braces. Chose manual arming as the primary instruction since it is one command and needs no secret.
+
+Changed:
+- README.md, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Open the pull request for task/SP-0008-merge-run-rule, arm auto-merge by hand so the workflow does not arm it with GITHUB_TOKEN, verify the required check on the merge candidate, then confirm gates on the merge commit either from a push run or a dispatched one.
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
