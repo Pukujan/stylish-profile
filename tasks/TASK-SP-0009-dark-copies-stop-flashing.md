@@ -305,3 +305,26 @@ Blocked/uncertain:
 
 Next:
 - Open the pull request against main, verify the required gates check on the exact merge candidate, merge with gh pr merge --squash, then post the leaf receipt to issue #28 keyed by request ID and pushed SHA.
+
+### 2026-10-02 04:08:57 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["tasks/TASK-SP-0009-dark-copies-stop-flashing.md"],"completed":["Corrected the criterion-3 evidence in the task record with measured probes: the withdrawn nineteen-pixel bound is refuted by What You Can Check's 190 px card component, per-asset tolerance-added bounds are tabulated, and the light-ink channel is measured clean in both directions (278 pixels lost PAPER_INK, all page coloured and all becoming PANEL; 0 gained)."],"decisions":["Amend the record rather than merge it: the pushed text asserted a 23 px figure that no measurement supports, and a delivered-evidence record must not ship a false fact. Auto-merge was disabled before the amendment and is re-armed after gates pass on the new head."],"evidence":["Measured on the committed bytes against HEAD~1: tolerance-added >8-level components 27/138/876/472/6/16 (largest 190 px on What You Can Check); ink lost 228 (What You Can Check) + 50 (Pujan), largest component 13 px; ink gained 0 on all eight assets."],"next_action":"Verify the required gates check is green on the amended head, re-arm auto-merge, let the squash merge land, then post the leaf receipt to issue #28 keyed by request ID and pushed SHA.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0009","timestamp":"2026-10-02T04:08:57Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"a6f2a72ea6d05df090a421f8066a5b5726bd7e286e1bfc5f3a02346094a74934","request_id":"0649db372138481cbc6a225ad6df1642","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0009"} -->
+
+Completed:
+- Corrected the criterion-3 evidence in the task record with measured probes: the withdrawn nineteen-pixel bound is refuted by What You Can Check's 190 px card component, per-asset tolerance-added bounds are tabulated, and the light-ink channel is measured clean in both directions (278 pixels lost PAPER_INK, all page coloured and all becoming PANEL; 0 gained).
+
+Evidence:
+- Measured on the committed bytes against HEAD~1: tolerance-added >8-level components 27/138/876/472/6/16 (largest 190 px on What You Can Check); ink lost 228 (What You Can Check) + 50 (Pujan), largest component 13 px; ink gained 0 on all eight assets.
+
+Decisions:
+- Amend the record rather than merge it: the pushed text asserted a 23 px figure that no measurement supports, and a delivered-evidence record must not ship a false fact. Auto-merge was disabled before the amendment and is re-armed after gates pass on the new head.
+
+Changed:
+- tasks/TASK-SP-0009-dark-copies-stop-flashing.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Verify the required gates check is green on the amended head, re-arm auto-merge, let the squash merge land, then post the leaf receipt to issue #28 keyed by request ID and pushed SHA.
