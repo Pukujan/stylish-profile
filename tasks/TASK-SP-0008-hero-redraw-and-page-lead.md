@@ -204,6 +204,29 @@ Blocked/uncertain:
 Next:
 - Pick up #28: find a page mask for scripts/derive_dark_assets.py that stops the dark GIFs flashing without shrinking the page area, and measure flashing pixels and page area together before touching any committed asset.
 
+### 2026-10-02 01:20:41 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["README.md, .content-system/asset-manifest.json, docs/CONTINUITY_INDEX.md, tasks/TASK-SP-0008-hero-redraw-and-page-lead.md"],"completed":["Audited the merged hero against main: ticked every acceptance criterion with the evidence behind it, measured the phone hero's bottom margin and the dark hero's surviving page cream, and corrected the survivor set to the bench face and pegboard."],"decisions":["Corrected the manifest wording and the record rather than re-placing the phone sprites, because 14.0 percent is the smallest of the four bottom margins measured and there is no dead third to fix. Wrote the two vision false positives into the task record so the next session does not chase them. Put the CRLF note in the README because a render that looks like drift on Windows is a real time-sink."],"evidence":["Vision pass on the committed AI Engineer-dark.gif frame 1: outlines dark and crisp, no halo on the engineer, coat, glassware or bench, title and subtitle crisp, boots on the ground line. Tour page rendered dark in Chromium: hero is AI Engineer-dark.gif, body background #0f0f0f, heading order The work, What I do about it, What's fresh, Featured projects, How I work, Listen instead, exactly one TRACKING:START and one TRACKING:END. Phone still last drawn row 1321 of 1536, a 14.0 percent margin, against 841 of 1024 (17.8 percent) on the wide hero, 619 of 720 (13.9 percent) and 493 of 600 (17.7 percent) on the two GIFs. Dark hero survivors at Chebyshev 3 from the field colour: 48,617 px, all of it the bench face and pegboard at distance 0; the lab coat is 21 away and is not in the set; identical under HEAD's transform. gates success on main at both e1049db (run 36948611156) and f237e72 (run 36949420571). Local gates: links 34 and 36, voice 9 clips 0 problems, dark 8 variants, motion OK on three recipes, adapter VALID, both hsw scans VALID, continuity validate VALID."],"next_action":"Open the pull request for task/SP-0008-post-merge-audit against main, arm auto-merge, verify the required checks on the exact candidate SHA, then pick up #28.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0008","timestamp":"2026-10-02T01:20:41Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"2bd97c2984105aaac6db94bc0024b185e54ff612de0e93795a1183f978358953","request_id":"659f94a8469c4afb8dcba7c4412bfbda","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0008"} -->
+
+Completed:
+- Audited the merged hero against main: ticked every acceptance criterion with the evidence behind it, measured the phone hero's bottom margin and the dark hero's surviving page cream, and corrected the survivor set to the bench face and pegboard.
+
+Evidence:
+- Vision pass on the committed AI Engineer-dark.gif frame 1: outlines dark and crisp, no halo on the engineer, coat, glassware or bench, title and subtitle crisp, boots on the ground line. Tour page rendered dark in Chromium: hero is AI Engineer-dark.gif, body background #0f0f0f, heading order The work, What I do about it, What's fresh, Featured projects, How I work, Listen instead, exactly one TRACKING:START and one TRACKING:END. Phone still last drawn row 1321 of 1536, a 14.0 percent margin, against 841 of 1024 (17.8 percent) on the wide hero, 619 of 720 (13.9 percent) and 493 of 600 (17.7 percent) on the two GIFs. Dark hero survivors at Chebyshev 3 from the field colour: 48,617 px, all of it the bench face and pegboard at distance 0; the lab coat is 21 away and is not in the set; identical under HEAD's transform. gates success on main at both e1049db (run 36948611156) and f237e72 (run 36949420571). Local gates: links 34 and 36, voice 9 clips 0 problems, dark 8 variants, motion OK on three recipes, adapter VALID, both hsw scans VALID, continuity validate VALID.
+
+Decisions:
+- Corrected the manifest wording and the record rather than re-placing the phone sprites, because 14.0 percent is the smallest of the four bottom margins measured and there is no dead third to fix. Wrote the two vision false positives into the task record so the next session does not chase them. Put the CRLF note in the README because a render that looks like drift on Windows is a real time-sink.
+
+Changed:
+- README.md, .content-system/asset-manifest.json, docs/CONTINUITY_INDEX.md, tasks/TASK-SP-0008-hero-redraw-and-page-lead.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Open the pull request for task/SP-0008-post-merge-audit against main, arm auto-merge, verify the required checks on the exact candidate SHA, then pick up #28.
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
