@@ -150,3 +150,26 @@ Blocked/uncertain:
 
 Next:
 - Open the pull request against main, verify the required gates check on the exact merge candidate, merge with gh pr merge --squash, post the leaf receipt to issue #36, then dispatch track-activity so the mirror to Pukujan/Pukujan picks the new copy up.
+
+### 2026-10-02 04:26:42 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["checkpoints/CURRENT.md, tasks/TASK-SP-0010-profile-voice-and-order.md"],"completed":["SP-0010 is closed out: the profile page leads with the market on both live surfaces, and the task record carries the merge SHA, the two gates runs, and the mirror commit."],"decisions":["Mirror with the owner's credentials rather than the track.yml step: PROFILE_SYNC_TOKEN is not configured (gh secret list is empty), and the change was prose-only, so the full refresh_profile.ps1 run, which would also regenerate the tracking block while the two probe repositories still exist, was not the right tool. Issue #36 stayed OPEN after the merge despite Closes #36 in the pull request body, so it was closed with the receipt as the reason."],"evidence":["PR #37 merged squash as 10d2012be83965b4b10cbe4223201a3df99e352f at 2026-10-02T04:20:54Z. Required gates green on the PR head (run 36964084395) and on main (run 36964200363, dispatched because the auto-merge token suppressed the push trigger). Live checks: github.com/Pukujan renders the new opener and the new bullet and no longer renders either old string; pukujan.github.io/stylish-profile/docs/ same. continuity validate VALID."],"next_action":"File the dark-plate and video-generation follow-up issue with a supersession link to .content-system/project-brief.json mechanism[1], naming scripts/derive_dark_assets.py and the gates.yml step 'Dark variants match their source' as what adoption would retire.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0010","timestamp":"2026-10-02T04:26:42Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"bef278ca5f37fe210848dad53f29a45c3641dca0b4c968a9ba7e7a2f13b2cb3f","request_id":"9fcd222e7b84451cbf6fe4ddd5c931f7","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0010"} -->
+
+Completed:
+- SP-0010 is closed out: the profile page leads with the market on both live surfaces, and the task record carries the merge SHA, the two gates runs, and the mirror commit.
+
+Evidence:
+- PR #37 merged squash as 10d2012be83965b4b10cbe4223201a3df99e352f at 2026-10-02T04:20:54Z. Required gates green on the PR head (run 36964084395) and on main (run 36964200363, dispatched because the auto-merge token suppressed the push trigger). Live checks: github.com/Pukujan renders the new opener and the new bullet and no longer renders either old string; pukujan.github.io/stylish-profile/docs/ same. continuity validate VALID.
+
+Decisions:
+- Mirror with the owner's credentials rather than the track.yml step: PROFILE_SYNC_TOKEN is not configured (gh secret list is empty), and the change was prose-only, so the full refresh_profile.ps1 run, which would also regenerate the tracking block while the two probe repositories still exist, was not the right tool. Issue #36 stayed OPEN after the merge despite Closes #36 in the pull request body, so it was closed with the receipt as the reason.
+
+Changed:
+- checkpoints/CURRENT.md, tasks/TASK-SP-0010-profile-voice-and-order.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- File the dark-plate and video-generation follow-up issue with a supersession link to .content-system/project-brief.json mechanism[1], naming scripts/derive_dark_assets.py and the gates.yml step 'Dark variants match their source' as what adoption would retire.
