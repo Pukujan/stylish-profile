@@ -96,7 +96,8 @@ against both transforms:
 
 The residual is a pre-existing defect, not a regression: HEAD's `_paper_mask`
 was already border-connected per frame, so the shipped One Push dark GIF
-flickers too. It is filed separately. Two fixes were measured and rejected —
+flickers too. It is filed as #28 with the same numbers. Two fixes were measured
+and rejected —
 freezing the page to the intersection of every frame's candidate reaches 0
 flips but costs 21-100% of the page area on six of eight assets; morphological
 opening does not move the mask differences at all, because they are sprites
@@ -107,6 +108,7 @@ moving rather than leaks.
 - Owning issue: https://github.com/Pukujan/stylish-profile/issues/27. Leaf; parent ancestry: none. Supersedes the hero accepted under #24 / PR #25 without reopening it.
 - Primary writer: omp@windows-workstation, branch `task/SP-0008-hero-redraw-and-page-lead`.
 - Related PR/CI evidence: pending.
+- Follow-up filed from this task: #28, the residual flash in the derived dark GIFs, which predates this task and is reduced but not removed by it.
 
 ## Checkpoint log
 

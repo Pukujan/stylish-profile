@@ -18,6 +18,7 @@ Phase: bootstrap.
 - SP-0005: every content-system record matches the page it describes, and the length printed beside each voice note is checked against the clip.
 - SP-0006: the records that still contradicted the shipped page agree with it, and the two that could drift fail a check instead of going stale quietly.
 - SP-0007: the hero and the figure beside the project list are rebuilt from one locked environment plate plus keyed character sprites, so only the characters move; `scripts/build_locked_motion.py check` fails a committed GIF whose environment drifts outside its declared moving boxes, and runs as a gate.
+- SP-0008: the hero is redrawn from scratch with the configured image model and the dark transform no longer repaints a figure's own outline as light ink, so the silhouette halo is gone; the page and the tour page now run hero, introduction, market, what Pujan does about it, the daily commits, the featured projects, then the rest.
 
 ## Active
 
@@ -31,6 +32,10 @@ environment drifts outside the moving boxes its recipe declares.
 
 ## Queued
 
+- #28: the derived dark GIFs still flash where a moving sprite crosses
+  page-coloured territory. Pre-existing, reduced by SP-0008 from 36,523 flashing
+  pixels to 24,148, not removed. Needs a page mask that is leak-proof without
+  shrinking the page area.
 - Re-run the tracker once the two probe repositories are gone, so the `sanitizer-probe` row leaves `profile/tracking.json`.
 - Re-record `The Short Tour.mp3` and `What Is Still Being Built.mp3`, which still say three projects where the page lists four. Needs a paid Fish Audio run and the owner's approval.
 - Upload the avatar to the GitHub account, which is a web-UI action the REST API does not expose.
