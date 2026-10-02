@@ -134,9 +134,25 @@ measured on the committed bytes:
 
 An earlier draft of this note claimed that every pixel the tolerance adds more
 than eight levels from the frame's own field belongs to a run of at most
-nineteen pixels. That claim is withdrawn: the two runs behind it used different
-definitions of the field, and the largest such component at T=2 is 23 px on the
-phone. The two claims above replace it.
+nineteen pixels. That claim is false as written: measured on that set, the
+largest component is 190 px on `What You Can Check` (its tilted card, light
+colour `(253, 246, 227)`, distance 10 from the field), which alone refutes a
+nineteen-pixel bound. Measured bounds on the tolerance-added set, per asset:
+
+| Asset | tolerance-added, >8 levels from field | largest component |
+| --- | --- | --- |
+| One Push Many Pipelines | 27 | 7 |
+| The Badge Wall | 138 | 19 |
+| What You Can Check | 876 | 190 |
+| Pujan and the Loose Ends | 472 | 15 |
+| AI Engineer | 6 | 1 |
+| AI Engineer phone | 16 | 16 |
+
+Those large entries are the page-coloured card faces, which is why the bound
+was never the safety argument: `What You Can Check`'s card is the page colour,
+ten levels from the field only because the field drifts, and it was already
+darkened by the shipped GIF in three of its four frames. The three probes above
+replace the bound.
 
 ### Criterion 1 — flash, measured on the committed bytes
 
@@ -214,7 +230,9 @@ the shipped per-frame `marks` pass misclassified as diagram ink and painted
 light; on a dark page that is a cream dot. The new frame-0 `marks` pass does not
 classify them as ink, so they fall through to `PANEL`, which is what a
 page-coloured pixel should be. No text lost ink: the largest component is 12 px
-on `What You Can Check` and 13 px on `Pujan`, scattered, not a glyph run.
+on `What You Can Check` and 13 px on `Pujan`, scattered, not a glyph run. The
+converse direction is clean too: **0** pixels gained `PAPER_INK` on any of the
+eight assets, so the light-ink channel only ever lost page specks.
 
 A vision pass over the four named assets at the chosen tolerance finds no flat
 dark rectangle punched into a drawn object. Vision reports were checked against
@@ -224,12 +242,6 @@ not float, and a claim that `What You Can Check`'s tagline darkened was refuted
 by probe 3 (all affected pixels page coloured) and by a second pass that found
 the new bytes cleaner than the shipped ones. Verdicts come from pixels, not from
 the vision model.
-
-An earlier draft of this section reported "more than 8 levels from the field"
-counts (One Push 25, Badge Wall 115, WYCC 876, Pujan 460) as the safety
-argument. Those numbers are real but they do not bound the risk, because a
-page-coloured card face sits far from the field and is correctly darkened; they
-are superseded by the three probes above.
 
 ### Criterion 5 — the survivor set
 
