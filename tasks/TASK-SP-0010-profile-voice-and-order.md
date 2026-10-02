@@ -127,3 +127,26 @@ and still do; they are outside this task's scope and were left alone.
   out of scope.
 
 ## Checkpoint log
+
+### 2026-10-02 04:19:40 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["profile/README.md, docs/index.html, tasks/TASK-SP-0010-profile-voice-and-order.md, tasks/TASK-SP-0009-dark-copies-stop-flashing.md, checkpoints/CURRENT.md, .continuity/documents.json, docs/CONTINUITY_INDEX.md"],"completed":["The profile page now leads with the market instead of the audit register: hero, short introduction naming Agent Custom Setup, the market, what Pujan does about it, the daily commits, the featured projects, then the rest, mirrored in docs/index.html."],"decisions":["Two edits against the held draft: the market opener no longer asserts a market shift the linked repositories do not demonstrate, and the fourth bullet no longer repeats the 'not X' shape the other two use. Both satisfy project-brief boundaries and brand-language."],"evidence":["check_profile_links VALID 35 refs/36 hashes; generate_voice_notes --check 0 problems; derive_dark_assets --check VALID 8; build_locked_motion check OK on every recipe; pinned content-system adapter VALID; both hsw scans VALID; continuity validate VALID."],"next_action":"Open the pull request against main, verify the required gates check on the exact merge candidate, merge with gh pr merge --squash, post the leaf receipt to issue #36, then dispatch track-activity so the mirror to Pukujan/Pukujan picks the new copy up.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0010","timestamp":"2026-10-02T04:19:40Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"0beac123d083cef1036b4e66e24e8b218426f826ab3de397a8b6ac69b153fb91","request_id":"c0724c1ee5c0424d9beb20e67a1e76be","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0010"} -->
+
+Completed:
+- The profile page now leads with the market instead of the audit register: hero, short introduction naming Agent Custom Setup, the market, what Pujan does about it, the daily commits, the featured projects, then the rest, mirrored in docs/index.html.
+
+Evidence:
+- check_profile_links VALID 35 refs/36 hashes; generate_voice_notes --check 0 problems; derive_dark_assets --check VALID 8; build_locked_motion check OK on every recipe; pinned content-system adapter VALID; both hsw scans VALID; continuity validate VALID.
+
+Decisions:
+- Two edits against the held draft: the market opener no longer asserts a market shift the linked repositories do not demonstrate, and the fourth bullet no longer repeats the 'not X' shape the other two use. Both satisfy project-brief boundaries and brand-language.
+
+Changed:
+- profile/README.md, docs/index.html, tasks/TASK-SP-0010-profile-voice-and-order.md, tasks/TASK-SP-0009-dark-copies-stop-flashing.md, checkpoints/CURRENT.md, .continuity/documents.json, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Open the pull request against main, verify the required gates check on the exact merge candidate, merge with gh pr merge --squash, post the leaf receipt to issue #36, then dispatch track-activity so the mirror to Pukujan/Pukujan picks the new copy up.
