@@ -34,7 +34,7 @@ environment drifts outside the moving boxes its recipe declares.
 
 ## Queued
 
-- The dark variants are derived from the light asset by a deterministic recolour. Regenerating them from a generated dark plate, or reversing the pipeline to a video-generation route with an image-to-video reference frame, would reverse `.content-system/project-brief.json` `mechanism[1]`. Needs its own issue with a supersession link, and would retire the `gates.yml` step "Dark variants match their source".
+- #39: the dark variants are derived from the light asset by a deterministic recolour. Comparing that against a purpose-drawn dark ground, or reversing the pipeline to a video-generation route with an image-to-video reference frame, would reverse `.content-system/project-brief.json` `mechanism[1]`. The issue asks for a side-by-side comparison and a decision before any code; adoption would retire the `gates.yml` step "Dark variants match their source". Not started.
 - Re-run the tracker once the two probe repositories are gone, so the `sanitizer-probe` row leaves `profile/tracking.json`.
 - Re-record `The Short Tour.mp3` and `What Is Still Being Built.mp3`, which still say three projects where the page lists four. Needs a paid Fish Audio run and the owner's approval.
 - Upload the avatar to the GitHub account, which is a web-UI action the REST API does not expose.
