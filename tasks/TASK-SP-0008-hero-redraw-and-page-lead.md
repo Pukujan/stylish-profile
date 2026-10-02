@@ -1,8 +1,8 @@
 # TASK-SP-0008 — Hero Redraw and Page Lead
 
-<!-- continuity:task {"acceptance": ["a new hero still at 1536x1024 and a new phone hero still at 1024x1536 are generated with the new image model, both spelling the title and subtitle exactly and carrying no other text", "a vision pass over the new light and dark hero frames finds no malformed glyph, no broken connecting line, no floating element, no light halo tracing a silhouette, and no ragged title outline", "both hero locked-motion GIFs pass scripts/build_locked_motion.py check outside their declared moving boxes", "the dark-variant transform no longer repaints a figure's own outline as light ink, and scripts/derive_dark_assets.py --check passes on every committed variant after the change", "the first screen of profile/README.md runs hero image, a short introduction naming the featured project, the market, what Pujan does about it, the daily commits, the projects, then everything else", "docs/index.html carries the same order and the same opening claims", "no sentence in the reordered opening explains pinning, checks, gating or fail-closed behaviour, and those facts still appear further down the page", "every existing gate stays green: check_profile_links, generate_voice_notes --check, the pinned CGM adapter validator, the hsw writing scans, and continuity validate"], "depends_on": [], "goal": "Redraw the hero with the new image model so it holds up in dark mode, and lead the page with the hero, a short featured-project introduction, the market, the fix and the daily commits before the projects", "id": "SP-0008", "issue_url": "https://github.com/Pukujan/stylish-profile/issues/27", "next_action": "generate the new wide hero plate with the new image model and review it against the vision checklist", "owner": "omp@windows-workstation", "priority": "P1", "protocol_version": "0.1.0-draft", "schema": "project-continuity.task.v1", "status": "active", "why": "The owner rejected the shipped hero a second time: it carries drawing faults and its dark variant traces a light halo around every silhouette, because the paper-mask transform repaints a figure's own outline as light ink. The page also buries its story, opening on an audit-flavoured explanation of version pinning instead of the market, the fix and the fresh activity"} -->
+<!-- continuity:task {"acceptance": ["a new hero still at 1536x1024 and a new phone hero still at 1024x1536 are generated with the new image model, both spelling the title and subtitle exactly and carrying no other text", "a vision pass over the new light and dark hero frames finds no malformed glyph, no broken connecting line, no floating element, no light halo tracing a silhouette, and no ragged title outline", "both hero locked-motion GIFs pass scripts/build_locked_motion.py check outside their declared moving boxes", "the dark-variant transform no longer repaints a figure's own outline as light ink, and scripts/derive_dark_assets.py --check passes on every committed variant after the change", "the first screen of profile/README.md runs hero image, a short introduction naming the featured project, the market, what Pujan does about it, the daily commits, the projects, then everything else", "docs/index.html carries the same order and the same opening claims", "no sentence in the reordered opening explains pinning, checks, gating or fail-closed behaviour, and those facts still appear further down the page", "every existing gate stays green: check_profile_links, generate_voice_notes --check, the pinned CGM adapter validator, the hsw writing scans, and continuity validate"], "depends_on": [], "goal": "Redraw the hero with the new image model so it holds up in dark mode, and lead the page with the hero, a short featured-project introduction, the market, the fix and the daily commits before the projects", "id": "SP-0008", "issue_url": "https://github.com/Pukujan/stylish-profile/issues/27", "next_action": "none; SP-0008 is merged as 14338d2 and its close-out is recorded. The residual dark-GIF flash is filed as #28.", "owner": "omp@windows-workstation", "priority": "P1", "protocol_version": "0.1.0-draft", "schema": "project-continuity.task.v1", "status": "completed", "why": "The owner rejected the shipped hero a second time: it carries drawing faults and its dark variant traces a light halo around every silhouette, because the paper-mask transform repaints a figure's own outline as light ink. The page also buries its story, opening on an audit-flavoured explanation of version pinning instead of the market, the fix and the fresh activity"} -->
 
-- Status: active
+- Status: completed
 - Owner: omp@windows-workstation
 - Priority: P1
 - Depends on: none
@@ -107,7 +107,8 @@ moving rather than leaks.
 
 - Owning issue: https://github.com/Pukujan/stylish-profile/issues/27. Leaf; parent ancestry: none. Supersedes the hero accepted under #24 / PR #25 without reopening it.
 - Primary writer: omp@windows-workstation, branch `task/SP-0008-hero-redraw-and-page-lead`.
-- Related PR/CI evidence: pending.
+- Related PR/CI evidence: pull request #29, `https://github.com/Pukujan/stylish-profile/pull/29`. Every step of the required `gates` job passed on `49e7af7`, the exact merge candidate. Squash merge `14338d22ffcf229650303868ab7500ac0a069f87` on `main`, verified by fetching `origin/main` and confirming the merge commit is an ancestor.
+- Delivery note: the first candidate, `c96852d`, failed `gates` on a stale `docs/CONTINUITY_INDEX.md` — the index had been rendered before the task projection and `checkpoints/CURRENT.md` were written, so the runner saw a hash for `PROJECT.md` that no longer matched. Re-rendered and pushed as `49e7af7`; auto-merge then landed the green run. No product file changed in that fix.
 - Follow-up filed from this task: #28, the residual flash in the derived dark GIFs, which predates this task and is reduced but not removed by it.
 
 ## Checkpoint log
@@ -134,6 +135,29 @@ Blocked/uncertain:
 
 Next:
 - Push the branch, open the pull request against main, arm auto-merge, verify the merge and the required checks, then append the exact check results and merge SHA to issue #27 and the task projection.
+
+### 2026-10-02 00:53:15 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["tasks/TASK-SP-0008-hero-redraw-and-page-lead.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md"],"completed":["Closed SP-0008 out: pull request #29 merged to main as 14338d2 with every step of the required gates job green on the merge candidate, and the task and checkpoint projections now record the merge."],"decisions":["Recorded the merge as a separate synchronized increment rather than amending the merged history, and left the pre-existing dark-GIF flash with #28 rather than fixing it inside this task."],"evidence":["gates job on 49e7af7: continuity records validate, content adapter conformance, always-on writing contract, tour page writing scan, profile links resolve, voice notes match their record, dark variants match their source and animation environments stay locked, all success. continuity validate is VALID after the close-out render. origin/main fetched and the merge commit confirmed an ancestor. Local runs under the CI pins agree on 33 references, 36 hashes, 9 clips, 8 dark variants and the three locked-motion recipes."],"next_action":"Pick up #28: find a page mask for scripts/derive_dark_assets.py that stops the dark GIFs flashing without shrinking the page area, and measure flashing pixels and page area together before touching any committed asset.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0008","timestamp":"2026-10-02T00:53:15Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256": "ef8cab3a509b3cee495a985adfab903638aab2e86dfa0323090833394fbfcddc", "request_id": "9df782a29413487d90c89449415a8108", "schema": "project-continuity.checkpoint-operation.v1", "task_id": "SP-0008"} -->
+
+Completed:
+- Closed SP-0008 out: pull request #29 merged to main as 14338d2 with every step of the required gates job green on the merge candidate, and the task and checkpoint projections now record the merge.
+
+Evidence:
+- gates job on 49e7af7: continuity records validate, content adapter conformance, always-on writing contract, tour page writing scan, profile links resolve, voice notes match their record, dark variants match their source and animation environments stay locked, all success. continuity validate is VALID after the close-out render. origin/main fetched and the merge commit confirmed an ancestor. Local runs under the CI pins agree on 33 references, 36 hashes, 9 clips, 8 dark variants and the three locked-motion recipes.
+
+Decisions:
+- Recorded the merge as a separate synchronized increment rather than amending the merged history, and left the pre-existing dark-GIF flash with #28 rather than fixing it inside this task.
+
+Changed:
+- tasks/TASK-SP-0008-hero-redraw-and-page-lead.md, checkpoints/CURRENT.md, docs/CONTINUITY_INDEX.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Pick up #28: find a page mask for scripts/derive_dark_assets.py that stops the dark GIFs flashing without shrinking the page area, and measure flashing pixels and page area together before touching any committed asset.
 
 ## Handoff
 
