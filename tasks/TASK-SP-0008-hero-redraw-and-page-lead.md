@@ -112,6 +112,29 @@ moving rather than leaks.
 
 ## Checkpoint log
 
+### 2026-10-02 00:49:12 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["scripts/derive_dark_assets.py, scripts/motion-recipes/hero-wide.json, scripts/motion-recipes/hero-phone.json, assets/profile/AI Engineer.png, assets/profile/AI Engineer phone.png, assets/profile/anim/AI Engineer.gif, assets/profile/anim/AI Engineer phone.gif, the eight derived dark GIFs, profile/README.md, docs/index.html, .content-system/asset-manifest.json, the four hero prompt records, PROJECT.md, tasks/TASK-SP-0008-hero-redraw-and-page-lead.md, checkpoints/CURRENT.md"],"completed":["Redrew the wide and phone hero from scratch with the configured image model, rebuilt the dark transform so it no longer repaints a figure's own outline as light ink, and reordered the profile page and the tour page to hero, introduction, market, the fix, the daily commits, the featured projects, then the rest."],"decisions":["Kept the per-frame border-connected paper mask and shipped the transform measured strictly better than the shipped one, rather than the frozen page construction that reaches zero flash but costs 21-100% of the page area on six of eight assets."],"evidence":["build_locked_motion check passes on hero-wide, hero-phone and projects-on-one-thread; derive_dark_assets --check reports 8 dark variants matching their source; check_profile_links reports 33 references resolved and 36 hashes matched; generate_voice_notes --check reports 9 clips and 0 problems; the pinned CGM adapter validator and both hsw scans pass; continuity validate is VALID. Flash measurement on all eight dark GIFs: 36,523 source-unchanged pixels under the old transform, 24,148 under the new one."],"next_action":"Push the branch, open the pull request against main, arm auto-merge, verify the merge and the required checks, then append the exact check results and merge SHA to issue #27 and the task projection.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0008","timestamp":"2026-10-02T00:49:12Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"498ea73793ebcd9f5af2bcdfcb99f8467ff4178909083d9448cbc8ca4e8872c8","request_id":"76ccddfe2a364fa2b829d4ea4d40e4f6","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0008"} -->
+
+Completed:
+- Redrew the wide and phone hero from scratch with the configured image model, rebuilt the dark transform so it no longer repaints a figure's own outline as light ink, and reordered the profile page and the tour page to hero, introduction, market, the fix, the daily commits, the featured projects, then the rest.
+
+Evidence:
+- build_locked_motion check passes on hero-wide, hero-phone and projects-on-one-thread; derive_dark_assets --check reports 8 dark variants matching their source; check_profile_links reports 33 references resolved and 36 hashes matched; generate_voice_notes --check reports 9 clips and 0 problems; the pinned CGM adapter validator and both hsw scans pass; continuity validate is VALID. Flash measurement on all eight dark GIFs: 36,523 source-unchanged pixels under the old transform, 24,148 under the new one.
+
+Decisions:
+- Kept the per-frame border-connected paper mask and shipped the transform measured strictly better than the shipped one, rather than the frozen page construction that reaches zero flash but costs 21-100% of the page area on six of eight assets.
+
+Changed:
+- scripts/derive_dark_assets.py, scripts/motion-recipes/hero-wide.json, scripts/motion-recipes/hero-phone.json, assets/profile/AI Engineer.png, assets/profile/AI Engineer phone.png, assets/profile/anim/AI Engineer.gif, assets/profile/anim/AI Engineer phone.gif, the eight derived dark GIFs, profile/README.md, docs/index.html, .content-system/asset-manifest.json, the four hero prompt records, PROJECT.md, tasks/TASK-SP-0008-hero-redraw-and-page-lead.md, checkpoints/CURRENT.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Push the branch, open the pull request against main, arm auto-merge, verify the merge and the required checks, then append the exact check results and merge SHA to issue #27 and the task projection.
+
 ## Handoff
 
 Read PROJECT → CURRENT → this task → minimum relevant spec. Checkpoint before stopping.
