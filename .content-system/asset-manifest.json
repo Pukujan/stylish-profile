@@ -107,7 +107,7 @@
       "motion": "wide commit chart, 1000x340, bars grow once then freeze",
       "alt_text": "Commits per day for the tracked window with today's projects beside the chart.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "2d209fa6da194eaaf9d4c69cc826140795db5093fd5ada0e9b558d4f8f013139"
+      "hash": "22e850e4c83424f32e34086d9bd28770275921da3309cd2818a77fec3205fb14"
     },
     {
       "path": "assets/profile/generated/activity-narrow.svg",
@@ -118,7 +118,7 @@
       "motion": "phone commit chart, 560x560, chart stacked above today's projects",
       "alt_text": "The same activity numbers stacked for screens 640 pixels wide or narrower.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "37bdf19f722e33af66e90919a8ed5a6ab9a2cdbac1671f7b9ac172946a51c615"
+      "hash": "6a4a4ea5bc737f31768eb5d73d4aeaba25e89bcf4df864c76ac34456c07768c5"
     },
     {
       "path": "assets/profile/Pujan and the Loose Ends.png",
@@ -788,7 +788,7 @@
       "motion": "wide commit chart, 1000x340, bars grow once then freeze",
       "alt_text": "Commits per day for the tracked window with today's projects beside the chart.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "08a2b279be1f8fb1053204d1dff483e42cfcf8957a8fb27fd48f9e7453b7ecae",
+      "hash": "1b516c43b67b37eefd18f60f2cf413cad7ab47e5a7a73ec2f9eb199269168c5e",
       "derived_from": "assets/profile/generated/activity.svg",
       "derivation": "Palette swap of assets/profile/generated/activity.svg by scripts/track_activity.py, applied to the finished SVG string: cream #FFF9F0 becomes the page's dark field #0F0F0F, ink #1A1A1A becomes light ink #EDEDED, and the three accents are lifted so the bars still carry against near-black. The same markup with different literals, so the two charts cannot drift in shape."
     },
@@ -801,7 +801,7 @@
       "motion": "phone commit chart, 560x560, chart stacked above today's projects",
       "alt_text": "The same activity numbers stacked for screens 640 pixels wide or narrower.",
       "usage": "Written by scripts/track_activity.py on the daily schedule and inserted into the TRACKING block of the profile page. Served through a <picture><source media> pair so phones get the narrow file.",
-      "hash": "97af3011cf121d0c5f5026925eaf43e308a7ed18f0516d119a51d40ec3e30553",
+      "hash": "5db335924dd9e9cf1aa78b6f931bb4d9699762f85b89129a1cb6cb0e6427ab75",
       "derived_from": "assets/profile/generated/activity-narrow.svg",
       "derivation": "Palette swap of assets/profile/generated/activity-narrow.svg by scripts/track_activity.py, applied to the finished SVG string: cream #FFF9F0 becomes the page's dark field #0F0F0F, ink #1A1A1A becomes light ink #EDEDED, and the three accents are lifted so the bars still carry against near-black. The same markup with different literals, so the two charts cannot drift in shape."
     }

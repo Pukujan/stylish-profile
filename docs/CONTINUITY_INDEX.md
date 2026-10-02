@@ -8,10 +8,10 @@
 ## Content adapter asset manifest (`content-adapter`)
 
 - File: [`.content-system/asset-manifest.json`](../.content-system/asset-manifest.json)
-- Local content status: **CURRENT**
+- Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `4c1ff489bb14e1dff3b0bb524bfc2814145e5af76f6d92e3c0999bf876ccb106`
-- Current SHA-256: `4c1ff489bb14e1dff3b0bb524bfc2814145e5af76f6d92e3c0999bf876ccb106`
+- Current SHA-256: `f489d6d70e192660e1831a75cc2bd8907080c24f0822f0dbc9d2444ae15451dd`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -32,10 +32,10 @@
 ## Profile page (publishable) (`profile-page`)
 
 - File: [`profile/README.md`](../profile/README.md)
-- Local content status: **CURRENT**
+- Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `5cee22b34b4387e62d122861a8f57af1a71fc9f1bf886d7b14787f21f4d397b4`
-- Current SHA-256: `5cee22b34b4387e62d122861a8f57af1a71fc9f1bf886d7b14787f21f4d397b4`
+- Current SHA-256: `322e06fa72c1262a9f53aa810571c9dfaad927e1f0f0d7cfa1c75e109fe30e5e`
 - Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: who I am, what I'm building with the four featured projects, how I work, the tools, what's fresh, the spoken tour links and how to find me.
 - Search terms: `featured-projects`, `profile`, `readme`
 - Neighboring records: none
@@ -92,10 +92,10 @@
 ## Tour page (`tour-page`)
 
 - File: [`docs/index.html`](../docs/index.html)
-- Local content status: **CURRENT**
+- Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `7546fba9b3066a54a8ba7655dce644940a8cff4727b78a2f3578e00284a02b89`
-- Current SHA-256: `7546fba9b3066a54a8ba7655dce644940a8cff4727b78a2f3578e00284a02b89`
+- Current SHA-256: `4ec51b105e0f6834c590e0dd1dba2bc337ddde155cdf6e63acd592059cb83a15`
 - Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none
