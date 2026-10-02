@@ -90,11 +90,12 @@ continuity docs render && continuity validate --root .
 
 The workflow also runs the continuity record check and the pinned content-system adapter checks, which need that adapter checked out at the revision named in the workflow.
 
-Three ordering rules, each of which cost a red `gates` run to learn:
+Three ordering rules, each of which cost a red `gates` run to learn, plus one artifact that looks like drift and is not:
 
 - **`continuity docs render` and `continuity validate --root .` go last, immediately before the push.** `docs/CONTINUITY_INDEX.md` records a hash for each of eight documents — `PROJECT.md`, `README.md`, `profile/README.md`, `docs/index.html`, `.content-system/asset-manifest.json`, `.content-system/project-brief.json`, `docs/research/github-profile-pages.md` and `.coord/assignment.json`. Editing any one of them after a render leaves the index stale, and the runner re-renders it and disagrees.
 - **Do not pass `--blocked ""` to `continuity checkpoint`.** The empty string is written through as `"blocked": [""]`, which the pinned validator rejects as `string shorter than 1`. Omit the flag when nothing is blocked and the record carries an empty array.
 - **`derive_dark_assets.py --check` is a byte comparison**, so it only passes when the dark files were derived with the same Pillow, numpy and scipy that `gates.yml` pins. Compare the local versions against those pins before re-deriving, or the runner will reject a file nobody can reproduce.
+- **`continuity docs render` rewriting `docs/CONTINUITY_INDEX.md` with CRLF line endings is not a change.** On a Windows checkout the renderer writes CRLF, git normalizes to LF when the file is staged, and the committed bytes match what was already there — `git status` shows the file as modified until it is staged. Confirm with `git add` and an empty `git diff --cached` before treating it as drift.
 
 `gates` also triggers on pushes to `main` and cancels superseded runs, so a green pull-request run does not settle the merge commit: read the run for the exact SHA.
 
