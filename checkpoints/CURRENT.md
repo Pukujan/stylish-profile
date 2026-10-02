@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":null,"active_task_file":null,"protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":"SP-0009","active_task_file":"tasks/TASK-SP-0009-dark-copies-stop-flashing.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -22,7 +22,15 @@ Phase: bootstrap.
 
 ## Active
 
-None. The two records that could drift are gated: `scripts/track_activity.py`
+- SP-0009 (issue #28, leaf, parent ancestry: none, depends on SP-0008): stop the
+  derived dark GIFs flashing. The page mask is now decided once for the whole
+  loop — a pixel counts as page if the border-connected pass calls it page in
+  this frame, or in another frame whose colour at that pixel is within two
+  levels. Flash is 0 on all eight committed dark GIFs, the two hero animations'
+  page area is unchanged (+0.00%), and the dark hero's 48,617 px of surviving
+  page cream are preserved exactly. Branch `task/SP-0009-dark-copies-stop-flashing`.
+
+The two records that could drift are gated: `scripts/track_activity.py`
 writes the chart hashes it draws into the manifest, `scripts/check_profile_links.py`
 fails when a recorded hash no longer matches its file, and
 `scripts/generate_voice_notes.py --check` fails when a transcript the page
@@ -32,10 +40,6 @@ environment drifts outside the moving boxes its recipe declares.
 
 ## Queued
 
-- #28: the derived dark GIFs still flash where a moving sprite crosses
-  page-coloured territory. Pre-existing, reduced by SP-0008 from 36,523 flashing
-  pixels to 24,148, not removed. Needs a page mask that is leak-proof without
-  shrinking the page area.
 - Re-run the tracker once the two probe repositories are gone, so the `sanitizer-probe` row leaves `profile/tracking.json`.
 - Re-record `The Short Tour.mp3` and `What Is Still Being Built.mp3`, which still say three projects where the page lists four. Needs a paid Fish Audio run and the owner's approval.
 - Upload the avatar to the GitHub account, which is a web-UI action the REST API does not expose.
@@ -47,10 +51,9 @@ None known.
 
 ## Next atomic action
 
-Nothing is active. The earliest queued item that needs no outside help is #28:
-find a page mask for `scripts/derive_dark_assets.py` that stops the dark GIFs
-flashing without shrinking the page area, then measure flashing pixels and page
-area together before touching any committed asset. When the owner deletes the
-two probe repositories, re-run `scripts/track_activity.py --days 14`, then
-`continuity docs render`, then commit so the `sanitizer-probe` row leaves
-`profile/tracking.json`.
+Finish SP-0009: push branch `task/SP-0009-dark-copies-stop-flashing`, open the
+pull request against `main`, verify the required `gates` check on the exact
+merge candidate, merge it, and append the check results and merge SHA to issue
+#28. When the owner deletes the two probe repositories, re-run
+`scripts/track_activity.py --days 14`, then `continuity docs render`, then commit
+so the `sanitizer-probe` row leaves `profile/tracking.json`.

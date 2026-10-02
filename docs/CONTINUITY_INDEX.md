@@ -1,6 +1,6 @@
 # Continuity Document Index
 
-<!-- continuity:documents-index {"catalog_sha256":"9322898ef7ac7d294d7355d80bed2d94a5a243d0c985b71d7d946964195cbae0","schema":"project-continuity.documents-index.v1"} -->
+<!-- continuity:documents-index {"catalog_sha256":"d34386b5c9b97e6bd1fa162213e659284536279ed27b6fe3e00b5e47ab1d65af","schema":"project-continuity.documents-index.v1"} -->
 
 > Generated from `.continuity/documents.json`. Edit the JSON inventory, then run `continuity docs render`; do not edit this view directly.
 > Freshness below compares local file bytes; after `git fetch origin`, use `continuity docs find` for cached remote freshness.
@@ -10,12 +10,12 @@
 - File: [`.content-system/asset-manifest.json`](../.content-system/asset-manifest.json)
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
-- Reviewed SHA-256: `60847fde017383f2b333eb8f254738b756cf74092e591e9002f7b2364fed0773`
-- Current SHA-256: `fc9c265834b057188a3a578cf551385e9771f537b94cd81c6b4644247652c577`
+- Reviewed SHA-256: `4c8048e298295190683ebdbd42ac5337aa2c57b069f99729da1ffa27ecffd071`
+- Current SHA-256: `4c1ff489bb14e1dff3b0bb524bfc2814145e5af76f6d92e3c0999bf876ccb106`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
-- Task associations: `SP-0001`
+- Task associations: `SP-0001`, `SP-0009`
 
 ## Hotload assignment (`hotload-assignment`)
 
