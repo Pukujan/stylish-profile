@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":"SP-0010","active_task_file":"tasks/TASK-SP-0010-profile-voice-and-order.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":null,"active_task_file":null,"protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -20,17 +20,11 @@ Phase: bootstrap.
 - SP-0007: the hero and the figure beside the project list are rebuilt from one locked environment plate plus keyed character sprites, so only the characters move; `scripts/build_locked_motion.py check` fails a committed GIF whose environment drifts outside its declared moving boxes, and runs as a gate.
 - SP-0008: the hero is redrawn from scratch with the configured image model and the dark transform no longer repaints a figure's own outline as light ink, so the silhouette halo is gone; the page and the tour page now run hero, introduction, market, what Pujan does about it, the daily commits, the featured projects, then the rest. Merged to `main` as `14338d2` from pull request #29, with every step of the required `gates` job green on the merge candidate.
 - SP-0009: the derived dark GIFs no longer flash. The page mask is decided once for the whole loop instead of once per frame, so a pixel byte-identical in two consecutive light frames gets the same dark output. Flash is 0 on all eight committed dark GIFs (was 24,148), both hero animations' page area is unchanged (+0.00%), and the dark hero's 48,617 px of surviving page cream are preserved exactly. Merged to `main` as `8add943` from pull request #35, with the required `gates` job green on the merge candidate and on `main`.
+- SP-0010: the profile page leads with the market instead of the audit register. It runs hero, a short introduction naming Agent Custom Setup, the market, what Pujan does about it, the daily commits, the featured projects, then the rest, and `docs/index.html` tells the same story at the same points. The market opener no longer asserts a market shift the linked repositories do not demonstrate, and the four `What I do about it` bullets no longer share one `not X` shape. Merged to `main` as `10d2012` from pull request #37, with the required `gates` job green on the merge candidate and on `main`; mirrored to `Pukujan/Pukujan` as `348db42` so `github.com/Pukujan` renders it.
 
 ## Active
 
-- SP-0010 (issue #36, leaf, parent ancestry: none, depends on SP-0009): reorder
-  and rewrite the profile page so it runs hero, a short introduction naming
-  `Agent Custom Setup`, the market, what Pujan does about it, the daily commits,
-  the featured projects, then the rest, with the market framed for a reader
-  rather than described in audit language. The same copy is mirrored in
-  `docs/index.html`. Branch `task/SP-0010-profile-voice-and-order`.
-
-The two records that could drift are gated: `scripts/track_activity.py`
+None. The two records that could drift are gated: `scripts/track_activity.py`
 writes the chart hashes it draws into the manifest, `scripts/check_profile_links.py`
 fails when a recorded hash no longer matches its file, and
 `scripts/generate_voice_notes.py --check` fails when a transcript the page
@@ -40,6 +34,7 @@ environment drifts outside the moving boxes its recipe declares.
 
 ## Queued
 
+- The dark variants are derived from the light asset by a deterministic recolour. Regenerating them from a generated dark plate, or reversing the pipeline to a video-generation route with an image-to-video reference frame, would reverse `.content-system/project-brief.json` `mechanism[1]`. Needs its own issue with a supersession link, and would retire the `gates.yml` step "Dark variants match their source".
 - Re-run the tracker once the two probe repositories are gone, so the `sanitizer-probe` row leaves `profile/tracking.json`.
 - Re-record `The Short Tour.mp3` and `What Is Still Being Built.mp3`, which still say three projects where the page lists four. Needs a paid Fish Audio run and the owner's approval.
 - Upload the avatar to the GitHub account, which is a web-UI action the REST API does not expose.
@@ -51,13 +46,10 @@ None known.
 
 ## Next atomic action
 
-Finish SP-0010: on branch `task/SP-0010-profile-voice-and-order`, restore the
-held copy, resolve the market opener so it states the reader's situation rather
-than an unsourced claim about the industry, re-run the full gate set, then
-commit, checkpoint, push, open the pull request against `main`, verify the
-required `gates` check on the exact merge candidate, merge it, and append the
-check results and merge SHA to issue #36. After the merge lands, dispatch
-`track-activity` so the mirror to `Pukujan/Pukujan` picks the new copy up.
-When the owner deletes the two probe repositories, re-run
-`scripts/track_activity.py --days 14`, then `continuity docs render`, then commit
-so the `sanitizer-probe` row leaves `profile/tracking.json`.
+File the dark-plate and video-generation follow-up issue with a supersession link
+to `.content-system/project-brief.json` `mechanism[1]`, naming the
+`scripts/derive_dark_assets.py` path and the `gates.yml` step "Dark variants
+match their source" as the things adoption would retire. Then, when the owner
+deletes the two probe repositories, re-run `scripts/track_activity.py --days 14`,
+then `continuity docs render`, then commit so the `sanitizer-probe` row leaves
+`profile/tracking.json`.
