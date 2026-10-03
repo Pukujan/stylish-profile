@@ -11,7 +11,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `4c1ff489bb14e1dff3b0bb524bfc2814145e5af76f6d92e3c0999bf876ccb106`
-- Current SHA-256: `f489d6d70e192660e1831a75cc2bd8907080c24f0822f0dbc9d2444ae15451dd`
+- Current SHA-256: `c5f4f629e3c03114d2649e67d79fb02c97a40ec0036a714e88e9fc20622fd115`
 - Summary: Every narrative image and voice note with its role, dimensions, alt text, crop behaviour, rejection conditions, review decision, provider, prompt record and committed file hash.
 - Search terms: `assets`, `manifest`, `provenance`
 - Neighboring records: none
@@ -35,7 +35,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `5cee22b34b4387e62d122861a8f57af1a71fc9f1bf886d7b14787f21f4d397b4`
-- Current SHA-256: `322e06fa72c1262a9f53aa810571c9dfaad927e1f0f0d7cfa1c75e109fe30e5e`
+- Current SHA-256: `b2e1c816ba7954d88ed7d834e3c45d06dfced09aa87e77e243d9aefc8b4b8bdc`
 - Summary: The page mirrored into Pukujan/Pukujan so it renders at github.com/Pukujan: who I am, what I'm building with the four featured projects, how I work, the tools, what's fresh, the spoken tour links and how to find me.
 - Search terms: `featured-projects`, `profile`, `readme`
 - Neighboring records: none
@@ -95,7 +95,7 @@
 - Local content status: **NEEDS_REVIEW**
 - Last reviewed at commit: `uncommitted`
 - Reviewed SHA-256: `7546fba9b3066a54a8ba7655dce644940a8cff4727b78a2f3578e00284a02b89`
-- Current SHA-256: `4ec51b105e0f6834c590e0dd1dba2bc337ddde155cdf6e63acd592059cb83a15`
+- Current SHA-256: `9da6102db6e60b0b2e195fd81ca230ce79dce94cc35e14f6b3fc19984ea792cd`
 - Summary: The static tour: the same story as the profile page plus a real audio player for every voice note, one beside each project, because GitHub strips audio elements from Markdown.
 - Search terms: `audio`, `html`, `tour`
 - Neighboring records: none
