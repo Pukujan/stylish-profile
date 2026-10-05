@@ -1,6 +1,6 @@
 # Continuity Document Index
 
-<!-- continuity:documents-index {"catalog_sha256":"d02e43ddf13db697f6f6a9c9917934b3eb99e41d09ac433eb5051316ae75265c","schema":"project-continuity.documents-index.v1"} -->
+<!-- continuity:documents-index {"catalog_sha256":"ba049a0758a9f114c0b54a58ca4db912680d929c9730db0e7aee3d573c0bab4f","schema":"project-continuity.documents-index.v1"} -->
 
 > Generated from `.continuity/documents.json`. Edit the JSON inventory, then run `continuity docs render`; do not edit this view directly.
 > Freshness below compares local file bytes; after `git fetch origin`, use `continuity docs find` for cached remote freshness.
@@ -68,14 +68,14 @@
 ## Project README (`project-readme`)
 
 - File: [`README.md`](../README.md)
-- Local content status: **NEEDS_REVIEW**
+- Local content status: **CURRENT**
 - Last reviewed at commit: `uncommitted`
-- Reviewed SHA-256: `436e18a7907ff028f9ea8189ae60e1a1bb9fbbc104adb317248c54006aa1f6a8`
-- Current SHA-256: `908a198427fa82e9cd0efadbca5a20f75b81942d73a750bcdd8d8eea9d2e4c9c`
+- Reviewed SHA-256: `96bbf045fbd3110a033b8536c2f881bdd7a4e4783f9f70b0d03ff2105bc6d6a0`
+- Current SHA-256: `96bbf045fbd3110a033b8536c2f881bdd7a4e4783f9f70b0d03ff2105bc6d6a0`
 - Summary: The project entry point for this repository: why the page exists, what the repository contains, how the pieces work, the evidence and boundaries, and how to run the link check.
 - Search terms: `product`, `readme`
 - Neighboring records: none
-- Task associations: `SP-0001`
+- Task associations: `SP-0001`, `SP-0012`
 
 ## Profile page research (`render-limits-research`)
 
