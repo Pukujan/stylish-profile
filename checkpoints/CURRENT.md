@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":"SP-0012","active_task_file":"tasks/TASK-SP-0012-repo-readme-presentation.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":null,"active_task_file":null,"protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -21,15 +21,18 @@ Phase: bootstrap.
 - SP-0008: the hero is redrawn from scratch with the configured image model and the dark transform no longer repaints a figure's own outline as light ink, so the silhouette halo is gone; the page and the tour page now run hero, introduction, market, what Pujan does about it, the daily commits, the featured projects, then the rest. Merged to `main` as `14338d2` from pull request #29, with every step of the required `gates` job green on the merge candidate.
 - SP-0009: the derived dark GIFs no longer flash. The page mask is decided once for the whole loop instead of once per frame, so a pixel byte-identical in two consecutive light frames gets the same dark output. Flash is 0 on all eight committed dark GIFs (was 24,148), both hero animations' page area is unchanged (+0.00%), and the dark hero's 48,617 px of surviving page cream are preserved exactly. Merged to `main` as `8add943` from pull request #35, with the required `gates` job green on the merge candidate and on `main`.
 - SP-0010: the profile page leads with the market instead of the audit register. It runs hero, a short introduction naming Agent Custom Setup, the market, what Pujan does about it, the daily commits, the featured projects, then the rest, and `docs/index.html` tells the same story at the same points. The market opener no longer asserts a market shift the linked repositories do not demonstrate, and the four `What I do about it` bullets no longer share one `not X` shape. Merged to `main` as `10d2012` from pull request #37, with the required `gates` job green on the merge candidate and on `main`; mirrored to `Pukujan/Pukujan` as `348db42` so `github.com/Pukujan` renders it.
-
-## Active
-
 - SP-0012: the repository README is re-presented so it carries the profile
   page's own visual language and a skimmable structure — three of the
   repository's committed illustrations, two tables where the content is
   tabular, and the four gate ordering rules folded into a `<details>`. Same
-  sections, claims, links and sentences; the presentation changed. Issue #41,
-  branch `task/SP-0012-repo-readme-presentation`. Not merged.
+  sections, claims, links and sentences; the presentation changed. Merged to
+  `main` as `78382d7` from pull request #42, with the required `gates` job
+  green on the PR head (run 37259561008) and on the merge commit (run
+  37259613796).
+
+## Active
+
+None. The next unit of work is the owner decision on issue #39.
 
 The two records that could drift are gated: `scripts/track_activity.py`
 writes the chart hashes it draws into the manifest, `scripts/check_profile_links.py`
@@ -53,12 +56,8 @@ None known.
 
 ## Next atomic action
 
-Open the pull request for SP-0012 against `main`, verify the required `gates`
-check on the exact merge candidate, merge with `gh pr merge --squash`, and post
-the leaf receipt to issue #41. Then file the dark-plate and video-generation
-follow-up issue with a supersession link to `.content-system/project-brief.json`
-`mechanism[1]`, naming the `scripts/derive_dark_assets.py` path and the
-`gates.yml` step "Dark variants match their source" as the things adoption
-would retire. When the owner deletes the two probe repositories, re-run
+Wait for the owner's decision on issue #39, the dark-plate and
+video-generation question, which is the next unit of work and is not
+authorised yet. When the owner deletes the two probe repositories, re-run
 `scripts/track_activity.py --days 14`, then `continuity docs render`, then
 commit so the `sanitizer-probe` row leaves `profile/tracking.json`.
