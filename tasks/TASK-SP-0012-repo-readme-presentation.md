@@ -1,8 +1,8 @@
 # TASK-SP-0012 — Repository README Presentation
 
-<!-- continuity:task {"acceptance": ["README.md keeps every existing section, claim, and link; no claim is added, removed, or reworded", "three illustrations are referenced with their manifest alt text, theme-paired through #gh-light-mode-only / #gh-dark-mode-only, and each path resolves", "the What you can make or use and How it adapts lists become tables carrying the same content", "the four gate ordering rules stay on the page, folded into a single details element", "python scripts/check_profile_links.py and continuity validate --root . are green, and the required gates job is green on the exact merge candidate", "docs/CONTINUITY_INDEX.md is re-rendered so its project-readme record matches the committed README bytes"], "depends_on": [], "goal": "Re-present the repository README so it carries the profile page's own visual language and a skimmable structure: three committed illustrations, two tables where the content is tabular, and the gate ordering rules folded into a details element, without changing any claim or any sentence of the argument.", "id": "SP-0012", "issue_url": "https://github.com/Pukujan/stylish-profile/issues/41", "next_action": "Run check_profile_links, continuity docs refresh project-readme and continuity validate, then open the pull request against main and verify the required gates check on the exact merge candidate", "owner": "omp@windows-workstation", "priority": "P3", "protocol_version": "0.1.0-draft", "schema": "project-continuity.task.v1", "status": "active", "why": "The repository README explains the project well but reads as a flat document: eight sections of prose, one bullet list, and no image. The profile page it documents opens with its own illustration and pairs every figure with the idea it explains, so the repository that argues for owning your visual weight documents itself without any of its own artwork. The longest section is a run of prose a reader must read in order to find the one rule they came for."} -->
+<!-- continuity:task {"acceptance": ["README.md keeps every existing section, claim, and link; no claim is added, removed, or reworded", "three illustrations are referenced with their manifest alt text, theme-paired through #gh-light-mode-only / #gh-dark-mode-only, and each path resolves", "the What you can make or use and How it adapts lists become tables carrying the same content", "the four gate ordering rules stay on the page, folded into a single details element", "python scripts/check_profile_links.py and continuity validate --root . are green, and the required gates job is green on the exact merge candidate", "docs/CONTINUITY_INDEX.md is re-rendered so its project-readme record matches the committed README bytes"], "depends_on": [], "goal": "Re-present the repository README so it carries the profile page's own visual language and a skimmable structure: three committed illustrations, two tables where the content is tabular, and the gate ordering rules folded into a details element, without changing any claim or any sentence of the argument.", "id": "SP-0012", "issue_url": "https://github.com/Pukujan/stylish-profile/issues/41", "next_action": "None. SP-0012 shipped in pull request #42 and is closed out; the dark-plate follow-up lives in issue #39.", "owner": "omp@windows-workstation", "priority": "P3", "protocol_version": "0.1.0-draft", "schema": "project-continuity.task.v1", "status": "completed", "why": "The repository README explains the project well but reads as a flat document: eight sections of prose, one bullet list, and no image. The profile page it documents opens with its own illustration and pairs every figure with the idea it explains, so the repository that argues for owning your visual weight documents itself without any of its own artwork. The longest section is a run of prose a reader must read in order to find the one rule they came for."} -->
 
-- Status: active
+- Status: completed
 - Owner: omp@windows-workstation
 - Priority: P3
 - Depends on: none
@@ -55,19 +55,19 @@ still there; the presentation is what changed.
 
 ## Acceptance criteria
 
-- [ ] `README.md` keeps every existing section, claim, and link; no claim is
+- [x] `README.md` keeps every existing section, claim, and link; no claim is
       added, removed, or reworded
-- [ ] three illustrations are referenced with their manifest alt text,
+- [x] three illustrations are referenced with their manifest alt text,
       theme-paired through `#gh-light-mode-only` / `#gh-dark-mode-only`, and
       each path resolves
-- [ ] the "What you can make or use" and "How it adapts" lists become tables
+- [x] the "What you can make or use" and "How it adapts" lists become tables
       carrying the same content
-- [ ] the four gate ordering rules stay on the page, folded into a single
+- [x] the four gate ordering rules stay on the page, folded into a single
       `<details>` element
-- [ ] `python scripts/check_profile_links.py` and `continuity validate --root .`
+- [x] `python scripts/check_profile_links.py` and `continuity validate --root .`
       are green, and the required `gates` job is green on the exact merge
       candidate
-- [ ] `docs/CONTINUITY_INDEX.md` is re-rendered so its `project-readme` record
+- [x] `docs/CONTINUITY_INDEX.md` is re-rendered so its `project-readme` record
       matches the committed README bytes
 
 ## Evidence and sources
@@ -113,3 +113,26 @@ Blocked/uncertain:
 
 Next:
 - Run `python scripts/check_profile_links.py` and `continuity validate --root .`, then open the pull request against `main`.
+
+### 2026-10-05 03:32:00 UTC — omp@windows-workstation
+
+<!-- continuity:checkpoint {"agent":"omp@windows-workstation","blocked":[],"changed":["README.md, .continuity/documents.json, docs/CONTINUITY_INDEX.md, tasks/TASK-SP-0012-repo-readme-presentation.md, checkpoints/CURRENT.md"],"completed":["SP-0012 is closed out: the repository README is re-presented on main with three of the repository's own illustrations, two tables where the content is tabular, and the four gate ordering rules folded into a details element, and no claim, sentence or link changed."],"decisions":["Use the animated GIFs rather than the still PNGs for the figures, because only the GIFs carry a committed dark twin; theme-pair them with #gh-light-mode-only / #gh-dark-mode-only, the mechanism the profile page already uses."],"evidence":["PR #42 merged squash as 78382d7c3293e7ab2ea74440c9b771b1f7720aaf. The required gates job is green on the PR head (run 37259561008) and on the merge commit (run 37259613796, the push run, which appeared because auto-merge was armed by hand with the owner's login rather than by app/github-actions). Local: check_profile_links VALID 43 refs/36 hashes, generate_voice_notes --check 0 problems, derive_dark_assets --check VALID on 8, build_locked_motion check OK on all three recipes, continuity validate VALID."],"next_action":"Wait for the owner's decision on issue #39, the dark-plate and video-generation question; it is the next unit of work and is not authorised yet.","protocol_version":"0.1.0-draft","schema":"project-continuity.checkpoint.v1","task_id":"SP-0012","timestamp":"2026-10-05T03:32:00Z"} -->
+<!-- continuity:checkpoint-operation {"payload_sha256":"6e2b55ae088ac64e11f04cadd865d0e91633ae88f77a66ce24a561da12493db2","request_id":"63d4447ed9c04ea8a4ad4dc5c1a12ae9","schema":"project-continuity.checkpoint-operation.v1","task_id":"SP-0012"} -->
+
+Completed:
+- SP-0012 is closed out: the repository README is re-presented on main with three of the repository's own illustrations, two tables where the content is tabular, and the four gate ordering rules folded into a details element, and no claim, sentence or link changed.
+
+Evidence:
+- PR #42 merged squash as 78382d7c3293e7ab2ea74440c9b771b1f7720aaf. The required gates job is green on the PR head (run 37259561008) and on the merge commit (run 37259613796, the push run, which appeared because auto-merge was armed by hand with the owner's login rather than by app/github-actions). Local: check_profile_links VALID 43 refs/36 hashes, generate_voice_notes --check 0 problems, derive_dark_assets --check VALID on 8, build_locked_motion check OK on all three recipes, continuity validate VALID.
+
+Decisions:
+- Use the animated GIFs rather than the still PNGs for the figures, because only the GIFs carry a committed dark twin; theme-pair them with #gh-light-mode-only / #gh-dark-mode-only, the mechanism the profile page already uses.
+
+Changed:
+- README.md, .continuity/documents.json, docs/CONTINUITY_INDEX.md, tasks/TASK-SP-0012-repo-readme-presentation.md, checkpoints/CURRENT.md
+
+Blocked/uncertain:
+- none
+
+Next:
+- Wait for the owner's decision on issue #39, the dark-plate and video-generation question; it is the next unit of work and is not authorised yet.
