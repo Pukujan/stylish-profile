@@ -1,6 +1,6 @@
 # Current Repository Checkpoint
 
-<!-- continuity:current {"active_task":null,"active_task_file":null,"protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
+<!-- continuity:current {"active_task":"SP-0012","active_task_file":"tasks/TASK-SP-0012-repo-readme-presentation.md","protocol_version":"0.1.0-draft","schema":"project-continuity.current.v1"} -->
 
 This is an as-of projection; live GitHub issues own progression. Link the owning leaf, parent ancestry and dependencies for active work.
 
@@ -24,7 +24,14 @@ Phase: bootstrap.
 
 ## Active
 
-None. The two records that could drift are gated: `scripts/track_activity.py`
+- SP-0012: the repository README is re-presented so it carries the profile
+  page's own visual language and a skimmable structure — three of the
+  repository's committed illustrations, two tables where the content is
+  tabular, and the four gate ordering rules folded into a `<details>`. Same
+  sections, claims, links and sentences; the presentation changed. Issue #41,
+  branch `task/SP-0012-repo-readme-presentation`. Not merged.
+
+The two records that could drift are gated: `scripts/track_activity.py`
 writes the chart hashes it draws into the manifest, `scripts/check_profile_links.py`
 fails when a recorded hash no longer matches its file, and
 `scripts/generate_voice_notes.py --check` fails when a transcript the page
@@ -46,10 +53,12 @@ None known.
 
 ## Next atomic action
 
-File the dark-plate and video-generation follow-up issue with a supersession link
-to `.content-system/project-brief.json` `mechanism[1]`, naming the
-`scripts/derive_dark_assets.py` path and the `gates.yml` step "Dark variants
-match their source" as the things adoption would retire. Then, when the owner
-deletes the two probe repositories, re-run `scripts/track_activity.py --days 14`,
-then `continuity docs render`, then commit so the `sanitizer-probe` row leaves
-`profile/tracking.json`.
+Open the pull request for SP-0012 against `main`, verify the required `gates`
+check on the exact merge candidate, merge with `gh pr merge --squash`, and post
+the leaf receipt to issue #41. Then file the dark-plate and video-generation
+follow-up issue with a supersession link to `.content-system/project-brief.json`
+`mechanism[1]`, naming the `scripts/derive_dark_assets.py` path and the
+`gates.yml` step "Dark variants match their source" as the things adoption
+would retire. When the owner deletes the two probe repositories, re-run
+`scripts/track_activity.py --days 14`, then `continuity docs render`, then
+commit so the `sanitizer-probe` row leaves `profile/tracking.json`.

@@ -4,11 +4,17 @@ A profile page for [github.com/Pukujan](https://github.com/Pukujan) that explain
 
 ## Why this exists
 
+<img src="assets/profile/anim/The%20Badge%20Wall.gif#gh-light-mode-only" alt="Animated drawing of a small round companion in front of a dense wall of blank badge and statistics cards, raising an empty magnifying glass above its head." width="100%">
+<img src="assets/profile/anim/The%20Badge%20Wall-dark.gif#gh-dark-mode-only" alt="Animated drawing of a small round companion in front of a dense wall of blank badge and statistics cards, raising an empty magnifying glass above its head." width="100%">
+
 Open the old profile page and the loudest element was a pair of third-party statistics images. They reported commit counts and language shares. They told a visitor nothing about what any project does, and they rendered whatever that service decided to render that day. Two of the services behind them now return payment errors and one no longer resolves.
 
 **A reader deciding whether the work is worth an hour got no help from the one page built to help them.** This repository builds the replacement, and it draws its own numbers rather than borrowing someone else's.
 
 ## What this project is
+
+<img src="assets/profile/anim/Projects%20on%20One%20Thread.gif#gh-light-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="480">
+<img src="assets/profile/anim/Projects%20on%20One%20Thread-dark.gif#gh-dark-mode-only" alt="Animated drawing of four cards joined by one blue thread, each holding a simple icon for an agent, a continuity trail, a content page and a routing fork, with a dot travelling along the thread." width="480">
 
 One Markdown page, a static HTML tour, six hand-drawn illustrations plus an avatar, eight short animations, four generated charts, and nine spoken notes. The page opens by saying who this is and what the work is, presents four featured projects each with a spoken note, then explains how the work gets done, what tools it uses, and what changed recently.
 
@@ -16,12 +22,14 @@ It is a static entry point. No runtime, no build step, no server, no database. T
 
 ## What you can make or use
 
-- **The profile page** at [`profile/README.md`](profile/README.md), written to be mirrored into the `Pukujan/Pukujan` profile repository so it renders at `github.com/Pukujan`.
-- **A spoken tour** at [`docs/index.html`](docs/index.html), a static page that plays every voice note with a real audio player, one beside each project. GitHub strips `<audio>` from Markdown, so a page is the only place the clips can actually play; the profile page links to the same files.
-- **Six narrative illustrations** under [`assets/profile/`](assets/profile), each generated against a recorded visual contract and reviewed before acceptance. Each one also ships as an animation under [`assets/profile/anim/`](assets/profile/anim), built by `scripts/build_motion_gif.py` from frames generated against the still, with a ping-pong return so the loop does not snap. The hero ships in a wide and a phone framing.
-- **A dark variant of every image**, derived from the light asset by `scripts/derive_dark_assets.py` rather than generated again, so the two stay in step and the transform is reproducible.
-- **Four generated charts** under [`assets/profile/generated/`](assets/profile/generated), two layouts each in a light and a dark palette, redrawn from live GitHub data on a daily schedule.
-- **A research write-up** at [`docs/research/github-profile-pages.md`](docs/research/github-profile-pages.md) covering what comparable profile repositories do and what a GitHub README can and cannot render in 2026.
+| Piece | Source | What it is |
+| --- | --- | --- |
+| The profile page | [`profile/README.md`](profile/README.md) | Written to be mirrored into the `Pukujan/Pukujan` profile repository so it renders at `github.com/Pukujan`. |
+| A spoken tour | [`docs/index.html`](docs/index.html) | A static page that plays every voice note with a real audio player, one beside each project. GitHub strips `<audio>` from Markdown, so a page is the only place the clips can actually play; the profile page links to the same files. |
+| Six narrative illustrations | [`assets/profile/`](assets/profile) | Each generated against a recorded visual contract and reviewed before acceptance. Each one also ships as an animation under [`assets/profile/anim/`](assets/profile/anim), built by [`scripts/build_motion_gif.py`](scripts/build_motion_gif.py) from frames generated against the still, with a ping-pong return so the loop does not snap. The hero ships in a wide and a phone framing. |
+| A dark variant of every image | [`scripts/derive_dark_assets.py`](scripts/derive_dark_assets.py) | Derived from the light asset rather than generated again, so the two stay in step and the transform is reproducible. |
+| Four generated charts | [`assets/profile/generated/`](assets/profile/generated) | Two layouts each in a light and a dark palette, redrawn from live GitHub data on a daily schedule. |
+| A research write-up | [`docs/research/github-profile-pages.md`](docs/research/github-profile-pages.md) | Covers what comparable profile repositories do and what a GitHub README can and cannot render in 2026. |
 
 ## What the page says about recent work
 
@@ -54,12 +62,17 @@ Publishing the refresh means pushing to a protected `main`, and the workflow tok
 
 The page is read on phones far more often than on a desk, so nothing here assumes a wide column.
 
-- The hero image ships in two framings. Below 640 pixels the page serves the portrait version through a `picture` element, because the wide file scaled into a phone column renders its subtitle about four pixels tall.
-- Both charts ship in two arrangements. The narrow files stack the chart above the project list instead of putting them side by side.
-- The motion figures sit side by side on a wide screen and stack below 640 pixels.
-- Text sizes, spacing, and the page gutter tighten below 640 pixels.
+| Element | How it adapts |
+| --- | --- |
+| The hero image | Ships in two framings. Below 640 pixels the page serves the portrait version through a `picture` element, because the wide file scaled into a phone column renders its subtitle about four pixels tall. |
+| Both charts | Ship in two arrangements. The narrow files stack the chart above the project list instead of putting them side by side. |
+| The motion figures | Sit side by side on a wide screen and stack below 640 pixels. |
+| Text sizes, spacing, and the page gutter | Tighten below 640 pixels. |
 
 ## Evidence and boundaries
+
+<img src="assets/profile/anim/What%20You%20Can%20Check.gif#gh-light-mode-only" alt="Animated drawing of a stack of blank source cards feeding down into an open book and a pair of headphones, with a small round companion holding a pencil." width="360">
+<img src="assets/profile/anim/What%20You%20Can%20Check-dark.gif#gh-dark-mode-only" alt="Animated drawing of a stack of blank source cards feeding down into an open book and a pair of headphones, with a small round companion holding a pencil." width="360">
 
 - The page's claims about the four featured projects point at their public repositories. The repositories, not this page, are the evidence.
 - The illustrations are illustrations of the story. They are not screenshots, not benchmarks, and not evidence of shipped behavior.
@@ -90,12 +103,15 @@ continuity docs render && continuity validate --root .
 
 The workflow also runs the continuity record check and the pinned content-system adapter checks, which need that adapter checked out at the revision named in the workflow.
 
-Three ordering rules, each of which cost a red `gates` run to learn, plus one artifact that looks like drift and is not:
+<details>
+<summary>Three ordering rules, each of which cost a red gates run to learn, and one artifact that looks like drift but is not</summary>
 
 - **`continuity docs render` and `continuity validate --root .` go last, immediately before the push.** `docs/CONTINUITY_INDEX.md` records a hash for each of eight documents — `PROJECT.md`, `README.md`, `profile/README.md`, `docs/index.html`, `.content-system/asset-manifest.json`, `.content-system/project-brief.json`, `docs/research/github-profile-pages.md` and `.coord/assignment.json`. Editing any one of them after a render leaves the index stale, and the runner re-renders it and disagrees.
 - **Do not pass `--blocked ""` to `continuity checkpoint`.** The empty string is written through as `"blocked": [""]`, which the pinned validator rejects as `string shorter than 1`. Omit the flag when nothing is blocked and the record carries an empty array.
 - **`derive_dark_assets.py --check` is a byte comparison**, so it only passes when the dark files were derived with the same Pillow, numpy and scipy that `gates.yml` pins. Compare the local versions against those pins before re-deriving, or the runner will reject a file nobody can reproduce.
 - **`continuity docs render` rewriting `docs/CONTINUITY_INDEX.md` with CRLF line endings is not a change.** On a Windows checkout the renderer writes CRLF, git normalizes to LF when the file is staged, and the committed bytes match what was already there — `git status` shows the file as modified until it is staged. Confirm with `git add` and an empty `git diff --cached` before treating it as drift.
+
+</details>
 
 `gates` also triggers on pushes to `main` and cancels superseded runs, so a green pull-request run does not settle the merge commit: read the run for the exact SHA. **But a merge commit may have no push run at all, and that is not a failure.** When [`auto-merge.yml`](.github/workflows/auto-merge.yml) arms auto-merge itself, it does so with `secrets.GITHUB_TOKEN`, and GitHub suppresses workflow runs for events triggered by that token — so `push: branches: [main]` never fires and only the Pages `dynamic` run appears. Ask which happened with one command:
 
